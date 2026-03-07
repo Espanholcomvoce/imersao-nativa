@@ -1246,12 +1246,35 @@ function logoutUser(){
   document.getElementById('appContent').style.display = 'none';
 }
 
-// Check login on load
-window.addEventListener('DOMContentLoaded', ()=>{
+// Check login on load - verify with Hotmart every time
+window.addEventListener('DOMContentLoaded', async ()=>{
   if(isLoggedIn()){
-    document.getElementById('loginScreen').style.display = 'none';
-    document.getElementById('appContent').style.display = 'block';
-    document.getElementById('userEmailBadge').textContent = _userEmail;
+    // Verify token is still valid with backend
+    try {
+      const res = await fetch(BACKEND_URL+'/api/verify', {
+        method:'POST',
+        headers:{'Content-Type':'application/json','Authorization':'Bearer '+_authToken}
+      });
+      if(res.ok){
+        document.getElementById('loginScreen').style.display = 'none';
+        document.getElementById('appContent').style.display = 'block';
+        document.getElementById('userEmailBadge').textContent = _userEmail;
+      } else {
+        // Token expired or revoked - force re-login
+        localStorage.removeItem('imersao_token');
+        localStorage.removeItem('imersao_email');
+        _authToken = ''; _userEmail = '';
+        document.getElementById('loginScreen').style.display = 'flex';
+        document.getElementById('appContent').style.display = 'none';
+      }
+    } catch(e){
+      // No internet - show message
+      document.getElementById('loginScreen').style.display = 'flex';
+      document.getElementById('appContent').style.display = 'none';
+      const err = document.getElementById('loginError');
+      err.style.display = 'block';
+      err.textContent = '⚠️ Sem conexão com a internet. O Imersão Nativa precisa de internet para funcionar. Verifique sua conexão e tente novamente.';
+    }
   } else {
     document.getElementById('loginScreen').style.display = 'flex';
     document.getElementById('appContent').style.display = 'none';
