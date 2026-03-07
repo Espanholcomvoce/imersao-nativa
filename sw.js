@@ -1,4 +1,4 @@
-const CACHE = 'imersao-nativa-v1';
+const CACHE = 'imersao-nativa-v2';
 const OFFLINE_URLS = ['/'];
 
 self.addEventListener('install', e => {
