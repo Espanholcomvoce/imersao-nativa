@@ -208,42 +208,6 @@ h1{font-family:'Playfair Display',serif;font-size:40px;font-weight:700;letter-sp
 </head>
 <body>
 
-<!-- ══════════════ LOGIN SCREEN ══════════════ -->
-<div id="loginScreen" style="display:none;position:fixed;inset:0;z-index:9999;background:linear-gradient(135deg,#0d1f4a 0%,#111830 50%,#0d1a3a 100%);flex-direction:column;align-items:center;justify-content:center;padding:24px">
-  <div style="text-align:center;max-width:380px;width:100%">
-
-    <!-- PROGRAMA EXCLUSIVO badge -->
-    <div style="display:inline-block;border:1.5px solid rgba(255,255,255,0.3);border-radius:20px;padding:5px 18px;font-size:11px;letter-spacing:2.5px;color:rgba(255,255,255,0.75);margin-bottom:18px;font-family:'Lora',serif;text-transform:uppercase">Programa Exclusivo</div>
-
-    <!-- IMERSÃO letras coloridas -->
-    <div style="font-size:52px;font-weight:900;line-height:1;font-family:'Playfair Display',serif;margin-bottom:2px">
-      <span style="color:#60a5fa">I</span><span style="color:#38bdf8">M</span><span style="color:#34d399">E</span><span style="color:#86efac">R</span><span style="color:#bef264">S</span><span style="color:#facc15">Ã</span><span style="color:#fb923c">O</span>
-    </div>
-
-    <!-- NATIVA -->
-    <div style="font-size:14px;letter-spacing:7px;color:rgba(255,255,255,0.55);font-family:'Playfair Display',serif;margin-bottom:6px">N A T I V A</div>
-
-    <!-- linha dourada -->
-    <div style="width:36px;height:2px;background:linear-gradient(90deg,#facc15,#fb923c);margin:0 auto 10px"></div>
-
-    <!-- subtítulo novo -->
-    <div style="font-size:13px;color:rgba(255,255,255,0.45);font-family:'Lora',serif;font-style:italic;margin-bottom:32px">App Exclusivo do Programa Imersão Nativa</div>
-
-    <!-- card de login -->
-    <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:28px">
-      <div style="color:rgba(255,255,255,0.5);font-size:13px;margin-bottom:20px;font-family:'Lora',serif">Acesse com seu email da Hotmart</div>
-      <input id="loginEmail" type="email" placeholder="seu@email.com" style="width:100%;padding:14px 16px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:12px;color:#fff;font-size:15px;margin-bottom:16px;box-sizing:border-box;outline:none;font-family:'Lora',serif" />
-      <div id="loginError" style="color:#f87171;font-size:13px;margin-bottom:12px;display:none"></div>
-      <button id="loginBtn" onclick="loginUser()" style="width:100%;padding:14px;background:linear-gradient(135deg,#facc15,#fb923c);border:none;border-radius:12px;color:#fff;font-size:16px;font-weight:700;cursor:pointer;font-family:'Playfair Display',serif;box-shadow:0 8px 28px rgba(250,204,21,0.3)">Entrar</button>
-    </div>
-
-    <div style="color:rgba(255,255,255,0.25);font-size:11px;margin-top:20px;font-family:'Lora',serif">Imersão Nativa • Powered by IA</div>
-  </div>
-</div>
-
-<!-- ══════════════ APP CONTENT ══════════════ -->
-<div id="appContent" style="display:none">
-
 <!-- ══════════════ HOME ══════════════ -->
 <div id="home" class="screen active">
 <div class="home-inner">
@@ -1187,7 +1151,7 @@ function verificarLacunas(){
 //  API KEY 
 // Insira sua chave Anthropic aqui:
 // ── Backend URL — troque pela URL do Railway depois do deploy ──
-const BACKEND_URL = 'https://imersao-nativa-backend-production.up.railway.app';
+const BACKEND_URL = 'https://imersao-nativa-backend.up.railway.app';
 const ELEVENLABS_VOICE_ID = 'pqHfZKP75CvOlQylNhV4';
 function removeEmojis(str){
   return str.replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g,'').replace(/[\u2600-\u27BF]/g,'').trim();
