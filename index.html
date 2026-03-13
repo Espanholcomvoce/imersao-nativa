@@ -113,6 +113,10 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
 .sre-btn.hard{background:rgba(248,113,113,.2);border:1px solid var(--red);color:var(--red)}
 .sre-btn.ok{background:rgba(250,204,21,.2);border:1px solid var(--yellow);color:var(--yellow)}
 .sre-btn.easy{background:rgba(74,222,128,.2);border:1px solid var(--green);color:var(--green)}
+.sre-audio-btns{display:flex;gap:10px;margin-bottom:12px;justify-content:center}
+.audio-btn{background:rgba(139,92,246,.15);border:1px solid rgba(139,92,246,.4);color:#a78bfa;border-radius:12px;padding:10px 20px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .2s;display:flex;align-items:center;gap:6px}
+.audio-btn:active{transform:scale(0.95);background:rgba(139,92,246,.3)}
+.audio-btn.loading{opacity:0.6;cursor:wait}
 .add-card-form{background:var(--glass);border:1px solid var(--border);border-radius:16px;padding:18px;margin-bottom:16px}
 .form-title{font-family:'Playfair Display',serif;font-weight:600;font-size:clamp(14px,3.8vw,15px);margin-bottom:14px}
 .field-group{margin-bottom:12px}
@@ -388,6 +392,14 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
       <div class="card-tip" id="cardTip"></div>
     </div>
     <div class="flip-hint">toque para ver →</div>
+  </div>
+  <div class="sre-audio-btns" id="sreAudioBtns" style="display:none">
+    <button class="audio-btn" onclick="event.stopPropagation();playVocabAudio('word')" title="Ouvir palavra">
+      🔊 <span>Palavra</span>
+    </button>
+    <button class="audio-btn" onclick="event.stopPropagation();playVocabAudio('example')" title="Ouvir frase">
+      🔊 <span>Frase</span>
+    </button>
   </div>
   <div class="sre-actions" id="sreActions" style="display:none">
     <button class="sre-btn hard" onclick="rateCard('hard')">😓 Difícil</button>
@@ -1435,6 +1447,7 @@ function showCard() {
   document.getElementById('cardExample').textContent = card.example || '';
   document.getElementById('cardTip').textContent = '';
   document.getElementById('sreActions').style.display = 'none';
+  document.getElementById('sreAudioBtns').style.display = 'none';
 }
 
 function flipCard() {
@@ -1443,6 +1456,31 @@ function flipCard() {
   document.getElementById('cardBack').classList.toggle('visible', cardFlipped);
   document.getElementById('cardHint').textContent = cardFlipped ? '' : 'Toque para ver a tradução';
   document.getElementById('sreActions').style.display = cardFlipped ? 'grid' : 'none';
+  document.getElementById('sreAudioBtns').style.display = cardFlipped ? 'flex' : 'none';
+}
+
+// Toca áudio da palavra ou frase via ElevenLabs (Valentina)
+async function playVocabAudio(type) {
+  const card = sreCards[currentCardIndex];
+  if (!card) return;
+  const text = type === 'word' ? card.word : (card.example || card.word);
+  const btns = document.querySelectorAll('.audio-btn');
+  btns.forEach(b => b.classList.add('loading'));
+  try {
+    const res = await fetch(`${API}/api/tts/vocab?text=${encodeURIComponent(text)}&type=${type}`, {
+      headers: { 'Authorization': `Bearer ${token}` }
+    });
+    if (!res.ok) throw new Error('Erro ao buscar áudio');
+    const blob = await res.blob();
+    const url = URL.createObjectURL(blob);
+    const audio = new Audio(url);
+    audio.play();
+    audio.onended = () => URL.revokeObjectURL(url);
+  } catch(e) {
+    console.error('[AUDIO]', e);
+  } finally {
+    btns.forEach(b => b.classList.remove('loading'));
+  }
 }
 
 function rateCard(rating) {
