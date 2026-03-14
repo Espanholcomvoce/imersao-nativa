@@ -125,7 +125,7 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
 .sre-xp-label{font-size:12px;color:var(--text2)}
 .sre-xp-track{height:8px;background:rgba(255,255,255,.1);border-radius:99px;overflow:hidden}
 .sre-xp-fill{height:100%;background:linear-gradient(90deg,#a855f7,#f59e0b);border-radius:99px;transition:width .6s ease}
-.sre-daily{display:grid;grid-template-columns:70px 1fr 70px;gap:10px;align-items:center;margin-bottom:14px}
+.sre-daily{display:none!important;grid-template-columns:70px 1fr 70px;gap:10px;align-items:center;margin-bottom:14px}
 .sre-daily-card{background:var(--glass);border:1px solid var(--border);border-radius:14px;padding:10px 8px;text-align:center}
 .sre-daily-icon{font-size:20px}
 .sre-daily-num{font-size:22px;font-weight:800;color:var(--gold)}
@@ -473,28 +473,7 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
       <div class="sre-xp-fill" id="sreXpFill" style="width:0%"></div>
     </div>
   </div>
-  <!-- STATS DIÁRIOS -->
-  <div class="sre-daily">
-    <div class="sre-daily-card">
-      <div class="sre-daily-icon">🔥</div>
-      <div class="sre-daily-num" id="sreStreak">0</div>
-      <div class="sre-daily-label">dias</div>
-    </div>
-    <div class="sre-daily-progress">
-      <div class="sre-daily-top">
-        <span id="sreDoneToday">0</span><span class="sre-daily-sep">/</span><span id="sreDailyGoal">10</span>
-        <span class="sre-daily-label-inline">palavras hoje</span>
-      </div>
-      <div class="sre-progress-track">
-        <div class="sre-progress-fill" id="sreProgressFill" style="width:0%"></div>
-      </div>
-    </div>
-    <div class="sre-daily-card">
-      <div class="sre-daily-icon">⭐</div>
-      <div class="sre-daily-num" id="sreStars">0</div>
-      <div class="sre-daily-label">estrelas</div>
-    </div>
-  </div>
+  <!-- stats removidos -->
   <!-- FLASHCARD -->
   <div class="flashcard" id="flashcard" onclick="flipCard()">
     <div class="card-theme-tag" id="cardThemeTag"></div>
@@ -1114,12 +1093,7 @@ function renderCards() {
   var streak = stats.streak || 0;
   var mastered = sreCards.filter(c => (c.reviews||0) >= 3 && c.nextReview && new Date(c.nextReview) > new Date()).length;
 
-  document.getElementById('sreStreak').textContent = streak;
-  document.getElementById('sreStars').textContent = stars;
-  var pct = Math.min(100, Math.round(doneToday / DAILY_GOAL * 100));
-  document.getElementById('sreDoneToday').textContent = doneToday;
-  document.getElementById('sreDailyGoal').textContent = DAILY_GOAL;
-  document.getElementById('sreProgressFill').style.width = pct + '%';
+  // stats UI removidos
 
   var level = getLevel(mastered);
   var nextLevel = LEVELS.find(l => l.min > mastered) || LEVELS[LEVELS.length-1];
@@ -1162,29 +1136,21 @@ function renderCards() {
 function showCard() {
   var card = sreQueue[sreQueueIndex];
   if (!card) { renderCards(); return; }
-  cardFlipped = false;
+  cardFlipped = true;
   document.getElementById('cardFront').textContent = card.word;
-  document.getElementById('cardHint').textContent = '🎙️ Ouça e repita em voz alta!';
-  document.getElementById('cardBack').classList.remove('visible');
+  document.getElementById('cardHint').textContent = '';
+  document.getElementById('cardBack').classList.add('visible');
   document.getElementById('cardTranslation').textContent = card.translation;
   document.getElementById('cardExample').textContent = card.example || '';
   document.getElementById('cardThemeTag').textContent = card.theme || '';
   document.getElementById('cardTypeTag').textContent = card._qtype === 'new' ? '✨ Nova' : '🔄 Revisão';
-  document.getElementById('flipHint').textContent = 'toque para ver →';
-  document.getElementById('sreActions').style.display = 'none';
-  document.getElementById('sreAudioBtns').style.display = 'none';
-  // auto-play removido
+  document.getElementById('flipHint').textContent = '';
+  document.getElementById('sreActions').style.display = 'grid';
+  document.getElementById('sreAudioBtns').style.display = 'flex';
 }
 
 function flipCard() {
-  if (!sreQueue.length) return;
-  cardFlipped = !cardFlipped;
-  document.getElementById('cardBack').classList.toggle('visible', cardFlipped);
-  document.getElementById('cardHint').textContent = cardFlipped ? '' : '🎙️ Ouça e repita em voz alta!';
-  document.getElementById('flipHint').textContent = cardFlipped ? '' : 'toque para ver →';
-  document.getElementById('sreActions').style.display = cardFlipped ? 'grid' : 'none';
-  document.getElementById('sreAudioBtns').style.display = cardFlipped ? 'flex' : 'none';
-  // auto-play removido
+  // card sempre aberto, toque não faz nada
 }
 
 async function playVocabAudio(type) {
