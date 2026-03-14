@@ -463,7 +463,7 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
     <div><div class="page-title">🧠 Sombreado</div><div class="page-subtitle">Ouça · Repita · Internalize</div></div>
   </div>
   <!-- NÍVEL + XP -->
-  <div class="sre-level-bar">
+  <div class="sre-level-bar" style="display:none">
     <div class="sre-level-info">
       <span class="sre-level-badge" id="sreLevelBadge">🌱</span>
       <span class="sre-level-name" id="sreLevelName">Iniciante</span>
@@ -529,7 +529,23 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
     <div class="celebration-text" id="celebrationText">Meta do dia concluída!</div>
     <button class="btn-sm" onclick="hideCelebration()">Continuar →</button>
   </div>
-  <!-- ADICIONAR PALAVRA -->
+  <!-- BOTÃO GERENCIAR VOCABULÁRIO -->
+  <div style="margin-top:16px;text-align:center">
+    <button class="btn-sm" onclick="goTo('sre-vocab')" style="background:var(--glass);border:1px solid var(--border);color:var(--text);box-shadow:none">
+      📚 Gerenciar vocabulário
+    </button>
+  </div>
+</div>
+</div>
+
+<!-- TELA GERENCIAR VOCABULÁRIO -->
+<div id="sre-vocab" class="screen">
+<div class="content-wrap">
+  <div class="page-header">
+    <button class="back-btn" onclick="goTo('sre')">←</button>
+    <div><div class="page-title">📚 Vocabulário</div><div class="page-subtitle">Adicione e gerencie suas palavras</div></div>
+  </div>
+  <!-- FORMULÁRIO -->
   <div class="add-card-form">
     <div class="form-title">➕ Adicionar palavra <span class="add-bonus">+⭐ bônus!</span></div>
     <div class="field-group">
@@ -546,7 +562,7 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
     </div>
     <button class="btn-sm" onclick="addCard()">Adicionar ✓</button>
   </div>
-  <div class="cards-list" id="cardsList"></div>
+  <div class="cards-list" id="cardsList" style="display:none"></div>
 </div>
 </div>
 
@@ -944,6 +960,7 @@ function goTo(id) {
   if (id === 'sre') renderCards();
   if (id === 'home') updateHomeSreStats();
   if (id === 'lectura') renderLectura();
+  if (id === 'sre-vocab') renderCards();
 }
 
 // ══ SETUP CONVERSA ══
@@ -1156,7 +1173,7 @@ function showCard() {
   document.getElementById('flipHint').textContent = 'toque para ver →';
   document.getElementById('sreActions').style.display = 'none';
   document.getElementById('sreAudioBtns').style.display = 'none';
-  setTimeout(() => playVocabAudio('word'), 400);
+  // auto-play removido
 }
 
 function flipCard() {
@@ -1167,7 +1184,7 @@ function flipCard() {
   document.getElementById('flipHint').textContent = cardFlipped ? '' : 'toque para ver →';
   document.getElementById('sreActions').style.display = cardFlipped ? 'grid' : 'none';
   document.getElementById('sreAudioBtns').style.display = cardFlipped ? 'flex' : 'none';
-  if (cardFlipped) setTimeout(() => playVocabAudio('example'), 300);
+  // auto-play removido
 }
 
 async function playVocabAudio(type) {
@@ -1444,18 +1461,126 @@ async function translateText() {
       body: JSON.stringify({ message: `Traduza para o espanhol (natural, não literal): "${text}"`, context: 'vocabulary', level: 'B1', history: [] })
     });
     const data = await res.json();
-    resultText.innerHTML = res.ok ? data.reply : '⚠️ Erro ao traduzir.';
+    if (res.ok) {
+      let txt = data.reply;
+      txt = txt.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+      txt = txt.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+      txt = txt.replace(/^- (.+)/gm, '<li>$1</li>');
+      txt = txt.replace(/\n/g, '<br>');
+      resultText.innerHTML = txt;
+    } else {
+      resultText.innerHTML = '⚠️ Erro ao traduzir.';
+    }
   } catch {
     resultText.innerHTML = '⚠️ Sem conexão.';
   }
 }
 
 const lacunas = [
-  { text: 'Ayer yo _____ (ir) al mercado y _____ (comprar) frutas frescas.', answers: ['fui','compré'] },
-  { text: 'Cuando _____ (ser) niño, _____ (vivir) en una ciudad pequeña.', answers: ['era','vivía'] },
-  { text: 'Mañana nosotros _____ (salir) temprano para _____ (llegar) a tiempo.', answers: ['saldremos','llegar'] },
-  { text: 'Si _____ (tener) tiempo, _____ (visitar) el museo contigo.', answers: ['tuviera','visitaría'] },
-  { text: 'Es importante que tú _____ (estudiar) todos los días para _____ (mejorar).', answers: ['estudies','mejorar'] },
+  { text: 'Ayer yo _____ (ir) al mercado y _____ (comprar) frutas frescas.', answers: ['fui','compré'], trad: 'Ontem eu fui ao mercado e comprei frutas frescas.' },
+  { text: 'Cuando _____ (ser) niño, _____ (vivir) en una ciudad pequeña.', answers: ['era','vivía'], trad: 'Quando eu era criança, morava em uma cidade pequena.' },
+  { text: 'Mañana nosotros _____ (salir) temprano para _____ (llegar) a tiempo.', answers: ['saldremos','llegar'], trad: 'Amanhã nós sairemos cedo para chegar a tempo.' },
+  { text: 'Si _____ (tener) tiempo, _____ (visitar) el museo contigo.', answers: ['tuviera','visitaría'], trad: 'Se eu tivesse tempo, visitaria o museu com você.' },
+  { text: 'Es importante que tú _____ (estudiar) todos los días para _____ (mejorar).', answers: ['estudies','mejorar'], trad: 'É importante que você estude todos os dias para melhorar.' },
+  { text: 'Nosotros _____ (estar) muy cansados cuando _____ (llegar) a casa.', answers: ['estábamos','llegamos'], trad: 'Nós estávamos muito cansados quando chegamos em casa.' },
+  { text: 'Ella me _____ (decir) que _____ (querer) aprender español.', answers: ['dijo','quería'], trad: 'Ela me disse que queria aprender espanhol.' },
+  { text: 'Para que _____ (entender) mejor, _____ (deber) practicar cada día.', answers: ['entiendas','debes'], trad: 'Para que você entenda melhor, deve praticar todo dia.' },
+  { text: 'El año pasado _____ (haber) muchos turistas que _____ (visitar) la ciudad.', answers: ['hubo','visitaron'], trad: 'No ano passado houve muitos turistas que visitaram a cidade.' },
+  { text: 'Me alegra que vosotros _____ (poder) venir y _____ (disfrutar) de la fiesta.', answers: ['podáis','disfrutéis'], trad: 'Fico feliz que vocês possam vir e aproveitar a festa.' },
+  { text: 'Si _____ (saber) la respuesta, _____ (poder) ayudarte.', answers: ['supiera','podría'], trad: 'Se eu soubesse a resposta, poderia te ajudar.' },
+  { text: 'Él nunca _____ (haber) viajado al extranjero antes de _____ (conocer) a María.', answers: ['había','conocer'], trad: 'Ele nunca tinha viajado ao exterior antes de conhecer a María.' },
+  { text: 'Es necesario que todos _____ (respetar) las reglas para que _____ (funcionar) bien.', answers: ['respeten','funcione'], trad: 'É necessário que todos respeitem as regras para que funcione bem.' },
+  { text: 'Cuando _____ (terminar) de estudiar, _____ (salir) a caminar un poco.', answers: ['termine','saldré'], trad: 'Quando terminar de estudar, sairei para caminhar um pouco.' },
+  { text: 'Les _____ (pedir) que _____ (ser) puntuales para la reunión.', answers: ['pedí','fueran'], trad: 'Pedi a eles que fossem pontuais para a reunião.' },
+  { text: 'Hoy _____ (hacer) mucho frío, así que _____ (ponerse) el abrigo.', answers: ['hace','ponte'], trad: 'Hoje está muito frio, então coloque o casaco.' },
+  { text: 'Mientras yo _____ (cocinar), él _____ (leer) el periódico.', answers: ['cocinaba','leía'], trad: 'Enquanto eu cozinhava, ele lia o jornal.' },
+  { text: 'Espero que ella _____ (llegar) pronto y _____ (traer) las llaves.', answers: ['llegue','traiga'], trad: 'Espero que ela chegue logo e traga as chaves.' },
+  { text: 'Nunca _____ (pensar) que _____ (poder) hablar español tan bien.', answers: ['pensé','podría'], trad: 'Nunca pensei que poderia falar espanhol tão bem.' },
+  { text: 'Ayer _____ (llover) tanto que no _____ (poder) salir de casa.', answers: ['llovió','pudimos'], trad: 'Ontem choveu tanto que não pudemos sair de casa.' },
+  { text: 'Te _____ (recomendar) que _____ (descansar) antes del examen.', answers: ['recomiendo','descanses'], trad: 'Recomendo que você descanse antes da prova.' },
+  { text: 'Cuando _____ (ser) joven, _____ (soñar) con ser médico.', answers: ['era','soñaba'], trad: 'Quando era jovem, sonhava em ser médico.' },
+  { text: 'Si _____ (poder) elegir, _____ (vivir) en una ciudad con mar.', answers: ['pudiera','viviría'], trad: 'Se pudesse escolher, moraria em uma cidade com mar.' },
+  { text: 'Ellos _____ (irse) antes de que nosotros _____ (despertar).', answers: ['se fueron','nos despertáramos'], trad: 'Eles foram embora antes de nós acordarmos.' },
+  { text: 'El médico le _____ (decir) que _____ (tomar) el medicamento dos veces al día.', answers: ['dijo','tomara'], trad: 'O médico disse a ele que tomasse o remédio duas vezes ao dia.' },
+  { text: 'Necesito que alguien me _____ (ayudar) a _____ (entender) esta lección.', answers: ['ayude','entender'], trad: 'Preciso que alguém me ajude a entender esta lição.' },
+  { text: 'Hace tres años que _____ (empezar) a _____ (estudiar) idiomas.', answers: ['empecé','estudiar'], trad: 'Faz três anos que comecei a estudar idiomas.' },
+  { text: 'No _____ (creer) que _____ (ser) tan difícil aprender a cocinar.', answers: ['creía','fuera'], trad: 'Não acreditava que fosse tão difícil aprender a cozinhar.' },
+  { text: 'Por favor, _____ (hablar) más despacio para que yo _____ (comprender).', answers: ['habla','comprenda'], trad: 'Por favor, fale mais devagar para que eu compreenda.' },
+  { text: 'Aunque _____ (estar) cansado, _____ (decidir) terminar el proyecto.', answers: ['estaba','decidió'], trad: 'Mesmo estando cansado, ele decidiu terminar o projeto.' },
+  { text: 'Me _____ (gustar) que tú _____ (venir) a la fiesta conmigo.', answers: ['gustaría','vinieras'], trad: 'Gostaria que você viesse à festa comigo.' },
+  { text: 'Después de que _____ (comer), nosotros _____ (dar) un paseo por el parque.', answers: ['comimos','dimos'], trad: 'Depois de comer, nós demos uma volta no parque.' },
+  { text: 'Es una lástima que ellos no _____ (poder) _____ (asistir) a la boda.', answers: ['puedan','asistir'], trad: 'É uma pena que eles não possam ir ao casamento.' },
+  { text: 'Le _____ (pedir) a mi jefe que me _____ (dar) más tiempo para el informe.', answers: ['pedí','diera'], trad: 'Pedi ao meu chefe que me desse mais tempo para o relatório.' },
+  { text: 'Tan pronto como _____ (terminar) la reunión, te _____ (llamar).', answers: ['termine','llamaré'], trad: 'Assim que a reunião terminar, te ligarei.' },
+  { text: 'Ojalá que mañana _____ (hacer) buen tiempo y _____ (poder) salir.', answers: ['haga','podamos'], trad: 'Oxalá amanhã faça bom tempo e possamos sair.' },
+  { text: 'Siempre que _____ (viajar), _____ (intentar) aprender algo nuevo.', answers: ['viajo','intento'], trad: 'Sempre que viajo, tento aprender algo novo.' },
+  { text: 'Antes de que _____ (irse), _____ (dejar) una nota en la mesa.', answers: ['se fuera','dejó'], trad: 'Antes de ir embora, ele deixou um bilhete na mesa.' },
+  { text: 'No había nadie que _____ (saber) la respuesta cuando el profesor _____ (preguntar).', answers: ['supiera','preguntó'], trad: 'Não havia ninguém que soubesse a resposta quando o professor perguntou.' },
+  { text: 'Quisiera que me _____ (explicar) cómo _____ (funcionar) este aparato.', answers: ['explicaras','funciona'], trad: 'Gostaria que você me explicasse como este aparelho funciona.' },
+  { text: 'El tren ya _____ (salir) cuando nosotros _____ (llegar) a la estación.', answers: ['había salido','llegamos'], trad: 'O trem já tinha saído quando chegamos à estação.' },
+  { text: 'Dudo que ellos _____ (terminar) el trabajo antes de que _____ (llegar) el cliente.', answers: ['terminen','llegue'], trad: 'Duvido que eles terminem o trabalho antes do cliente chegar.' },
+  { text: 'Si yo _____ (ser) tú, no _____ (decir) eso en público.', answers: ['fuera','diría'], trad: 'Se eu fosse você, não diria isso em público.' },
+  { text: 'Cada vez que _____ (escuchar) esa canción, _____ (recordar) mi infancia.', answers: ['escucho','recuerdo'], trad: 'Cada vez que ouço essa música, me lembro da minha infância.' },
+  { text: 'Fue una sorpresa que él _____ (aceptar) la propuesta sin _____ (dudar).', answers: ['aceptara','dudar'], trad: 'Foi uma surpresa que ele aceitasse a proposta sem hesitar.' },
+  { text: 'Para cuando vosotros _____ (despertar), yo ya _____ (preparar) el desayuno.', answers: ['os despertéis','habré preparado'], trad: 'Quando vocês acordarem, eu já terei preparado o café da manhã.' },
+  { text: 'Me _____ (alegrar) mucho que vosotros _____ (poder) visitarnos este verano.', answers: ['alegra','podáis'], trad: 'Fico muito feliz que vocês possam nos visitar neste verão.' },
+  { text: 'Aunque no _____ (tener) dinero, siempre _____ (ser) generoso con los demás.', answers: ['tuviera','era'], trad: 'Embora não tivesse dinheiro, sempre foi generoso com os outros.' },
+  { text: 'El profesor nos _____ (pedir) que _____ (leer) el capítulo antes de clase.', answers: ['pidió','leyéramos'], trad: 'O professor nos pediu que lêssemos o capítulo antes da aula.' },
+  { text: 'No _____ (haber) nadie en casa cuando yo _____ (llegar).', answers: ['había','llegué'], trad: 'Não havia ninguém em casa quando cheguei.' },
+  { text: 'Busco a alguien que _____ (hablar) chino y _____ (poder) traducir este texto.', answers: ['hable','pueda'], trad: 'Procuro alguém que fale chinês e possa traduzir este texto.' },
+  { text: 'Cuanto más _____ (practicar), mejor _____ (hablar) el idioma.', answers: ['practiques','hablarás'], trad: 'Quanto mais você praticar, melhor falará o idioma.' },
+  { text: 'Le _____ (sorprender) que nadie le _____ (decir) la verdad antes.', answers: ['sorprendió','hubiera dicho'], trad: 'Surpreendeu-o que ninguém tivesse dito a verdade antes.' },
+  { text: 'Si _____ (llover) mañana, nosotros _____ (quedar) en casa.', answers: ['llueve','nos quedaremos'], trad: 'Se chover amanhã, ficaremos em casa.' },
+  { text: 'El niño _____ (pedir) que su madre le _____ (contar) un cuento.', answers: ['pidió','contara'], trad: 'A criança pediu que a mãe lhe contasse uma história.' },
+  { text: 'Prefiero que tú _____ (hablar) directamente conmigo en lugar de _____ (escribir) mensajes.', answers: ['hables','escribir'], trad: 'Prefiro que você fale diretamente comigo em vez de escrever mensagens.' },
+  { text: 'Hace tiempo que no _____ (saber) nada de él; espero que _____ (estar) bien.', answers: ['sé','esté'], trad: 'Faz tempo que não sei nada dele; espero que esteja bem.' },
+  { text: 'El director ordenó que todos los empleados _____ (asistir) a la reunión y _____ (presentar) sus informes.', answers: ['asistieran','presentaran'], trad: 'O diretor ordenou que todos os funcionários fossem à reunião e apresentassem seus relatórios.' },
+  { text: 'Sin que nadie se _____ (dar) cuenta, él _____ (salir) por la puerta trasera.', answers: ['diera','salió'], trad: 'Sem que ninguém percebesse, ele saiu pela porta dos fundos.' },
+  { text: 'Sería bueno que vosotros _____ (llegar) temprano y _____ (ayudar) a preparar todo.', answers: ['llegarais','ayudarais'], trad: 'Seria bom que vocês chegassem cedo e ajudassem a preparar tudo.' },
+  { text: 'No _____ (importar) lo que _____ (pasar), siempre estaré aquí para ayudarte.', answers: ['importa','pase'], trad: 'Não importa o que aconteça, sempre estarei aqui para te ajudar.' },
+  { text: 'A medida que _____ (avanzar) el tiempo, el dolor _____ (ir) desapareciendo.', answers: ['avanzaba','fue'], trad: 'À medida que o tempo avançava, a dor foi desaparecendo.' },
+  { text: 'Ojalá _____ (haber) encontrado antes este método para _____ (aprender).', answers: ['hubiera','aprender'], trad: 'Oxalá tivesse encontrado antes este método para aprender.' },
+  { text: 'Cuando _____ (tener) diez años, _____ (mudarse) a otra ciudad.', answers: ['tenía','nos mudamos'], trad: 'Quando tinha dez anos, nos mudamos para outra cidade.' },
+  { text: 'Me _____ (molestar) que la gente no _____ (respetar) el medio ambiente.', answers: ['molesta','respete'], trad: 'Me incomoda que as pessoas não respeitem o meio ambiente.' },
+  { text: 'Ella _____ (ponerse) a llorar en cuanto _____ (ver) la película.', answers: ['se puso','vio'], trad: 'Ela começou a chorar assim que viu o filme.' },
+  { text: 'Es fundamental que los ciudadanos _____ (votar) y _____ (participar) en la democracia.', answers: ['voten','participen'], trad: 'É fundamental que os cidadãos votem e participem da democracia.' },
+  { text: 'Aunque _____ (llegar) tarde, todavía _____ (poder) entrar al concierto.', answers: ['llegamos','pudimos'], trad: 'Mesmo chegando tarde, ainda pudemos entrar no show.' },
+  { text: 'Le _____ (encantar) que su hijo _____ (aprender) a tocar la guitarra.', answers: ['encantó','aprendiera'], trad: 'Adorou que seu filho tivesse aprendido a tocar violão.' },
+  { text: 'No hay nadie que _____ (conocer) mejor esa ciudad que ella.', answers: ['conozca'], trad: 'Não há ninguém que conheça melhor aquela cidade do que ela.' },
+  { text: 'Para que el proyecto _____ (tener) éxito, todos deben _____ (comprometerse).', answers: ['tenga','comprometerse'], trad: 'Para que o projeto tenha sucesso, todos devem se comprometer.' },
+  { text: 'Ayer _____ (reunirse) con sus amigos y _____ (hablar) de los viejos tiempos.', answers: ['se reunió','hablaron'], trad: 'Ontem se reuniu com os amigos e falaram dos velhos tempos.' },
+  { text: 'Me _____ (parecer) raro que él no _____ (contestar) mis mensajes.', answers: ['parece','conteste'], trad: 'Me parece estranho que ele não responda minhas mensagens.' },
+  { text: 'Si _____ (estudiar) más de joven, hoy _____ (tener) más oportunidades.', answers: ['hubiera estudiado','tendría'], trad: 'Se tivesse estudado mais quando jovem, hoje teria mais oportunidades.' },
+  { text: 'La semana pasada _____ (ir) al médico porque me _____ (doler) la cabeza.', answers: ['fui','dolía'], trad: 'Na semana passada fui ao médico porque estava com dor de cabeça.' },
+  { text: 'Es posible que ella _____ (cambiar) de opinión si tú le _____ (hablar) con calma.', answers: ['cambie','hablas'], trad: 'É possível que ela mude de opinião se você falar com calma.' },
+  { text: 'Cuídate mucho y no _____ (olvidar) _____ (tomar) tus medicamentos.', answers: ['olvides','tomar'], trad: 'Cuide-se muito e não se esqueça de tomar seus remédios.' },
+  { text: 'Fue entonces cuando _____ (darse) cuenta de que _____ (estar) enamorado.', answers: ['se dio','estaba'], trad: 'Foi então que percebeu que estava apaixonado.' },
+  { text: 'Siento que últimamente no _____ (dormir) bien y _____ (estar) muy cansado.', answers: ['duermo','estoy'], trad: 'Sinto que ultimamente não estou dormindo bem e estou muito cansado.' },
+  { text: 'El guía nos _____ (pedir) que no _____ (sacar) fotos dentro del museo.', answers: ['pidió','sacáramos'], trad: 'O guia nos pediu que não tirássemos fotos dentro do museu.' },
+  { text: 'No _____ (poder) creer lo que _____ (ver) con mis propios ojos.', answers: ['podía','vi'], trad: 'Não conseguia acreditar no que vi com meus próprios olhos.' },
+  { text: 'Ojalá que ellos _____ (llegar) a un acuerdo antes de que _____ (ser) demasiado tarde.', answers: ['lleguen','sea'], trad: 'Oxalá eles cheguem a um acordo antes que seja tarde demais.' },
+  { text: 'Cuando _____ (graduarse), _____ (decidir) viajar por toda América Latina.', answers: ['se graduó','decidió'], trad: 'Quando se formou, decidiu viajar por toda a América Latina.' },
+  { text: 'Me _____ (preocupar) que los niños no _____ (comer) suficientes verduras.', answers: ['preocupa','coman'], trad: 'Me preocupa que as crianças não comam legumes suficientes.' },
+  { text: 'Él _____ (trabajar) mucho durante años hasta que _____ (conseguir) su sueño.', answers: ['trabajó','consiguió'], trad: 'Ele trabalhou muito durante anos até realizar seu sonho.' },
+  { text: 'Si _____ (haber) sabido antes, te _____ (llamar) inmediatamente.', answers: ['hubiera','habría llamado'], trad: 'Se tivesse sabido antes, teria te ligado imediatamente.' },
+  { text: 'Espero que todos _____ (divertirse) mucho en la fiesta y _____ (volver) bien.', answers: ['se diviertan','vuelvan'], trad: 'Espero que todos se divirtam muito na festa e voltem bem.' },
+  { text: 'La directora insistió en que el equipo _____ (repetir) la presentación.', answers: ['repitiera'], trad: 'A diretora insistiu em que a equipe repetisse a apresentação.' },
+  { text: 'Por más que _____ (intentar), no _____ (lograr) abrir la puerta.', answers: ['intenté','logré'], trad: 'Por mais que tentei, não consegui abrir a porta.' },
+  { text: 'Ahora que _____ (terminar) el curso, _____ (sentirse) mucho más seguro.', answers: ['ha terminado','se siente'], trad: 'Agora que terminou o curso, sente-se muito mais confiante.' },
+  { text: 'Si tú _____ (querer), nosotros _____ (poder) estudiar juntos esta tarde.', answers: ['quieres','podemos'], trad: 'Se você quiser, podemos estudar juntos esta tarde.' },
+  { text: 'A pesar de que _____ (llover), la gente _____ (seguir) esperando en la cola.', answers: ['llovía','siguió'], trad: 'Apesar de chover, as pessoas continuaram esperando na fila.' },
+  { text: 'Le _____ (agradecer) que me _____ (ayudar) en ese momento tan difícil.', answers: ['agradezco','ayudara'], trad: 'Agradeço que você me tivesse ajudado naquele momento tão difícil.' },
+  { text: 'Cuando _____ (volver) del trabajo, _____ (encontrar) una carta en el buzón.', answers: ['volvió','encontró'], trad: 'Quando voltou do trabalho, encontrou uma carta na caixa de correio.' },
+  { text: 'Es urgente que alguien _____ (llamar) al médico y le _____ (explicar) los síntomas.', answers: ['llame','explique'], trad: 'É urgente que alguém ligue para o médico e explique os sintomas.' },
+  { text: 'No _____ (haber) terminado de hablar cuando ella ya _____ (salir) de la sala.', answers: ['había','había salido'], trad: 'Não tinha terminado de falar quando ela já tinha saído da sala.' },
+  { text: 'Quiero que me _____ (decir) la verdad aunque me _____ (doler).', answers: ['digas','duela'], trad: 'Quero que me diga a verdade mesmo que doa.' },
+  { text: 'Él siempre _____ (levantarse) temprano y _____ (hacer) ejercicio antes del trabajo.', answers: ['se levanta','hace'], trad: 'Ele sempre acorda cedo e faz exercício antes do trabalho.' },
+  { text: 'Nos _____ (sorprender) que nadie _____ (presentarse) a la entrevista.', answers: ['sorprendió','se presentara'], trad: 'Nos surpreendeu que ninguém tivesse aparecido para a entrevista.' },
+  { text: 'Aunque lo _____ (intentar) muchas veces, no _____ (poder) ganar el concurso.', answers: ['intentó','pudo'], trad: 'Embora tivesse tentado muitas vezes, não conseguiu ganhar o concurso.' },
+  { text: 'En cuanto _____ (poder), te _____ (enviar) los documentos que necesitas.', answers: ['pueda','enviaré'], trad: 'Assim que puder, te enviarei os documentos que você precisa.' },
+  { text: 'Necesitamos a alguien que _____ (tener) experiencia y _____ (conocer) el mercado.', answers: ['tenga','conozca'], trad: 'Precisamos de alguém que tenha experiência e conheça o mercado.' },
+  { text: 'Para que _____ (mejorar) tu pronunciación, es importante que _____ (escuchar) mucho.', answers: ['mejore','escuches'], trad: 'Para melhorar sua pronúncia, é importante que você ouça bastante.' },
+  { text: 'Después de que _____ (hablar) con el abogado, _____ (sentirse) más tranquilo.', answers: ['habló','se sintió'], trad: 'Depois de falar com o advogado, sentiu-se mais tranquilo.' },
 ];
 let currentLacuna = null;
 
@@ -1480,10 +1605,11 @@ function checkLacunas() {
     if (val === ans) { input.classList.add('correct'); input.classList.remove('wrong'); correct++; }
     else { input.classList.add('wrong'); input.classList.remove('correct'); }
   });
+  const trad = currentLacuna.trad ? `<div style="margin-top:10px;padding:10px 12px;background:rgba(255,255,255,0.05);border-left:3px solid var(--gold);border-radius:6px;font-size:0.88rem;color:var(--text2)">🇧🇷 <em>${currentLacuna.trad}</em></div>` : '';
   document.getElementById('lacunaFeedback').innerHTML =
     correct === inputs.length
-      ? '✅ Perfeito! Todas corretas!'
-      : `${correct}/${inputs.length} corretas. As respostas: ${currentLacuna.answers.join(', ')}`;
+      ? '✅ Perfeito! Todas corretas!' + trad
+      : `${correct}/${inputs.length} corretas. As respostas: <strong>${currentLacuna.answers.join(', ')}</strong>` + trad;
 }
 
 // ══ EXERCÍCIOS DELE/SIELE ══
