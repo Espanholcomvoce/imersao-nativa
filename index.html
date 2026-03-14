@@ -426,27 +426,49 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
 </div>
 </div>
 
-<!-- CONVERSA -->
+<!-- CONVERSA REALTIME -->
 <div id="conversa" class="screen">
-<div class="chat-wrap">
-  <div class="chat-header">
-    <button class="back-btn" onclick="goTo('setup-conversa')" style="color:#fff">←</button>
-    <div class="chat-info">
-      <div class="chat-sit-name" id="chatSitName">Conversação Livre</div>
-      <div class="chat-meta">
-        <span id="chatLevelBadge" style="font-size:11px;color:var(--text2)"></span>
-      </div>
+<div class="content-wrap">
+  <div class="page-header">
+    <button class="back-btn" onclick="endRealtimeSession();goTo('setup-conversa')" style="color:#fff">←</button>
+    <div>
+      <div class="page-title" id="chatSitName">Conversação</div>
+      <div class="page-subtitle" id="chatLevelBadge"></div>
     </div>
-    <div style="font-size:11px;color:var(--text3)" id="chatMsgCount">0 msgs</div>
+    <div id="timerDisplay" style="font-size:13px;color:var(--gold);font-weight:700;min-width:48px;text-align:right"></div>
   </div>
-  <div class="messages" id="messages"></div>
-  <div class="chat-input-area">
-    <div class="input-row">
-      <textarea class="msg-input" id="msgInput" rows="1" placeholder="Escribe en español..." onkeydown="handleMsgKey(event)" oninput="autoResize(this)"></textarea>
-      <button class="icon-btn" id="micBtn" onclick="toggleMic()">🎤</button>
-      <button class="icon-btn send-ready" onclick="sendMessage()">➤</button>
+
+  <!-- STATUS DA SESSÃO -->
+  <div id="realtimeStatus" style="text-align:center;padding:30px 20px">
+    <div style="font-size:48px;margin-bottom:16px">🎙️</div>
+    <div id="statusMsg" style="color:var(--text2);font-size:14px">Conectando...</div>
+  </div>
+
+  <!-- INTERFACE DE VOZ -->
+  <div id="realtimeActive" style="display:none;text-align:center;padding:20px">
+    <!-- Avatar animado -->
+    <div id="sofiaAvatar" style="width:120px;height:120px;border-radius:50%;background:linear-gradient(135deg,var(--purple),#9333ea);margin:0 auto 20px;display:flex;align-items:center;justify-content:center;font-size:48px;transition:all 0.3s;box-shadow:0 0 0 0 rgba(147,51,234,0.4)">
+      🌎
     </div>
-    <div class="listening-hint" id="listeningHint" style="display:none">🔴 Escuchando... (toca para parar)</div>
+    <div id="sofiaState" style="font-size:14px;color:var(--text2);margin-bottom:8px">Sofía está ouvindo...</div>
+    <div id="transcriptBox" style="min-height:60px;background:var(--glass);border:1px solid var(--border);border-radius:14px;padding:14px;margin:16px 0;font-size:14px;color:var(--text);line-height:1.5;text-align:left"></div>
+
+    <!-- Botão mudo -->
+    <button id="muteBtn" onclick="toggleMute()" style="background:var(--glass);border:1px solid var(--border);border-radius:50%;width:64px;height:64px;font-size:24px;cursor:pointer;margin-bottom:20px;transition:all 0.2s">
+      🎤
+    </button>
+    <div style="font-size:11px;color:var(--text2)" id="muteHint">Toque para silenciar</div>
+  </div>
+
+  <!-- TEMPO RESTANTE -->
+  <div id="limitBar" style="display:none;margin-top:16px">
+    <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text2);margin-bottom:6px">
+      <span>Tempo de hoje</span>
+      <span id="limitLabel">15:00 restantes</span>
+    </div>
+    <div style="background:rgba(255,255,255,0.1);border-radius:99px;height:6px">
+      <div id="limitFill" style="background:linear-gradient(90deg,var(--green),var(--gold));border-radius:99px;height:6px;width:100%;transition:width 1s linear"></div>
+    </div>
   </div>
 </div>
 </div>
@@ -548,27 +570,6 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
     <button class="back-btn" onclick="goTo('home')">←</button>
     <div><div class="page-title">Tira Dúvidas</div><div class="page-subtitle">Gramática, vocabulário e dicas</div></div>
   </div>
-  <div class="quick-questions">
-    <div class="qq-label">Perguntas rápidas</div>
-    <div class="qq-grid">
-      <button class="qq-btn" onclick="askTira('Qual a diferença entre ser e estar?')">🤔 Ser vs Estar</button>
-      <button class="qq-btn" onclick="askTira('Como usar o subjuntivo em espanhol?')">📚 Subjuntivo</button>
-      <button class="qq-btn" onclick="askTira('Diferença entre por e para?')">❓ Por vs Para</button>
-      <button class="qq-btn" onclick="askTira('Como funcionam os tempos passados no espanhol?')">⏰ Tempos passados</button>
-      <button class="qq-btn" onclick="askTira('Quais são as principais diferenças entre espanhol europeu e latino-americano?')">🌍 Dialetos</button>
-      <button class="qq-btn" onclick="askTira('Como melhorar meu vocabulário em espanhol?')">💡 Vocabulário</button>
-    </div>
-  </div>
-  <div class="tira-chat">
-    <div class="tira-messages" id="tiraMessages">
-      <div class="tira-msg assistant">¡Hola! Soy tu profesora virtual. Puedes preguntarme sobre gramática, vocabulario, pronunciación o cualquier duda sobre el español. ¿En qué te ayudo? 😊</div>
-    </div>
-    <div class="tira-input-row">
-      <textarea class="tira-input" id="tiraInput" rows="1" placeholder="Escreva sua dúvida..." onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendTira()}" oninput="autoResize(this)"></textarea>
-      <button class="tira-send" onclick="sendTira()">➤</button>
-    </div>
-  </div>
-</div>
 </div>
 
 <!-- PRODUÇÃO -->
@@ -966,118 +967,287 @@ function checkStartReady() {
   }
 }
 
+// ══ CONVERSAÇÃO REALTIME ══
+let realtimeWs = null;
+let sessionStart = null;
+let timerInterval = null;
+let remainingSeconds = 900; // 15 min default
+let isMuted = false;
+let audioContext = null;
+let mediaStream = null;
+let mediaProcessor = null;
+let isPlaying = false;
+let audioQueue = [];
+let audioBufferSource = null;
+
 function startConversation() {
   if (!selectedLevel || !selectedSit) return;
   const sitNames = { café:'No Café', hotel:'No Hotel', trabajo:'Trabalho', médico:'Médico', viaje:'Viagem', mercado:'Mercado', amigos:'Amigos', libre:'Livre' };
-  const lvlNames = { beginner:'Iniciante', intermediate:'Intermediário', advanced:'Avançado' };
+  const lvlNames = { beginner:'Iniciante (A1-A2)', intermediate:'Intermediário (B1-B2)', advanced:'Avançado (C1-C2)' };
   document.getElementById('chatSitName').textContent = sitNames[selectedSit] || selectedSit;
   document.getElementById('chatLevelBadge').textContent = lvlNames[selectedLevel];
-  chatHistory = [];
-  msgCount = 0;
-  document.getElementById('messages').innerHTML = '';
-  document.getElementById('chatMsgCount').textContent = '0 msgs';
   goTo('conversa');
-  appendMsg('assistant', `¡Hola! Estamos en la situación: ${sitNames[selectedSit]}. Puedes hablarme en portugués o español. ¡Empecemos! 😊`);
+  initRealtimeSession();
 }
 
-// ══ CHAT ══
-function handleMsgKey(e) {
-  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
-}
+async function initRealtimeSession() {
+  setStatus('Verificando tempo disponível...', '⏱️');
 
-function autoResize(el) {
-  el.style.height = 'auto';
-  el.style.height = Math.min(el.scrollHeight, 120) + 'px';
-}
-
-async function sendMessage() {
-  const input = document.getElementById('msgInput');
-  const text = input.value.trim();
-  if (!text) return;
-  input.value = '';
-  input.style.height = 'auto';
-  appendMsg('user', text);
-  msgCount++;
-  document.getElementById('chatMsgCount').textContent = msgCount + ' msgs';
-  chatHistory.push({ role: 'user', content: text });
-  const loadId = appendTyping();
   try {
-    const lvlMap = { beginner:'A1', intermediate:'B1', advanced:'C1' };
-    const res = await fetch(`${API}/api/chat`, {
-      method: 'POST',
-      headers: { 'Content-Type':'application/json', 'Authorization':`Bearer ${token}` },
-      body: JSON.stringify({ message: text, context: 'conversation', level: lvlMap[selectedLevel] || 'B1', history: chatHistory.slice(-8) })
+    // Verificar tempo restante
+    const res = await fetch(`${API}/api/realtime/status`, {
+      headers: { 'Authorization': `Bearer ${token}` }
     });
     const data = await res.json();
-    removeTyping(loadId);
-    if (res.ok) {
-      appendMsg('assistant', data.reply);
-      chatHistory.push({ role: 'assistant', content: data.reply });
-    } else {
-      appendMsg('assistant', '⚠️ ' + (data.error || 'Erro. Tente novamente.'));
+
+    if (data.limit_reached) {
+      setStatus('Você atingiu o limite de 15 minutos diários. Volte amanhã! 🌙', '⏰');
+      return;
     }
-  } catch {
-    removeTyping(loadId);
-    appendMsg('assistant', '⚠️ Sem conexão. Verifique sua internet.');
+
+    remainingSeconds = data.remaining_seconds;
+    updateTimerDisplay(remainingSeconds);
+
+    setStatus('Conectando com Sofía...', '🔄');
+
+    // Conectar WebSocket
+    const wsUrl = API.replace('https://', 'wss://').replace('http://', 'ws://');
+    realtimeWs = new WebSocket(`${wsUrl}/api/realtime/ws?token=${token}`);
+
+    realtimeWs.onopen = () => {
+      setStatus('Iniciando sessão de voz...', '🎙️');
+    };
+
+    realtimeWs.onmessage = async (event) => {
+      const msg = JSON.parse(event.data);
+      handleRealtimeMessage(msg);
+    };
+
+    realtimeWs.onerror = () => {
+      setStatus('Erro de conexão. Verifique sua internet.', '⚠️');
+    };
+
+    realtimeWs.onclose = (e) => {
+      stopTimer();
+      stopAudioCapture();
+      if (e.code === 4002) {
+        setStatus('Limite de 15 minutos atingido. Boa prática! 🎉', '⏰');
+      } else if (e.code !== 1000) {
+        setStatus('Sessão encerrada.', '👋');
+      }
+      document.getElementById('realtimeActive').style.display = 'none';
+      document.getElementById('realtimeStatus').style.display = 'block';
+    };
+
+  } catch (err) {
+    setStatus('Erro ao conectar. Tente novamente.', '⚠️');
   }
 }
 
-function appendMsg(role, text) {
-  const msgs = document.getElementById('messages');
-  const row = document.createElement('div');
-  row.className = `msg-row ${role}`;
-  if (role === 'assistant') {
-    row.innerHTML = `<div class="msg-avatar">🌎</div><div class="msg-bubble assistant">${text.replace(/\n/g,'<br>')}</div>`;
+function handleRealtimeMessage(msg) {
+  switch(msg.type) {
+    case 'session_ready':
+      remainingSeconds = msg.remaining_seconds;
+      document.getElementById('realtimeStatus').style.display = 'none';
+      document.getElementById('realtimeActive').style.display = 'block';
+      document.getElementById('limitBar').style.display = 'block';
+      updateTimerDisplay(remainingSeconds);
+      startTimer();
+      startAudioCapture();
+      setSofiaState('ouvindo');
+      showTranscript('¡Hola! ' + msg.message);
+      break;
+
+    case 'error':
+      setStatus(msg.message || 'Erro na sessão.', '⚠️');
+      break;
+
+    case 'limit_warning':
+      showTranscript('⚠️ ' + msg.message);
+      break;
+
+    // Transcrição do usuário
+    case 'conversation.item.input_audio_transcription.completed':
+      if (msg.transcript) showTranscript('🗣️ ' + msg.transcript, 'user');
+      break;
+
+    // Sofia começa a falar
+    case 'response.audio.delta':
+      setSofiaState('falando');
+      playAudioDelta(msg.delta);
+      break;
+
+    // Sofia terminou de falar
+    case 'response.audio.done':
+      setSofiaState('ouvindo');
+      break;
+
+    // Texto da resposta da Sofia
+    case 'response.audio_transcript.delta':
+      updateSofiaTranscript(msg.delta);
+      break;
+
+    case 'response.audio_transcript.done':
+      finalizeSofiaTranscript(msg.transcript);
+      break;
+  }
+}
+
+// ── ÁUDIO: CAPTURA DO MIC ──
+async function startAudioCapture() {
+  try {
+    audioContext = new (window.AudioContext || window.webkitAudioContext)({ sampleRate: 24000 });
+    mediaStream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
+    const source = audioContext.createMediaStreamSource(mediaStream);
+    mediaProcessor = audioContext.createScriptProcessor(4096, 1, 1);
+
+    mediaProcessor.onaudioprocess = (e) => {
+      if (isMuted || !realtimeWs || realtimeWs.readyState !== WebSocket.OPEN) return;
+      const float32 = e.inputBuffer.getChannelData(0);
+      const pcm16 = float32ToPcm16(float32);
+      const base64 = arrayBufferToBase64(pcm16.buffer);
+      realtimeWs.send(JSON.stringify({
+        type: 'input_audio_buffer.append',
+        audio: base64
+      }));
+    };
+
+    source.connect(mediaProcessor);
+    mediaProcessor.connect(audioContext.destination);
+  } catch (err) {
+    showTranscript('⚠️ Permita o acesso ao microfone para usar a conversa por voz.');
+  }
+}
+
+function stopAudioCapture() {
+  if (mediaProcessor) { try { mediaProcessor.disconnect(); } catch(e){} mediaProcessor = null; }
+  if (mediaStream) { mediaStream.getTracks().forEach(t => t.stop()); mediaStream = null; }
+  if (audioContext) { try { audioContext.close(); } catch(e){} audioContext = null; }
+}
+
+// ── ÁUDIO: PLAYBACK DA SOFIA ──
+function playAudioDelta(base64) {
+  if (!audioContext) return;
+  try {
+    const binary = atob(base64);
+    const pcm16 = new Int16Array(binary.length / 2);
+    for (let i = 0; i < pcm16.length; i++) {
+      pcm16[i] = (binary.charCodeAt(i*2)) | (binary.charCodeAt(i*2+1) << 8);
+    }
+    const float32 = new Float32Array(pcm16.length);
+    for (let i = 0; i < pcm16.length; i++) {
+      float32[i] = pcm16[i] / 32768.0;
+    }
+    const buffer = audioContext.createBuffer(1, float32.length, 24000);
+    buffer.copyToChannel(float32, 0);
+    const source = audioContext.createBufferSource();
+    source.buffer = buffer;
+    source.connect(audioContext.destination);
+    source.start();
+  } catch(e) {}
+}
+
+// ── HELPERS ──
+function float32ToPcm16(float32) {
+  const pcm16 = new Int16Array(float32.length);
+  for (let i = 0; i < float32.length; i++) {
+    const s = Math.max(-1, Math.min(1, float32[i]));
+    pcm16[i] = s < 0 ? s * 32768 : s * 32767;
+  }
+  return pcm16;
+}
+
+function arrayBufferToBase64(buffer) {
+  const bytes = new Uint8Array(buffer);
+  let binary = '';
+  for (let i = 0; i < bytes.length; i++) binary += String.fromCharCode(bytes[i]);
+  return btoa(binary);
+}
+
+let sofiaTranscriptAccum = '';
+function updateSofiaTranscript(delta) {
+  sofiaTranscriptAccum += delta;
+  showTranscript('🌎 ' + sofiaTranscriptAccum);
+}
+function finalizeSofiaTranscript(full) {
+  sofiaTranscriptAccum = '';
+  showTranscript('🌎 ' + (full || ''));
+}
+
+function showTranscript(text, who) {
+  const box = document.getElementById('transcriptBox');
+  if (box) box.textContent = text;
+}
+
+function setSofiaState(state) {
+  const avatar = document.getElementById('sofiaAvatar');
+  const label = document.getElementById('sofiaState');
+  if (state === 'falando') {
+    if (avatar) avatar.style.boxShadow = '0 0 0 12px rgba(147,51,234,0.3), 0 0 0 24px rgba(147,51,234,0.1)';
+    if (label) label.textContent = 'Sofía está falando...';
   } else {
-    row.innerHTML = `<div class="msg-bubble user">${text.replace(/\n/g,'<br>')}</div>`;
+    if (avatar) avatar.style.boxShadow = '0 0 0 0 rgba(147,51,234,0.4)';
+    if (label) label.textContent = 'Sofía está ouvindo...';
   }
-  msgs.appendChild(row);
-  msgs.scrollTop = msgs.scrollHeight;
 }
 
-function appendTyping() {
-  const id = 'typing-' + Date.now();
-  const msgs = document.getElementById('messages');
-  const row = document.createElement('div');
-  row.className = 'msg-row assistant';
-  row.id = id;
-  row.innerHTML = `<div class="msg-avatar">🌎</div><div class="typing-bubble"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>`;
-  msgs.appendChild(row);
-  msgs.scrollTop = msgs.scrollHeight;
-  return id;
+function toggleMute() {
+  isMuted = !isMuted;
+  const btn = document.getElementById('muteBtn');
+  const hint = document.getElementById('muteHint');
+  if (btn) btn.textContent = isMuted ? '🔇' : '🎤';
+  if (hint) hint.textContent = isMuted ? 'Microfone silenciado' : 'Toque para silenciar';
 }
 
-function removeTyping(id) {
-  const el = document.getElementById(id);
-  if (el) el.remove();
+function setStatus(msg, icon) {
+  const el = document.getElementById('statusMsg');
+  const avatar = document.querySelector('#realtimeStatus > div:first-child');
+  if (el) el.textContent = msg;
+  if (avatar) avatar.textContent = icon || '🎙️';
+  document.getElementById('realtimeStatus').style.display = 'block';
+  document.getElementById('realtimeActive').style.display = 'none';
+  document.getElementById('limitBar').style.display = 'none';
 }
 
-// ══ MIC ══
-function toggleMic() {
-  if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
-    alert('Reconhecimento de voz não suportado. Use Chrome.');
-    return;
+function startTimer() {
+  sessionStart = Date.now();
+  timerInterval = setInterval(() => {
+    remainingSeconds = Math.max(0, remainingSeconds - 1);
+    updateTimerDisplay(remainingSeconds);
+    if (remainingSeconds <= 0) stopTimer();
+  }, 1000);
+}
+
+function stopTimer() {
+  if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
+}
+
+function updateTimerDisplay(seconds) {
+  const m = Math.floor(seconds / 60).toString().padStart(2, '0');
+  const s = (seconds % 60).toString().padStart(2, '0');
+  const el = document.getElementById('timerDisplay');
+  if (el) el.textContent = `${m}:${s}`;
+  const total = 15 * 60;
+  const pct = Math.max(0, (seconds / total) * 100);
+  const fill = document.getElementById('limitFill');
+  if (fill) fill.style.width = pct + '%';
+  const label = document.getElementById('limitLabel');
+  if (label) label.textContent = `${m}:${s} restantes`;
+  // Muda cor quando perto do fim
+  if (fill) fill.style.background = seconds < 120
+    ? 'linear-gradient(90deg,var(--red),#f97316)'
+    : 'linear-gradient(90deg,var(--green),var(--gold))';
+}
+
+function endRealtimeSession() {
+  stopTimer();
+  stopAudioCapture();
+  if (realtimeWs && realtimeWs.readyState === WebSocket.OPEN) {
+    realtimeWs.close(1000, 'Usuário encerrou');
   }
-  if (isListening) { recognition.stop(); return; }
-  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-  recognition = new SpeechRecognition();
-  recognition.lang = 'es-ES';
-  recognition.continuous = false;
-  recognition.interimResults = false;
-  recognition.onstart = () => {
-    isListening = true;
-    document.getElementById('micBtn').classList.add('mic-active');
-    document.getElementById('listeningHint').style.display = 'block';
-  };
-  recognition.onresult = (e) => {
-    document.getElementById('msgInput').value = e.results[0][0].transcript;
-  };
-  recognition.onend = () => {
-    isListening = false;
-    document.getElementById('micBtn').classList.remove('mic-active');
-    document.getElementById('listeningHint').style.display = 'none';
-  };
-  recognition.start();
+  realtimeWs = null;
+  isMuted = false;
+  sofiaTranscriptAccum = '';
 }
 
 // ══ SRE GAMIFICADO ══
