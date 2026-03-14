@@ -27,6 +27,11 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
 .module-card{background:var(--glass);border:1px solid var(--border);border-radius:18px;padding:18px 12px;cursor:pointer;transition:all .2s;text-align:center;backdrop-filter:blur(10px);touch-action:manipulation}
 .module-card:active{transform:scale(0.97)}
 .module-card:hover{transform:translateY(-2px);border-color:var(--gold)}
+.module-card.sre-card{grid-column:1 / -1;display:flex;align-items:center;justify-content:center;gap:16px;padding:16px 20px;background:linear-gradient(135deg,rgba(168,85,247,.12),rgba(245,166,35,.08));border-color:rgba(168,85,247,.3);text-align:left}
+.module-card.sre-card:hover{border-color:var(--purple)}
+.sre-card-text{flex:1}
+.sre-card-stats{display:flex;gap:14px;margin-top:6px}
+.sre-mini-stat{font-size:11px;color:var(--text2)}
 .module-icon{font-size:clamp(28px,8vw,32px);margin-bottom:6px}
 .module-name{font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(13px,3.5vw,14px);margin-bottom:3px}
 .module-desc{color:var(--text2);font-size:clamp(10px,2.8vw,11px);font-style:italic;line-height:1.4}
@@ -294,32 +299,34 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
     <div class="module-card" onclick="goTo('setup-conversa')">
       <div class="module-icon">🎙️</div>
       <div class="module-name">Conversação</div>
-      <div class="module-desc">Pratica situações reais voz a voz</div>
+      <div class="module-desc">Pratica situações reais em voz alta</div>
     </div>
-    <div class="module-card" onclick="goTo('sre')">
-      <div class="module-icon">🧠</div>
-      <div class="module-name">SRE</div>
-      <div class="module-desc">Flashcards com repetição espaçada</div>
+    <div class="module-card" onclick="goTo('producao')">
+      <div class="module-icon">✍️</div>
+      <div class="module-name">Produção Escrita</div>
+      <div class="module-desc">Escreva, traduza e preencha lacunas</div>
     </div>
     <div class="module-card" onclick="goTo('tiraduvidas')">
       <div class="module-icon">💬</div>
       <div class="module-name">Tira Dúvidas</div>
       <div class="module-desc">Gramática, vocabulário e dicas</div>
     </div>
-    <div class="module-card" onclick="goTo('producao')">
-      <div class="module-icon">✍️</div>
-      <div class="module-name">Produção</div>
-      <div class="module-desc">Escrita, tradução e lacunas</div>
+    <div class="module-card" onclick="goTo('tiraduvidas')" style="pointer-events:none;opacity:.4">
+      <div class="module-icon">📖</div>
+      <div class="module-name">Leitura</div>
+      <div class="module-desc">Em breve</div>
     </div>
-    <div class="module-card" onclick="goTo('dele')" style="border-color:rgba(250,204,21,0.3)">
-      <div class="module-icon">🎓</div>
-      <div class="module-name">DELE</div>
-      <div class="module-desc">Preparatório exame oficial DELE</div>
-    </div>
-    <div class="module-card" onclick="goTo('siele')" style="border-color:rgba(96,165,250,0.3)">
-      <div class="module-icon">💻</div>
-      <div class="module-name">SIELE</div>
-      <div class="module-desc">Preparatório exame oficial SIELE</div>
+    <div class="module-card sre-card" onclick="goTo('sre')">
+      <div class="module-icon" style="font-size:32px;margin-bottom:0">🧠</div>
+      <div class="sre-card-text">
+        <div class="module-name">Repetição Espaçada</div>
+        <div class="module-desc">Flashcards que se adaptam ao seu ritmo</div>
+        <div class="sre-card-stats">
+          <span class="sre-mini-stat">🔥 <span id="homStreak">0</span> dias</span>
+          <span class="sre-mini-stat">⭐ <span id="homStars">0</span> estrelas</span>
+          <span class="sre-mini-stat" id="homLevel">🌱 Iniciante</span>
+        </div>
+      </div>
     </div>
   </div>
   <p class="hint-text">Imersão Nativa • Powered by IA</p>
@@ -825,13 +832,25 @@ async function loginUser() {
   }
 }
 
+function updateHomeSreStats() {
+  const stats = getSreStats();
+  const mastered = sreCards.filter(c => (c.reviews||0) >= 3 && c.nextReview && new Date(c.nextReview) > new Date()).length;
+  const level = getLevel(mastered);
+  const el1 = document.getElementById('homStreak');
+  const el2 = document.getElementById('homStars');
+  const el3 = document.getElementById('homLevel');
+  if (el1) el1.textContent = stats.streak || 0;
+  if (el2) el2.textContent = stats.stars || 0;
+  if (el3) el3.textContent = level.badge + ' ' + level.name;
+}
+
 function showApp(email) {
   userEmail = email;
   document.getElementById('loginScreen').style.display = 'none';
   document.getElementById('appContent').style.display = 'block';
   document.getElementById('userEmailBadge').textContent = email;
-  loadExercises();
   renderCards();
+  updateHomeSreStats();
 }
 
 function logoutUser() {
@@ -845,6 +864,7 @@ function goTo(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   if (id === 'sre') renderCards();
+  if (id === 'home') updateHomeSreStats();
 }
 
 // ══ SETUP CONVERSA ══
