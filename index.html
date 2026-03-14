@@ -1493,121 +1493,101 @@ const LEVELS = [
 function saveCards() { localStorage.setItem('sre_cards', JSON.stringify(sreCards)); }
 function getSreStats() { return JSON.parse(localStorage.getItem('sre_stats') || '{}'); }
 function saveSreStats(s) { localStorage.setItem('sre_stats', JSON.stringify(s)); }
-
 function getTodayKey() { return new Date().toISOString().slice(0,10); }
-
 function getLevel(mastered) {
-  return LEVELS.find(l => mastered >= l.min && mastered <= l.max) || LEVELS[0];
+  return LEVELS.find(function(l){ return mastered >= l.min && mastered <= l.max; }) || LEVELS[0];
 }
 
 function showXpPopup(xp, el) {
-  const popup = document.createElement('div');
+  var popup = document.createElement('div');
   popup.className = 'xp-popup';
   popup.textContent = '+' + xp + ' XP';
-  const rect = el ? el.getBoundingClientRect() : {top: window.innerHeight/2, left: window.innerWidth/2};
+  var rect = el ? el.getBoundingClientRect() : {top: window.innerHeight/2, left: window.innerWidth/2};
   popup.style.top = (rect.top + window.scrollY - 10) + 'px';
   popup.style.left = (rect.left + 20) + 'px';
   document.body.appendChild(popup);
-  setTimeout(() => popup.remove(), 1300);
+  setTimeout(function(){ popup.remove(); }, 1300);
 }
 
-// Fila inteligente: aleatoriza temas, intercala novos e revisões
+var sreKeepGoing = false;
+
 function buildQueue() {
-  const now = new Date();
-  const todayKey = getTodayKey();
-  const stats = getSreStats();
-  const doneToday = stats.doneToday && stats.doneTodayKey === todayKey ? stats.doneToday : 0;
+  var now = new Date();
+  var todayKey = getTodayKey();
+  var stats = getSreStats();
+  var doneToday = stats.doneToday && stats.doneTodayKey === todayKey ? stats.doneToday : 0;
 
-  // Revisões pendentes (já vistas, vencidas)
-  const reviews = sreCards.filter(c => c.nextReview && new Date(c.nextReview) <= now);
+  // Revisões pendentes
+  var reviews = sreCards.filter(function(c){ return c.nextReview && new Date(c.nextReview) <= now; });
 
-  // Palavras novas (nunca revisadas), embaralhadas por tema
-  const newCards = sreCards.filter(c => !c.nextReview);
-  // Embaralha intercalando temas diferentes
-  const shuffled = [];
-  const byTheme = {};
-  newCards.forEach(c => { const t = c.theme||'geral'; (byTheme[t]||(byTheme[t]=[])).push(c); });
-  const themes = Object.keys(byTheme).sort(() => Math.random()-.5);
-  let ti = 0;
+  // Palavras novas embaralhadas por tema
+  var newCards = sreCards.filter(function(c){ return !c.nextReview; });
+  var shuffled = [];
+  var byTheme = {};
+  newCards.forEach(function(c){ var t = c.theme||'geral'; if(!byTheme[t]) byTheme[t]=[]; byTheme[t].push(c); });
+  var themes = Object.keys(byTheme).sort(function(){ return Math.random()-.5; });
+  var ti = 0;
   while(shuffled.length < newCards.length) {
-    const theme = themes[ti % themes.length];
-    if(byTheme[theme] && byTheme[theme].length > 0) {
-      shuffled.push(byTheme[theme].shift());
-    }
+    var theme = themes[ti % themes.length];
+    if(byTheme[theme] && byTheme[theme].length > 0) shuffled.push(byTheme[theme].shift());
     ti++;
     if(ti > newCards.length * 3) break;
   }
 
-  // Limita novas ao goal restante do dia
-  const remaining = Math.max(0, DAILY_GOAL - doneToday);
-  const newToShow = shuffled.slice(0, remaining);
+  // Se bateu a meta mas quer continuar, mostra todas as novas
+  var remaining = sreKeepGoing ? shuffled.length : Math.max(0, DAILY_GOAL - doneToday);
+  var newToShow = shuffled.slice(0, remaining);
 
-  // Intercala revisões e novas
-  const queue = [];
-  let ri = 0, ni = 0;
+  var queue = [];
+  var ri = 0, ni = 0;
   while(ri < reviews.length || ni < newToShow.length) {
-    if(ri < reviews.length) queue.push({...reviews[ri++], _qtype:'review'});
-    if(ni < newToShow.length) queue.push({...newToShow[ni++], _qtype:'new'});
+    if(ri < reviews.length) queue.push(Object.assign({}, reviews[ri++], {_qtype:'review'}));
+    if(ni < newToShow.length) queue.push(Object.assign({}, newToShow[ni++], {_qtype:'new'}));
   }
   return queue;
 }
 
-let sreQueue = [];
-let sreQueueIndex = 0;
+var sreQueue = [];
+var sreQueueIndex = 0;
 
 function renderCards() {
-  const stats = getSreStats();
-  const todayKey = getTodayKey();
-  const doneToday = stats.doneToday && stats.doneTodayKey === todayKey ? stats.doneToday : 0;
-  const stars = stats.stars || 0;
-  const streak = stats.streak || 0;
-  const mastered = sreCards.filter(c => (c.reviews||0) >= 3 && c.nextReview && new Date(c.nextReview) > new Date()).length;
-  const xp = stats.xp || 0;
+  var stats = getSreStats();
+  var todayKey = getTodayKey();
+  var doneToday = stats.doneToday && stats.doneTodayKey === todayKey ? stats.doneToday : 0;
+  var stars = stats.stars || 0;
+  var streak = stats.streak || 0;
+  var mastered = sreCards.filter(function(c){ return (c.reviews||0) >= 3 && c.nextReview && new Date(c.nextReview) > new Date(); }).length;
 
-  // Streak
   document.getElementById('sreStreak').textContent = streak;
   document.getElementById('sreStars').textContent = stars;
 
-  // Progresso diário
-  const pct = Math.min(100, Math.round(doneToday / DAILY_GOAL * 100));
+  var pct = Math.min(100, Math.round(doneToday / DAILY_GOAL * 100));
   document.getElementById('sreDoneToday').textContent = doneToday;
   document.getElementById('sreDailyGoal').textContent = DAILY_GOAL;
   document.getElementById('sreProgressFill').style.width = pct + '%';
 
-  // Nível e XP
-  const level = getLevel(mastered);
-  const nextLevel = LEVELS.find(l => l.min > mastered) || LEVELS[LEVELS.length-1];
-  const xpPct = nextLevel.min === Infinity ? 100 : Math.min(100, Math.round((mastered - level.min) / (nextLevel.min - level.min) * 100));
+  var level = getLevel(mastered);
+  var nextLevel = LEVELS.find(function(l){ return l.min > mastered; }) || LEVELS[LEVELS.length-1];
+  var xpPct = nextLevel.min === Infinity ? 100 : Math.min(100, Math.round((mastered - level.min) / (nextLevel.min - level.min) * 100));
   document.getElementById('sreLevelBadge').textContent = level.badge;
   document.getElementById('sreLevelName').textContent = level.name;
   document.getElementById('sreXpLabel').textContent = mastered + ' dominadas';
   document.getElementById('sreXpFill').style.width = xpPct + '%';
 
-  // Lista de cards
-  const list = document.getElementById('cardsList');
+  var list = document.getElementById('cardsList');
   list.innerHTML = sreCards.length === 0
     ? '<div class="empty-state"><div class="empty-icon">🧠</div>Nenhuma palavra ainda.</div>'
-    : sreCards.map((c,i) => `
-      <div class="card-item">
-        <div><div class="card-item-word">${c.word}</div><div class="card-item-trans">${c.translation}${c.theme ? ' · <span style="opacity:.6;font-size:11px">'+c.theme+'</span>' : ''}</div></div>
-        <div class="card-item-meta">
-          ${!c.nextReview ? '<span class="due-badge">Nova</span>'
-            : new Date(c.nextReview) <= new Date() ? '<span class="due-badge">Revisar</span>'
-            : '<span class="ok-badge">✓</span>'}
-          <button class="delete-btn" onclick="deleteCard(${i})">🗑</button>
-        </div>
-      </div>`).join('');
+    : sreCards.map(function(c,i){ return '<div class="card-item"><div><div class="card-item-word">'+c.word+'</div><div class="card-item-trans">'+c.translation+(c.theme ? ' · <span style="opacity:.6;font-size:11px">'+c.theme+'</span>' : '')+'</div></div><div class="card-item-meta">'+(!c.nextReview ? '<span class="due-badge">Nova</span>' : new Date(c.nextReview) <= new Date() ? '<span class="due-badge">Revisar</span>' : '<span class="ok-badge">✓</span>')+'<button class="delete-btn" onclick="deleteCard('+i+')">🗑</button></div></div>'; }).join('');
 
-  // Fila
   sreQueue = buildQueue();
   sreQueueIndex = 0;
 
-  if(doneToday >= DAILY_GOAL && sreQueue.filter(q=>q._qtype==='new').length === 0) {
-    // Meta batida e sem novas — mostrar celebração se ainda não mostrou hoje
-    if(stats.celebratedToday !== todayKey) {
+  if(doneToday >= DAILY_GOAL && !sreKeepGoing) {
+    var stats2 = getSreStats();
+    if(stats2.celebratedToday !== todayKey) {
       showCelebration(doneToday, stars, level);
-      stats.celebratedToday = todayKey;
-      saveSreStats(stats);
+      stats2.celebratedToday = todayKey;
+      saveSreStats(stats2);
     }
   }
 
@@ -1615,7 +1595,7 @@ function renderCards() {
     showCard();
   } else {
     document.getElementById('cardFront').textContent = doneToday >= DAILY_GOAL ? '✅ Meta de hoje concluída!' : '🎉 Tudo em dia!';
-    document.getElementById('cardHint').textContent = doneToday >= DAILY_GOAL ? 'Continue explorando ou volte amanhã' : 'Sem revisões pendentes';
+    document.getElementById('cardHint').textContent = doneToday >= DAILY_GOAL ? 'Toque em "Continuar" para mais palavras' : 'Sem revisões pendentes';
     document.getElementById('cardThemeTag').textContent = '';
     document.getElementById('cardTypeTag').textContent = '';
     document.getElementById('flipHint').textContent = '';
@@ -1625,7 +1605,7 @@ function renderCards() {
 }
 
 function showCard() {
-  const card = sreQueue[sreQueueIndex];
+  var card = sreQueue[sreQueueIndex];
   if(!card) { renderCards(); return; }
   cardFlipped = false;
   document.getElementById('cardFront').textContent = card.word;
@@ -1638,8 +1618,7 @@ function showCard() {
   document.getElementById('flipHint').textContent = 'toque para ver →';
   document.getElementById('sreActions').style.display = 'none';
   document.getElementById('sreAudioBtns').style.display = 'none';
-  // Toca áudio automaticamente
-  setTimeout(() => playVocabAudio('word'), 400);
+  setTimeout(function(){ playVocabAudio('word'); }, 400);
 }
 
 function flipCard() {
@@ -1650,26 +1629,26 @@ function flipCard() {
   document.getElementById('flipHint').textContent = cardFlipped ? '' : 'toque para ver →';
   document.getElementById('sreActions').style.display = cardFlipped ? 'grid' : 'none';
   document.getElementById('sreAudioBtns').style.display = cardFlipped ? 'flex' : 'none';
-  if(cardFlipped) setTimeout(() => playVocabAudio('example'), 300);
+  if(cardFlipped) setTimeout(function(){ playVocabAudio('example'); }, 300);
 }
 
 async function playVocabAudio(type) {
-  const card = sreQueue[sreQueueIndex] || sreCards[currentCardIndex];
+  var card = sreQueue[sreQueueIndex];
   if(!card) return;
-  const text = type === 'word' ? card.word : (card.example || card.word);
-  const btnId = type === 'word' ? 'audioBtnWord' : 'audioBtnExample';
-  const btn = document.getElementById(btnId);
+  var text = type === 'word' ? card.word : (card.example || card.word);
+  var btnId = type === 'word' ? 'audioBtnWord' : 'audioBtnExample';
+  var btn = document.getElementById(btnId);
   if(btn) btn.classList.add('loading');
   try {
-    const res = await fetch(`${API}/api/tts/vocab?text=${encodeURIComponent(text)}&type=${type}`, {
-      headers: { 'Authorization': `Bearer ${token}` }
+    var res = await fetch(API + '/api/tts/vocab?text=' + encodeURIComponent(text) + '&type=' + type, {
+      headers: { 'Authorization': 'Bearer ' + token }
     });
     if(!res.ok) throw new Error('Erro');
-    const blob = await res.blob();
-    const url = URL.createObjectURL(blob);
-    const audio = new Audio(url);
+    var blob = await res.blob();
+    var url = URL.createObjectURL(blob);
+    var audio = new Audio(url);
     audio.play();
-    audio.onended = () => URL.revokeObjectURL(url);
+    audio.onended = function(){ URL.revokeObjectURL(url); };
   } catch(e) {
     console.error('[AUDIO]', e);
   } finally {
@@ -1678,35 +1657,31 @@ async function playVocabAudio(type) {
 }
 
 function rateCard(rating) {
-  const card = sreQueue[sreQueueIndex];
+  var card = sreQueue[sreQueueIndex];
   if(!card) return;
 
-  // Atualiza o card original no sreCards
-  const orig = sreCards.find(c => c.id === card.id || (c.word === card.word && c.translation === card.translation));
+  var orig = sreCards.find(function(c){ return c.id === card.id || (c.word === card.word && c.translation === card.translation); });
   if(orig) {
-    const days = { hard: 1, ok: 3, easy: 7 };
-    const next = new Date();
+    var days = { hard: 1, ok: 3, easy: 7 };
+    var next = new Date();
     next.setDate(next.getDate() + days[rating]);
     orig.nextReview = next.toISOString();
     orig.reviews = (orig.reviews || 0) + 1;
     saveCards();
   }
 
-  // Atualiza stats
-  const stats = getSreStats();
-  const todayKey = getTodayKey();
+  var stats = getSreStats();
+  var todayKey = getTodayKey();
   if(stats.doneTodayKey !== todayKey) { stats.doneToday = 0; stats.doneTodayKey = todayKey; }
   if(card._qtype === 'new') stats.doneToday = (stats.doneToday||0) + 1;
 
-  // XP
-  const xpGain = rating === 'easy' ? 10 : rating === 'ok' ? 6 : 3;
+  var xpGain = rating === 'easy' ? 10 : rating === 'ok' ? 6 : 3;
   stats.xp = (stats.xp||0) + xpGain;
   showXpPopup(xpGain, document.getElementById('sreActions'));
 
-  // Streak
-  const lastDate = stats.lastStudyDate;
-  const yesterday = new Date(); yesterday.setDate(yesterday.getDate()-1);
-  const yKey = yesterday.toISOString().slice(0,10);
+  var lastDate = stats.lastStudyDate;
+  var yesterday = new Date(); yesterday.setDate(yesterday.getDate()-1);
+  var yKey = yesterday.toISOString().slice(0,10);
   if(lastDate === yKey || lastDate === todayKey) {
     if(lastDate !== todayKey) stats.streak = (stats.streak||0) + 1;
   } else {
@@ -1715,7 +1690,6 @@ function rateCard(rating) {
   stats.lastStudyDate = todayKey;
   saveSreStats(stats);
 
-  // Próximo card
   sreQueueIndex++;
   if(sreQueueIndex >= sreQueue.length) {
     renderCards();
@@ -1725,26 +1699,27 @@ function rateCard(rating) {
 }
 
 function showCelebration(done, stars, level) {
-  const cel = document.getElementById('sreCelebration');
+  var cel = document.getElementById('sreCelebration');
   document.getElementById('celebrationEmoji').textContent = level.badge;
-  document.getElementById('celebrationText').textContent = `${level.badge} ${done} palavras hoje! Nível: ${level.name}`;
+  document.getElementById('celebrationText').textContent = level.badge + ' ' + done + ' palavras hoje! Nível: ' + level.name;
   cel.style.display = 'block';
   cel.scrollIntoView({behavior:'smooth', block:'center'});
 }
+
 function hideCelebration() {
   document.getElementById('sreCelebration').style.display = 'none';
+  sreKeepGoing = true;
+  renderCards();
 }
 
 function addCard() {
-  const word = document.getElementById('newWord').value.trim();
-  const trans = document.getElementById('newTrans').value.trim();
-  const example = document.getElementById('newExample').value.trim();
+  var word = document.getElementById('newWord').value.trim();
+  var trans = document.getElementById('newTrans').value.trim();
+  var example = document.getElementById('newExample').value.trim();
   if(!word || !trans) { alert('Preencha a palavra e a tradução.'); return; }
 
-  const stats = getSreStats();
-  // Bônus de estrelas
-  let bonus = 1;
-  if(example) bonus = 2;
+  var stats = getSreStats();
+  var bonus = example ? 2 : 1;
   stats.stars = (stats.stars||0) + bonus;
   stats.xp = (stats.xp||0) + bonus * 5;
   saveSreStats(stats);
@@ -1752,7 +1727,7 @@ function addCard() {
 
   sreCards.push({
     id: 'user_' + Date.now(),
-    word, translation: trans, example,
+    word: word, translation: trans, example: example,
     added: new Date().toISOString(),
     preloaded: false
   });
