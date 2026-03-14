@@ -435,7 +435,7 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
       <div class="page-title" id="chatSitName">Conversação</div>
       <div class="page-subtitle" id="chatLevelBadge"></div>
     </div>
-    <div id="timerDisplay" style="font-size:13px;color:var(--gold);font-weight:700;min-width:48px;text-align:right"></div>
+    <div id="timerDisplay" style="display:none"></div>
   </div>
 
   <!-- STATUS DA SESSÃO -->
@@ -460,8 +460,17 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
     <div style="font-size:11px;color:var(--text2)" id="muteHint">Toque para silenciar</div>
   </div>
 
+  <!-- BOTÃO COMEÇAR -->
+  <div id="startVoiceBtn" style="display:none;text-align:center;padding:30px 20px">
+    <div style="font-size:48px;margin-bottom:16px">🎙️</div>
+    <div style="color:var(--text2);font-size:14px;margin-bottom:24px">Sofía está pronta para conversar!<br>Toque para começar.</div>
+    <button onclick="userStartSession()" style="background:linear-gradient(135deg,var(--purple),#9333ea);border:none;border-radius:99px;padding:16px 40px;font-size:16px;font-weight:700;color:#fff;cursor:pointer;box-shadow:0 4px 20px rgba(147,51,234,0.4)">
+      ▶ Começar conversa
+    </button>
+  </div>
+
   <!-- TEMPO RESTANTE -->
-  <div id="limitBar" style="display:none;margin-top:16px">
+  <div id="limitBar" style="display:none!important;margin-top:16px">
     <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text2);margin-bottom:6px">
       <span>Tempo de hoje</span>
       <span id="limitLabel">15:00 restantes</span>
@@ -973,6 +982,7 @@ let sessionStart = null;
 let timerInterval = null;
 let remainingSeconds = 900; // 15 min default
 let isMuted = false;
+let pendingSessionMsg = '';
 let audioContext = null;
 let mediaStream = null;
 let mediaProcessor = null;
@@ -988,6 +998,17 @@ function startConversation() {
   document.getElementById('chatLevelBadge').textContent = lvlNames[selectedLevel];
   goTo('conversa');
   initRealtimeSession();
+}
+
+async function userStartSession() {
+  document.getElementById('startVoiceBtn').style.display = 'none';
+  document.getElementById('realtimeActive').style.display = 'block';
+  document.getElementById('limitBar').style.display = 'block';
+  updateTimerDisplay(remainingSeconds);
+  startTimer();
+  await startAudioCapture();
+  setSofiaState('ouvindo');
+  showTranscript('🌎 ¡Hola! ' + (pendingSessionMsg || ''));
 }
 
 async function initRealtimeSession() {
@@ -1048,14 +1069,9 @@ function handleRealtimeMessage(msg) {
   switch(msg.type) {
     case 'session_ready':
       remainingSeconds = msg.remaining_seconds;
+      pendingSessionMsg = msg.message;
       document.getElementById('realtimeStatus').style.display = 'none';
-      document.getElementById('realtimeActive').style.display = 'block';
-      document.getElementById('limitBar').style.display = 'block';
-      updateTimerDisplay(remainingSeconds);
-      startTimer();
-      startAudioCapture();
-      setSofiaState('ouvindo');
-      showTranscript('¡Hola! ' + msg.message);
+      document.getElementById('startVoiceBtn').style.display = 'block';
       break;
 
     case 'error':
@@ -1063,7 +1079,9 @@ function handleRealtimeMessage(msg) {
       break;
 
     case 'limit_warning':
-      showTranscript('⚠️ ' + msg.message);
+      // Mensagem amigável da Sofía antes de desconectar
+      showTranscript('🌎 ¡Uf, ya llevamos un buen rato hablando! Ha sido una charla muy buena 😊 Creo que deberías descansar un poco — mañana seguimos, ¿te parece? ¡Hasta mañana!');
+      setSofiaState('falando');
       break;
 
     // Transcrição do usuário
@@ -1079,6 +1097,7 @@ function handleRealtimeMessage(msg) {
 
     // Sofia terminou de falar
     case 'response.audio.done':
+      nextPlayTime = 0;
       setSofiaState('ouvindo');
       break;
 
@@ -1096,14 +1115,24 @@ function handleRealtimeMessage(msg) {
 // ── ÁUDIO: CAPTURA DO MIC ──
 async function startAudioCapture() {
   try {
+    // AudioContext precisa ser criado após interação do usuário
     audioContext = new (window.AudioContext || window.webkitAudioContext)({ sampleRate: 24000 });
+    // Resume caso esteja suspenso (política do browser)
+    if (audioContext.state === 'suspended') {
+      await audioContext.resume();
+    }
+
     mediaStream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
     const source = audioContext.createMediaStreamSource(mediaStream);
-    mediaProcessor = audioContext.createScriptProcessor(4096, 1, 1);
+
+    // ScriptProcessor deprecated mas ainda o mais compatível para mobile
+    const bufferSize = 2048;
+    mediaProcessor = audioContext.createScriptProcessor(bufferSize, 1, 1);
 
     mediaProcessor.onaudioprocess = (e) => {
       if (isMuted || !realtimeWs || realtimeWs.readyState !== WebSocket.OPEN) return;
       const float32 = e.inputBuffer.getChannelData(0);
+      // Resample de qualquer sampleRate para 24000 se necessário
       const pcm16 = float32ToPcm16(float32);
       const base64 = arrayBufferToBase64(pcm16.buffer);
       realtimeWs.send(JSON.stringify({
@@ -1114,8 +1143,10 @@ async function startAudioCapture() {
 
     source.connect(mediaProcessor);
     mediaProcessor.connect(audioContext.destination);
+    console.log('[AUDIO] Captura iniciada — sampleRate:', audioContext.sampleRate);
   } catch (err) {
-    showTranscript('⚠️ Permita o acesso ao microfone para usar a conversa por voz.');
+    console.error('[AUDIO] Erro captura:', err);
+    showTranscript('⚠️ Permita o acesso ao microfone nas configurações do browser.');
   }
 }
 
@@ -1126,25 +1157,35 @@ function stopAudioCapture() {
 }
 
 // ── ÁUDIO: PLAYBACK DA SOFIA ──
+let nextPlayTime = 0;
+
 function playAudioDelta(base64) {
   if (!audioContext) return;
   try {
     const binary = atob(base64);
-    const pcm16 = new Int16Array(binary.length / 2);
-    for (let i = 0; i < pcm16.length; i++) {
-      pcm16[i] = (binary.charCodeAt(i*2)) | (binary.charCodeAt(i*2+1) << 8);
-    }
+    const bytes = new Uint8Array(binary.length);
+    for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+
+    const pcm16 = new Int16Array(bytes.buffer);
     const float32 = new Float32Array(pcm16.length);
     for (let i = 0; i < pcm16.length; i++) {
       float32[i] = pcm16[i] / 32768.0;
     }
+
     const buffer = audioContext.createBuffer(1, float32.length, 24000);
     buffer.copyToChannel(float32, 0);
+
     const source = audioContext.createBufferSource();
     source.buffer = buffer;
     source.connect(audioContext.destination);
-    source.start();
-  } catch(e) {}
+
+    // Encadear os chunks sem sobreposição nem silêncio
+    const startTime = Math.max(audioContext.currentTime, nextPlayTime);
+    source.start(startTime);
+    nextPlayTime = startTime + buffer.duration;
+  } catch(e) {
+    console.error('[AUDIO] Erro playback:', e);
+  }
 }
 
 // ── HELPERS ──
@@ -1248,6 +1289,15 @@ function endRealtimeSession() {
   realtimeWs = null;
   isMuted = false;
   sofiaTranscriptAccum = '';
+  pendingSessionMsg = '';
+  nextPlayTime = 0;
+  // Resetar UI
+  const btn = document.getElementById('muteBtn');
+  if (btn) btn.textContent = '🎤';
+  document.getElementById('startVoiceBtn').style.display = 'none';
+  document.getElementById('realtimeActive').style.display = 'none';
+  document.getElementById('realtimeStatus').style.display = 'block';
+  setStatus('Pronto para nova conversa!', '🎙️');
 }
 
 // ══ SRE GAMIFICADO ══
