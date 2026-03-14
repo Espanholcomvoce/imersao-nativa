@@ -1349,7 +1349,29 @@ function setTemaLivre() {
   box.innerHTML = '';
   const textarea = document.getElementById('escritaText');
   textarea.value = '';
-  textarea.placeholder = 'Escribe tu texto aqui en espanol...';
+  const placeholders = [
+    'Cuéntame sobre un lugar que te marcó...',
+    'Describe a alguien importante en tu vida...',
+    '¿Qué harías si tuvieras un día libre perfecto?',
+    'Habla sobre algo que aprendiste recientemente...',
+    'Cuéntame sobre una experiencia que nunca olvidarás...',
+    'Describe tu ciudad o barrio ideal...',
+    '¿Qué cambiarías en tu rutina diaria?',
+    'Habla sobre una película, libro o canción que te impactó...',
+    '¿Cuál es tu mayor sueño y qué estás haciendo para lograrlo?',
+    'Describe un momento en que te sentiste muy orgulloso de ti mismo...',
+    '¿Qué te gusta hacer cuando estás solo?',
+    'Habla sobre una tradición o costumbre de tu familia...',
+    '¿Cómo sería tu vida ideal dentro de diez años?',
+    'Describe un objeto que tiene mucho valor sentimental para ti...',
+    '¿Qué opinas sobre las redes sociales en nuestra vida?',
+    'Cuéntame sobre un viaje real o imaginario que te gustaría hacer...',
+    '¿Qué hábito te gustaría incorporar a tu vida y por qué?',
+    'Describe una persona que admiras y explica por qué...',
+    '¿Qué harías si pudieras volver atrás en el tiempo?',
+    'Habla sobre algo que te da miedo y cómo lo enfrentas...',
+  ];
+  textarea.placeholder = placeholders[Math.floor(Math.random() * placeholders.length)];
   textarea.focus();
 }
 
