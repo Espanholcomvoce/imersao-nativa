@@ -1391,7 +1391,13 @@ async function correctEscrita() {
     const data = await res.json();
     if (res.ok) {
       document.getElementById('escritaScoreFill').style.width = '75%';
-      content.innerHTML = data.correction.replace(/\n/g,'<br>');
+      // Converter markdown para HTML limpo
+      let txt = data.correction;
+      txt = txt.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+      txt = txt.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+      txt = txt.replace(/^- (.+)/gm, '<li>$1</li>');
+      txt = txt.replace(/\n/g, '<br>');
+      content.innerHTML = txt;
     } else {
       content.innerHTML = '⚠️ Erro ao corrigir.';
     }
