@@ -1974,20 +1974,22 @@ async function openExercise(id) {
           <span class="ex-badge nivel" style="font-size:11px;padding:3px 10px">${ex.nivel}</span>
           <span class="ex-badge nivel" style="background:rgba(96,165,250,.2);border-color:var(--blue);color:var(--blue);font-size:11px;padding:3px 10px">${ex.examen}</span>
         </div>
-        <div style="font-family:'Playfair Display',serif;font-size:clamp(16px,4vw,18px);font-weight:700;margin-bottom:4px">${ex.titulo}</div>
-        <div style="color:var(--text2);font-size:11px;font-style:italic">${ex.formato_oficial}</div>
+
+
+
+      <!-- BOTÃO DE ÁUDIO ON-DEMAND -->
+      <div style="margin-bottom:16px">
+        <button id="examAudioBtn" onclick="playExamAudio('${ex.id}')" style="width:100%;padding:14px;background:linear-gradient(135deg,rgba(168,85,247,.2),rgba(96,165,250,.2));border:1px solid rgba(168,85,247,.4);border-radius:14px;color:#a78bfa;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .2s">
+          ▶️ Ouvir Diálogo
+        </button>
+        <audio id="examAudioPlayer" style="width:100%;margin-top:10px;display:none;border-radius:8px" controls></audio>
       </div>
-      <div style="background:rgba(245,166,35,.08);border:1px solid rgba(245,166,35,.2);border-radius:12px;padding:12px;margin-bottom:16px;font-size:13px;font-style:italic;color:var(--text2);line-height:1.5">${ex.contexto}</div>
-      ${ex.audio_available ? `
-        <div style="margin-bottom:16px">
-          <div style="color:var(--text2);font-size:11px;text-transform:uppercase;letter-spacing:2px;margin-bottom:8px">Áudio</div>
-          <audio controls style="width:100%;border-radius:8px" src="${API}${ex.audio_url}"></audio>
-        </div>` : ''}
+      <!-- DIÁLOGO -->
       <div style="margin-bottom:16px">
         <div style="color:var(--text2);font-size:11px;text-transform:uppercase;letter-spacing:2px;margin-bottom:10px">Diálogo</div>
         ${ex.lineas.map(line => {
-          const p = ex.personajes.find(p => p.id === line.personaje);
-          return `<div class="dialogue-line"><span class="dialogue-speaker">${p ? p.nombre : line.personaje}</span><span>${line.texto}</span></div>`;
+          const p = ex.personajes ? ex.personajes.find(p => p.nombre === line.personaje || p.id === line.personaje) : null;
+          return '<div class="dialogue-line"><span class="dialogue-speaker">' + (p ? p.nombre : line.personaje) + '</span><span>' + line.texto + '</span></div>';
         }).join('')}
       </div>
       <div style="margin-bottom:16px">
@@ -2005,16 +2007,7 @@ async function openExercise(id) {
     `;
     document.getElementById('exerciseModal').classList.add('open');
   } catch {}
-}
 
-function closeExerciseModal(e) {
-  if (e.target.id === 'exerciseModal') {
-    document.getElementById('exerciseModal').classList.remove('open');
-  }
-}
-
-// ══ PWA ══
-let deferredPrompt;
 window.addEventListener('beforeinstallprompt', e => {
   e.preventDefault();
   deferredPrompt = e;
@@ -2047,6 +2040,37 @@ loadLacuna();
   if('serviceWorker' in navigator){
     navigator.serviceWorker.register('/sw.js').catch(()=>{});
   }
+
+function closeExerciseModal(e) {
+  if (e.target.id === 'exerciseModal') {
+    document.getElementById('exerciseModal').classList.remove('open');
+  }
+}
+
+async function playExamAudio(id) {
+  var btn = document.getElementById('examAudioBtn');
+  var player = document.getElementById('examAudioPlayer');
+  if (!btn || !player) return;
+  btn.textContent = '⏳ Gerando áudio...';
+  btn.disabled = true;
+  try {
+    var res = await fetch(API + '/api/exam-audio/' + id + '/audio', {
+      headers: { 'Authorization': 'Bearer ' + token }
+    });
+    if (!res.ok) throw new Error('Erro');
+    var blob = await res.blob();
+    var url = URL.createObjectURL(blob);
+    player.src = url;
+    player.style.display = 'block';
+    player.play();
+    btn.textContent = '▶️ Ouvir Diálogo';
+    btn.disabled = false;
+  } catch(e) {
+    btn.textContent = '❌ Erro ao gerar áudio';
+    btn.disabled = false;
+    console.error('[EXAM-AUDIO]', e);
+  }
+}
 </script>
 </body>
 </html>
