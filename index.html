@@ -594,19 +594,14 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
   </div>
   <!-- ESCRITA -->
   <div class="prod-panel active tab-panel-inner" id="prod-escrita">
-    <p class="section-label" style="margin-bottom:10px">Tema</p>
-    <div class="tema-chips" id="temaChips">
-      <div class="tema-chip" onclick="selectTema(this,'viajes')">✈️ Viagens</div>
-      <div class="tema-chip" onclick="selectTema(this,'cultura')">🎭 Cultura</div>
-      <div class="tema-chip" onclick="selectTema(this,'trabajo')">💼 Trabalho</div>
-      <div class="tema-chip" onclick="selectTema(this,'tecnología')">💻 Tecnologia</div>
-      <div class="tema-chip" onclick="selectTema(this,'medio ambiente')">🌿 Meio ambiente</div>
-      <div class="tema-chip" onclick="selectTema(this,'libre')">🗒️ Livre</div>
+    <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap">
+      <button class="btn-sm" onclick="setTemaLivre()" id="btnTemaLivre" style="background:var(--glass);border:1px solid var(--border);box-shadow:none;color:var(--text)">🗒️ Tema livre</button>
+      <button class="btn-sm" onclick="generatePrompt()" style="background:linear-gradient(135deg,var(--purple),#9333ea)">💡 Gerar tema</button>
     </div>
+    <div id="temaGeradoBox" style="display:none;background:var(--glass);border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin-bottom:10px;font-size:0.93rem;color:var(--text);line-height:1.5"></div>
     <textarea class="prod-area" id="escritaText" placeholder="Escribe tu texto aquí en español..." rows="6"></textarea>
     <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
       <button class="btn-sm" onclick="correctEscrita()">✓ Corrigir</button>
-      <button class="btn-sm" onclick="generatePrompt()" style="background:linear-gradient(135deg,var(--purple),#9333ea)">💡 Gerar tema</button>
     </div>
     <div class="correction-result" id="escritaResult" style="display:none">
       <div class="score-bar"><div class="score-fill" id="escritaScoreFill" style="width:0%"></div></div>
@@ -1345,9 +1340,17 @@ function switchProdTab(tab, btn) {
   if (tab === 'lacunas') loadLacuna();
 }
 
-function selectTema(el, tema) {
-  document.querySelectorAll('.tema-chip').forEach(c => c.classList.remove('selected'));
-  el.classList.add('selected');
+let temaAtual = '';
+
+function setTemaLivre() {
+  temaAtual = '';
+  const box = document.getElementById('temaGeradoBox');
+  box.style.display = 'none';
+  box.innerHTML = '';
+  const textarea = document.getElementById('escritaText');
+  textarea.value = '';
+  textarea.placeholder = 'Escribe tu texto aqui en espanol...';
+  textarea.focus();
 }
 
 async function correctEscrita() {
@@ -1376,19 +1379,24 @@ async function correctEscrita() {
 }
 
 async function generatePrompt() {
-  const textarea = document.getElementById('escritaText');
-  textarea.value = '';
-  textarea.placeholder = 'Gerando tema...';
+  const box = document.getElementById('temaGeradoBox');
+  box.style.display = 'block';
+  box.innerHTML = '<span class="loading-spinner"></span> Gerando tema...';
   try {
     const res = await fetch(`${API}/api/chat`, {
       method: 'POST',
       headers: { 'Content-Type':'application/json', 'Authorization':`Bearer ${token}` },
-      body: JSON.stringify({ message: 'Dame un tema interesante para escribir un párrafo corto en español. Solo el tema, una oración.', context: 'vocabulary', level: 'B1', history: [] })
+      body: JSON.stringify({ message: 'Dame un tema creativo e interesante para escribir un párrafo en español. Presenta el tema con una pregunta o situación concreta que invite a reflexionar. Solo el enunciado del tema, sin explicaciones adicionales.', context: 'vocabulary', level: 'B1', history: [] })
     });
     const data = await res.json();
-    textarea.placeholder = res.ok ? data.reply : 'Escribe tu texto aquí en español...';
+    if (res.ok) {
+      temaAtual = data.reply;
+      box.innerHTML = '💡 <strong>Tema:</strong> ' + data.reply;
+    } else {
+      box.innerHTML = '⚠️ Erro ao gerar tema.';
+    }
   } catch {
-    textarea.placeholder = 'Escribe tu texto aquí en español...';
+    box.innerHTML = '⚠️ Sem conexão.';
   }
 }
 
