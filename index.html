@@ -246,6 +246,51 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
 @media screen and (max-width:768px){
   input,textarea,select{font-size:16px!important}
 }
+
+/* ══ LECTURA ══ */
+#lectura{overflow-y:auto;justify-content:flex-start}
+.lectura-level-tabs{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap}
+.lev-tab{background:var(--glass);border:1px solid var(--border);border-radius:20px;padding:6px 16px;font-size:12px;font-weight:600;cursor:pointer;color:var(--text2);font-family:inherit;transition:all .2s;touch-action:manipulation}
+.lev-tab.active.a1{background:rgba(74,222,128,.2);border-color:var(--green);color:var(--green)}
+.lev-tab.active.a2{background:rgba(96,165,250,.2);border-color:var(--blue);color:var(--blue)}
+.lev-tab.active.b1{background:rgba(250,204,21,.2);border-color:var(--yellow);color:var(--yellow)}
+.lev-tab.active.b2{background:rgba(245,166,35,.2);border-color:var(--gold);color:var(--gold)}
+.lev-tab.active.c1{background:rgba(248,113,113,.2);border-color:var(--red);color:var(--red)}
+.lev-tab.active.c2{background:rgba(192,132,252,.2);border-color:var(--purple);color:var(--purple)}
+.lec-progress-bar{background:var(--glass);border:1px solid var(--border);border-radius:12px;padding:10px 14px;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.lec-prog-label{font-size:12px;color:var(--text2);flex:1}
+.lec-prog-count{font-size:12px;font-weight:700;color:var(--gold)}
+.lec-prog-track{height:6px;background:rgba(255,255,255,.1);border-radius:99px;overflow:hidden;flex:2}
+.lec-prog-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--green),var(--gold));transition:width .5s}
+.texto-card{background:var(--glass);border:1px solid var(--border);border-radius:18px;padding:20px;margin-bottom:16px}
+.texto-header{display:flex;align-items:center;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.texto-nivel-tag{font-size:10px;font-weight:700;padding:3px 10px;border-radius:10px;text-transform:uppercase;letter-spacing:1px}
+.texto-tema-tag{font-size:11px;color:var(--text2);font-style:italic}
+.texto-num{margin-left:auto;font-size:11px;color:var(--text3)}
+.texto-titulo{font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(15px,4vw,17px);margin-bottom:12px;line-height:1.35}
+.texto-corpo{font-size:clamp(13px,3.5vw,14px);line-height:1.85;color:rgba(255,255,255,.82);margin-bottom:20px;padding:14px 16px;background:rgba(255,255,255,.04);border-left:3px solid rgba(245,166,35,.4);border-radius:0 10px 10px 0;font-style:italic}
+.preguntas-titulo{color:var(--text2);font-size:11px;text-transform:uppercase;letter-spacing:2px;margin-bottom:14px}
+.pregunta-bloque{margin-bottom:20px}
+.pregunta-enunciado{font-size:clamp(13px,3.5vw,14px);font-weight:600;margin-bottom:10px;line-height:1.45}
+.opciones-lista{display:flex;flex-direction:column;gap:7px}
+.opcion-btn{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;padding:10px 14px;font-size:clamp(12px,3.2vw,13px);cursor:pointer;text-align:left;color:var(--text);font-family:inherit;line-height:1.4;transition:all .2s;touch-action:manipulation}
+.opcion-btn:active{transform:scale(0.98)}
+.opcion-btn:disabled{cursor:default}
+.opcion-btn.selected{background:rgba(245,166,35,.12);border-color:var(--gold)}
+.opcion-btn.correct{background:rgba(74,222,128,.15);border-color:var(--green);color:var(--green)}
+.opcion-btn.wrong{background:rgba(248,113,113,.15);border-color:var(--red);color:var(--red)}
+.opcion-btn.show-correct{background:rgba(74,222,128,.08);border-color:rgba(74,222,128,.3);color:var(--green)}
+.feedback-msg{margin-top:8px;padding:9px 13px;border-radius:10px;font-size:12px;line-height:1.5}
+.feedback-msg.ok{background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.25);color:var(--green)}
+.feedback-msg.err{background:rgba(248,113,113,.1);border:1px solid rgba(248,113,113,.25);color:var(--red)}
+.resultado-card{background:linear-gradient(135deg,rgba(74,222,128,.1),rgba(245,166,35,.08));border:1px solid rgba(74,222,128,.25);border-radius:14px;padding:20px;text-align:center;margin-top:16px;display:none}
+.resultado-card.visible{display:block}
+.resultado-emoji{font-size:40px;margin-bottom:8px}
+.resultado-texto{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--gold);margin-bottom:4px}
+.resultado-detalhe{color:var(--text2);font-size:13px;margin-bottom:14px}
+.btn-proximo{width:100%;padding:14px;border-radius:14px;background:linear-gradient(135deg,var(--gold),var(--gold2));border:none;color:#fff;font-size:clamp(14px,3.8vw,15px);font-weight:700;cursor:pointer;font-family:'Playfair Display',serif;box-shadow:0 6px 20px rgba(245,166,35,.3);transition:transform .2s;touch-action:manipulation;display:none}
+.btn-proximo.visible{display:block}
+.btn-proximo:active{transform:scale(0.97)}
 </style>
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#1a0533">
@@ -259,18 +304,31 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
 <!-- ══ LOGIN ══ -->
 <div id="loginScreen" style="display:flex;align-items:center;justify-content:center;min-height:100vh;padding:20px;background:linear-gradient(135deg,var(--bg1) 0%,var(--bg2) 50%,var(--bg3) 100%)">
   <div style="max-width:400px;width:100%;text-align:center">
-    <div style="font-family:'Playfair Display',serif;font-size:clamp(40px,12vw,48px);font-weight:700;line-height:1;letter-spacing:-1px;margin-bottom:2px">
+
+    <!-- APP EXCLUSIVO -->
+    <div style="font-family:'Lora',serif;font-size:clamp(10px,2.5vw,11px);font-weight:300;letter-spacing:4px;color:rgba(255,255,255,0.55);text-transform:uppercase;margin-bottom:14px">APP EXCLUSIVO</div>
+
+    <!-- PROGRAMA badge -->
+    <div style="display:inline-block;border:1px solid rgba(96,165,250,0.5);border-radius:30px;padding:5px 22px;font-family:'Playfair Display',serif;font-size:clamp(13px,3.5vw,15px);font-weight:400;letter-spacing:3px;color:#60a5fa;text-transform:uppercase;margin-bottom:16px">PROGRAMA</div>
+
+    <!-- IMERSÃO NATIVA colorido -->
+    <div style="font-family:'Playfair Display',serif;font-size:clamp(40px,12vw,52px);font-weight:700;line-height:1;letter-spacing:-1px;margin-bottom:4px">
       <span style="color:#60a5fa">I</span><span style="color:#38bdf8">M</span><span style="color:#34d399">E</span><span style="color:#86efac">R</span><span style="color:#bef264">S</span><span style="color:#facc15">Ã</span><span style="color:#fb923c">O</span>
     </div>
-    <div style="font-family:'Playfair Display',serif;font-size:clamp(13px,3.5vw,15px);font-weight:400;letter-spacing:6px;color:rgba(255,255,255,0.6);text-transform:uppercase;margin-bottom:32px">N A T I V A</div>
+    <div style="font-family:'Playfair Display',serif;font-size:clamp(13px,3.5vw,15px);font-weight:400;letter-spacing:7px;color:rgba(255,255,255,0.6);text-transform:uppercase;margin-bottom:14px">N A T I V A</div>
+
+    <!-- linha gradiente -->
+    <div style="width:48px;height:2px;background:linear-gradient(90deg,#60a5fa,#fb923c);border-radius:2px;margin:0 auto 28px"></div>
+
+    <!-- Card login -->
     <div style="background:var(--glass);border:1px solid var(--border);border-radius:18px;padding:28px 24px;backdrop-filter:blur(10px)">
       <h2 style="font-family:'Playfair Display',serif;font-size:clamp(20px,5vw,24px);font-weight:700;margin-bottom:8px">Bem-vindo!</h2>
-      <p style="color:var(--text2);font-size:clamp(12px,3.2vw,13px);font-style:italic;margin-bottom:20px">Entre com seu email cadastrado</p>
+      <p style="color:var(--text2);font-size:clamp(12px,3.2vw,13px);font-style:italic;margin-bottom:20px">Entre com seu email de aluno</p>
       <input type="email" id="loginEmail" placeholder="seu@email.com" onkeydown="if(event.key==='Enter')loginUser()" style="width:100%;background:rgba(0,0,0,.3);border:1px solid var(--border);border-radius:12px;padding:14px 16px;color:var(--text);font-size:clamp(14px,3.8vw,15px);font-family:inherit;outline:none;margin-bottom:12px"/>
       <button id="loginBtn" onclick="loginUser()" style="width:100%;padding:clamp(14px,4vw,16px);border-radius:14px;background:linear-gradient(135deg,var(--gold),var(--gold2));border:none;color:#fff;font-size:clamp(15px,4vw,17px);font-weight:700;cursor:pointer;font-family:'Playfair Display',serif;box-shadow:0 8px 28px rgba(245,166,35,.4);margin-bottom:8px">Entrar</button>
       <div id="loginError" style="color:var(--red);font-size:clamp(11px,3vw,12px);margin-top:8px;min-height:20px"></div>
     </div>
-    <p style="color:var(--text3);font-size:clamp(10px,2.8vw,11px);margin-top:16px;font-style:italic">Acesso exclusivo para alunos do Programa Imersão Nativa</p>
+
   </div>
 </div>
 
@@ -311,10 +369,10 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
       <div class="module-name">Tira Dúvidas</div>
       <div class="module-desc">Gramática, vocabulário e dicas</div>
     </div>
-    <div class="module-card" onclick="goTo('tiraduvidas')" style="pointer-events:none;opacity:.4">
+    <div class="module-card" onclick="goTo('lectura')">
       <div class="module-icon">📖</div>
       <div class="module-name">Leitura</div>
-      <div class="module-desc">Em breve</div>
+      <div class="module-desc">Textos por nível com perguntas</div>
     </div>
     <div class="module-card sre-card" onclick="goTo('sre')">
       <div class="module-icon" style="font-size:32px;margin-bottom:0">🧠</div>
@@ -623,6 +681,31 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
   <div class="exercise-modal" id="exerciseModalContent"></div>
 </div>
 
+
+<!-- ══ LECTURA ══ -->
+<div id="lectura" class="screen">
+<div class="content-wrap">
+  <div class="page-header">
+    <button class="back-btn" onclick="goTo('home')">←</button>
+    <div><div class="page-title">📖 Leitura</div><div class="page-subtitle">Compreensão de texto por nível</div></div>
+  </div>
+  <div class="lectura-level-tabs">
+    <button class="lev-tab a1 active" onclick="selectLecNivel('A1',this)">A1</button>
+    <button class="lev-tab a2" onclick="selectLecNivel('A2',this)">A2</button>
+    <button class="lev-tab b1" onclick="selectLecNivel('B1',this)">B1</button>
+    <button class="lev-tab b2" onclick="selectLecNivel('B2',this)">B2</button>
+    <button class="lev-tab c1" onclick="selectLecNivel('C1',this)">C1</button>
+    <button class="lev-tab c2" onclick="selectLecNivel('C2',this)">C2</button>
+  </div>
+  <div class="lec-progress-bar">
+    <span class="lec-prog-label">Progresso <strong id="lecNivelLabel">A1</strong></span>
+    <div class="lec-prog-track"><div class="lec-prog-fill" id="lecProgFill" style="width:0%"></div></div>
+    <span class="lec-prog-count" id="lecProgCount">0/20</span>
+  </div>
+  <div id="lecturaContent"></div>
+</div>
+</div>
+
 </div><!-- /appContent -->
 
 <!-- INSTALL BANNER PWA -->
@@ -865,6 +948,7 @@ function goTo(id) {
   document.getElementById(id).classList.add('active');
   if (id === 'sre') renderCards();
   if (id === 'home') updateHomeSreStats();
+  if (id === 'lectura') renderLectura();
 }
 
 // ══ SETUP CONVERSA ══
@@ -1490,6 +1574,319 @@ async function playExamAudio(id) {
     console.error('[EXAM-AUDIO]', e);
   }
 }
+
+// ══ LECTURA ══
+const LECTURA_DATA = {
+  A1: [
+    {titulo:'Mi familia',tema:'Vida cotidiana',texto:'Me llamo Ana. Tengo una familia pequeña. Mi padre se llama Carlos y mi madre se llama María. Tengo un hermano. Se llama Pedro y tiene diez años. Vivimos en una casa grande con un jardín. Tenemos un perro que se llama Toto. Me gusta mucho pasar tiempo con mi familia los fines de semana.',preguntas:[
+      {p:'¿Cómo se llama el hermano de Ana?',ops:['Carlos','Pedro','Toto','María'],ok:1,exp:'El texto dice: "Tengo un hermano. Se llama Pedro."'},
+      {p:'¿Cómo es la casa de Ana?',ops:['Pequeña','Vieja','Grande con jardín','Moderna'],ok:2,exp:'El texto dice: "Vivimos en una casa grande con un jardín."'},
+      {p:'¿Cómo se llama el perro?',ops:['Carlos','Pedro','Ana','Toto'],ok:3,exp:'El texto dice: "Tenemos un perro que se llama Toto."'},
+      {p:'¿Cuándo le gusta pasar tiempo con su familia?',ops:['Por las mañanas','En vacaciones','Los fines de semana','Por las noches'],ok:2,exp:'El texto dice: "Me gusta mucho pasar tiempo con mi familia los fines de semana."'},
+      {p:'¿Cuántos años tiene el hermano de Ana?',ops:['Ocho','Doce','Cinco','Diez'],ok:3,exp:'El texto dice: "tiene diez años."'}
+    ]},
+    {titulo:'El desayuno',tema:'Comida',texto:'Todos los días me despierto a las siete de la mañana. Primero me ducho y después desayuno. Por la mañana como tostadas con mantequilla y bebo un vaso de leche. A veces como fruta también. Me gusta mucho el desayuno porque me da energía para el día.',preguntas:[
+      {p:'¿A qué hora se despierta?',ops:['A las seis','A las ocho','A las siete','A las nueve'],ok:2,exp:'El texto dice: "me despierto a las siete de la mañana."'},
+      {p:'¿Qué hace primero por la mañana?',ops:['Desayuna','Se ducha','Come fruta','Bebe leche'],ok:1,exp:'El texto dice: "Primero me ducho y después desayuno."'},
+      {p:'¿Qué bebe por la mañana?',ops:['Café','Zumo','Agua','Leche'],ok:3,exp:'El texto dice: "bebo un vaso de leche."'},
+      {p:'¿Qué come en el desayuno?',ops:['Huevos','Cereales','Tostadas con mantequilla','Yogur'],ok:2,exp:'El texto dice: "como tostadas con mantequilla."'},
+      {p:'¿Por qué le gusta el desayuno?',ops:['Es rico','Le da energía','Es rápido','Es barato'],ok:1,exp:'El texto dice: "me da energía para el día."'}
+    ]},
+    {titulo:'La escuela',tema:'Educación',texto:'Voy a la escuela de lunes a viernes. Mi escuela se llama Colegio San Marcos. Tengo muchos amigos allí. Mi profesora favorita es la profesora de español porque explica muy bien. Las clases empiezan a las ocho de la mañana y terminan a las dos de la tarde.',preguntas:[
+      {p:'¿Cuándo va a la escuela?',ops:['Solo los lunes','De lunes a viernes','Los fines de semana','Todos los días'],ok:1,exp:'El texto dice: "Voy a la escuela de lunes a viernes."'},
+      {p:'¿Cómo se llama su escuela?',ops:['San Pedro','San Marcos','San Carlos','San Juan'],ok:1,exp:'El texto dice: "Mi escuela se llama Colegio San Marcos."'},
+      {p:'¿Cuál es su profesora favorita?',ops:['De matemáticas','De inglés','De español','De música'],ok:2,exp:'El texto dice: "Mi profesora favorita es la profesora de español."'},
+      {p:'¿A qué hora empiezan las clases?',ops:['A las siete','A las nueve','A las ocho','A las diez'],ok:2,exp:'El texto dice: "Las clases empiezan a las ocho de la mañana."'},
+      {p:'¿A qué hora terminan las clases?',ops:['A la una','A las dos','A las tres','A las cuatro'],ok:1,exp:'El texto dice: "terminan a las dos de la tarde."'}
+    ]},
+    {titulo:'El tiempo libre',tema:'Ocio',texto:'Me gusta mucho el fútbol. Los sábados juego con mis amigos en el parque cerca de mi casa. También me gusta ver películas en casa los domingos. Mi película favorita es de aventuras. A veces voy al cine con mi familia por las tardes.',preguntas:[
+      {p:'¿Dónde juega al fútbol?',ops:['En casa','En el colegio','En el parque','En el estadio'],ok:2,exp:'El texto dice: "juego con mis amigos en el parque."'},
+      {p:'¿Cuándo juega al fútbol?',ops:['Los domingos','Los viernes','Los sábados','Los lunes'],ok:2,exp:'El texto dice: "Los sábados juego con mis amigos."'},
+      {p:'¿Qué tipo de película le gusta?',ops:['De terror','De comedia','De romance','De aventuras'],ok:3,exp:'El texto dice: "Mi película favorita es de aventuras."'},
+      {p:'¿Cuándo ve películas en casa?',ops:['Los sábados','Los lunes','Los domingos','Los jueves'],ok:2,exp:'El texto dice: "ver películas en casa los domingos."'},
+      {p:'¿Con quién va al cine?',ops:['Con amigos','Con su pareja','Con su familia','Solo'],ok:2,exp:'El texto dice: "voy al cine con mi familia."'}
+    ]},
+    {titulo:'Mi ciudad',tema:'Lugares',texto:'Vivo en una ciudad pequeña y tranquila. Hay un supermercado, una farmacia, un banco y un parque. El parque tiene muchos árboles y flores. Me gusta pasear por el parque con mi perro por las mañanas. La gente de mi ciudad es muy amable.',preguntas:[
+      {p:'¿Cómo es la ciudad?',ops:['Grande y ruidosa','Pequeña y tranquila','Grande y bonita','Pequeña y fea'],ok:1,exp:'El texto dice: "Vivo en una ciudad pequeña y tranquila."'},
+      {p:'¿Qué hay en la ciudad?',ops:['Un hospital','Un aeropuerto','Un banco','Un estadio'],ok:2,exp:'El texto menciona "un banco" entre los lugares de la ciudad.'},
+      {p:'¿Qué hay en el parque?',ops:['Una piscina','Árboles y flores','Un restaurante','Un mercado'],ok:1,exp:'El texto dice: "El parque tiene muchos árboles y flores."'},
+      {p:'¿Qué hace en el parque?',ops:['Juega al fútbol','Lee libros','Pasea con su perro','Come con amigos'],ok:2,exp:'El texto dice: "Me gusta pasear por el parque con mi perro."'},
+      {p:'¿Cómo es la gente de su ciudad?',ops:['Ruidosa','Simpática','Amable','Tranquila'],ok:2,exp:'El texto dice: "La gente de mi ciudad es muy amable."'}
+    ]},
+    {titulo:'Las mascotas',tema:'Animales',texto:'En mi casa tenemos dos mascotas: un gato que se llama Misi y un pez que se llama Burbuja. El gato duerme mucho durante el día. El pez nada en su pecera todo el tiempo. Yo cuido a mis mascotas todos los días. Me gustan mucho los animales.',preguntas:[
+      {p:'¿Cuántas mascotas tienen?',ops:['Una','Tres','Cuatro','Dos'],ok:3,exp:'El texto dice: "tenemos dos mascotas."'},
+      {p:'¿Cómo se llama el gato?',ops:['Burbuja','Toto','Misi','Pez'],ok:2,exp:'El texto dice: "un gato que se llama Misi."'},
+      {p:'¿Qué hace el gato durante el día?',ops:['Come','Juega','Duerme','Nada'],ok:2,exp:'El texto dice: "El gato duerme mucho durante el día."'},
+      {p:'¿Qué hace el pez?',ops:['Duerme','Come','Juega','Nada en su pecera'],ok:3,exp:'El texto dice: "El pez nada en su pecera todo el tiempo."'},
+      {p:'¿Quién cuida a las mascotas?',ops:['El padre','La madre','El hermano','Yo'],ok:3,exp:'El texto dice: "Yo cuido a mis mascotas todos los días."'}
+    ]},
+    {titulo:'En el mercado',tema:'Compras',texto:'Hoy voy al mercado con mi madre. Compramos frutas, verduras y pan fresco. Las manzanas son rojas y muy dulces. Las naranjas son grandes y tienen mucho jugo. El pan es recién hecho. Pagamos diez euros en total. Me gusta ir al mercado porque hay muchos colores.',preguntas:[
+      {p:'¿Con quién va al mercado?',ops:['Con su padre','Con su amigo','Con su madre','Solo'],ok:2,exp:'El texto dice: "Hoy voy al mercado con mi madre."'},
+      {p:'¿Qué compran?',ops:['Carne y pescado','Leche y queso','Frutas, verduras y pan','Arroz y pasta'],ok:2,exp:'El texto dice: "Compramos frutas, verduras y pan fresco."'},
+      {p:'¿Cómo son las manzanas?',ops:['Verdes y ácidas','Amarillas y dulces','Rojas y dulces','Pequeñas y verdes'],ok:2,exp:'El texto dice: "Las manzanas son rojas y muy dulces."'},
+      {p:'¿Cuánto pagan en total?',ops:['Cinco euros','Quince euros','Veinte euros','Diez euros'],ok:3,exp:'El texto dice: "Pagamos diez euros en total."'},
+      {p:'¿Por qué le gusta el mercado?',ops:['Es barato','Hay muchos colores','Está cerca','Es grande'],ok:1,exp:'El texto dice: "me gusta ir al mercado porque hay muchos colores."'}
+    ]},
+    {titulo:'El cumpleaños',tema:'Celebraciones',texto:'Hoy es mi cumpleaños. Cumplo once años. Mi madre prepara una tarta de chocolate con velas. Mis amigos vienen a mi casa a las cuatro de la tarde. Recibo muchos regalos: libros, juegos y ropa. Es un día muy especial para mí.',preguntas:[
+      {p:'¿Cuántos años cumple?',ops:['Diez','Doce','Once','Nueve'],ok:2,exp:'El texto dice: "Cumplo once años."'},
+      {p:'¿Qué prepara su madre?',ops:['Una pizza','Un bocadillo','Una tarta de chocolate','Una ensalada'],ok:2,exp:'El texto dice: "Mi madre prepara una tarta de chocolate con velas."'},
+      {p:'¿A qué hora vienen los amigos?',ops:['A las tres','A las cinco','A las dos','A las cuatro'],ok:3,exp:'El texto dice: "a las cuatro de la tarde."'},
+      {p:'¿Qué regalos recibe?',ops:['Juguetes y dinero','Libros, juegos y ropa','Flores y dulces','Solo ropa'],ok:1,exp:'El texto dice: "Recibo muchos regalos: libros, juegos y ropa."'},
+      {p:'¿Cómo es ese día para él/ella?',ops:['Normal','Aburrido','Muy especial','Difícil'],ok:2,exp:'El texto dice: "Es un día muy especial para mí."'}
+    ]},
+    {titulo:'El clima',tema:'Tiempo atmosférico',texto:'Hoy hace mucho frío. El cielo está muy nublado y llueve un poco. Llevo un abrigo rojo y una bufanda azul. En verano hace mucho calor y el sol brilla todos los días. Me gusta más el verano porque puedo ir a la playa.',preguntas:[
+      {p:'¿Qué tiempo hace hoy?',ops:['Hace calor','Hace frío y llueve','Hay sol','Hace viento'],ok:1,exp:'El texto dice: "Hoy hace mucho frío" y "llueve un poco."'},
+      {p:'¿Cómo está el cielo?',ops:['Despejado','Azul','Muy nublado','Con arcoíris'],ok:2,exp:'El texto dice: "El cielo está muy nublado."'},
+      {p:'¿De qué color es el abrigo?',ops:['Azul','Verde','Negro','Rojo'],ok:3,exp:'El texto dice: "Llevo un abrigo rojo."'},
+      {p:'¿De qué color es la bufanda?',ops:['Roja','Verde','Azul','Amarilla'],ok:2,exp:'El texto dice: "una bufanda azul."'},
+      {p:'¿Por qué le gusta más el verano?',ops:['Hace frío','Puede ir a la playa','Es bonito','Hay vacaciones'],ok:1,exp:'El texto dice: "Me gusta más el verano porque puedo ir a la playa."'}
+    ]},
+    {titulo:'Los colores',tema:'Descripción',texto:'Me gustan mucho los colores. Mi color favorito es el azul porque es el color del cielo y del mar. Mi mochila es azul y mi cuaderno es rojo. La pizarra de la clase es negra. Las flores del jardín de mi casa son amarillas y blancas.',preguntas:[
+      {p:'¿Cuál es su color favorito?',ops:['Rojo','Verde','Azul','Amarillo'],ok:2,exp:'El texto dice: "Mi color favorito es el azul."'},
+      {p:'¿Por qué le gusta el azul?',ops:['Es bonito','Es el color del cielo y del mar','Es moderno','Le gusta el mar'],ok:1,exp:'El texto dice: "porque es el color del cielo y del mar."'},
+      {p:'¿De qué color es su mochila?',ops:['Roja','Verde','Amarilla','Azul'],ok:3,exp:'El texto dice: "Mi mochila es azul."'},
+      {p:'¿De qué color es su cuaderno?',ops:['Azul','Verde','Amarillo','Rojo'],ok:3,exp:'El texto dice: "mi cuaderno es rojo."'},
+      {p:'¿De qué color son las flores del jardín?',ops:['Rojas y azules','Amarillas y blancas','Verdes y rosas','Moradas y naranjas'],ok:1,exp:'El texto dice: "Las flores del jardín de mi casa son amarillas y blancas."'}
+    ]},
+    {titulo:'El transporte',tema:'Viajes',texto:'Para ir al colegio, tomo el autobús número cinco. El autobús sale a las siete y media de la mañana. El viaje dura veinte minutos. Mi padre va al trabajo en coche y mi madre va a pie porque trabaja muy cerca de casa.',preguntas:[
+      {p:'¿Cómo va al colegio?',ops:['En coche','En bicicleta','En autobús','A pie'],ok:2,exp:'El texto dice: "tomo el autobús número cinco."'},
+      {p:'¿Qué número de autobús toma?',ops:['Tres','Cuatro','Cinco','Seis'],ok:2,exp:'El texto dice: "el autobús número cinco."'},
+      {p:'¿A qué hora sale el autobús?',ops:['A las siete','A las ocho','A las siete y media','A las ocho y media'],ok:2,exp:'El texto dice: "El autobús sale a las siete y media."'},
+      {p:'¿Cuánto dura el viaje?',ops:['Diez minutos','Media hora','Veinte minutos','Una hora'],ok:2,exp:'El texto dice: "El viaje dura veinte minutos."'},
+      {p:'¿Por qué va la madre a pie?',ops:['Le gusta caminar','No tiene coche','Trabaja muy cerca','Es más rápido'],ok:2,exp:'El texto dice: "va a pie porque trabaja muy cerca de casa."'}
+    ]},
+    {titulo:'La ropa',tema:'Moda',texto:'Hoy me pongo una camiseta blanca, unos pantalones azules y zapatillas rojas. Me gusta la ropa cómoda para el día a día. En invierno llevo un abrigo gris y una bufanda de lana. No me gusta llevar ropa elegante porque no me siento cómodo.',preguntas:[
+      {p:'¿De qué color es la camiseta?',ops:['Azul','Roja','Blanca','Gris'],ok:2,exp:'El texto dice: "una camiseta blanca."'},
+      {p:'¿De qué color son los pantalones?',ops:['Blancos','Rojos','Grises','Azules'],ok:3,exp:'El texto dice: "unos pantalones azules."'},
+      {p:'¿Qué tipo de ropa le gusta?',ops:['Elegante','Cara','Cómoda','Formal'],ok:2,exp:'El texto dice: "Me gusta la ropa cómoda."'},
+      {p:'¿De qué color es el abrigo de invierno?',ops:['Azul','Negro','Gris','Marrón'],ok:2,exp:'El texto dice: "un abrigo gris."'},
+      {p:'¿Por qué no le gusta la ropa elegante?',ops:['Es cara','No le sienta bien','No se siente cómodo','Es difícil de lavar'],ok:2,exp:'El texto dice: "no me siento cómodo."'}
+    ]},
+    {titulo:'El restaurante',tema:'Comida',texto:'El sábado voy al restaurante con mi familia. Pido un bocadillo de jamón y una Coca-Cola. Mi hermano pide pizza y mi madre pide ensalada. La comida está muy rica. El camarero es muy simpático y rápido. Al final pagamos con tarjeta.',preguntas:[
+      {p:'¿Cuándo van al restaurante?',ops:['El viernes','El domingo','El sábado','El lunes'],ok:2,exp:'El texto dice: "El sábado voy al restaurante."'},
+      {p:'¿Qué pide para comer?',ops:['Pizza','Ensalada','Bocadillo de jamón','Pasta'],ok:2,exp:'El texto dice: "Pido un bocadillo de jamón."'},
+      {p:'¿Qué pide su hermano?',ops:['Bocadillo','Ensalada','Sopa','Pizza'],ok:3,exp:'El texto dice: "Mi hermano pide pizza."'},
+      {p:'¿Cómo es el camarero?',ops:['Antipático y lento','Simpático y rápido','Serio y lento','Amable pero lento'],ok:1,exp:'El texto dice: "El camarero es muy simpático y rápido."'},
+      {p:'¿Cómo pagan al final?',ops:['En efectivo','Con cheque','Con tarjeta','No pagan'],ok:2,exp:'El texto dice: "pagamos con tarjeta."'}
+    ]},
+    {titulo:'Los animales del zoo',tema:'Animales',texto:'Ayer fui al zoo con mi clase. Vi muchos animales: leones, jirafas, elefantes y monos. El animal que más me gustó fue la jirafa porque es muy alta y tiene el cuello muy largo. Los elefantes son los más grandes. Fue un día muy divertido y aprendí muchas cosas.',preguntas:[
+      {p:'¿Con quién fue al zoo?',ops:['Con su familia','Con su clase','Con sus amigos','Solo'],ok:1,exp:'El texto dice: "fui al zoo con mi clase."'},
+      {p:'¿Cuándo fue al zoo?',ops:['Hoy','La semana pasada','Ayer','El domingo'],ok:2,exp:'El texto dice: "Ayer fui al zoo."'},
+      {p:'¿Qué animal le gustó más?',ops:['El elefante','El mono','El león','La jirafa'],ok:3,exp:'El texto dice: "El animal que más me gustó fue la jirafa."'},
+      {p:'¿Por qué le gustó la jirafa?',ops:['Es bonita','Es rápida','Es muy alta y tiene el cuello largo','Es inteligente'],ok:2,exp:'El texto dice: "porque es muy alta y tiene el cuello muy largo."'},
+      {p:'¿Cuáles son los animales más grandes?',ops:['Los leones','Los monos','Las jirafas','Los elefantes'],ok:3,exp:'El texto dice: "Los elefantes son los más grandes."'}
+    ]},
+    {titulo:'La música',tema:'Arte',texto:'Me gusta mucho la música. Toco la guitarra desde los ocho años. Mi canción favorita es una balada en español muy famosa. Los viernes por la tarde tengo clase de música en la escuela. Mi profesor se llama Roberto y explica muy bien.',preguntas:[
+      {p:'¿Qué instrumento toca?',ops:['El piano','La flauta','La guitarra','El violín'],ok:2,exp:'El texto dice: "Toco la guitarra."'},
+      {p:'¿Desde qué edad toca la guitarra?',ops:['Los seis años','Los diez años','Los siete años','Los ocho años'],ok:3,exp:'El texto dice: "desde los ocho años."'},
+      {p:'¿Qué tipo de canción le gusta?',ops:['Rock','Una balada en español','Jazz','Pop en inglés'],ok:1,exp:'El texto dice: "Mi canción favorita es una balada en español."'},
+      {p:'¿Cuándo tiene clase de música?',ops:['Los lunes','Los jueves','Los miércoles','Los viernes'],ok:3,exp:'El texto dice: "Los viernes por la tarde tengo clase de música."'},
+      {p:'¿Cómo se llama su profesor?',ops:['Carlos','Juan','Roberto','Pedro'],ok:2,exp:'El texto dice: "Mi profesor se llama Roberto."'}
+    ]},
+    {titulo:'La casa',tema:'Hogar',texto:'Mi casa tiene cuatro habitaciones: una cocina, un salón, dos dormitorios y un baño. El salón es la habitación más grande de la casa. En mi dormitorio tengo una cama, un escritorio para estudiar y una estantería con muchos libros. Me gusta mucho mi habitación.',preguntas:[
+      {p:'¿Cuántas habitaciones tiene la casa?',ops:['Tres','Cinco','Dos','Cuatro'],ok:3,exp:'El texto dice: "Mi casa tiene cuatro habitaciones."'},
+      {p:'¿Cuál es la habitación más grande?',ops:['La cocina','El dormitorio','El salón','El baño'],ok:2,exp:'El texto dice: "El salón es la habitación más grande."'},
+      {p:'¿Cuántos dormitorios tiene?',ops:['Uno','Tres','Dos','Cuatro'],ok:2,exp:'El texto dice: "dos dormitorios."'},
+      {p:'¿Para qué usa el escritorio?',ops:['Para comer','Para dibujar','Para estudiar','Para trabajar'],ok:2,exp:'El texto dice: "un escritorio para estudiar."'},
+      {p:'¿Qué hay en la estantería?',ops:['Juguetes','Ropa','Muchos libros','Fotos'],ok:2,exp:'El texto dice: "una estantería con muchos libros."'}
+    ]},
+    {titulo:'El deporte',tema:'Actividad física',texto:'Me gusta mucho el deporte. Tres veces por semana voy al gimnasio con mi amigo Luis. También juego al baloncesto con mis amigos del barrio los sábados. El deporte es muy bueno para la salud y para sentirse bien. Mi deportista favorito juega al tenis.',preguntas:[
+      {p:'¿Cuántas veces va al gimnasio?',ops:['Una vez','Dos veces','Cuatro veces','Tres veces'],ok:3,exp:'El texto dice: "Tres veces por semana voy al gimnasio."'},
+      {p:'¿Con quién va al gimnasio?',ops:['Solo','Con su hermano','Con su amigo Luis','Con su padre'],ok:2,exp:'El texto dice: "voy al gimnasio con mi amigo Luis."'},
+      {p:'¿Qué deporte juega con amigos?',ops:['Fútbol','Tenis','Baloncesto','Natación'],ok:2,exp:'El texto dice: "juego al baloncesto con mis amigos."'},
+      {p:'¿Cuándo juega al baloncesto?',ops:['Los domingos','Los viernes','Los sábados','Los martes'],ok:2,exp:'El texto dice: "los sábados."'},
+      {p:'¿Qué deporte practica su deportista favorito?',ops:['Fútbol','Natación','Baloncesto','Tenis'],ok:3,exp:'El texto dice: "Mi deportista favorito juega al tenis."'}
+    ]},
+    {titulo:'Las vacaciones',tema:'Viajes',texto:'En verano voy de vacaciones con mi familia a la playa. Este año fuimos a una playa muy bonita en el sur de España. Jugamos en la arena, nadamos en el mar y comimos helados todos los días. Por las noches cenamos en restaurantes cerca del mar. Fueron las mejores vacaciones de mi vida.',preguntas:[
+      {p:'¿Adónde van de vacaciones?',ops:['A la montaña','Al campo','A una ciudad','A la playa'],ok:3,exp:'El texto dice: "voy de vacaciones con mi familia a la playa."'},
+      {p:'¿Dónde estaba la playa?',ops:['En el norte','En el este','En el oeste','En el sur de España'],ok:3,exp:'El texto dice: "en el sur de España."'},
+      {p:'¿Qué comieron todos los días?',ops:['Paella','Pizza','Helados','Bocadillos'],ok:2,exp:'El texto dice: "comimos helados todos los días."'},
+      {p:'¿Dónde cenan por las noches?',ops:['En casa','En el hotel','En la playa','En restaurantes cerca del mar'],ok:3,exp:'El texto dice: "cenamos en restaurantes cerca del mar."'},
+      {p:'¿Cómo describe las vacaciones?',ops:['Aburridas','Normales','Las mejores de su vida','Caras'],ok:2,exp:'El texto dice: "Fueron las mejores vacaciones de mi vida."'}
+    ]},
+    {titulo:'Los días de la semana',tema:'Rutina',texto:'Tengo una rutina muy organizada. El lunes y el miércoles tengo clase de inglés después del colegio. El martes y el jueves tengo educación física. El viernes es mi día favorito porque salgo pronto y no hay deberes. El fin de semana descanso y juego con mis amigos.',preguntas:[
+      {p:'¿Qué días tiene clase de inglés?',ops:['Lunes y jueves','Martes y miércoles','Lunes y miércoles','Martes y jueves'],ok:2,exp:'El texto dice: "El lunes y el miércoles tengo clase de inglés."'},
+      {p:'¿Qué días tiene educación física?',ops:['Lunes y jueves','Martes y jueves','Miércoles y viernes','Lunes y martes'],ok:1,exp:'El texto dice: "El martes y el jueves tengo educación física."'},
+      {p:'¿Cuál es su día favorito?',ops:['El lunes','El miércoles','El jueves','El viernes'],ok:3,exp:'El texto dice: "El viernes es mi día favorito."'},
+      {p:'¿Por qué le gusta el viernes?',ops:['Hay fiesta','Sale pronto y no hay deberes','Hay clase de música','Sus amigos vienen'],ok:1,exp:'El texto dice: "porque salgo pronto y no hay deberes."'},
+      {p:'¿Qué hace el fin de semana?',ops:['Estudia','Trabaja','Descansa y juega con amigos','Va al gimnasio'],ok:2,exp:'El texto dice: "El fin de semana descanso y juego con mis amigos."'}
+    ]},
+    {titulo:'Mi mejor amigo',tema:'Amistad',texto:'Mi mejor amigo se llama Marcos. Tiene doce años como yo. Vivimos en el mismo barrio y vamos al mismo colegio. Nos conocemos desde los cinco años. Jugamos juntos, estudiamos juntos y siempre nos ayudamos. Para mí, Marcos es como un hermano.',preguntas:[
+      {p:'¿Cómo se llama su mejor amigo?',ops:['Pedro','Luis','Marcos','Carlos'],ok:2,exp:'El texto dice: "Mi mejor amigo se llama Marcos."'},
+      {p:'¿Cuántos años tiene Marcos?',ops:['Diez','Once','Trece','Doce'],ok:3,exp:'El texto dice: "Tiene doce años como yo."'},
+      {p:'¿Desde cuándo se conocen?',ops:['Desde los tres años','Desde los ocho años','Desde los cinco años','Desde los siete años'],ok:2,exp:'El texto dice: "Nos conocemos desde los cinco años."'},
+      {p:'¿Qué hacen juntos?',ops:['Solo juegan','Solo estudian','Juegan y estudian','Van al gimnasio'],ok:2,exp:'El texto dice: "Jugamos juntos, estudiamos juntos."'},
+      {p:'¿Cómo considera a Marcos?',ops:['Como un vecino','Como un compañero','Como un conocido','Como un hermano'],ok:3,exp:'El texto dice: "Marcos es como un hermano."'}
+    ]}
+  ]
+};
+
+let lecNivelActual = 'A1';
+let lecRespuestas = {};
+let lecRespondidas = 0;
+
+function getLecQueue(nivel) {
+  const key = 'lec_queue_' + nivel;
+  let queue = JSON.parse(localStorage.getItem(key) || '[]');
+  const total = (LECTURA_DATA[nivel] || []).length;
+  if (queue.length === 0) {
+    queue = Array.from({length: total}, (_, i) => i).sort(() => Math.random() - 0.5);
+    localStorage.setItem(key, JSON.stringify(queue));
+    localStorage.setItem('lec_done_' + nivel, '0');
+  }
+  return queue;
+}
+
+function getLecDone(nivel) {
+  return parseInt(localStorage.getItem('lec_done_' + nivel) || '0');
+}
+
+function avanceLecQueue(nivel) {
+  const key = 'lec_queue_' + nivel;
+  const total = (LECTURA_DATA[nivel] || []).length;
+  let queue = JSON.parse(localStorage.getItem(key) || '[]');
+  queue.shift();
+  let done = getLecDone(nivel) + 1;
+  if (queue.length === 0) {
+    // Ciclo completo — recomeça embaralhado
+    queue = Array.from({length: total}, (_, i) => i).sort(() => Math.random() - 0.5);
+    done = 0;
+  }
+  localStorage.setItem(key, JSON.stringify(queue));
+  localStorage.setItem('lec_done_' + nivel, String(done));
+}
+
+function selectLecNivel(nivel, btn) {
+  lecNivelActual = nivel;
+  document.querySelectorAll('.lev-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderLectura();
+}
+
+function renderLectura() {
+  const nivel = lecNivelActual;
+  const textos = LECTURA_DATA[nivel] || [];
+  const total = textos.length;
+  const done = getLecDone(nivel);
+  const queue = getLecQueue(nivel);
+  const idx = queue[0];
+  const texto = textos[idx];
+
+  // Atualiza progress
+  document.getElementById('lecNivelLabel').textContent = nivel;
+  const pct = Math.round((done / total) * 100);
+  document.getElementById('lecProgFill').style.width = pct + '%';
+  document.getElementById('lecProgCount').textContent = done + '/' + total;
+
+  lecRespuestas = {};
+  lecRespondidas = 0;
+
+  const nivColors = {A1:'var(--green)',A2:'var(--blue)',B1:'var(--yellow)',B2:'var(--gold)',C1:'var(--red)',C2:'var(--purple)'};
+  const cor = nivColors[nivel] || 'var(--gold)';
+
+  const pregsHtml = texto.preguntas.map((q, qi) => `
+    <div class="pregunta-bloque" id="preg${qi}">
+      <div class="pregunta-enunciado">${qi + 1}. ${q.p}</div>
+      <div class="opciones-lista">
+        ${q.ops.map((op, oi) => `
+          <button class="opcion-btn" onclick="responderLec(${qi},${oi})" id="op${qi}_${oi}">
+            ${String.fromCharCode(65+oi)}) ${op}
+          </button>
+        `).join('')}
+      </div>
+      <div class="feedback-msg" id="fb${qi}" style="display:none"></div>
+    </div>
+  `).join('');
+
+  document.getElementById('lecturaContent').innerHTML = `
+    <div class="texto-card">
+      <div class="texto-header">
+        <span class="texto-nivel-tag" style="background:rgba(255,255,255,.08);border:1px solid ${cor};color:${cor}">${nivel}</span>
+        <span class="texto-tema-tag">${texto.tema}</span>
+        <span class="texto-num">${done + 1} / ${total}</span>
+      </div>
+      <div class="texto-titulo">${texto.titulo}</div>
+      <div class="texto-corpo">${texto.texto}</div>
+      <div class="preguntas-titulo">Preguntas de comprensión</div>
+      ${pregsHtml}
+      <div class="resultado-card" id="resultadoCard">
+        <div class="resultado-emoji" id="resultEmoji">🎉</div>
+        <div class="resultado-texto" id="resultTexto"></div>
+        <div class="resultado-detalhe" id="resultDetalhe"></div>
+      </div>
+    </div>
+    <button class="btn-proximo" id="btnProximo" onclick="proximoTexto()">Próximo texto →</button>
+  `;
+}
+
+function responderLec(qi, oi) {
+  if (lecRespuestas.hasOwnProperty(qi)) return;
+  lecRespuestas[qi] = oi;
+  lecRespondidas++;
+
+  const nivel = lecNivelActual;
+  const textos = LECTURA_DATA[nivel];
+  const queue = getLecQueue(nivel);
+  const texto = textos[queue[0]];
+  const preg = texto.preguntas[qi];
+
+  // Desabilita botões
+  preg.ops.forEach((_, i) => {
+    const btn = document.getElementById('op' + qi + '_' + i);
+    if (btn) btn.disabled = true;
+  });
+
+  const isOk = oi === preg.ok;
+  const btnClicado = document.getElementById('op' + qi + '_' + oi);
+  if (btnClicado) btnClicado.classList.add(isOk ? 'correct' : 'wrong');
+  if (!isOk) {
+    const btnCerto = document.getElementById('op' + qi + '_' + preg.ok);
+    if (btnCerto) btnCerto.classList.add('show-correct');
+  }
+
+  const fb = document.getElementById('fb' + qi);
+  if (fb) {
+    fb.style.display = 'block';
+    fb.className = 'feedback-msg ' + (isOk ? 'ok' : 'err');
+    fb.innerHTML = (isOk ? '✅ ' : '❌ ') + preg.exp;
+  }
+
+  // Todas respondidas?
+  if (lecRespondidas >= texto.preguntas.length) {
+    const certas = Object.entries(lecRespuestas).filter(([qi, oi]) =>
+      texto.preguntas[parseInt(qi)].ok === parseInt(oi)
+    ).length;
+    const total = texto.preguntas.length;
+    const pct = Math.round((certas / total) * 100);
+    const emoji = pct === 100 ? '🏆' : pct >= 80 ? '🎉' : pct >= 60 ? '👍' : pct >= 40 ? '🤔' : '📚';
+    const msg = pct === 100 ? '¡Perfecto! Comprensión excelente.' : pct >= 80 ? '¡Muy bien! Casi perfecto.' : pct >= 60 ? 'Bien. Sigue practicando.' : pct >= 40 ? 'Buen intento. Relee el texto.' : 'Sigue leyendo, ¡mejorarás!';
+
+    avanceLecQueue(nivel);
+
+    const rc = document.getElementById('resultadoCard');
+    if (rc) {
+      rc.classList.add('visible');
+      document.getElementById('resultEmoji').textContent = emoji;
+      document.getElementById('resultTexto').textContent = certas + '/' + total + ' correctas (' + pct + '%)';
+      document.getElementById('resultDetalhe').textContent = msg;
+    }
+
+    const btnP = document.getElementById('btnProximo');
+    if (btnP) btnP.classList.add('visible');
+
+    // Atualiza progress
+    const done = getLecDone(nivel);
+    const totalTextos = LECTURA_DATA[nivel].length;
+    document.getElementById('lecProgFill').style.width = Math.round((done/totalTextos)*100) + '%';
+    document.getElementById('lecProgCount').textContent = done + '/' + totalTextos;
+  }
+}
+
+function proximoTexto() {
+  renderLectura();
+  document.getElementById('lecturaContent').scrollIntoView({behavior:'smooth'});
+}
+
 </script>
 </body>
 </html>
