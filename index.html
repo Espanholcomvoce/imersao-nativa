@@ -1408,12 +1408,14 @@ async function generatePrompt() {
     const res = await fetch(`${API}/api/chat`, {
       method: 'POST',
       headers: { 'Content-Type':'application/json', 'Authorization':`Bearer ${token}` },
-      body: JSON.stringify({ message: 'Dame un tema creativo e interesante para escribir un párrafo en español. Presenta el tema con una pregunta o situación concreta que invite a reflexionar. Solo el enunciado del tema, sin explicaciones adicionales.', context: 'vocabulary', level: 'B1', history: [] })
+      body: JSON.stringify({ message: 'Dame un tema corto para escribir un párrafo en español. Máximo 2 frases. Solo una pregunta concreta o una situación breve. Sin títulos, sin asteriscos, sin explicaciones. Ejemplos del formato esperado: "¿Qué harías si encontraras una carta sin destinatario?" o "Describe el olor de tu casa cuando eras niño."', context: 'vocabulary', level: 'B1', history: [] })
     });
     const data = await res.json();
     if (res.ok) {
       temaAtual = data.reply;
-      box.innerHTML = '💡 <strong>Tema:</strong> ' + data.reply;
+      // Limpar markdown asteriscos que o modelo às vezes inclui
+      const temaLimpo = data.reply.replace(/\*\*/g, '').replace(/\*/g, '').replace(/^Tema:\s*/i, '').trim();
+      box.innerHTML = '💡 ' + temaLimpo;
     } else {
       box.innerHTML = '⚠️ Erro ao gerar tema.';
     }
