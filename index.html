@@ -379,11 +379,6 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
       <div class="sre-card-text">
         <div class="module-name">Repetição Espaçada</div>
         <div class="module-desc">Flashcards que se adaptam ao seu ritmo</div>
-        <div class="sre-card-stats">
-          <span class="sre-mini-stat">🔥 <span id="homStreak">0</span> dias</span>
-          <span class="sre-mini-stat">⭐ <span id="homStars">0</span> estrelas</span>
-          <span class="sre-mini-stat" id="homLevel">🌱 Iniciante</span>
-        </div>
       </div>
     </div>
   </div>
@@ -431,29 +426,46 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
 </div>
 
 <!-- CONVERSA -->
-<div id="conversa" class="screen" style="padding:0;justify-content:flex-start">
-<div class="chat-wrap">
-  <div class="chat-header">
-    <button class="back-btn" onclick="endConversaSession();goTo('setup-conversa')" style="color:#fff">&#8592;</button>
-    <div style="display:flex;align-items:center;gap:10px;flex:1">
-      <div style="width:36px;height:36px;border-radius:50%;overflow:hidden;flex-shrink:0;border:2px solid rgba(139,92,246,0.5)">
-        <img id="paulaAvatarHeader" style="width:100%;height:100%;object-fit:cover;object-position:center 5%">
-      </div>
-      <div>
-        <div style="font-weight:700;font-size:15px">Paula</div>
-        <div id="chatLevelBadge" style="font-size:11px;color:var(--text2)"></div>
-      </div>
+<div id="conversa" class="screen" style="padding:0;justify-content:flex-start;background:#fff">
+<div style="width:100%;max-width:680px;margin:0 auto;height:100vh;height:100dvh;display:flex;flex-direction:column">
+
+  <!-- Header estilo Claude -->
+  <div style="padding:14px 16px;border-bottom:1px solid #e5e5e5;display:flex;align-items:center;gap:12px;background:#fff;flex-shrink:0">
+    <button onclick="endConversaSession();goTo('setup-conversa')" style="background:none;border:none;cursor:pointer;color:#666;font-size:20px;padding:4px">&#8592;</button>
+    <img id="paulaAvatarHeader" style="width:32px;height:32px;border-radius:50%;object-fit:cover;object-position:center 5%">
+    <div>
+      <div style="font-weight:600;font-size:15px;color:#1a1a1a">Paula</div>
+      <div id="chatLevelBadge" style="font-size:11px;color:#888"></div>
     </div>
   </div>
-  <div class="messages" id="conversaMsgs"></div>
-  <div class="chat-input-area">
-    <div class="input-row">
-      <textarea class="msg-input" id="conversaInput" rows="1" placeholder="Escribe en español..." onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendConversaMsg()}" oninput="autoResize(this)"></textarea>
-      <button class="icon-btn" id="conversaMicBtn" onclick="toggleConversaMic()">&#127908;</button>
-      <button class="icon-btn send-ready" onclick="sendConversaMsg()">&#10148;</button>
+
+  <!-- Mensagens -->
+  <div id="conversaMsgs" style="flex:1;overflow-y:auto;padding:20px 16px;display:flex;flex-direction:column;gap:16px;background:#fff"></div>
+
+  <!-- Input bar estilo Claude -->
+  <div style="padding:12px 16px;border-top:1px solid #e5e5e5;background:#fff;flex-shrink:0">
+    <div style="display:flex;align-items:flex-end;gap:8px;background:#f5f5f5;border-radius:24px;padding:8px 8px 8px 16px;border:1px solid #e0e0e0">
+      <textarea id="conversaInput" rows="1"
+        placeholder="Responder a Paula..."
+        onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendConversaMsg()}"
+        oninput="autoResize(this)"
+        style="flex:1;background:transparent;border:none;outline:none;resize:none;font-size:15px;color:#1a1a1a;font-family:inherit;max-height:120px;padding:4px 0;line-height:1.5"></textarea>
+      <!-- Botão mic — toca para falar/parar -->
+      <button id="conversaMicBtn" onclick="toggleConversaMic()"
+        style="width:36px;height:36px;border-radius:50%;background:transparent;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:20px;color:#666;flex-shrink:0;transition:all 0.2s">
+        &#127908;
+      </button>
+      <!-- Botão enviar — igual ao Claude (círculo escuro) -->
+      <button onclick="sendConversaMsg()"
+        style="width:36px;height:36px;border-radius:50%;background:#1a1a1a;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.2s">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M8 13V3M8 3L3 8M8 3L13 8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
     </div>
-    <div id="conversaListening" style="display:none;color:var(--purple);font-size:11px;text-align:center;margin-top:6px">Ouvindo... toque no mic para parar</div>
+    <div id="conversaListening" style="display:none;text-align:center;font-size:12px;color:#a855f7;margin-top:6px">&#128308; Ouvindo... toque no mic para parar e enviar</div>
   </div>
+
 </div>
 </div>
 
@@ -553,19 +565,7 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
   <div class="page-header">
     <button class="back-btn" onclick="goTo('home')">←</button>
     <div><div class="page-title">Tira Dúvidas</div><div class="page-subtitle">Gramática, vocabulário e dicas</div></div>
-  </div>
-  <div class="quick-questions">
-    <div class="qq-label">Perguntas rápidas</div>
-    <div class="qq-grid">
-      <button class="qq-btn" onclick="askTira('Qual a diferença entre ser e estar?')">🤔 Ser vs Estar</button>
-      <button class="qq-btn" onclick="askTira('Como usar o subjuntivo em espanhol?')">📚 Subjuntivo</button>
-      <button class="qq-btn" onclick="askTira('Diferença entre por e para?')">❓ Por vs Para</button>
-      <button class="qq-btn" onclick="askTira('Como funcionam os tempos passados no espanhol?')">⏰ Tempos passados</button>
-      <button class="qq-btn" onclick="askTira('Quais são as principais diferenças entre espanhol europeu e latino-americano?')">🌍 Dialetos</button>
-      <button class="qq-btn" onclick="askTira('Como melhorar meu vocabulário em espanhol?')">💡 Vocabulário</button>
-    </div>
-  </div>
-  <div class="tira-chat">
+  </div><div class="tira-chat">
     <div class="tira-messages" id="tiraMessages">
       <div class="tira-msg assistant">¡Hola! Soy tu profesora virtual. Puedes preguntarme sobre gramática, vocabulario, pronunciación o cualquier duda sobre el español. ¿En qué te ayudo? 😊</div>
     </div>
@@ -587,7 +587,7 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
   <div class="prod-tabs">
     <button class="prod-tab active" onclick="switchProdTab('escrita',this)">Escrita</button>
     <button class="prod-tab" onclick="switchProdTab('traducao',this)">Tradução</button>
-    <button class="prod-tab" onclick="switchProdTab('lacunas',this)">Lacunas</button>
+    
   </div>
   <!-- ESCRITA -->
   <div class="prod-panel active tab-panel-inner" id="prod-escrita">
@@ -615,19 +615,7 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
       <div style="background:var(--glass);border:1px solid var(--border);border-radius:14px;padding:14px;font-size:14px;line-height:1.6" id="tradResultText"></div>
     </div>
   </div>
-  <!-- LACUNAS -->
-  <div class="prod-panel tab-panel-inner" id="prod-lacunas">
-    <p style="color:var(--text2);font-size:13px;font-style:italic;margin-bottom:14px">Complete os espaços com a forma correta do verbo:</p>
-    <div class="lacuna-text" id="lacunaText">
-      <span class="loading-spinner"></span> Carregando exercício...
-    </div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap">
-      <button class="btn-sm" onclick="checkLacunas()">✓ Verificar</button>
-      <button class="btn-sm" onclick="loadLacuna()" style="background:var(--glass);border:1px solid var(--border)">🔄 Novo</button>
-    </div>
-    <div id="lacunaFeedback" style="margin-top:12px;font-size:13px;line-height:1.6"></div>
-  </div>
-</div>
+  <!-- LACUNAS --></div>
 </div>
 
 <!-- DELE -->
@@ -974,10 +962,8 @@ function checkStartReady() {
 
 function startConversation() {
   if (!selectedLevel || !selectedSit) return;
-  var sitNames = { cafe:'No Cafe', hotel:'No Hotel', trabajo:'Trabalho', medico:'Medico', viaje:'Viagem', mercado:'Mercado', amigos:'Amigos', libre:'Livre' };
-  var lvlNames = { beginner:'Iniciante (A1-A2)', intermediate:'Intermediario (B1-B2)', advanced:'Avancado (C1-C2)' };
   var sn = {'café':'No Café','hotel':'No Hotel','trabajo':'Trabalho','médico':'Médico','viaje':'Viagem','mercado':'Mercado','amigos':'Amigos','libre':'Livre'};
-  var ln = {'beginner':'Iniciante (A1-A2)','intermediate':'Intermediário (B1-B2)','advanced':'Avançado (C1-C2)'};
+  var ln = {'beginner':'Iniciante · A1-A2','intermediate':'Intermediário · B1-B2','advanced':'Avançado · C1-C2'};
   document.getElementById('chatLevelBadge').textContent = (sn[selectedSit]||selectedSit) + ' · ' + (ln[selectedLevel]||selectedLevel);
   var foto = document.getElementById('paulaFotoGlobal');
   var header = document.getElementById('paulaAvatarHeader');
@@ -1014,9 +1000,8 @@ function conversaPaulaFala(isFirst) {
   addConversaTyping(typingId);
   var sit = sitMap[selectedSit] || 'livremente';
   var lvl = lvlMap[selectedLevel] || 'B1';
-  var firstMsg = isFirst ? ' PRIMER MENSAJE: saluda brevemente y haz UNA pregunta sobre la situacion.' : '';
-  var system = 'Eres Paula, una amiga cercana y calida. NUNCA digas que eres IA ni profesora. Situacion: ' + sit + '. Nivel: ' + lvl + '. Habla SIEMPRE en espanol latinoamericano. Si el alumno habla en portugues, responde en espanol integrando lo que dijo. Maximo 2 frases por turno. Termina con UNA pregunta. Tono: amiga calida y divertida.' + firstMsg;
-  var msg = isFirst ? 'Inicia la conversacion.' : conversaHistory[conversaHistory.length-1].content;
+  var system = 'Eres Paula, una amiga cercana, calida y divertida que ayuda a practicar espanol. NUNCA digas que eres IA ni profesora. Situacion: ' + sit + '. Nivel del alumno: ' + lvl + '. REGLAS ABSOLUTAS: 1) Habla SIEMPRE en espanol latinoamericano, jamas en portugues ni ingles. 2) Si el alumno habla en portugues, entiendelo y responde en espanol integrando lo que dijo naturalmente. 3) MAXIMO 2 frases cortas por turno — ni una mas. 4) Termina SIEMPRE con UNA sola pregunta concreta. 5) Tono: amiga espontanea, te ries, reaccionas, opinas — no das clases. 6) Corriges errores de forma natural e integrada, nunca de forma explicita.' + (isFirst ? ' PRIMER TURNO: saluda en 1 frase calida y haz UNA pregunta sobre la situacion. Solo eso.' : '');
+  var msg = isFirst ? 'Inicia.' : conversaHistory[conversaHistory.length-1].content;
   var hist = isFirst ? [] : conversaHistory.slice(-10, -1);
   fetch(API + '/api/chat', {
     method: 'POST',
@@ -1058,8 +1043,10 @@ function conversaSpeakTTS(text) {
   }).catch(function() {});
 }
 
+// Mic mãos-livres: toca uma vez para começar, toca de novo para parar e enviar
 function toggleConversaMic() {
   if (conversaListening) {
+    // Parar e enviar
     if (conversaRec) conversaRec.stop();
     return;
   }
@@ -1068,11 +1055,12 @@ function toggleConversaMic() {
   if (!SR) { alert('Use Chrome para o microfone'); return; }
   conversaRec = new SR();
   conversaRec.lang = 'pt-BR';
-  conversaRec.continuous = false;
+  conversaRec.continuous = true;
   conversaRec.interimResults = true;
   conversaRec.onstart = function() {
     conversaListening = true;
-    document.getElementById('conversaMicBtn').textContent = '⏹';
+    var btn = document.getElementById('conversaMicBtn');
+    if (btn) { btn.style.color = '#a855f7'; btn.style.background = 'rgba(168,85,247,0.1)'; btn.innerHTML = '&#9209;'; }
     document.getElementById('conversaListening').style.display = 'block';
   };
   conversaRec.onresult = function(e) {
@@ -1083,12 +1071,17 @@ function toggleConversaMic() {
   };
   conversaRec.onend = function() {
     conversaListening = false;
-    document.getElementById('conversaMicBtn').textContent = '🎤';
+    var btn = document.getElementById('conversaMicBtn');
+    if (btn) { btn.style.color = '#666'; btn.style.background = 'transparent'; btn.innerHTML = '&#127908;'; }
     document.getElementById('conversaListening').style.display = 'none';
+    // Enviar automaticamente ao parar
+    var text = document.getElementById('conversaInput').value.trim();
+    if (text) sendConversaMsg();
   };
   conversaRec.onerror = function() {
     conversaListening = false;
-    document.getElementById('conversaMicBtn').textContent = '🎤';
+    var btn = document.getElementById('conversaMicBtn');
+    if (btn) { btn.style.color = '#666'; btn.style.background = 'transparent'; btn.innerHTML = '&#127908;'; }
     document.getElementById('conversaListening').style.display = 'none';
   };
   conversaRec.start();
@@ -1096,29 +1089,33 @@ function toggleConversaMic() {
 
 function addConversaMsg(who, text) {
   var msgs = document.getElementById('conversaMsgs');
-  var row = document.createElement('div');
-  row.className = who === 'user' ? 'msg-row user' : 'msg-row';
-  var foto = document.getElementById('paulaFotoGlobal');
-  var src = foto ? foto.src : '';
+  var wrap = document.createElement('div');
   var safeText = text.split('\n').join('<br>');
+
   if (who === 'paula') {
-    row.innerHTML = '<div class="msg-avatar" style="padding:0;overflow:hidden"><img src="' + src + '" style="width:100%;height:100%;object-fit:cover;object-position:center 5%"></div><div class="msg-bubble assistant">' + safeText + '</div>';
+    // Estilo Claude — sem bolha, texto direto com avatar
+    wrap.style.cssText = 'display:flex;gap:12px;align-items:flex-start';
+    var foto = document.getElementById('paulaFotoGlobal');
+    var src = foto ? foto.src : '';
+    wrap.innerHTML = '<img src="' + src + '" style="width:32px;height:32px;border-radius:50%;object-fit:cover;object-position:center 5%;flex-shrink:0;margin-top:2px"><div style="flex:1;font-size:15px;color:#1a1a1a;line-height:1.6">' + safeText + '</div>';
   } else {
-    row.innerHTML = '<div class="msg-bubble user">' + safeText + '</div>';
+    // Usuário — bolha cinza à direita
+    wrap.style.cssText = 'display:flex;justify-content:flex-end';
+    wrap.innerHTML = '<div style="background:#f0f0f0;border-radius:18px 18px 4px 18px;padding:10px 14px;max-width:75%;font-size:15px;color:#1a1a1a;line-height:1.5">' + safeText + '</div>';
   }
-  msgs.appendChild(row);
+  msgs.appendChild(wrap);
   msgs.scrollTop = msgs.scrollHeight;
 }
 
 function addConversaTyping(id) {
   var msgs = document.getElementById('conversaMsgs');
-  var row = document.createElement('div');
-  row.className = 'msg-row';
-  row.id = id;
+  var wrap = document.createElement('div');
+  wrap.id = id;
+  wrap.style.cssText = 'display:flex;gap:12px;align-items:flex-start';
   var foto = document.getElementById('paulaFotoGlobal');
   var src = foto ? foto.src : '';
-  row.innerHTML = '<div class="msg-avatar" style="padding:0;overflow:hidden"><img src="' + src + '" style="width:100%;height:100%;object-fit:cover;object-position:center 5%"></div><div class="typing-bubble"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>';
-  msgs.appendChild(row);
+  wrap.innerHTML = '<img src="' + src + '" style="width:32px;height:32px;border-radius:50%;object-fit:cover;object-position:center 5%;flex-shrink:0"><div style="display:flex;gap:4px;align-items:center;padding:10px 0"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>';
+  msgs.appendChild(wrap);
   msgs.scrollTop = msgs.scrollHeight;
 }
 
