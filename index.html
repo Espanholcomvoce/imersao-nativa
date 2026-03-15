@@ -29,7 +29,7 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
 .module-card:hover{transform:translateY(-2px);border-color:var(--gold)}
 .module-card.sre-card{grid-column:1 / -1;display:flex;align-items:center;justify-content:center;gap:16px;padding:16px 20px;background:linear-gradient(135deg,rgba(168,85,247,.12),rgba(245,166,35,.08));border-color:rgba(168,85,247,.3);text-align:left}
 .module-card.sre-card:hover{border-color:var(--purple)}
-.sre-card-text{flex:1}
+.sre-card-text{flex:1;text-align:center}
 .sre-card-stats{display:flex;gap:14px;margin-top:6px}
 .sre-mini-stat{font-size:11px;color:var(--text2)}
 .module-icon{font-size:clamp(28px,8vw,32px);margin-bottom:6px}
@@ -380,11 +380,6 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
       <div class="sre-card-text">
         <div class="module-name">Repetição Espaçada</div>
         <div class="module-desc">Flashcards que se adaptam ao seu ritmo</div>
-        <div class="sre-card-stats">
-          <span class="sre-mini-stat">🔥 <span id="homStreak">0</span> dias</span>
-          <span class="sre-mini-stat">⭐ <span id="homStars">0</span> estrelas</span>
-          
-        </div>
       </div>
     </div>
   </div>
@@ -497,6 +492,15 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
     </div>
   </div>
   <!-- stats removidos -->
+  <!-- CONTADOR -->
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;max-width:520px;width:100%">
+    <div id="sreCounter" style="font-size:14px;font-weight:700;color:var(--text2)">0 / 10</div>
+    <div style="flex:1;margin:0 12px;height:6px;background:rgba(255,255,255,0.1);border-radius:99px;overflow:hidden">
+      <div id="sreProgressBar" style="height:100%;border-radius:99px;background:linear-gradient(90deg,var(--purple),var(--gold));transition:width 0.4s ease;width:0%"></div>
+    </div>
+    <div id="sreCounterXp" style="font-size:12px;color:var(--gold);font-weight:700"></div>
+  </div>
+
   <!-- FLASHCARD -->
   <div class="flashcard" id="flashcard" onclick="flipCard()">
     <div class="card-theme-tag" id="cardThemeTag"></div>
@@ -954,7 +958,7 @@ function logoutUser() {
 function goTo(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
-  if (id === 'sre') renderCards();
+  if (id === 'sre') { renderCards(); updateSreCounter(); }
   if (id === 'home') updateHomeSreStats();
   if (id === 'lectura') renderLectura();
   if (id === 'sre-vocab') renderCards();
@@ -1295,6 +1299,22 @@ async function playVocabAudio(type) {
   }
 }
 
+function updateSreCounter() {
+  var stats = getSreStats();
+  var todayKey = getTodayKey();
+  var done = (stats.doneTodayKey === todayKey ? stats.doneToday : 0) || 0;
+  var total = DAILY_GOAL;
+  var pct = Math.min(100, Math.round(done / total * 100));
+
+  var counter = document.getElementById('sreCounter');
+  var bar = document.getElementById('sreProgressBar');
+  var xpEl = document.getElementById('sreCounterXp');
+
+  if (counter) counter.textContent = done + ' / ' + total;
+  if (bar) bar.style.width = pct + '%';
+  if (xpEl) xpEl.textContent = done > 0 ? '+' + (done * 8) + ' XP' : '';
+}
+
 function rateCard(rating) {
   var card = sreQueue[sreQueueIndex];
   if (!card) return;
@@ -1324,6 +1344,7 @@ function rateCard(rating) {
   }
   stats.lastStudyDate = todayKey;
   saveSreStats(stats);
+  updateSreCounter();
   sreQueueIndex++;
   if (sreQueueIndex >= sreQueue.length) {
     renderCards();
