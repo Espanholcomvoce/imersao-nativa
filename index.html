@@ -1062,7 +1062,8 @@ async function initSession() {
     });
     const tokenData = await tokenRes.json();
     if (!tokenRes.ok) {
-      showError(tokenData.error || 'Erro ao iniciar sessão.', '⚠️');
+      console.error('[Paula] Token error:', tokenData);
+      showError((tokenData.error || 'Erro ao iniciar sessão.') + (tokenData.detail ? ' — ' + tokenData.detail.slice(0,100) : ''), '⚠️');
       return;
     }
     window._ephemeralToken = tokenData.client_secret.value;
