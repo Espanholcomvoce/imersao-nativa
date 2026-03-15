@@ -423,17 +423,6 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
     <div class="sit-option" onclick="selectSit(this,'amigos')"><div class="sit-emoji">👥</div><div class="sit-name">Amigos</div></div>
     <div class="sit-option" onclick="selectSit(this,'libre')"><div class="sit-emoji">🗣️</div><div class="sit-name">Livre</div></div>
   </div>
-  <div style="margin-bottom:20px">
-    <p class="section-label">Voz da Paula</p>
-    <select id="voiceSelect" onchange="selectedVoice=this.value" style="width:100%;background:rgba(0,0,0,.3);border:1px solid var(--border);border-radius:12px;padding:12px 14px;color:var(--text);font-size:14px;font-family:inherit;outline:none">
-      <option value="shimmer">Shimmer — suave</option>
-      <option value="nova">Nova — jovem</option>
-      <option value="coral">Coral — calorosa</option>
-      <option value="alloy">Alloy — neutra</option>
-      <option value="sage">Sage — serena</option>
-      <option value="ash">Ash — profunda</option>
-    </select>
-  </div>
   <button class="btn-gold btn-disabled" id="startChatBtn" onclick="startConversation()">Iniciar Conversação →</button>
 </div>
 </div>
@@ -1047,7 +1036,7 @@ function showError(msg, icon) {
 
 // ── VARS REALTIME ──
 let pc = null;
-let selectedVoice = 'shimmer';
+let selectedVoice = 'nova';
 let dc = null;
 let localStream = null;
 let isMuted = false;
