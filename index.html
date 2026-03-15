@@ -1025,6 +1025,7 @@ let pc = null;
 let dc = null;
 let localStream = null;
 let isMuted = false;
+let paulaFalando = false;
 let currentPaulaEl = null;
 let sofiaTranscriptAccum = '';
 
@@ -1136,11 +1137,11 @@ async function userStartSession() {
     setTimeout(() => {
       if (!dc || dc.readyState !== 'open') return;
 
-      // 1. Reforçar personalidade via session.update
+      // session.update — sobrescreve instruções em tempo real
       dc.send(JSON.stringify({
         type: 'session.update',
         session: {
-          instructions: `Eres Paula, una amiga cercana y divertida que ayuda a practicar español. NUNCA digas que eres IA, asistente virtual o profesora. Habla SIEMPRE en español latinoamericano — jamás en portugués ni inglés. Si el alumno habla en portugués, entiéndelo y responde en español. Si habla en inglés, con amabilidad explícale cómo se dice eso en español: "Ah, entendí — en español decimos así: '...' ¿Lo intentamos?" Frases cortas, máximo 2 frases por turno. Eres cálida, te ríes, reaccionas con naturalidad. Haz UNA pregunta por turno sobre la vida real.`,
+          instructions: `Eres Paula. Una amiga, no una IA ni profesora. Habla SIEMPRE en español latinoamericano. Nunca en portugués ni inglés. Frases cortas — máximo 2 por turno. Cálida, divertida, espontánea. Haz UNA pregunta por turno. Si el alumno habla en portugués, responde en español integrando lo que dijo. Si habla en inglés, dile cómo se dice en español con amabilidad.`,
           turn_detection: {
             type: 'server_vad',
             threshold: 0.9,
@@ -1152,16 +1153,21 @@ async function userStartSession() {
         }
       }));
 
-      // 2. Paula inicia a conversa
-      dc.send(JSON.stringify({
-        type: 'response.create',
-        response: {
-          modalities: ['text', 'audio'],
-          instructions: 'Saluda como una amiga que acaba de encontrarse con alguien. Solo 1-2 frases en español, cálido y breve. Termina con UNA pregunta concreta de la vida real. NUNCA te presentes como IA ni asistente.'
-        }
-      }));
+      console.log('[Paula] session.update enviado');
 
-      console.log('[Paula] ✅ Sessão configurada e conversa iniciada');
+      // Aguardar o session.update ser processado antes de pedir resposta
+      setTimeout(() => {
+        if (!dc || dc.readyState !== 'open') return;
+        dc.send(JSON.stringify({
+          type: 'response.create',
+          response: {
+            modalities: ['text', 'audio'],
+            instructions: `Você é Paula, uma amiga próxima. Apresente-se como Paula e faça UMA pergunta curta e calorosa em espanhol sobre a situação. NUNCA diga que é IA, assistente ou professora. Apenas 1-2 frases em espanhol.`
+          }
+        }));
+        console.log('[Paula] response.create enviado');
+      }, 300);
+
     }, 800);
   };
   dc.onclose = () => console.log('[Paula] DataChannel fechado');
@@ -1220,15 +1226,41 @@ async function userStartSession() {
 function handleEvent(ev) {
   switch(ev.type) {
     case 'response.audio.delta':
-      // Paula começou a falar — silenciar mic para evitar eco/corte
-      if (localStream) localStream.getAudioTracks().forEach(t => { t.enabled = false; });
-      setPaulaState('falando');
+      if (!paulaFalando) {
+        paulaFalando = true;
+        // Desativar VAD e mic enquanto Paula fala
+        if (localStream) localStream.getAudioTracks().forEach(t => { t.enabled = false; });
+        if (dc && dc.readyState === 'open') {
+          dc.send(JSON.stringify({
+            type: 'session.update',
+            session: { turn_detection: null }
+          }));
+        }
+        setPaulaState('falando');
+      }
       break;
 
     case 'response.audio.done':
-      // Paula terminou — reativar mic
-      if (!isMuted && localStream) localStream.getAudioTracks().forEach(t => { t.enabled = true; });
-      setPaulaState('ouvindo');
+      paulaFalando = false;
+      // Reativar VAD e mic após Paula terminar
+      setTimeout(() => {
+        if (!isMuted && localStream) localStream.getAudioTracks().forEach(t => { t.enabled = true; });
+        if (dc && dc.readyState === 'open') {
+          dc.send(JSON.stringify({
+            type: 'session.update',
+            session: {
+              turn_detection: {
+                type: 'server_vad',
+                threshold: 0.9,
+                prefix_padding_ms: 500,
+                silence_duration_ms: 1500,
+                create_response: true
+              }
+            }
+          }));
+        }
+        setPaulaState('ouvindo');
+      }, 300);
       break;
 
     case 'response.audio_transcript.delta':
@@ -1309,6 +1341,7 @@ function endRealtimeSession() {
   const audio = document.getElementById('paulaAudio');
   if (audio) audio.srcObject = null;
   isMuted = false;
+  paulaFalando = false;
   sofiaTranscriptAccum = '';
   currentPaulaEl = null;
   window._ephemeralToken = null;
