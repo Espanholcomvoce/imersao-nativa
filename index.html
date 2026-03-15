@@ -29,7 +29,7 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
 .module-card:hover{transform:translateY(-2px);border-color:var(--gold)}
 .module-card.sre-card{grid-column:1 / -1;display:flex;align-items:center;justify-content:center;gap:16px;padding:16px 20px;background:linear-gradient(135deg,rgba(168,85,247,.12),rgba(245,166,35,.08));border-color:rgba(168,85,247,.3);text-align:left}
 .module-card.sre-card:hover{border-color:var(--purple)}
-.sre-card-text{flex:1;text-align:center}
+.sre-card-text{flex:1}
 .sre-card-stats{display:flex;gap:14px;margin-top:6px}
 .sre-mini-stat{font-size:11px;color:var(--text2)}
 .module-icon{font-size:clamp(28px,8vw,32px);margin-bottom:6px}
@@ -139,7 +139,7 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
 .card-theme-tag{position:absolute;top:10px;left:12px;font-size:10px;color:var(--text2);font-weight:600;text-transform:uppercase;letter-spacing:.5px}
 .card-type-tag{position:absolute;top:10px;right:12px;font-size:10px;background:rgba(168,85,247,.2);color:#a78bfa;padding:2px 7px;border-radius:99px;font-weight:600}
 .card-shadow-hint{margin-top:10px;font-size:12px;color:#a78bfa;font-style:italic}
-.sre-celebration{background:linear-gradient(135deg,rgba(168,85,247,.25),rgba(245,158,11,.25));border:2px solid var(--gold);border-radius:20px;padding:28px 20px;text-align:center;animation:celebIn .4s ease;margin-bottom:16px}
+.sre-celebration{background:linear-gradient(135deg,rgba(168,85,247,.2),rgba(245,158,11,.2));border:1px solid var(--gold);border-radius:20px;padding:24px;text-align:center;margin-bottom:16px}
 .celebration-emoji{font-size:52px;margin-bottom:8px;animation:bounce2 .6s infinite alternate}
 .celebration-text{font-size:18px;font-weight:700;color:var(--gold);margin-bottom:16px}
 @keyframes bounce2{from{transform:scale(1)}to{transform:scale(1.15)}}
@@ -239,8 +239,6 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
 @keyframes bounce{0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-7px)}}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(239,68,68,.4)}50%{box-shadow:0 0 0 10px rgba(239,68,68,0)}}
 @keyframes spin{to{transform:rotate(360deg)}}
-@keyframes celebIn{from{opacity:0;transform:scale(0.8) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}
-@keyframes paulaPulse{0%{box-shadow:0 0 0 0 rgba(139,92,246,0.7),0 0 0 0 rgba(139,92,246,0.3)}50%{box-shadow:0 0 0 8px rgba(139,92,246,0.4),0 0 0 16px rgba(139,92,246,0.1)}100%{box-shadow:0 0 0 0 rgba(139,92,246,0.7),0 0 0 0 rgba(139,92,246,0.3)}}
 
 @supports(padding:max(0px)){
   .screen{padding-top:max(20px,env(safe-area-inset-top));padding-left:max(20px,env(safe-area-inset-left));padding-right:max(20px,env(safe-area-inset-right))}
@@ -364,7 +362,7 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
     <div class="module-card" onclick="goTo('producao')">
       <div class="module-icon">✍️</div>
       <div class="module-name">Produção Escrita</div>
-      <div class="module-desc">Escreva e traduza em espanhol</div>
+      <div class="module-desc">Escreva, traduza e preencha lacunas</div>
     </div>
     <div class="module-card" onclick="goTo('tiraduvidas')">
       <div class="module-icon">💬</div>
@@ -381,6 +379,11 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
       <div class="sre-card-text">
         <div class="module-name">Repetição Espaçada</div>
         <div class="module-desc">Flashcards que se adaptam ao seu ritmo</div>
+        <div class="sre-card-stats">
+          <span class="sre-mini-stat">🔥 <span id="homStreak">0</span> dias</span>
+          <span class="sre-mini-stat">⭐ <span id="homStars">0</span> estrelas</span>
+          <span class="sre-mini-stat" id="homLevel">🌱 Iniciante</span>
+        </div>
       </div>
     </div>
   </div>
@@ -430,7 +433,6 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
 <!-- CONVERSA -->
 <div id="conversa" class="screen" style="padding:0;justify-content:flex-start">
 <div class="chat-wrap">
-  <!-- Header -->
   <div class="chat-header">
     <button class="back-btn" onclick="endConversaSession();goTo('setup-conversa')" style="color:#fff">←</button>
     <div style="display:flex;align-items:center;gap:10px;flex:1">
@@ -438,17 +440,12 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
         <img id="paulaAvatarHeader" style="width:100%;height:100%;object-fit:cover;object-position:center 5%">
       </div>
       <div>
-        <div class="chat-sit-name">Paula</div>
+        <div style="font-weight:700;font-size:15px;font-family:'Playfair Display',serif">Paula</div>
         <div id="chatLevelBadge" style="font-size:11px;color:var(--text2)"></div>
       </div>
     </div>
-    <div id="conversaStatus" style="font-size:11px;color:var(--green)">● online</div>
   </div>
-
-  <!-- Mensagens -->
   <div class="messages" id="conversaMsgs"></div>
-
-  <!-- Input -->
   <div class="chat-input-area">
     <div class="input-row">
       <textarea class="msg-input" id="conversaInput" rows="1"
@@ -458,11 +455,10 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
       <button class="icon-btn" id="conversaMicBtn" onclick="toggleConversaMic()">🎤</button>
       <button class="icon-btn send-ready" onclick="sendConversaMsg()">➤</button>
     </div>
-    <div id="conversaListening" style="display:none;color:var(--purple);font-size:11px;text-align:center;margin-top:6px;font-style:italic">🔴 Ouvindo... toque 🎤 para parar</div>
+    <div id="conversaListening" style="display:none;color:var(--purple);font-size:11px;text-align:center;margin-top:6px">🔴 Ouvindo... toque 🎤 para parar</div>
   </div>
 </div>
 </div>
-
 
 <!-- SRE -->
 <div id="sre" class="screen">
@@ -483,15 +479,6 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
     </div>
   </div>
   <!-- stats removidos -->
-  <!-- CONTADOR -->
-  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;max-width:520px;width:100%">
-    <div id="sreCounter" style="font-size:14px;font-weight:700;color:var(--text2)">0 / 10</div>
-    <div style="flex:1;margin:0 12px;height:6px;background:rgba(255,255,255,0.1);border-radius:99px;overflow:hidden">
-      <div id="sreProgressBar" style="height:100%;border-radius:99px;background:linear-gradient(90deg,var(--purple),var(--gold));transition:width 0.4s ease;width:0%"></div>
-    </div>
-    <div id="sreCounterXp" style="font-size:12px;color:var(--gold);font-weight:700"></div>
-  </div>
-
   <!-- FLASHCARD -->
   <div class="flashcard" id="flashcard" onclick="flipCard()">
     <div class="card-theme-tag" id="cardThemeTag"></div>
@@ -522,26 +509,9 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
   </div>
   <!-- CELEBRAÇÃO -->
   <div class="sre-celebration" id="sreCelebration" style="display:none">
-    <div id="celConfetti" style="font-size:32px;letter-spacing:4px;margin-bottom:8px">🎉✨🔥✨🎉</div>
-    <div id="celTitle" style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;margin-bottom:6px">¡Lo lograste!</div>
-    <div id="celSub" style="color:var(--text2);font-size:14px;margin-bottom:16px">Meta do dia concluída!</div>
-    <div style="display:flex;gap:16px;justify-content:center;margin-bottom:20px">
-      <div style="text-align:center">
-        <div id="celWords" style="font-size:28px;font-weight:800;color:var(--gold);font-family:'Playfair Display',serif">10</div>
-        <div style="font-size:11px;color:var(--text2)">palavras</div>
-      </div>
-      <div style="width:1px;background:var(--border)"></div>
-      <div style="text-align:center">
-        <div id="celStreak" style="font-size:28px;font-weight:800;color:#f97316;font-family:'Playfair Display',serif">🔥1</div>
-        <div style="font-size:11px;color:var(--text2)">dias seguidos</div>
-      </div>
-      <div style="width:1px;background:var(--border)"></div>
-      <div style="text-align:center">
-        <div id="celXp" style="font-size:28px;font-weight:800;color:var(--green);font-family:'Playfair Display',serif">+10</div>
-        <div style="font-size:11px;color:var(--text2)">XP</div>
-      </div>
-    </div>
-    <button class="btn-sm" onclick="hideCelebration()" style="width:100%;padding:14px;font-size:15px">Continuar praticando →</button>
+    <div class="celebration-emoji" id="celebrationEmoji">🎉</div>
+    <div class="celebration-text" id="celebrationText">Meta do dia concluída!</div>
+    <button class="btn-sm" onclick="hideCelebration()">Continuar →</button>
   </div>
   <!-- BOTÃO GERENCIAR VOCABULÁRIO -->
   <div style="margin-top:16px;text-align:center">
@@ -587,6 +557,17 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
     <button class="back-btn" onclick="goTo('home')">←</button>
     <div><div class="page-title">Tira Dúvidas</div><div class="page-subtitle">Gramática, vocabulário e dicas</div></div>
   </div>
+  <div class="quick-questions">
+    <div class="qq-label">Perguntas rápidas</div>
+    <div class="qq-grid">
+      <button class="qq-btn" onclick="askTira('Qual a diferença entre ser e estar?')">🤔 Ser vs Estar</button>
+      <button class="qq-btn" onclick="askTira('Como usar o subjuntivo em espanhol?')">📚 Subjuntivo</button>
+      <button class="qq-btn" onclick="askTira('Diferença entre por e para?')">❓ Por vs Para</button>
+      <button class="qq-btn" onclick="askTira('Como funcionam os tempos passados no espanhol?')">⏰ Tempos passados</button>
+      <button class="qq-btn" onclick="askTira('Quais são as principais diferenças entre espanhol europeu e latino-americano?')">🌍 Dialetos</button>
+      <button class="qq-btn" onclick="askTira('Como melhorar meu vocabulário em espanhol?')">💡 Vocabulário</button>
+    </div>
+  </div>
   <div class="tira-chat">
     <div class="tira-messages" id="tiraMessages">
       <div class="tira-msg assistant">¡Hola! Soy tu profesora virtual. Puedes preguntarme sobre gramática, vocabulario, pronunciación o cualquier duda sobre el español. ¿En qué te ayudo? 😊</div>
@@ -609,7 +590,7 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
   <div class="prod-tabs">
     <button class="prod-tab active" onclick="switchProdTab('escrita',this)">Escrita</button>
     <button class="prod-tab" onclick="switchProdTab('traducao',this)">Tradução</button>
-    
+    <button class="prod-tab" onclick="switchProdTab('lacunas',this)">Lacunas</button>
   </div>
   <!-- ESCRITA -->
   <div class="prod-panel active tab-panel-inner" id="prod-escrita">
@@ -638,6 +619,17 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
     </div>
   </div>
   <!-- LACUNAS -->
+  <div class="prod-panel tab-panel-inner" id="prod-lacunas">
+    <p style="color:var(--text2);font-size:13px;font-style:italic;margin-bottom:14px">Complete os espaços com a forma correta do verbo:</p>
+    <div class="lacuna-text" id="lacunaText">
+      <span class="loading-spinner"></span> Carregando exercício...
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="btn-sm" onclick="checkLacunas()">✓ Verificar</button>
+      <button class="btn-sm" onclick="loadLacuna()" style="background:var(--glass);border:1px solid var(--border)">🔄 Novo</button>
+    </div>
+    <div id="lacunaFeedback" style="margin-top:12px;font-size:13px;line-height:1.6"></div>
+  </div>
 </div>
 </div>
 
@@ -860,7 +852,7 @@ window.addEventListener('DOMContentLoaded', async () => {
       showApp(userEmail);
     }
   }
-  // loadLacuna removido
+  loadLacuna();
 });
 
 // ══ PWA ══
@@ -949,7 +941,7 @@ function logoutUser() {
 function goTo(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
-  if (id === 'sre') { renderCards(); updateSreCounter(); }
+  if (id === 'sre') renderCards();
   if (id === 'home') updateHomeSreStats();
   if (id === 'lectura') renderLectura();
   if (id === 'sre-vocab') renderCards();
@@ -965,12 +957,6 @@ function selectLevel(lvl) {
   document.getElementById(`lvl-${lvl}`).className = `level-option sel-${lvl}`;
   document.getElementById(`dot-${lvl}`).style.background = lvl === 'beginner' ? 'var(--green)' : lvl === 'intermediate' ? 'var(--yellow)' : 'var(--red)';
   checkStartReady();
-}
-
-function selectVoice(el, voice) {
-  selectedVoice = voice;
-  document.querySelectorAll('#voiceGrid .sit-option').forEach(o => o.classList.remove('selected'));
-  el.classList.add('selected');
 }
 
 function selectSit(el, sit) {
@@ -994,196 +980,159 @@ function startConversation() {
   const sitNames = { café:'No Café', hotel:'No Hotel', trabajo:'Trabalho', médico:'Médico', viaje:'Viagem', mercado:'Mercado', amigos:'Amigos', libre:'Livre' };
   const lvlNames = { beginner:'Iniciante (A1-A2)', intermediate:'Intermediário (B1-B2)', advanced:'Avançado (C1-C2)' };
   document.getElementById('chatLevelBadge').textContent = sitNames[selectedSit] + ' · ' + lvlNames[selectedLevel];
-  
-  // Colocar foto da Paula no header
-  const imgs = document.querySelectorAll('[data-paula-foto]');
-  const paulaHeader = document.getElementById('paulaAvatarHeader');
-  // Pegar src da foto já embutida
-  const fotoEl = document.getElementById('paulaFotoGlobal');
-  if (fotoEl && paulaHeader) paulaHeader.src = fotoEl.src;
-
+  const foto = document.getElementById('paulaFotoGlobal');
+  const header = document.getElementById('paulaAvatarHeader');
+  if (foto && header) header.src = foto.src;
   conversaHistory = [];
   document.getElementById('conversaMsgs').innerHTML = '';
   goTo('conversa');
-  
-  // Paula manda primeira mensagem
   conversaPaulaFala(true);
 }
 
-// ── VARS ──
 let conversaHistory = [];
 let conversaRec = null;
 let conversaListening = false;
 let conversaTTS = null;
+let paulaTalando = false;
 
-// ── ENVIAR MENSAGEM ──
 async function sendConversaMsg() {
   const input = document.getElementById('conversaInput');
   const text = input.value.trim();
-  if (!text) return;
+  if (!text || paulaTalando) return;
   input.value = '';
   input.style.height = 'auto';
-  
   addConversaMsg('user', text);
   conversaHistory.push({ role: 'user', content: text });
   await conversaPaulaFala(false);
 }
 
-// ── PAULA RESPONDE ──
 async function conversaPaulaFala(isFirst) {
-  const sitNames = { café:'num café', hotel:'num hotel', trabajo:'no trabalho', médico:'no médico', viaje:'numa viagem', mercado:'no mercado', amigos:'com amigos', libre:'livremente' };
+  if (paulaTalando) return;
+  paulaTalando = true;
+  const sitMap = { café:'num café', hotel:'num hotel', trabajo:'no trabalho', médico:'no médico', viaje:'numa viagem', mercado:'no mercado', amigos:'com amigos', libre:'livremente' };
   const lvlMap = { beginner:'A1', intermediate:'B1', advanced:'C1' };
-  
-  // Mostrar typing
   const typingId = 'typing-' + Date.now();
   addConversaTyping(typingId);
-  
-  const systemPrompt = `Eres Paula, una amiga cercana y cálida que ayuda a practicar español. NUNCA digas que eres IA ni profesora.
-
-SITUACIÓN: ${sitNames[selectedSit] || 'livremente'}. Nivel: ${lvlMap[selectedLevel] || 'B1'}.
-
-REGLAS:
-- Habla SIEMPRE en español latinoamericano
-- Si el alumno habla en portugués, responde en español integrando lo que dijo
-- Si habla en inglés, explícale amablemente cómo se dice en español
-- Máximo 2-3 frases por turno
-- Termina siempre con UNA pregunta
-- Tono: amiga cercana, cálida, divertida
-- Corrige errores de forma natural e integrada, nunca explícitamente
-${isFirst ? '- Es el primer mensaje: saluda brevemente como amiga y haz UNA pregunta sobre la situación' : ''}`;
-
+  const system = 'Eres Paula, una amiga cercana y calida que ayuda a practicar espanol. NUNCA digas que eres IA ni profesora. Situacion: ' + (sitMap[selectedSit] || 'libre') + '. Nivel: ' + (lvlMap[selectedLevel] || 'B1') + '. REGLAS: Habla SIEMPRE en espanol latinoamericano. Si el alumno habla en portugues, responde en espanol integrando lo que dijo. Maximo 2 frases por turno. Termina con UNA pregunta. Tono: amiga calida, divertida. Corrige errores de forma natural.' + (isFirst ? ' PRIMER MENSAJE: saluda brevemente como amiga y haz UNA pregunta sobre la situacion.' : '');
   try {
-    const res = await fetch(`${API}/api/chat`, {
+    const res = await fetch(API + '/api/chat', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
       body: JSON.stringify({
-        message: isFirst ? '(inicia a conversa)' : conversaHistory[conversaHistory.length-1].content,
+        message: isFirst ? 'Inicia la conversacion.' : conversaHistory[conversaHistory.length-1].content,
         context: 'conversation',
         level: lvlMap[selectedLevel] || 'B1',
-        history: conversaHistory.slice(-10),
-        systemOverride: systemPrompt
+        history: isFirst ? [] : conversaHistory.slice(-10, -1),
+        system: system
       })
     });
-    
     removeConversaTyping(typingId);
-    
     if (res.ok) {
       const data = await res.json();
       const reply = data.reply || data.message || '';
       addConversaMsg('paula', reply);
       conversaHistory.push({ role: 'assistant', content: reply });
-      // TTS da resposta
-      conversaSpeakTTS(reply);
+      await conversaSpeakTTS(reply);
     } else {
-      addConversaMsg('paula', '¡Ups! Algo salió mal. ¿Lo intentamos de nuevo?');
+      addConversaMsg('paula', 'Ups! Algo salio mal. Lo intentamos de nuevo?');
     }
   } catch(e) {
     removeConversaTyping(typingId);
-    addConversaMsg('paula', '¡Ups! Sin conexión. ¿Lo intentamos de nuevo?');
+    addConversaMsg('paula', 'Ups! Sin conexion.');
   }
+  paulaTalando = false;
 }
 
-// ── TTS (voz da Paula) ──
 async function conversaSpeakTTS(text) {
   try {
-    const res = await fetch(`${API}/api/tts/vocab?text=${encodeURIComponent(text)}&type=example`, {
-      headers: { 'Authorization': `Bearer ${token}` }
+    const res = await fetch(API + '/api/tts/vocab?text=' + encodeURIComponent(text) + '&type=example', {
+      headers: { 'Authorization': 'Bearer ' + token }
     });
     if (!res.ok) return;
     const blob = await res.blob();
     const url = URL.createObjectURL(blob);
-    if (conversaTTS) { conversaTTS.pause(); URL.revokeObjectURL(conversaTTS.src); }
+    if (conversaTTS) { try { conversaTTS.pause(); } catch(e) {} }
     conversaTTS = new Audio(url);
     conversaTTS.play();
-    conversaTTS.onended = () => URL.revokeObjectURL(url);
+    await new Promise(resolve => { conversaTTS.onended = resolve; conversaTTS.onerror = resolve; });
+    URL.revokeObjectURL(url);
   } catch(e) {}
 }
 
-// ── MIC (Web Speech API) ──
 function toggleConversaMic() {
   if (conversaListening) {
     if (conversaRec) conversaRec.stop();
     return;
   }
-  
-  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-  if (!SR) { alert('Use Chrome para falar com a Paula'); return; }
-  
+  if (paulaTalando) return;
+  var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SR) { alert('Use Chrome para usar o microfone'); return; }
   conversaRec = new SR();
-  conversaRec.lang = 'es-ES';
+  conversaRec.lang = 'pt-BR';
   conversaRec.continuous = false;
   conversaRec.interimResults = true;
-  
-  conversaRec.onstart = () => {
+  conversaRec.onstart = function() {
     conversaListening = true;
     document.getElementById('conversaMicBtn').textContent = '🔴';
     document.getElementById('conversaListening').style.display = 'block';
   };
-  
-  conversaRec.onresult = (e) => {
-    const transcript = Array.from(e.results).map(r => r[0].transcript).join('');
-    document.getElementById('conversaInput').value = transcript;
+  conversaRec.onresult = function(e) {
+    var t = Array.from(e.results).map(function(r){ return r[0].transcript; }).join('');
+    document.getElementById('conversaInput').value = t;
+    autoResize(document.getElementById('conversaInput'));
   };
-  
-  conversaRec.onend = () => {
+  conversaRec.onend = function() {
     conversaListening = false;
     document.getElementById('conversaMicBtn').textContent = '🎤';
     document.getElementById('conversaListening').style.display = 'none';
-    // Enviar automaticamente se tem texto
-    const text = document.getElementById('conversaInput').value.trim();
-    if (text) sendConversaMsg();
   };
-  
+  conversaRec.onerror = function() {
+    conversaListening = false;
+    document.getElementById('conversaMicBtn').textContent = '🎤';
+    document.getElementById('conversaListening').style.display = 'none';
+  };
   conversaRec.start();
 }
 
-// ── CHAT UI ──
 function addConversaMsg(who, text) {
-  const msgs = document.getElementById('conversaMsgs');
-  const row = document.createElement('div');
-  row.className = `msg-row ${who === 'user' ? 'user' : ''}`;
-  
+  var msgs = document.getElementById('conversaMsgs');
+  var row = document.createElement('div');
+  row.className = 'msg-row' + (who === 'user' ? ' user' : '');
+  var foto = document.getElementById('paulaFotoGlobal');
+  var src = foto ? foto.src : '';
   if (who === 'paula') {
-    row.innerHTML = `
-      <div class="msg-avatar" style="background:linear-gradient(135deg,var(--purple),#9333ea);overflow:hidden;padding:0">
-        <img id="paulaAvatarMsg" style="width:100%;height:100%;object-fit:cover;object-position:center 5%">
-      </div>
-      <div class="msg-bubble assistant">${text.replace(/
-/g,'<br>')}</div>`;
-    // Inserir foto
-    setTimeout(() => {
-      const fotoEl = document.getElementById('paulaFotoGlobal');
-      const avatarEl = row.querySelector('#paulaAvatarMsg');
-      if (fotoEl && avatarEl) avatarEl.src = fotoEl.src;
-    }, 0);
+    var safeText = text.split('\n').join('<br>');
+    row.innerHTML = '<div class="msg-avatar" style="padding:0;overflow:hidden"><img src="' + src + '" style="width:100%;height:100%;object-fit:cover;object-position:center 5%"></div><div class="msg-bubble assistant">' + safeText + '</div>';
   } else {
-    row.innerHTML = `<div class="msg-bubble user">${text.replace(/
-/g,'<br>')}</div>`;
+    var safeText2 = text.split('\n').join('<br>');
+    row.innerHTML = '<div class="msg-bubble user">' + safeText2 + '</div>';
   }
-  
   msgs.appendChild(row);
   msgs.scrollTop = msgs.scrollHeight;
 }
 
 function addConversaTyping(id) {
-  const msgs = document.getElementById('conversaMsgs');
-  const row = document.createElement('div');
+  var msgs = document.getElementById('conversaMsgs');
+  var row = document.createElement('div');
   row.className = 'msg-row';
   row.id = id;
-  row.innerHTML = `<div class="msg-avatar" style="background:linear-gradient(135deg,var(--purple),#9333ea);overflow:hidden;padding:0"><img style="width:100%;height:100%;object-fit:cover"></div><div class="typing-bubble"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>`;
+  var foto = document.getElementById('paulaFotoGlobal');
+  var src = foto ? foto.src : '';
+  row.innerHTML = '<div class="msg-avatar" style="padding:0;overflow:hidden"><img src="' + src + '" style="width:100%;height:100%;object-fit:cover;object-position:center 5%"></div><div class="typing-bubble"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>';
   msgs.appendChild(row);
   msgs.scrollTop = msgs.scrollHeight;
 }
 
 function removeConversaTyping(id) {
-  const el = document.getElementById(id);
+  var el = document.getElementById(id);
   if (el) el.remove();
 }
 
 function endConversaSession() {
-  if (conversaTTS) { conversaTTS.pause(); conversaTTS = null; }
+  if (conversaTTS) { try { conversaTTS.pause(); } catch(e) {} conversaTTS = null; }
   if (conversaRec) { try { conversaRec.stop(); } catch(e) {} conversaRec = null; }
   conversaListening = false;
+  paulaTalando = false;
   conversaHistory = [];
 }
 
@@ -1281,22 +1230,6 @@ async function playVocabAudio(type) {
   }
 }
 
-function updateSreCounter() {
-  var stats = getSreStats();
-  var todayKey = getTodayKey();
-  var done = (stats.doneTodayKey === todayKey ? stats.doneToday : 0) || 0;
-  var total = DAILY_GOAL;
-  var pct = Math.min(100, Math.round(done / total * 100));
-
-  var counter = document.getElementById('sreCounter');
-  var bar = document.getElementById('sreProgressBar');
-  var xpEl = document.getElementById('sreCounterXp');
-
-  if (counter) counter.textContent = done + ' / ' + total;
-  if (bar) bar.style.width = pct + '%';
-  if (xpEl) xpEl.textContent = done > 0 ? '+' + (done * 8) + ' XP' : '';
-}
-
 function rateCard(rating) {
   var card = sreQueue[sreQueueIndex];
   if (!card) return;
@@ -1326,7 +1259,6 @@ function rateCard(rating) {
   }
   stats.lastStudyDate = todayKey;
   saveSreStats(stats);
-  updateSreCounter();
   sreQueueIndex++;
   if (sreQueueIndex >= sreQueue.length) {
     renderCards();
@@ -1336,31 +1268,9 @@ function rateCard(rating) {
 }
 
 function showCelebration(done, stars, level) {
-  var stats = getSreStats();
-  var streak = stats.streak || 1;
   var cel = document.getElementById('sreCelebration');
-
-  // Atualizar números
-  document.getElementById('celWords').textContent = done;
-  document.getElementById('celStreak').textContent = '🔥' + streak;
-  document.getElementById('celXp').textContent = '+' + (done * 10);
-
-  // Mensagem variada
-  var msgs = [
-    ['¡Increíble!', 'Você arrasou hoje! 🚀'],
-    ['¡Fantástico!', 'Sua consistência é incrível! 💪'],
-    ['¡Excelente!', 'Mais um dia de evolução! ⭐'],
-    ['¡Lo lograste!', 'Meta do dia concluída! 🎯'],
-    ['¡Brillante!', 'Seu espanhol está crescendo! 🌱'],
-  ];
-  var pick = msgs[Math.floor(Math.random() * msgs.length)];
-  document.getElementById('celTitle').textContent = pick[0];
-  document.getElementById('celSub').textContent = pick[1];
-
-  // Confete variado
-  var confetes = ['🎉✨🔥✨🎉','⭐🎊💫🎊⭐','🏆✨🎯✨🏆','🔥💪⚡💪🔥'];
-  document.getElementById('celConfetti').textContent = confetes[Math.floor(Math.random() * confetes.length)];
-
+  document.getElementById('celebrationEmoji').textContent = level.badge;
+  document.getElementById('celebrationText').textContent = level.badge + ' ' + done + ' palavras hoje! Nível: ' + level.name;
   cel.style.display = 'block';
   cel.scrollIntoView({behavior:'smooth', block:'center'});
 }
@@ -1586,103 +1496,110 @@ async function translateText() {
 }
 
 const lacunas = [
-  { text: 'Ayer yo _____ (ir) al supermercado porque no había comida en casa.', answers: ['fui'], trad: 'Ontem eu fui ao supermercado porque não tinha comida em casa.' },
-  { text: 'Cuando era niño, mi abuela siempre me _____ (contar) cuentos antes de dormir.', answers: ['contaba'], trad: 'Quando eu era criança, minha avó sempre me contava histórias antes de dormir.' },
-  { text: 'Mañana _____ (hacer) mucho frío, así que lleva el abrigo.', answers: ['hará'], trad: 'Amanhã vai fazer muito frio, então leve o casaco.' },
-  { text: 'Si _____ (tener) más tiempo, aprendería a tocar la guitarra.', answers: ['tuviera'], trad: 'Se eu tivesse mais tempo, aprenderia a tocar violão.' },
-  { text: 'Es importante que tú _____ (beber) suficiente agua todos los días.', answers: ['bebas'], trad: 'É importante que você beba água suficiente todos os dias.' },
-  { text: 'Nosotros _____ (llegar) tarde al cine porque el metro se retrasó.', answers: ['llegamos'], trad: 'Nós chegamos tarde ao cinema porque o metrô atrasou.' },
-  { text: 'Ella me _____ (decir) que estaba muy cansada y que iba a descansar.', answers: ['dijo'], trad: 'Ela me disse que estava muito cansada e que ia descansar.' },
-  { text: 'El año pasado _____ (viajar) a México con toda mi familia.', answers: ['viajé'], trad: 'No ano passado viajei para o México com toda a minha família.' },
-  { text: 'Cuando _____ (terminar) de estudiar, saldremos a cenar juntos.', answers: ['termines'], trad: 'Quando você terminar de estudar, sairemos para jantar juntos.' },
-  { text: 'Me alegra mucho que vosotros _____ (poder) venir a la fiesta esta noche.', answers: ['podáis'], trad: 'Fico muito feliz que vocês possam vir à festa esta noite.' },
-  { text: 'Si _____ (saber) la respuesta, te la diría sin dudarlo.', answers: ['supiera'], trad: 'Se eu soubesse a resposta, te diria sem hesitar.' },
-  { text: 'Hace dos horas que _____ (esperar) el autobús en la parada.', answers: ['espero'], trad: 'Faz duas horas que estou esperando o ônibus no ponto.' },
-  { text: 'Es necesario que todos los estudiantes _____ (traer) su libro mañana.', answers: ['traigan'], trad: 'É necessário que todos os estudantes tragam seu livro amanhã.' },
-  { text: 'Cuando _____ (llegar) a casa, vi que alguien había dejado una nota en la puerta.', answers: ['llegué'], trad: 'Quando cheguei em casa, vi que alguém tinha deixado um bilhete na porta.' },
-  { text: 'Les _____ (pedir) a mis amigos que _____ (ser) puntuales para la reunión.', answers: ['pedí','fueran'], trad: 'Pedi aos meus amigos que fossem pontuais para a reunião.' },
-  { text: 'Hoy _____ (hacer) tanto calor que decidimos quedarnos en casa.', answers: ['hace'], trad: 'Hoje está fazendo tanto calor que decidimos ficar em casa.' },
-  { text: 'Mientras yo _____ (preparar) la cena, él estaba viendo la televisión.', answers: ['preparaba'], trad: 'Enquanto eu preparava o jantar, ele estava assistindo televisão.' },
-  { text: 'Espero que ella _____ (llegar) pronto porque la reunión empieza en diez minutos.', answers: ['llegue'], trad: 'Espero que ela chegue logo porque a reunião começa em dez minutos.' },
-  { text: 'Nunca _____ (pensar) que aprender español _____ (ser) tan divertido.', answers: ['pensé','sería'], trad: 'Nunca pensei que aprender espanhol seria tão divertido.' },
-  { text: 'Ayer _____ (llover) tanto que las calles se inundaron.', answers: ['llovió'], trad: 'Ontem choveu tanto que as ruas alagaram.' },
-  { text: 'Te _____ (recomendar) que _____ (descansar) antes del examen de mañana.', answers: ['recomiendo','descanses'], trad: 'Recomendo que você descanse antes da prova de amanhã.' },
-  { text: 'Cuando _____ (ser) joven, _____ (soñar) con vivir en otro país.', answers: ['era','soñaba'], trad: 'Quando era jovem, sonhava em viver em outro país.' },
-  { text: 'Si _____ (poder) elegir, me _____ (quedar) en la playa para siempre.', answers: ['pudiera','quedaría'], trad: 'Se pudesse escolher, ficaria na praia para sempre.' },
-  { text: 'Por favor, _____ (hablar) más despacio para que yo te _____ (entender) mejor.', answers: ['habla','entienda'], trad: 'Por favor, fale mais devagar para que eu te entenda melhor.' },
-  { text: 'Aunque _____ (estar) muy cansado, _____ (decidir) terminar el trabajo.', answers: ['estaba','decidió'], trad: 'Mesmo estando muito cansado, ele decidiu terminar o trabalho.' },
-  { text: 'Me _____ (gustar) que tú _____ (venir) a visitarme el próximo fin de semana.', answers: ['gustaría','vinieras'], trad: 'Gostaria que você viesse me visitar no próximo fim de semana.' },
-  { text: 'Después de que _____ (comer), dimos un largo paseo por el parque.', answers: ['comimos'], trad: 'Depois de comer, demos uma longa caminhada no parque.' },
-  { text: 'Es una lástima que ellos no _____ (poder) _____ (asistir) a la boda.', answers: ['puedan','asistir'], trad: 'É uma pena que eles não possam ir ao casamento.' },
-  { text: 'Tan pronto como _____ (terminar) la reunión, te _____ (llamar).', answers: ['termine','llamaré'], trad: 'Assim que a reunião terminar, te ligarei.' },
-  { text: 'Ojalá que mañana _____ (hacer) buen tiempo para ir a la playa.', answers: ['haga'], trad: 'Oxalá amanhã faça bom tempo para ir à praia.' },
-  { text: 'Siempre que _____ (viajar), intento aprender algo nuevo sobre la cultura local.', answers: ['viajo'], trad: 'Sempre que viajo, tento aprender algo novo sobre a cultura local.' },
-  { text: 'El tren ya _____ (salir) cuando nosotros _____ (llegar) a la estación.', answers: ['había salido','llegamos'], trad: 'O trem já tinha saído quando chegamos à estação.' },
-  { text: 'Si yo _____ (ser) tú, no _____ (decir) eso delante de todo el mundo.', answers: ['fuera','diría'], trad: 'Se eu fosse você, não diria isso na frente de todo mundo.' },
-  { text: 'Cada vez que _____ (escuchar) esa canción, me recuerda a mi infancia.', answers: ['escucho'], trad: 'Cada vez que ouço essa música, me lembra da minha infância.' },
+  { text: 'Ayer yo _____ (ir) al mercado y _____ (comprar) frutas frescas.', answers: ['fui','compré'], trad: 'Ontem eu fui ao mercado e comprei frutas frescas.' },
+  { text: 'Cuando _____ (ser) niño, _____ (vivir) en una ciudad pequeña.', answers: ['era','vivía'], trad: 'Quando eu era criança, morava em uma cidade pequena.' },
+  { text: 'Mañana nosotros _____ (salir) temprano para _____ (llegar) a tiempo.', answers: ['saldremos','llegar'], trad: 'Amanhã nós sairemos cedo para chegar a tempo.' },
+  { text: 'Si _____ (tener) tiempo, _____ (visitar) el museo contigo.', answers: ['tuviera','visitaría'], trad: 'Se eu tivesse tempo, visitaria o museu com você.' },
+  { text: 'Es importante que tú _____ (estudiar) todos los días para _____ (mejorar).', answers: ['estudies','mejorar'], trad: 'É importante que você estude todos os dias para melhorar.' },
+  { text: 'Nosotros _____ (estar) muy cansados cuando _____ (llegar) a casa.', answers: ['estábamos','llegamos'], trad: 'Nós estávamos muito cansados quando chegamos em casa.' },
+  { text: 'Ella me _____ (decir) que _____ (querer) aprender español.', answers: ['dijo','quería'], trad: 'Ela me disse que queria aprender espanhol.' },
+  { text: 'Para que _____ (entender) mejor, _____ (deber) practicar cada día.', answers: ['entiendas','debes'], trad: 'Para que você entenda melhor, deve praticar todo dia.' },
+  { text: 'El año pasado _____ (haber) muchos turistas que _____ (visitar) la ciudad.', answers: ['hubo','visitaron'], trad: 'No ano passado houve muitos turistas que visitaram a cidade.' },
+  { text: 'Me alegra que vosotros _____ (poder) venir y _____ (disfrutar) de la fiesta.', answers: ['podáis','disfrutéis'], trad: 'Fico feliz que vocês possam vir e aproveitar a festa.' },
+  { text: 'Si _____ (saber) la respuesta, _____ (poder) ayudarte.', answers: ['supiera','podría'], trad: 'Se eu soubesse a resposta, poderia te ajudar.' },
+  { text: 'Él nunca _____ (haber) viajado al extranjero antes de _____ (conocer) a María.', answers: ['había','conocer'], trad: 'Ele nunca tinha viajado ao exterior antes de conhecer a María.' },
+  { text: 'Es necesario que todos _____ (respetar) las reglas para que _____ (funcionar) bien.', answers: ['respeten','funcione'], trad: 'É necessário que todos respeitem as regras para que funcione bem.' },
+  { text: 'Cuando _____ (terminar) de estudiar, _____ (salir) a caminar un poco.', answers: ['termine','saldré'], trad: 'Quando terminar de estudar, sairei para caminhar um pouco.' },
+  { text: 'Les _____ (pedir) que _____ (ser) puntuales para la reunión.', answers: ['pedí','fueran'], trad: 'Pedi a eles que fossem pontuais para a reunião.' },
+  { text: 'Hoy _____ (hacer) mucho frío, así que _____ (ponerse) el abrigo.', answers: ['hace','ponte'], trad: 'Hoje está muito frio, então coloque o casaco.' },
+  { text: 'Mientras yo _____ (cocinar), él _____ (leer) el periódico.', answers: ['cocinaba','leía'], trad: 'Enquanto eu cozinhava, ele lia o jornal.' },
+  { text: 'Espero que ella _____ (llegar) pronto y _____ (traer) las llaves.', answers: ['llegue','traiga'], trad: 'Espero que ela chegue logo e traga as chaves.' },
+  { text: 'Nunca _____ (pensar) que _____ (poder) hablar español tan bien.', answers: ['pensé','podría'], trad: 'Nunca pensei que poderia falar espanhol tão bem.' },
+  { text: 'Ayer _____ (llover) tanto que no _____ (poder) salir de casa.', answers: ['llovió','pudimos'], trad: 'Ontem choveu tanto que não pudemos sair de casa.' },
+  { text: 'Te _____ (recomendar) que _____ (descansar) antes del examen.', answers: ['recomiendo','descanses'], trad: 'Recomendo que você descanse antes da prova.' },
+  { text: 'Cuando _____ (ser) joven, _____ (soñar) con ser médico.', answers: ['era','soñaba'], trad: 'Quando era jovem, sonhava em ser médico.' },
+  { text: 'Si _____ (poder) elegir, _____ (vivir) en una ciudad con mar.', answers: ['pudiera','viviría'], trad: 'Se pudesse escolher, moraria em uma cidade com mar.' },
+  { text: 'Ellos _____ (irse) antes de que nosotros _____ (despertar).', answers: ['se fueron','nos despertáramos'], trad: 'Eles foram embora antes de nós acordarmos.' },
   { text: 'El médico le _____ (decir) que _____ (tomar) el medicamento dos veces al día.', answers: ['dijo','tomara'], trad: 'O médico disse a ele que tomasse o remédio duas vezes ao dia.' },
-  { text: 'Hace tres años que _____ (empezar) a estudiar español y ya me defiendo bien.', answers: ['empecé'], trad: 'Faz três anos que comecei a estudar espanhol e já me viro bem.' },
-  { text: 'No _____ (creer) que _____ (ser) tan difícil encontrar apartamento en esta ciudad.', answers: ['creía','fuera'], trad: 'Não acreditava que fosse tão difícil encontrar apartamento nessa cidade.' },
-  { text: 'Aunque no _____ (tener) mucho dinero, siempre _____ (ser) muy generoso.', answers: ['tuviera','era'], trad: 'Embora não tivesse muito dinheiro, sempre foi muito generoso.' },
-  { text: 'No _____ (haber) nadie en casa cuando yo _____ (llegar) del trabajo.', answers: ['había','llegué'], trad: 'Não havia ninguém em casa quando cheguei do trabalho.' },
+  { text: 'Necesito que alguien me _____ (ayudar) a _____ (entender) esta lección.', answers: ['ayude','entender'], trad: 'Preciso que alguém me ajude a entender esta lição.' },
+  { text: 'Hace tres años que _____ (empezar) a _____ (estudiar) idiomas.', answers: ['empecé','estudiar'], trad: 'Faz três anos que comecei a estudar idiomas.' },
+  { text: 'No _____ (creer) que _____ (ser) tan difícil aprender a cocinar.', answers: ['creía','fuera'], trad: 'Não acreditava que fosse tão difícil aprender a cozinhar.' },
+  { text: 'Por favor, _____ (hablar) más despacio para que yo _____ (comprender).', answers: ['habla','comprenda'], trad: 'Por favor, fale mais devagar para que eu compreenda.' },
+  { text: 'Aunque _____ (estar) cansado, _____ (decidir) terminar el proyecto.', answers: ['estaba','decidió'], trad: 'Mesmo estando cansado, ele decidiu terminar o projeto.' },
+  { text: 'Me _____ (gustar) que tú _____ (venir) a la fiesta conmigo.', answers: ['gustaría','vinieras'], trad: 'Gostaria que você viesse à festa comigo.' },
+  { text: 'Después de que _____ (comer), nosotros _____ (dar) un paseo por el parque.', answers: ['comimos','dimos'], trad: 'Depois de comer, nós demos uma volta no parque.' },
+  { text: 'Es una lástima que ellos no _____ (poder) _____ (asistir) a la boda.', answers: ['puedan','asistir'], trad: 'É uma pena que eles não possam ir ao casamento.' },
+  { text: 'Le _____ (pedir) a mi jefe que me _____ (dar) más tiempo para el informe.', answers: ['pedí','diera'], trad: 'Pedi ao meu chefe que me desse mais tempo para o relatório.' },
+  { text: 'Tan pronto como _____ (terminar) la reunión, te _____ (llamar).', answers: ['termine','llamaré'], trad: 'Assim que a reunião terminar, te ligarei.' },
+  { text: 'Ojalá que mañana _____ (hacer) buen tiempo y _____ (poder) salir.', answers: ['haga','podamos'], trad: 'Oxalá amanhã faça bom tempo e possamos sair.' },
+  { text: 'Siempre que _____ (viajar), _____ (intentar) aprender algo nuevo.', answers: ['viajo','intento'], trad: 'Sempre que viajo, tento aprender algo novo.' },
+  { text: 'Antes de que _____ (irse), _____ (dejar) una nota en la mesa.', answers: ['se fuera','dejó'], trad: 'Antes de ir embora, ele deixou um bilhete na mesa.' },
+  { text: 'No había nadie que _____ (saber) la respuesta cuando el profesor _____ (preguntar).', answers: ['supiera','preguntó'], trad: 'Não havia ninguém que soubesse a resposta quando o professor perguntou.' },
+  { text: 'Quisiera que me _____ (explicar) cómo _____ (funcionar) este aparato.', answers: ['explicaras','funciona'], trad: 'Gostaria que você me explicasse como este aparelho funciona.' },
+  { text: 'El tren ya _____ (salir) cuando nosotros _____ (llegar) a la estación.', answers: ['había salido','llegamos'], trad: 'O trem já tinha saído quando chegamos à estação.' },
+  { text: 'Dudo que ellos _____ (terminar) el trabajo antes de que _____ (llegar) el cliente.', answers: ['terminen','llegue'], trad: 'Duvido que eles terminem o trabalho antes do cliente chegar.' },
+  { text: 'Si yo _____ (ser) tú, no _____ (decir) eso en público.', answers: ['fuera','diría'], trad: 'Se eu fosse você, não diria isso em público.' },
+  { text: 'Cada vez que _____ (escuchar) esa canción, _____ (recordar) mi infancia.', answers: ['escucho','recuerdo'], trad: 'Cada vez que ouço essa música, me lembro da minha infância.' },
+  { text: 'Fue una sorpresa que él _____ (aceptar) la propuesta sin _____ (dudar).', answers: ['aceptara','dudar'], trad: 'Foi uma surpresa que ele aceitasse a proposta sem hesitar.' },
+  { text: 'Para cuando vosotros _____ (despertar), yo ya _____ (preparar) el desayuno.', answers: ['os despertéis','habré preparado'], trad: 'Quando vocês acordarem, eu já terei preparado o café da manhã.' },
+  { text: 'Me _____ (alegrar) mucho que vosotros _____ (poder) visitarnos este verano.', answers: ['alegra','podáis'], trad: 'Fico muito feliz que vocês possam nos visitar neste verão.' },
+  { text: 'Aunque no _____ (tener) dinero, siempre _____ (ser) generoso con los demás.', answers: ['tuviera','era'], trad: 'Embora não tivesse dinheiro, sempre foi generoso com os outros.' },
+  { text: 'El profesor nos _____ (pedir) que _____ (leer) el capítulo antes de clase.', answers: ['pidió','leyéramos'], trad: 'O professor nos pediu que lêssemos o capítulo antes da aula.' },
+  { text: 'No _____ (haber) nadie en casa cuando yo _____ (llegar).', answers: ['había','llegué'], trad: 'Não havia ninguém em casa quando cheguei.' },
+  { text: 'Busco a alguien que _____ (hablar) chino y _____ (poder) traducir este texto.', answers: ['hable','pueda'], trad: 'Procuro alguém que fale chinês e possa traduzir este texto.' },
   { text: 'Cuanto más _____ (practicar), mejor _____ (hablar) el idioma.', answers: ['practiques','hablarás'], trad: 'Quanto mais você praticar, melhor falará o idioma.' },
-  { text: 'Si _____ (llover) mañana, la excursión se _____ (cancelar).', answers: ['llueve','cancelará'], trad: 'Se chover amanhã, a excursão será cancelada.' },
-  { text: 'Prefiero que tú _____ (hablar) conmigo directamente en lugar de _____ (enviar) mensajes.', answers: ['hables','enviar'], trad: 'Prefiro que você fale comigo diretamente em vez de enviar mensagens.' },
+  { text: 'Le _____ (sorprender) que nadie le _____ (decir) la verdad antes.', answers: ['sorprendió','hubiera dicho'], trad: 'Surpreendeu-o que ninguém tivesse dito a verdade antes.' },
+  { text: 'Si _____ (llover) mañana, nosotros _____ (quedar) en casa.', answers: ['llueve','nos quedaremos'], trad: 'Se chover amanhã, ficaremos em casa.' },
+  { text: 'El niño _____ (pedir) que su madre le _____ (contar) un cuento.', answers: ['pidió','contara'], trad: 'A criança pediu que a mãe lhe contasse uma história.' },
+  { text: 'Prefiero que tú _____ (hablar) directamente conmigo en lugar de _____ (escribir) mensajes.', answers: ['hables','escribir'], trad: 'Prefiro que você fale diretamente comigo em vez de escrever mensagens.' },
   { text: 'Hace tiempo que no _____ (saber) nada de él; espero que _____ (estar) bien.', answers: ['sé','esté'], trad: 'Faz tempo que não sei nada dele; espero que esteja bem.' },
+  { text: 'El director ordenó que todos los empleados _____ (asistir) a la reunión y _____ (presentar) sus informes.', answers: ['asistieran','presentaran'], trad: 'O diretor ordenou que todos os funcionários fossem à reunião e apresentassem seus relatórios.' },
   { text: 'Sin que nadie se _____ (dar) cuenta, él _____ (salir) por la puerta trasera.', answers: ['diera','salió'], trad: 'Sem que ninguém percebesse, ele saiu pela porta dos fundos.' },
+  { text: 'Sería bueno que vosotros _____ (llegar) temprano y _____ (ayudar) a preparar todo.', answers: ['llegarais','ayudarais'], trad: 'Seria bom que vocês chegassem cedo e ajudassem a preparar tudo.' },
   { text: 'No _____ (importar) lo que _____ (pasar), siempre estaré aquí para ayudarte.', answers: ['importa','pase'], trad: 'Não importa o que aconteça, sempre estarei aqui para te ajudar.' },
-  { text: 'Me _____ (molestar) que la gente no _____ (respetar) las normas de convivencia.', answers: ['molesta','respete'], trad: 'Me incomoda que as pessoas não respeitem as normas de convivência.' },
-  { text: 'Ella _____ (ponerse) a llorar en cuanto _____ (ver) la película por segunda vez.', answers: ['se puso','vio'], trad: 'Ela começou a chorar assim que viu o filme pela segunda vez.' },
-  { text: 'Aunque _____ (llegar) tarde, todavía _____ (poder) entrar al concierto.', answers: ['llegamos','pudimos'], trad: 'Mesmo chegando tarde, ainda pudemos entrar no show.' },
-  { text: 'Para que el proyecto _____ (tener) éxito, todos deben comprometerse al máximo.', answers: ['tenga'], trad: 'Para que o projeto tenha sucesso, todos devem se comprometer ao máximo.' },
-  { text: 'Me _____ (parecer) raro que él no _____ (contestar) ninguno de mis mensajes.', answers: ['parece','conteste'], trad: 'Me parece estranho que ele não responda nenhuma das minhas mensagens.' },
-  { text: 'Si _____ (estudiar) más de joven, hoy _____ (tener) mejores oportunidades.', answers: ['hubiera estudiado','tendría'], trad: 'Se tivesse estudado mais quando jovem, hoje teria melhores oportunidades.' },
-  { text: 'La semana pasada _____ (ir) al médico porque me _____ (doler) mucho la espalda.', answers: ['fui','dolía'], trad: 'Na semana passada fui ao médico porque estava com muita dor nas costas.' },
-  { text: 'Fue entonces cuando _____ (darse) cuenta de que _____ (estar) enamorado de ella.', answers: ['se dio','estaba'], trad: 'Foi então que percebeu que estava apaixonado por ela.' },
-  { text: 'El guía nos _____ (pedir) que no _____ (sacar) fotos dentro del museo.', answers: ['pidió','sacáramos'], trad: 'O guia nos pediu que não tirássemos fotos dentro do museu.' },
-  { text: 'No _____ (poder) creer lo bonito que _____ (ser) el paisaje desde la cima.', answers: ['podía','era'], trad: 'Não conseguia acreditar como era bonita a paisagem do topo.' },
-  { text: 'Espero que todos _____ (divertirse) mucho en la fiesta y _____ (volver) bien.', answers: ['se diviertan','vuelvan'], trad: 'Espero que todos se divirtam muito na festa e voltem bem.' },
-  { text: 'Por más que _____ (intentar), no _____ (lograr) abrir el frasco.', answers: ['intenté','logré'], trad: 'Por mais que tentei, não consegui abrir o pote.' },
-  { text: 'Ahora que _____ (terminar) el curso, _____ (sentirse) mucho más seguro hablando.', answers: ['ha terminado','se siente'], trad: 'Agora que terminou o curso, sente-se muito mais seguro falando.' },
-  { text: 'A pesar de que _____ (llover), la gente _____ (seguir) esperando en la cola.', answers: ['llovía','siguió'], trad: 'Apesar de chover, as pessoas continuaram esperando na fila.' },
-  { text: 'Cuando _____ (volver) del trabajo, _____ (encontrar) una carta en el buzón.', answers: ['volvió','encontró'], trad: 'Quando voltou do trabalho, encontrou uma carta na caixa de correio.' },
-  { text: 'No _____ (haber) terminado de hablar cuando ella ya _____ (salir) de la sala.', answers: ['había','había salido'], trad: 'Não tinha terminado de falar quando ela já tinha saído da sala.' },
-  { text: 'Él siempre _____ (levantarse) temprano y _____ (hacer) ejercicio antes del trabajo.', answers: ['se levanta','hace'], trad: 'Ele sempre acorda cedo e faz exercício antes do trabalho.' },
-  { text: 'En cuanto _____ (poder), te _____ (enviar) los documentos que necesitas.', answers: ['pueda','enviaré'], trad: 'Assim que puder, te enviarei os documentos que você precisa.' },
-  { text: 'Para que _____ (mejorar) tu pronunciación, es clave que _____ (escuchar) mucho.', answers: ['mejore','escuches'], trad: 'Para melhorar sua pronúncia, é fundamental que você ouça bastante.' },
-  { text: 'Después de que _____ (hablar) con el director, _____ (sentirse) más tranquilo.', answers: ['habló','se sintió'], trad: 'Depois de falar com o diretor, sentiu-se mais tranquilo.' },
-  { text: 'Quiero que me _____ (decir) la verdad aunque me _____ (doler) escucharla.', answers: ['digas','duela'], trad: 'Quero que me diga a verdade mesmo que doa ouvi-la.' },
-  { text: 'Si _____ (haber) sabido antes la noticia, te _____ (llamar) inmediatamente.', answers: ['hubiera','habría llamado'], trad: 'Se tivesse sabido a notícia antes, teria te ligado imediatamente.' },
-  { text: 'Nos _____ (sorprender) que nadie _____ (presentarse) a la entrevista de trabajo.', answers: ['sorprendió','se presentara'], trad: 'Nos surpreendeu que ninguém tivesse aparecido para a entrevista de emprego.' },
-  { text: 'La directora insistió en que el equipo _____ (repetir) la presentación una vez más.', answers: ['repitiera'], trad: 'A diretora insistiu em que a equipe repetisse a apresentação mais uma vez.' },
-  { text: 'Es urgente que alguien _____ (llamar) al médico y le _____ (explicar) los síntomas.', answers: ['llame','explique'], trad: 'É urgente que alguém ligue para o médico e explique os sintomas.' },
-  { text: 'A medida que _____ (avanzar) los años, la ciudad _____ (ir) cambiando mucho.', answers: ['avanzaban','fue'], trad: 'À medida que os anos passavam, a cidade foi mudando muito.' },
-  { text: 'Ojalá _____ (haber) encontrado antes este método para _____ (aprender) idiomas.', answers: ['hubiera','aprender'], trad: 'Oxalá tivesse encontrado antes este método para aprender idiomas.' },
-  { text: 'Me _____ (encantar) que su hijo _____ (aprender) a cocinar tan bien con tan poca edad.', answers: ['encantó','aprendiera'], trad: 'Adorou que seu filho tivesse aprendido a cozinhar tão bem com tão pouca idade.' },
-  { text: 'No hay nadie en esta ciudad que _____ (conocer) mejor los restaurantes que ella.', answers: ['conozca'], trad: 'Não há ninguém nessa cidade que conheça melhor os restaurantes do que ela.' },
-  { text: 'Ayer _____ (reunirse) con sus viejos amigos y _____ (hablar) de los tiempos pasados.', answers: ['se reunió','hablaron'], trad: 'Ontem se reuniu com os velhos amigos e falaram dos tempos passados.' },
-  { text: 'Sería bueno que vosotros _____ (llegar) temprano para _____ (ayudar) a preparar todo.', answers: ['llegarais','ayudar'], trad: 'Seria bom que vocês chegassem cedo para ajudar a preparar tudo.' },
-  { text: 'Cuídate mucho y no _____ (olvidar) _____ (tomar) tus medicamentos cada día.', answers: ['olvides','tomar'], trad: 'Cuide-se muito e não se esqueça de tomar seus remédios todo dia.' },
-  { text: 'Siento que últimamente no _____ (dormir) bien y por eso _____ (estar) tan cansado.', answers: ['duermo','estoy'], trad: 'Sinto que ultimamente não estou dormindo bem e por isso estou tão cansado.' },
-  { text: 'Le _____ (agradecer) que me _____ (ayudar) tanto en ese momento tan difícil de mi vida.', answers: ['agradezco','ayudara'], trad: 'Agradeço que você me tivesse ajudado tanto naquele momento tão difícil da minha vida.' },
-  { text: 'Él _____ (trabajar) muy duro durante años hasta que por fin _____ (conseguir) su sueño.', answers: ['trabajó','consiguió'], trad: 'Ele trabalhou muito durante anos até que finalmente realizou seu sonho.' },
-  { text: 'Es posible que ella _____ (cambiar) de opinión si tú le _____ (hablar) con calma.', answers: ['cambie','hablas'], trad: 'É possível que ela mude de opinião se você falar com calma.' },
-  { text: 'Cuando _____ (graduarse), _____ (decidir) tomarse un año libre antes de trabajar.', answers: ['se graduó','decidió'], trad: 'Quando se formou, decidiu tirar um ano sabático antes de trabalhar.' },
-  { text: 'Me _____ (preocupar) que los niños no _____ (comer) suficientes frutas y verduras.', answers: ['preocupa','coman'], trad: 'Me preocupa que as crianças não comam frutas e legumes suficientes.' },
-  { text: 'Por favor, _____ (cerrar) la ventana antes de salir porque _____ (hacer) mucho frío.', answers: ['cierra','hace'], trad: 'Por favor, feche a janela antes de sair porque está fazendo muito frio.' },
-  { text: 'El profesor nos _____ (pedir) que _____ (leer) el capítulo completo antes de la clase.', answers: ['pidió','leyéramos'], trad: 'O professor nos pediu que lêssemos o capítulo completo antes da aula.' },
-  { text: 'Cuando _____ (tener) diez años, mi familia _____ (mudarse) a otra ciudad por trabajo.', answers: ['tenía','se mudó'], trad: 'Quando tinha dez anos, minha família se mudou para outra cidade por trabalho.' },
-  { text: 'Si _____ (poder) viajar a cualquier lugar del mundo, _____ (ir) a Japón sin dudar.', answers: ['pudiera','iría'], trad: 'Se pudesse viajar para qualquer lugar do mundo, iria ao Japão sem hesitar.' },
-  { text: 'Busco a alguien que _____ (hablar) chino y _____ (poder) ayudarme con la traducción.', answers: ['hable','pueda'], trad: 'Procuro alguém que fale chinês e possa me ajudar com a tradução.' },
-  { text: 'Dudo que ellos _____ (terminar) el proyecto antes de que _____ (llegar) el cliente.', answers: ['terminen','llegue'], trad: 'Duvido que eles terminem o projeto antes de o cliente chegar.' },
-  { text: 'Fue una gran sorpresa que él _____ (aceptar) la propuesta sin siquiera _____ (dudar).', answers: ['aceptara','dudar'], trad: 'Foi uma grande surpresa que ele aceitasse a proposta sem sequer hesitar.' },
-  { text: 'Para cuando vosotros _____ (despertar), yo ya _____ (preparar) el desayuno completo.', answers: ['os despertéis','habré preparado'], trad: 'Quando vocês acordarem, eu já terei preparado o café da manhã completo.' },
-  { text: 'El niño _____ (pedir) que su madre le _____ (contar) el mismo cuento de siempre.', answers: ['pidió','contara'], trad: 'A criança pediu que a mãe lhe contasse o mesmo conto de sempre.' },
-  { text: 'Necesito que alguien me _____ (ayudar) a _____ (entender) esta parte de la gramática.', answers: ['ayude','entender'], trad: 'Preciso que alguém me ajude a entender essa parte da gramática.' },
-  { text: 'Le _____ (pedir) a mi jefe que me _____ (dar) más tiempo para entregar el informe.', answers: ['pedí','diera'], trad: 'Pedi ao meu chefe que me desse mais tempo para entregar o relatório.' },
-  { text: 'No _____ (poder) dormir bien anoche porque _____ (hacer) demasiado calor en el cuarto.', answers: ['pude','hacía'], trad: 'Não consegui dormir bem ontem à noite porque estava fazendo muito calor no quarto.' },
+  { text: 'A medida que _____ (avanzar) el tiempo, el dolor _____ (ir) desapareciendo.', answers: ['avanzaba','fue'], trad: 'À medida que o tempo avançava, a dor foi desaparecendo.' },
+  { text: 'Ojalá _____ (haber) encontrado antes este método para _____ (aprender).', answers: ['hubiera','aprender'], trad: 'Oxalá tivesse encontrado antes este método para aprender.' },
+  { text: 'Cuando _____ (tener) diez años, _____ (mudarse) a otra ciudad.', answers: ['tenía','nos mudamos'], trad: 'Quando tinha dez anos, nos mudamos para outra cidade.' },
+  { text: 'Me _____ (molestar) que la gente no _____ (respetar) el medio ambiente.', answers: ['molesta','respete'], trad: 'Me incomoda que as pessoas não respeitem o meio ambiente.' },
+  { text: 'Ella _____ (ponerse) a llorar en cuanto _____ (ver) la película.', answers: ['se puso','vio'], trad: 'Ela começou a chorar assim que viu o filme.' },
   { text: 'Es fundamental que los ciudadanos _____ (votar) y _____ (participar) en la democracia.', answers: ['voten','participen'], trad: 'É fundamental que os cidadãos votem e participem da democracia.' },
-  { text: 'Le _____ (encantar) a ella que su equipo _____ (ganar) el campeonato después de tanto esfuerzo.', answers: ['encantó','ganara'], trad: 'Ela adorou que seu time tivesse ganho o campeonato depois de tanto esforço.' },
+  { text: 'Aunque _____ (llegar) tarde, todavía _____ (poder) entrar al concierto.', answers: ['llegamos','pudimos'], trad: 'Mesmo chegando tarde, ainda pudemos entrar no show.' },
+  { text: 'Le _____ (encantar) que su hijo _____ (aprender) a tocar la guitarra.', answers: ['encantó','aprendiera'], trad: 'Adorou que seu filho tivesse aprendido a tocar violão.' },
+  { text: 'No hay nadie que _____ (conocer) mejor esa ciudad que ella.', answers: ['conozca'], trad: 'Não há ninguém que conheça melhor aquela cidade do que ela.' },
+  { text: 'Para que el proyecto _____ (tener) éxito, todos deben _____ (comprometerse).', answers: ['tenga','comprometerse'], trad: 'Para que o projeto tenha sucesso, todos devem se comprometer.' },
+  { text: 'Ayer _____ (reunirse) con sus amigos y _____ (hablar) de los viejos tiempos.', answers: ['se reunió','hablaron'], trad: 'Ontem se reuniu com os amigos e falaram dos velhos tempos.' },
+  { text: 'Me _____ (parecer) raro que él no _____ (contestar) mis mensajes.', answers: ['parece','conteste'], trad: 'Me parece estranho que ele não responda minhas mensagens.' },
+  { text: 'Si _____ (estudiar) más de joven, hoy _____ (tener) más oportunidades.', answers: ['hubiera estudiado','tendría'], trad: 'Se tivesse estudado mais quando jovem, hoje teria mais oportunidades.' },
+  { text: 'La semana pasada _____ (ir) al médico porque me _____ (doler) la cabeza.', answers: ['fui','dolía'], trad: 'Na semana passada fui ao médico porque estava com dor de cabeça.' },
+  { text: 'Es posible que ella _____ (cambiar) de opinión si tú le _____ (hablar) con calma.', answers: ['cambie','hablas'], trad: 'É possível que ela mude de opinião se você falar com calma.' },
+  { text: 'Cuídate mucho y no _____ (olvidar) _____ (tomar) tus medicamentos.', answers: ['olvides','tomar'], trad: 'Cuide-se muito e não se esqueça de tomar seus remédios.' },
+  { text: 'Fue entonces cuando _____ (darse) cuenta de que _____ (estar) enamorado.', answers: ['se dio','estaba'], trad: 'Foi então que percebeu que estava apaixonado.' },
+  { text: 'Siento que últimamente no _____ (dormir) bien y _____ (estar) muy cansado.', answers: ['duermo','estoy'], trad: 'Sinto que ultimamente não estou dormindo bem e estou muito cansado.' },
+  { text: 'El guía nos _____ (pedir) que no _____ (sacar) fotos dentro del museo.', answers: ['pidió','sacáramos'], trad: 'O guia nos pediu que não tirássemos fotos dentro do museu.' },
+  { text: 'No _____ (poder) creer lo que _____ (ver) con mis propios ojos.', answers: ['podía','vi'], trad: 'Não conseguia acreditar no que vi com meus próprios olhos.' },
+  { text: 'Ojalá que ellos _____ (llegar) a un acuerdo antes de que _____ (ser) demasiado tarde.', answers: ['lleguen','sea'], trad: 'Oxalá eles cheguem a um acordo antes que seja tarde demais.' },
+  { text: 'Cuando _____ (graduarse), _____ (decidir) viajar por toda América Latina.', answers: ['se graduó','decidió'], trad: 'Quando se formou, decidiu viajar por toda a América Latina.' },
+  { text: 'Me _____ (preocupar) que los niños no _____ (comer) suficientes verduras.', answers: ['preocupa','coman'], trad: 'Me preocupa que as crianças não comam legumes suficientes.' },
+  { text: 'Él _____ (trabajar) mucho durante años hasta que _____ (conseguir) su sueño.', answers: ['trabajó','consiguió'], trad: 'Ele trabalhou muito durante anos até realizar seu sonho.' },
+  { text: 'Si _____ (haber) sabido antes, te _____ (llamar) inmediatamente.', answers: ['hubiera','habría llamado'], trad: 'Se tivesse sabido antes, teria te ligado imediatamente.' },
+  { text: 'Espero que todos _____ (divertirse) mucho en la fiesta y _____ (volver) bien.', answers: ['se diviertan','vuelvan'], trad: 'Espero que todos se divirtam muito na festa e voltem bem.' },
+  { text: 'La directora insistió en que el equipo _____ (repetir) la presentación.', answers: ['repitiera'], trad: 'A diretora insistiu em que a equipe repetisse a apresentação.' },
+  { text: 'Por más que _____ (intentar), no _____ (lograr) abrir la puerta.', answers: ['intenté','logré'], trad: 'Por mais que tentei, não consegui abrir a porta.' },
+  { text: 'Ahora que _____ (terminar) el curso, _____ (sentirse) mucho más seguro.', answers: ['ha terminado','se siente'], trad: 'Agora que terminou o curso, sente-se muito mais confiante.' },
+  { text: 'Si tú _____ (querer), nosotros _____ (poder) estudiar juntos esta tarde.', answers: ['quieres','podemos'], trad: 'Se você quiser, podemos estudar juntos esta tarde.' },
+  { text: 'A pesar de que _____ (llover), la gente _____ (seguir) esperando en la cola.', answers: ['llovía','siguió'], trad: 'Apesar de chover, as pessoas continuaram esperando na fila.' },
+  { text: 'Le _____ (agradecer) que me _____ (ayudar) en ese momento tan difícil.', answers: ['agradezco','ayudara'], trad: 'Agradeço que você me tivesse ajudado naquele momento tão difícil.' },
+  { text: 'Cuando _____ (volver) del trabajo, _____ (encontrar) una carta en el buzón.', answers: ['volvió','encontró'], trad: 'Quando voltou do trabalho, encontrou uma carta na caixa de correio.' },
+  { text: 'Es urgente que alguien _____ (llamar) al médico y le _____ (explicar) los síntomas.', answers: ['llame','explique'], trad: 'É urgente que alguém ligue para o médico e explique os sintomas.' },
+  { text: 'No _____ (haber) terminado de hablar cuando ella ya _____ (salir) de la sala.', answers: ['había','había salido'], trad: 'Não tinha terminado de falar quando ela já tinha saído da sala.' },
+  { text: 'Quiero que me _____ (decir) la verdad aunque me _____ (doler).', answers: ['digas','duela'], trad: 'Quero que me diga a verdade mesmo que doa.' },
+  { text: 'Él siempre _____ (levantarse) temprano y _____ (hacer) ejercicio antes del trabajo.', answers: ['se levanta','hace'], trad: 'Ele sempre acorda cedo e faz exercício antes do trabalho.' },
+  { text: 'Nos _____ (sorprender) que nadie _____ (presentarse) a la entrevista.', answers: ['sorprendió','se presentara'], trad: 'Nos surpreendeu que ninguém tivesse aparecido para a entrevista.' },
+  { text: 'Aunque lo _____ (intentar) muchas veces, no _____ (poder) ganar el concurso.', answers: ['intentó','pudo'], trad: 'Embora tivesse tentado muitas vezes, não conseguiu ganhar o concurso.' },
+  { text: 'En cuanto _____ (poder), te _____ (enviar) los documentos que necesitas.', answers: ['pueda','enviaré'], trad: 'Assim que puder, te enviarei os documentos que você precisa.' },
+  { text: 'Necesitamos a alguien que _____ (tener) experiencia y _____ (conocer) el mercado.', answers: ['tenga','conozca'], trad: 'Precisamos de alguém que tenha experiência e conheça o mercado.' },
+  { text: 'Para que _____ (mejorar) tu pronunciación, es importante que _____ (escuchar) mucho.', answers: ['mejore','escuches'], trad: 'Para melhorar sua pronúncia, é importante que você ouça bastante.' },
+  { text: 'Después de que _____ (hablar) con el abogado, _____ (sentirse) más tranquilo.', answers: ['habló','se sintió'], trad: 'Depois de falar com o advogado, sentiu-se mais tranquilo.' },
 ];
 let currentLacuna = null;
 
@@ -3163,5 +3080,6 @@ function proximoTexto() {
 }
 
 </script>
+<img id="paulaFotoGlobal" src="data:image/jpeg;base64,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" style="display:none">
 </body>
 </html>
