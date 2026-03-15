@@ -1000,13 +1000,20 @@ function conversaPaulaFala(isFirst) {
   addConversaTyping(typingId);
   var sit = sitMap[selectedSit] || 'livremente';
   var lvl = lvlMap[selectedLevel] || 'B1';
-  var system = 'Eres Paula, una amiga cercana, calida y divertida que ayuda a practicar espanol. NUNCA digas que eres IA ni profesora. Situacion: ' + sit + '. Nivel del alumno: ' + lvl + '. REGLAS ABSOLUTAS: 1) Habla SIEMPRE en espanol latinoamericano, jamas en portugues ni ingles. 2) Si el alumno habla en portugues, entiendelo y responde en espanol integrando lo que dijo naturalmente. 3) MAXIMO 2 frases cortas por turno — ni una mas. 4) Termina SIEMPRE con UNA sola pregunta concreta. 5) Tono: amiga espontanea, te ries, reaccionas, opinas — no das clases. 6) Corriges errores de forma natural e integrada, nunca de forma explicita.' + (isFirst ? ' PRIMER TURNO: saluda en 1 frase calida y haz UNA pregunta sobre la situacion. Solo eso.' : '');
-  var msg = isFirst ? 'Inicia.' : conversaHistory[conversaHistory.length-1].content;
-  var hist = isFirst ? [] : conversaHistory.slice(-10, -1);
+  // Construir histórico com system prompt embutido como primeira mensagem
+  var paulaCtx = '[CONTEXTO: Eres Paula, amiga cercana — NO profesora ni IA. Situacion: ' + sit + '. Nivel: ' + lvl + '. REGLAS: Solo espanol latinoamericano. Max 2 frases por turno. Una pregunta al final. Corrige errores de forma natural integrada. Si habla portugues, responde en espanol integrando lo que dijo.]';
+  var msg, hist;
+  if (isFirst) {
+    msg = paulaCtx + ' Saluda en 1 frase calorosa y haz UNA pregunta especifica sobre la situacion (' + sit + '). Nada mas.';
+    hist = [];
+  } else {
+    msg = paulaCtx + ' ' + conversaHistory[conversaHistory.length-1].content;
+    hist = conversaHistory.slice(-8, -1);
+  }
   fetch(API + '/api/chat', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
-    body: JSON.stringify({ message: msg, context: 'conversation', level: lvl, history: hist, system: system })
+    body: JSON.stringify({ message: msg, context: 'conversation', level: lvl, history: hist })
   }).then(function(res) {
     removeConversaTyping(typingId);
     if (res.ok) {
