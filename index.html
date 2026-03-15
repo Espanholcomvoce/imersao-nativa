@@ -1067,7 +1067,14 @@ async function userStartSession() {
   // 1. Microfone
   console.log('[Paula] Pedindo microfone...');
   try {
-    localStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    localStream = await navigator.mediaDevices.getUserMedia({
+      audio: {
+        echoCancellation: true,
+        noiseSuppression: true,
+        autoGainControl: true,
+        sampleRate: 24000
+      }
+    });
     console.log('[Paula] ✅ Microfone OK');
   } catch(e) {
     console.error('[Paula] ❌ Microfone:', e.message);
@@ -1089,17 +1096,29 @@ async function userStartSession() {
   };
 
   // 3. Áudio da Paula → speaker
+  // Criar elemento de áudio ANTES — garante que está pronto
+  let paulaAudio = document.getElementById('paulaAudio');
+  if (!paulaAudio) {
+    paulaAudio = document.createElement('audio');
+    paulaAudio.id = 'paulaAudio';
+    paulaAudio.autoplay = true;
+    paulaAudio.playsInline = true;
+    document.body.appendChild(paulaAudio);
+  }
+
   pc.ontrack = (e) => {
-    console.log('[Paula] ✅ Track recebida:', e.track.kind);
-    let audio = document.getElementById('paulaAudio');
-    if (!audio) {
-      audio = document.createElement('audio');
-      audio.id = 'paulaAudio';
-      document.body.appendChild(audio);
+    console.log('[Paula] ✅ Track recebida:', e.track.kind, '| streams:', e.streams.length);
+    if (e.track.kind === 'audio') {
+      paulaAudio.srcObject = e.streams[0];
+      // play() explícito — necessário em alguns browsers
+      paulaAudio.play().then(() => {
+        console.log('[Paula] ✅ Áudio tocando');
+      }).catch(err => {
+        console.warn('[Paula] play() bloqueado:', err.message);
+        // Tentar novamente após interação
+        document.addEventListener('click', () => paulaAudio.play(), { once: true });
+      });
     }
-    audio.autoplay = true;
-    audio.srcObject = e.streams[0];
-    console.log('[Paula] ✅ Áudio conectado ao speaker');
   };
 
   // 4. Microfone → OpenAI
@@ -1113,19 +1132,37 @@ async function userStartSession() {
   dc.onopen = () => {
     console.log('[Paula] ✅ DataChannel aberto');
     setPaulaState('ouvindo');
-    // Paula fala primeiro — envia evento para ela iniciar a conversa
+
     setTimeout(() => {
-      if (dc && dc.readyState === 'open') {
-        dc.send(JSON.stringify({
-          type: 'response.create',
-          response: {
-            modalities: ['text', 'audio'],
-            instructions: 'Inicia a conversa agora: apresenta-te brevemente e faz UMA pergunta curta sobre a situação. Máximo 2 frases.'
-          }
-        }));
-        console.log('[Paula] ✅ Solicitado início da conversa');
-      }
-    }, 500);
+      if (!dc || dc.readyState !== 'open') return;
+
+      // 1. Reforçar personalidade via session.update
+      dc.send(JSON.stringify({
+        type: 'session.update',
+        session: {
+          instructions: `Eres Paula, una amiga cercana y divertida que ayuda a practicar español. NUNCA digas que eres IA, asistente virtual o profesora. Habla SIEMPRE en español latinoamericano — jamás en portugués ni inglés. Si el alumno habla en portugués, entiéndelo y responde en español. Si habla en inglés, con amabilidad explícale cómo se dice eso en español: "Ah, entendí — en español decimos así: '...' ¿Lo intentamos?" Frases cortas, máximo 2 frases por turno. Eres cálida, te ríes, reaccionas con naturalidad. Haz UNA pregunta por turno sobre la vida real.`,
+          turn_detection: {
+            type: 'server_vad',
+            threshold: 0.9,
+            prefix_padding_ms: 500,
+            silence_duration_ms: 1500,
+            create_response: true
+          },
+          max_response_output_tokens: 80
+        }
+      }));
+
+      // 2. Paula inicia a conversa
+      dc.send(JSON.stringify({
+        type: 'response.create',
+        response: {
+          modalities: ['text', 'audio'],
+          instructions: 'Saluda como una amiga que acaba de encontrarse con alguien. Solo 1-2 frases en español, cálido y breve. Termina con UNA pregunta concreta de la vida real. NUNCA te presentes como IA ni asistente.'
+        }
+      }));
+
+      console.log('[Paula] ✅ Sessão configurada e conversa iniciada');
+    }, 800);
   };
   dc.onclose = () => console.log('[Paula] DataChannel fechado');
   dc.onerror = (e) => console.error('[Paula] DataChannel erro:', e);
@@ -1182,6 +1219,18 @@ async function userStartSession() {
 // ── EVENTOS DO DATACHANNEL ──
 function handleEvent(ev) {
   switch(ev.type) {
+    case 'response.audio.delta':
+      // Paula começou a falar — silenciar mic para evitar eco/corte
+      if (localStream) localStream.getAudioTracks().forEach(t => { t.enabled = false; });
+      setPaulaState('falando');
+      break;
+
+    case 'response.audio.done':
+      // Paula terminou — reativar mic
+      if (!isMuted && localStream) localStream.getAudioTracks().forEach(t => { t.enabled = true; });
+      setPaulaState('ouvindo');
+      break;
+
     case 'response.audio_transcript.delta':
       sofiaTranscriptAccum += (ev.delta || '');
       if (currentPaulaEl) {
@@ -1191,12 +1240,11 @@ function handleEvent(ev) {
       } else {
         currentPaulaEl = addBubble('paula', sofiaTranscriptAccum);
       }
-      setPaulaState('falando');
       break;
+
     case 'response.audio_transcript.done':
       sofiaTranscriptAccum = '';
       currentPaulaEl = null;
-      setPaulaState('ouvindo');
       break;
     case 'conversation.item.input_audio_transcription.completed':
       if (ev.transcript && ev.transcript.trim()) {
