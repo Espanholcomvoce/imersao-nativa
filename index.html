@@ -1242,13 +1242,12 @@ function handleEvent(ev) {
       break;
 
     case 'response.audio.done':
-      // Áudio terminou — aguardar bastante antes de reativar mic
-      // para não captar eco do speaker
+      // Áudio terminou — aguardar antes de reativar mic
       setTimeout(() => {
         paulaFalando = false;
         if (!isMuted && localStream) localStream.getAudioTracks().forEach(t => { t.enabled = true; });
         setPaulaState('ouvindo');
-      }, 800);
+      }, 1500);
       break;
 
     case 'response.audio_transcript.delta':
