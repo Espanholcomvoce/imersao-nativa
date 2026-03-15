@@ -434,13 +434,13 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
 <div id="conversa" class="screen" style="padding:0;justify-content:flex-start">
 <div class="chat-wrap">
   <div class="chat-header">
-    <button class="back-btn" onclick="endConversaSession();goTo('setup-conversa')" style="color:#fff">←</button>
+    <button class="back-btn" onclick="endConversaSession();goTo('setup-conversa')" style="color:#fff">&#8592;</button>
     <div style="display:flex;align-items:center;gap:10px;flex:1">
       <div style="width:36px;height:36px;border-radius:50%;overflow:hidden;flex-shrink:0;border:2px solid rgba(139,92,246,0.5)">
         <img id="paulaAvatarHeader" style="width:100%;height:100%;object-fit:cover;object-position:center 5%">
       </div>
       <div>
-        <div style="font-weight:700;font-size:15px;font-family:'Playfair Display',serif">Paula</div>
+        <div style="font-weight:700;font-size:15px">Paula</div>
         <div id="chatLevelBadge" style="font-size:11px;color:var(--text2)"></div>
       </div>
     </div>
@@ -448,14 +448,11 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
   <div class="messages" id="conversaMsgs"></div>
   <div class="chat-input-area">
     <div class="input-row">
-      <textarea class="msg-input" id="conversaInput" rows="1"
-        placeholder="Escribe en español..."
-        onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendConversaMsg()}"
-        oninput="autoResize(this)"></textarea>
-      <button class="icon-btn" id="conversaMicBtn" onclick="toggleConversaMic()">🎤</button>
-      <button class="icon-btn send-ready" onclick="sendConversaMsg()">➤</button>
+      <textarea class="msg-input" id="conversaInput" rows="1" placeholder="Escribe en español..." onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendConversaMsg()}" oninput="autoResize(this)"></textarea>
+      <button class="icon-btn" id="conversaMicBtn" onclick="toggleConversaMic()">&#127908;</button>
+      <button class="icon-btn send-ready" onclick="sendConversaMsg()">&#10148;</button>
     </div>
-    <div id="conversaListening" style="display:none;color:var(--purple);font-size:11px;text-align:center;margin-top:6px">🔴 Ouvindo... toque 🎤 para parar</div>
+    <div id="conversaListening" style="display:none;color:var(--purple);font-size:11px;text-align:center;margin-top:6px">Ouvindo... toque no mic para parar</div>
   </div>
 </div>
 </div>
@@ -977,11 +974,13 @@ function checkStartReady() {
 
 function startConversation() {
   if (!selectedLevel || !selectedSit) return;
-  const sitNames = { café:'No Café', hotel:'No Hotel', trabajo:'Trabalho', médico:'Médico', viaje:'Viagem', mercado:'Mercado', amigos:'Amigos', libre:'Livre' };
-  const lvlNames = { beginner:'Iniciante (A1-A2)', intermediate:'Intermediário (B1-B2)', advanced:'Avançado (C1-C2)' };
-  document.getElementById('chatLevelBadge').textContent = sitNames[selectedSit] + ' · ' + lvlNames[selectedLevel];
-  const foto = document.getElementById('paulaFotoGlobal');
-  const header = document.getElementById('paulaAvatarHeader');
+  var sitNames = { cafe:'No Cafe', hotel:'No Hotel', trabajo:'Trabalho', medico:'Medico', viaje:'Viagem', mercado:'Mercado', amigos:'Amigos', libre:'Livre' };
+  var lvlNames = { beginner:'Iniciante (A1-A2)', intermediate:'Intermediario (B1-B2)', advanced:'Avancado (C1-C2)' };
+  var sn = {'café':'No Café','hotel':'No Hotel','trabajo':'Trabalho','médico':'Médico','viaje':'Viagem','mercado':'Mercado','amigos':'Amigos','libre':'Livre'};
+  var ln = {'beginner':'Iniciante (A1-A2)','intermediate':'Intermediário (B1-B2)','advanced':'Avançado (C1-C2)'};
+  document.getElementById('chatLevelBadge').textContent = (sn[selectedSit]||selectedSit) + ' · ' + (ln[selectedLevel]||selectedLevel);
+  var foto = document.getElementById('paulaFotoGlobal');
+  var header = document.getElementById('paulaAvatarHeader');
   if (foto && header) header.src = foto.src;
   conversaHistory = [];
   document.getElementById('conversaMsgs').innerHTML = '';
@@ -989,74 +988,74 @@ function startConversation() {
   conversaPaulaFala(true);
 }
 
-let conversaHistory = [];
-let conversaRec = null;
-let conversaListening = false;
-let conversaTTS = null;
-let paulaTalando = false;
+var conversaHistory = [];
+var conversaRec = null;
+var conversaListening = false;
+var conversaTTS = null;
+var paulaTalando = false;
 
-async function sendConversaMsg() {
-  const input = document.getElementById('conversaInput');
-  const text = input.value.trim();
+function sendConversaMsg() {
+  var input = document.getElementById('conversaInput');
+  var text = input.value.trim();
   if (!text || paulaTalando) return;
   input.value = '';
   input.style.height = 'auto';
   addConversaMsg('user', text);
   conversaHistory.push({ role: 'user', content: text });
-  await conversaPaulaFala(false);
+  conversaPaulaFala(false);
 }
 
-async function conversaPaulaFala(isFirst) {
+function conversaPaulaFala(isFirst) {
   if (paulaTalando) return;
   paulaTalando = true;
-  const sitMap = { café:'num café', hotel:'num hotel', trabajo:'no trabalho', médico:'no médico', viaje:'numa viagem', mercado:'no mercado', amigos:'com amigos', libre:'livremente' };
-  const lvlMap = { beginner:'A1', intermediate:'B1', advanced:'C1' };
-  const typingId = 'typing-' + Date.now();
+  var sitMap = {'café':'num café','hotel':'num hotel','trabajo':'no trabalho','médico':'no médico','viaje':'numa viagem','mercado':'no mercado','amigos':'com amigos','libre':'livremente'};
+  var lvlMap = {'beginner':'A1','intermediate':'B1','advanced':'C1'};
+  var typingId = 'typing-' + Date.now();
   addConversaTyping(typingId);
-  const system = 'Eres Paula, una amiga cercana y calida que ayuda a practicar espanol. NUNCA digas que eres IA ni profesora. Situacion: ' + (sitMap[selectedSit] || 'libre') + '. Nivel: ' + (lvlMap[selectedLevel] || 'B1') + '. REGLAS: Habla SIEMPRE en espanol latinoamericano. Si el alumno habla en portugues, responde en espanol integrando lo que dijo. Maximo 2 frases por turno. Termina con UNA pregunta. Tono: amiga calida, divertida. Corrige errores de forma natural.' + (isFirst ? ' PRIMER MENSAJE: saluda brevemente como amiga y haz UNA pregunta sobre la situacion.' : '');
-  try {
-    const res = await fetch(API + '/api/chat', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
-      body: JSON.stringify({
-        message: isFirst ? 'Inicia la conversacion.' : conversaHistory[conversaHistory.length-1].content,
-        context: 'conversation',
-        level: lvlMap[selectedLevel] || 'B1',
-        history: isFirst ? [] : conversaHistory.slice(-10, -1),
-        system: system
-      })
-    });
+  var sit = sitMap[selectedSit] || 'livremente';
+  var lvl = lvlMap[selectedLevel] || 'B1';
+  var firstMsg = isFirst ? ' PRIMER MENSAJE: saluda brevemente y haz UNA pregunta sobre la situacion.' : '';
+  var system = 'Eres Paula, una amiga cercana y calida. NUNCA digas que eres IA ni profesora. Situacion: ' + sit + '. Nivel: ' + lvl + '. Habla SIEMPRE en espanol latinoamericano. Si el alumno habla en portugues, responde en espanol integrando lo que dijo. Maximo 2 frases por turno. Termina con UNA pregunta. Tono: amiga calida y divertida.' + firstMsg;
+  var msg = isFirst ? 'Inicia la conversacion.' : conversaHistory[conversaHistory.length-1].content;
+  var hist = isFirst ? [] : conversaHistory.slice(-10, -1);
+  fetch(API + '/api/chat', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+    body: JSON.stringify({ message: msg, context: 'conversation', level: lvl, history: hist, system: system })
+  }).then(function(res) {
     removeConversaTyping(typingId);
     if (res.ok) {
-      const data = await res.json();
-      const reply = data.reply || data.message || '';
-      addConversaMsg('paula', reply);
-      conversaHistory.push({ role: 'assistant', content: reply });
-      await conversaSpeakTTS(reply);
+      return res.json().then(function(data) {
+        var reply = data.reply || data.message || '';
+        addConversaMsg('paula', reply);
+        conversaHistory.push({ role: 'assistant', content: reply });
+        paulaTalando = false;
+        conversaSpeakTTS(reply);
+      });
     } else {
-      addConversaMsg('paula', 'Ups! Algo salio mal. Lo intentamos de nuevo?');
+      addConversaMsg('paula', 'Ups! Algo salio mal.');
+      paulaTalando = false;
     }
-  } catch(e) {
+  }).catch(function() {
     removeConversaTyping(typingId);
     addConversaMsg('paula', 'Ups! Sin conexion.');
-  }
-  paulaTalando = false;
+    paulaTalando = false;
+  });
 }
 
-async function conversaSpeakTTS(text) {
-  try {
-    const res = await fetch(API + '/api/tts/vocab?text=' + encodeURIComponent(text) + '&type=example', {
-      headers: { 'Authorization': 'Bearer ' + token }
-    });
+function conversaSpeakTTS(text) {
+  fetch(API + '/api/tts/vocab?text=' + encodeURIComponent(text) + '&type=example', {
+    headers: { 'Authorization': 'Bearer ' + token }
+  }).then(function(res) {
     if (!res.ok) return;
-    const blob = await res.blob();
-    const url = URL.createObjectURL(blob);
-    if (conversaTTS) { try { conversaTTS.pause(); } catch(e) {} }
-    conversaTTS = new Audio(url);
-    conversaTTS.play();
-    await new Promise(resolve => { conversaTTS.onended = resolve; conversaTTS.onerror = resolve; });
-    URL.revokeObjectURL(url);
-  } catch(e) {}
+    return res.blob().then(function(blob) {
+      var url = URL.createObjectURL(blob);
+      if (conversaTTS) { try { conversaTTS.pause(); } catch(e) {} }
+      conversaTTS = new Audio(url);
+      conversaTTS.play();
+      conversaTTS.onended = function() { URL.revokeObjectURL(url); };
+    });
+  }).catch(function() {});
 }
 
 function toggleConversaMic() {
@@ -1066,18 +1065,19 @@ function toggleConversaMic() {
   }
   if (paulaTalando) return;
   var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-  if (!SR) { alert('Use Chrome para usar o microfone'); return; }
+  if (!SR) { alert('Use Chrome para o microfone'); return; }
   conversaRec = new SR();
   conversaRec.lang = 'pt-BR';
   conversaRec.continuous = false;
   conversaRec.interimResults = true;
   conversaRec.onstart = function() {
     conversaListening = true;
-    document.getElementById('conversaMicBtn').textContent = '🔴';
+    document.getElementById('conversaMicBtn').textContent = '⏹';
     document.getElementById('conversaListening').style.display = 'block';
   };
   conversaRec.onresult = function(e) {
-    var t = Array.from(e.results).map(function(r){ return r[0].transcript; }).join('');
+    var t = '';
+    for (var i = 0; i < e.results.length; i++) t += e.results[i][0].transcript;
     document.getElementById('conversaInput').value = t;
     autoResize(document.getElementById('conversaInput'));
   };
@@ -1097,15 +1097,14 @@ function toggleConversaMic() {
 function addConversaMsg(who, text) {
   var msgs = document.getElementById('conversaMsgs');
   var row = document.createElement('div');
-  row.className = 'msg-row' + (who === 'user' ? ' user' : '');
+  row.className = who === 'user' ? 'msg-row user' : 'msg-row';
   var foto = document.getElementById('paulaFotoGlobal');
   var src = foto ? foto.src : '';
+  var safeText = text.split('\n').join('<br>');
   if (who === 'paula') {
-    var safeText = text.split('\n').join('<br>');
     row.innerHTML = '<div class="msg-avatar" style="padding:0;overflow:hidden"><img src="' + src + '" style="width:100%;height:100%;object-fit:cover;object-position:center 5%"></div><div class="msg-bubble assistant">' + safeText + '</div>';
   } else {
-    var safeText2 = text.split('\n').join('<br>');
-    row.innerHTML = '<div class="msg-bubble user">' + safeText2 + '</div>';
+    row.innerHTML = '<div class="msg-bubble user">' + safeText + '</div>';
   }
   msgs.appendChild(row);
   msgs.scrollTop = msgs.scrollHeight;
