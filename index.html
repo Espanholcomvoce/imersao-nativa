@@ -139,7 +139,7 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
 .card-theme-tag{position:absolute;top:10px;left:12px;font-size:10px;color:var(--text2);font-weight:600;text-transform:uppercase;letter-spacing:.5px}
 .card-type-tag{position:absolute;top:10px;right:12px;font-size:10px;background:rgba(168,85,247,.2);color:#a78bfa;padding:2px 7px;border-radius:99px;font-weight:600}
 .card-shadow-hint{margin-top:10px;font-size:12px;color:#a78bfa;font-style:italic}
-.sre-celebration{background:linear-gradient(135deg,rgba(168,85,247,.2),rgba(245,158,11,.2));border:1px solid var(--gold);border-radius:20px;padding:24px;text-align:center;margin-bottom:16px}
+.sre-celebration{background:linear-gradient(135deg,rgba(168,85,247,.25),rgba(245,158,11,.25));border:2px solid var(--gold);border-radius:20px;padding:28px 20px;text-align:center;animation:celebIn .4s ease;margin-bottom:16px}
 .celebration-emoji{font-size:52px;margin-bottom:8px;animation:bounce2 .6s infinite alternate}
 .celebration-text{font-size:18px;font-weight:700;color:var(--gold);margin-bottom:16px}
 @keyframes bounce2{from{transform:scale(1)}to{transform:scale(1.15)}}
@@ -239,6 +239,7 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
 @keyframes bounce{0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-7px)}}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(239,68,68,.4)}50%{box-shadow:0 0 0 10px rgba(239,68,68,0)}}
 @keyframes spin{to{transform:rotate(360deg)}}
+@keyframes celebIn{from{opacity:0;transform:scale(0.8) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}
 
 @supports(padding:max(0px)){
   .screen{padding-top:max(20px,env(safe-area-inset-top));padding-left:max(20px,env(safe-area-inset-left));padding-right:max(20px,env(safe-area-inset-right))}
@@ -382,7 +383,7 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
         <div class="sre-card-stats">
           <span class="sre-mini-stat">🔥 <span id="homStreak">0</span> dias</span>
           <span class="sre-mini-stat">⭐ <span id="homStars">0</span> estrelas</span>
-          <span class="sre-mini-stat" id="homLevel">🌱 Iniciante</span>
+          
         </div>
       </div>
     </div>
@@ -526,9 +527,26 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
   </div>
   <!-- CELEBRAÇÃO -->
   <div class="sre-celebration" id="sreCelebration" style="display:none">
-    <div class="celebration-emoji" id="celebrationEmoji">🎉</div>
-    <div class="celebration-text" id="celebrationText">Meta do dia concluída!</div>
-    <button class="btn-sm" onclick="hideCelebration()">Continuar →</button>
+    <div id="celConfetti" style="font-size:32px;letter-spacing:4px;margin-bottom:8px">🎉✨🔥✨🎉</div>
+    <div id="celTitle" style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;margin-bottom:6px">¡Lo lograste!</div>
+    <div id="celSub" style="color:var(--text2);font-size:14px;margin-bottom:16px">Meta do dia concluída!</div>
+    <div style="display:flex;gap:16px;justify-content:center;margin-bottom:20px">
+      <div style="text-align:center">
+        <div id="celWords" style="font-size:28px;font-weight:800;color:var(--gold);font-family:'Playfair Display',serif">10</div>
+        <div style="font-size:11px;color:var(--text2)">palavras</div>
+      </div>
+      <div style="width:1px;background:var(--border)"></div>
+      <div style="text-align:center">
+        <div id="celStreak" style="font-size:28px;font-weight:800;color:#f97316;font-family:'Playfair Display',serif">🔥1</div>
+        <div style="font-size:11px;color:var(--text2)">dias seguidos</div>
+      </div>
+      <div style="width:1px;background:var(--border)"></div>
+      <div style="text-align:center">
+        <div id="celXp" style="font-size:28px;font-weight:800;color:var(--green);font-family:'Playfair Display',serif">+10</div>
+        <div style="font-size:11px;color:var(--text2)">XP</div>
+      </div>
+    </div>
+    <button class="btn-sm" onclick="hideCelebration()" style="width:100%;padding:14px;font-size:15px">Continuar praticando →</button>
   </div>
   <!-- BOTÃO GERENCIAR VOCABULÁRIO -->
   <div style="margin-top:16px;text-align:center">
@@ -1315,9 +1333,31 @@ function rateCard(rating) {
 }
 
 function showCelebration(done, stars, level) {
+  var stats = getSreStats();
+  var streak = stats.streak || 1;
   var cel = document.getElementById('sreCelebration');
-  document.getElementById('celebrationEmoji').textContent = level.badge;
-  document.getElementById('celebrationText').textContent = level.badge + ' ' + done + ' palavras hoje! Nível: ' + level.name;
+
+  // Atualizar números
+  document.getElementById('celWords').textContent = done;
+  document.getElementById('celStreak').textContent = '🔥' + streak;
+  document.getElementById('celXp').textContent = '+' + (done * 10);
+
+  // Mensagem variada
+  var msgs = [
+    ['¡Increíble!', 'Você arrasou hoje! 🚀'],
+    ['¡Fantástico!', 'Sua consistência é incrível! 💪'],
+    ['¡Excelente!', 'Mais um dia de evolução! ⭐'],
+    ['¡Lo lograste!', 'Meta do dia concluída! 🎯'],
+    ['¡Brillante!', 'Seu espanhol está crescendo! 🌱'],
+  ];
+  var pick = msgs[Math.floor(Math.random() * msgs.length)];
+  document.getElementById('celTitle').textContent = pick[0];
+  document.getElementById('celSub').textContent = pick[1];
+
+  // Confete variado
+  var confetes = ['🎉✨🔥✨🎉','⭐🎊💫🎊⭐','🏆✨🎯✨🏆','🔥💪⚡💪🔥'];
+  document.getElementById('celConfetti').textContent = confetes[Math.floor(Math.random() * confetes.length)];
+
   cel.style.display = 'block';
   cel.scrollIntoView({behavior:'smooth', block:'center'});
 }
