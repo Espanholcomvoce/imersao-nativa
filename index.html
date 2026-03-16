@@ -1047,7 +1047,7 @@ function conversaPaulaFala(isFirst) {
   var lvl = lvlMap[selectedLevel] || 'B1';
   // Construir histórico com system prompt embutido como primeira mensagem
   // Contexto vai em CADA mensagem para Paula não perder o personagem
-  var instrucoes = 'Paula=amiga, no IA. Espanol latinoamericano. Max 2 frases. 1 pregunta. Correccion natural integrada sin asteriscos.';
+  var instrucoes = 'Eres Paula, amiga divertida. Espanol latinoamericano solamente. REGLAS: (1) Max 2 frases cortas. (2) UNA pregunta al final. (3) Correccion SIEMPRE integrada de forma natural — si el alumno comete un error, usa la forma correcta en tu respuesta sin señalarlo. (4) Varia los temas — no te quedes en lo mismo, introduce situaciones nuevas, propone algo, cuenta algo tuyo. (5) Sé espontanea: cuéntale algo tuyo, opina, ríete, reacciona de verdad. No seas solo una pregunta-maquina.';
   var msg, hist;
   if (isFirst) {
     msg = instrucoes + ' Situacion: ' + sit + '. Saluda en 1 frase y haz UNA pregunta. Nada mas.';
@@ -1118,6 +1118,9 @@ function toggleConversaMic() {
   conversaRec.onstart = function() {
     conversaListening = true;
     micSetActive(true);
+    // Dar feedback claro que está ouvindo
+    document.getElementById('conversaListening').textContent = '🔴 Pode falar...';
+    document.getElementById('conversaListening').style.display = 'block';
   };
 
   conversaRec.onresult = function(e) {
@@ -1126,8 +1129,13 @@ function toggleConversaMic() {
       if (e.results[i].isFinal) final += e.results[i][0].transcript;
       else interim += e.results[i][0].transcript;
     }
-    document.getElementById('conversaInput').value = final || interim;
+    var texto = final || interim;
+    document.getElementById('conversaInput').value = texto;
     autoResize(document.getElementById('conversaInput'));
+    // Mostrar no hint o que está sendo reconhecido
+    if (interim) {
+      document.getElementById('conversaListening').textContent = '🔴 ' + interim + '...';
+    }
   };
 
   conversaRec.onend = function() {
@@ -1181,8 +1189,7 @@ function iniciarEscutaMaosLivres() {
   maosLivresRec.interimResults = false;
 
   maosLivresRec.onstart = function() {
-    document.getElementById('maosLivresStatus').textContent = 'Ouvindo...';
-    // Ondas roxas — escutando
+    document.getElementById('maosLivresStatus').textContent = '🎤 Pode falar...';
     document.querySelectorAll('.onda-bar').forEach(function(b) {
       b.style.background = '#a855f7';
     });
