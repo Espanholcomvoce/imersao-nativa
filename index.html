@@ -1044,17 +1044,18 @@ function conversaPaulaFala(isFirst) {
   var sit = sitMap[selectedSit] || 'livremente';
   var lvl = lvlMap[selectedLevel] || 'B1';
   // Construir histórico com system prompt embutido como primeira mensagem
-  var paulaCtx = '[Paula: amiga, no IA. Situacion: ' + sit + '. Max 2 frases. Una pregunta.]';
+  // Contexto vai em CADA mensagem para Paula não perder o personagem
+  var instrucoes = 'INSTRUCCIONES (seguir siempre): Eres Paula, amiga cercana. NUNCA corrijas con asteriscos ni simbolos — integra la correccion de forma natural en tu respuesta (ej: si dice "yo gustaría" di "¡Claro, me gustaría también!"). MAXIMO 1-2 frases por respuesta. UNA sola pregunta al final. Sin monologos. Sin explicaciones de gramatica.';
   var msg, hist;
   if (isFirst) {
-    msg = paulaCtx + ' Saluda en 1 frase y haz UNA pregunta sobre la situacion: ' + sit + '.';
+    msg = instrucoes + ' Situacion: ' + sit + '. Saluda en 1 frase y haz UNA pregunta. Nada mas.';
     hist = [];
   } else {
-    // Enviar só a mensagem do aluno, sem o contexto acumulado
-    msg = conversaHistory[conversaHistory.length-1].content;
-    // Histórico limpo — só os pares de conversa reais
-    hist = conversaHistory.slice(-8, -1).filter(function(m) {
-      return !m.content.startsWith('[Paula:') && !m.content.startsWith('[CONTEXTO:');
+    var alumnoMsg = conversaHistory[conversaHistory.length-1].content;
+    msg = instrucoes + ' El alumno dijo: "' + alumnoMsg + '"';
+    // Histórico só com pares reais de conversa
+    hist = conversaHistory.slice(-6, -1).filter(function(m) {
+      return m.content.indexOf('INSTRUCCIONES') === -1;
     });
   }
   fetch(API + '/api/chat', {
@@ -1108,8 +1109,8 @@ function toggleConversaMic() {
   if (!SR) { alert('Use Chrome para usar o microfone'); return; }
   conversaRec = new SR();
   // Reconhece espanhol E português — melhora reconhecimento
-  conversaRec.lang = selectedLevel === 'beginner' ? 'pt-BR' : 'es-419';
-  conversaRec.continuous = true;
+  conversaRec.lang = 'es-MX';
+  conversaRec.continuous = false;
   conversaRec.interimResults = true;
 
   conversaRec.onstart = function() {
@@ -1173,7 +1174,7 @@ function iniciarEscutaMaosLivres() {
   var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
   if (!SR) return;
   maosLivresRec = new SR();
-  maosLivresRec.lang = selectedLevel === 'beginner' ? 'pt-BR' : 'es-419';
+  maosLivresRec.lang = 'es-MX';
   maosLivresRec.continuous = false;
   maosLivresRec.interimResults = false;
 
