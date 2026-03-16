@@ -1031,6 +1031,8 @@ function sendConversaMsg() {
   input.style.height = 'auto';
   addConversaMsg('user', text);
   conversaHistory.push({ role: 'user', content: text });
+  // Limitar histórico para não sobrecarregar contexto
+  if (conversaHistory.length > 60) conversaHistory = conversaHistory.slice(-60);
   conversaPaulaFala(false);
 }
 
@@ -1045,7 +1047,7 @@ function conversaPaulaFala(isFirst) {
   var lvl = lvlMap[selectedLevel] || 'B1';
   // Construir histórico com system prompt embutido como primeira mensagem
   // Contexto vai em CADA mensagem para Paula não perder o personagem
-  var instrucoes = 'INSTRUCCIONES (seguir siempre): Eres Paula, amiga cercana. NUNCA corrijas con asteriscos ni simbolos — integra la correccion de forma natural en tu respuesta (ej: si dice "yo gustaría" di "¡Claro, me gustaría también!"). MAXIMO 1-2 frases por respuesta. UNA sola pregunta al final. Sin monologos. Sin explicaciones de gramatica.';
+  var instrucoes = 'Paula=amiga, no IA. Espanol latinoamericano. Max 2 frases. 1 pregunta. Correccion natural integrada sin asteriscos.';
   var msg, hist;
   if (isFirst) {
     msg = instrucoes + ' Situacion: ' + sit + '. Saluda en 1 frase y haz UNA pregunta. Nada mas.';
@@ -1054,7 +1056,7 @@ function conversaPaulaFala(isFirst) {
     var alumnoMsg = conversaHistory[conversaHistory.length-1].content;
     msg = instrucoes + ' El alumno dijo: "' + alumnoMsg + '"';
     // Histórico só com pares reais de conversa
-    hist = conversaHistory.slice(-6, -1).filter(function(m) {
+    hist = conversaHistory.slice(-30, -1).filter(function(m) {
       return m.content.indexOf('INSTRUCCIONES') === -1;
     });
   }
@@ -1193,6 +1195,7 @@ function iniciarEscutaMaosLivres() {
     // Enviar automaticamente
     addConversaMsg('user', text);
     conversaHistory.push({ role: 'user', content: text });
+    if (conversaHistory.length > 60) conversaHistory = conversaHistory.slice(-60);
     // Ondas cinza — processando
     document.querySelectorAll('.onda-bar').forEach(function(b) {
       b.style.background = '#d1d5db';
@@ -1221,8 +1224,9 @@ function iniciarEscutaMaosLivres() {
   };
 
   maosLivresRec.onerror = function(e) {
-    if (e.error === 'no-speech' && maosLivresAtivo && !paulaTalando) {
-      setTimeout(iniciarEscutaMaosLivres, 200);
+    if (maosLivresAtivo && !paulaTalando) {
+      // Reiniciar para qualquer tipo de erro
+      setTimeout(iniciarEscutaMaosLivres, 500);
     }
   };
 
