@@ -1112,7 +1112,7 @@ function toggleConversaMic() {
   conversaRec = new SR();
   // Reconhece espanhol E português — melhora reconhecimento
   conversaRec.lang = 'es-MX';
-  conversaRec.continuous = false;
+  conversaRec.continuous = true;   // mantém engine ativo — não corta início
   conversaRec.interimResults = true;
 
   conversaRec.onstart = function() {
@@ -1123,26 +1123,30 @@ function toggleConversaMic() {
     document.getElementById('conversaListening').style.display = 'block';
   };
 
+  var _finalTranscript = '';
   conversaRec.onresult = function(e) {
-    var final = '', interim = '';
-    for (var i = 0; i < e.results.length; i++) {
-      if (e.results[i].isFinal) final += e.results[i][0].transcript;
-      else interim += e.results[i][0].transcript;
+    var interim = '';
+    for (var i = e.resultIndex; i < e.results.length; i++) {
+      if (e.results[i].isFinal) {
+        _finalTranscript += e.results[i][0].transcript + ' ';
+      } else {
+        interim += e.results[i][0].transcript;
+      }
     }
-    var texto = final || interim;
+    var texto = (_finalTranscript + interim).trim();
     document.getElementById('conversaInput').value = texto;
     autoResize(document.getElementById('conversaInput'));
-    // Mostrar no hint o que está sendo reconhecido
     if (interim) {
-      document.getElementById('conversaListening').textContent = '🔴 ' + interim + '...';
+      document.getElementById('conversaListening').textContent = '🔴 ' + texto + '...';
     }
   };
 
   conversaRec.onend = function() {
     conversaListening = false;
     micSetActive(false);
-    // Enviar automaticamente
-    var text = document.getElementById('conversaInput').value.trim();
+    var text = (_finalTranscript || document.getElementById('conversaInput').value).trim();
+    _finalTranscript = '';
+    document.getElementById('conversaInput').value = text;
     if (text) {
       setTimeout(function() { sendConversaMsg(); }, 100);
     }
