@@ -1024,16 +1024,31 @@ function enviarTexto() {
   cvPaulaResponde(false);
 }
 
+// Micro-reações aleatórias — variam para não repetir
+var _ultimaReacao = '';
+function cvMicroReacao() {
+  var opcoes = ['mmm...', 'a ver...', 'jaja...', 'ok...', 'claro...', 'uf...', 'bueno...'];
+  var filtradas = opcoes.filter(function(o) { return o !== _ultimaReacao; });
+  var escolha = filtradas[Math.floor(Math.random() * filtradas.length)];
+  _ultimaReacao = escolha;
+  return escolha;
+}
+
 function cvPaulaResponde(isFirst) {
   if (cvPaulaTalando) return;
   cvPaulaTalando = true;
-  cvSetStatus('pensando');
-  var typingId = 'typing' + Date.now();
-  cvAddTyping(typingId);
 
-  var msgEl = null;       // elemento da bolha de texto
-  var fullText = '';      // texto acumulado
-  var ttsDisparado = false; // TTS só dispara uma vez
+  // PASSO 1 — IMEDIATO (0ms): mostrar micro-reação
+  var reacao = isFirst ? null : cvMicroReacao();
+  var msgEl = null;
+  var fullText = '';
+
+  if (reacao) {
+    msgEl = cvAddMsgStream('paula');
+    cvUpdateMsgStream(msgEl, reacao);
+  }
+
+  cvSetStatus('pensando');
 
   fetch(API + '/api/conversa/chat', {
     method: 'POST',
@@ -1048,13 +1063,11 @@ function cvPaulaResponde(isFirst) {
     })
   })
   .then(function(r) {
-    var el = document.getElementById(typingId);
-    if (el) el.remove();
-
-    // Ler stream SSE
+    if (!r.ok) throw new Error('HTTP ' + r.status);
     var reader = r.body.getReader();
     var decoder = new TextDecoder();
     var buffer = '';
+    var primeiroChunk = true;
 
     function lerChunk() {
       return reader.read().then(function(result) {
@@ -1070,22 +1083,25 @@ function cvPaulaResponde(isFirst) {
 
             if (data.delta) {
               fullText += data.delta;
-              // Criar bolha na primeira letra
-              if (!msgEl) {
-                msgEl = cvAddMsgStream('paula');
+
+              // PASSO 2 — STREAMING: substituir micro-reação pelo texto real
+              if (primeiroChunk) {
+                primeiroChunk = false;
+                // Criar bolha se não existe ainda
+                if (!msgEl) msgEl = cvAddMsgStream('paula');
               }
-              // Mostrar texto em tempo real (streaming visual)
               cvUpdateMsgStream(msgEl, fullText);
             }
 
             if (data.done) {
-              // Usar fullText acumulado — mais confiável que data.reply
+              // PASSO 3 — COMPLETO: texto final + TTS
               var finalText = (fullText || data.reply || '').trim();
               if (msgEl) cvUpdateMsgStream(msgEl, finalText);
+
               if (finalText) {
                 cvHistorico.push({ role: 'assistant', content: finalText });
                 if (cvHistorico.length > 60) cvHistorico = cvHistorico.slice(-60);
-                // TTS SOMENTE aqui — texto 100% completo
+                // TTS só com texto 100% completo
                 cvFalarTTS(finalText);
               } else {
                 cvPaulaTalando = false;
@@ -1094,6 +1110,7 @@ function cvPaulaResponde(isFirst) {
             }
 
             if (data.error) {
+              if (msgEl) cvUpdateMsgStream(msgEl, '...');
               cvPaulaTalando = false;
               cvSetStatus('ouvindo');
             }
@@ -1107,8 +1124,7 @@ function cvPaulaResponde(isFirst) {
     return lerChunk();
   })
   .catch(function() {
-    var el = document.getElementById(typingId);
-    if (el) el.remove();
+    if (msgEl) cvUpdateMsgStream(msgEl, '...');
     cvPaulaTalando = false;
     cvSetStatus('ouvindo');
   });
