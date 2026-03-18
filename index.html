@@ -1094,8 +1094,24 @@ function conversaSpeakTTS(text) {
       var url = URL.createObjectURL(blob);
       if (conversaTTS) { try { conversaTTS.pause(); } catch(e) {} }
       conversaTTS = new Audio(url);
+
+      // Parar mic antes de Paula falar para não capturar a voz dela
+      if (conversaListening && conversaRec) {
+        conversaRec.stop();
+        conversaRec = null;
+        conversaListening = false;
+        micSetActive(false);
+        _finalTranscript = '';
+        if (_sendTimer) { clearTimeout(_sendTimer); _sendTimer = null; }
+      }
+
       conversaTTS.play();
-      conversaTTS.onended = function() { URL.revokeObjectURL(url); };
+      conversaTTS.onended = function() {
+        URL.revokeObjectURL(url);
+        // Limpar qualquer texto captado durante o TTS
+        document.getElementById('conversaInput').value = '';
+        _finalTranscript = '';
+      };
     });
   }).catch(function() {});
 }
