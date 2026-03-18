@@ -1074,24 +1074,23 @@ function cvPaulaResponde(isFirst) {
               if (!msgEl) {
                 msgEl = cvAddMsgStream('paula');
               }
-              // Atualizar texto em tempo real
+              // Mostrar texto em tempo real (streaming visual)
               cvUpdateMsgStream(msgEl, fullText);
-
-              // Disparar TTS quando tiver a primeira frase completa
-              if (!ttsDisparado && (fullText.includes('.') || fullText.includes('!') || fullText.includes('?') || fullText.length > 60)) {
-                ttsDisparado = true;
-                cvFalarTTS(fullText);
-              }
             }
 
             if (data.done) {
-              // Atualizar com texto final completo
-              if (msgEl) cvUpdateMsgStream(msgEl, data.reply || fullText);
-              var finalText = data.reply || fullText;
-              cvHistorico.push({ role: 'assistant', content: finalText });
-              if (cvHistorico.length > 60) cvHistorico = cvHistorico.slice(-60);
-              // Se TTS ainda não disparou (resposta muito curta)
-              if (!ttsDisparado && finalText) cvFalarTTS(finalText);
+              // Usar fullText acumulado — mais confiável que data.reply
+              var finalText = (fullText || data.reply || '').trim();
+              if (msgEl) cvUpdateMsgStream(msgEl, finalText);
+              if (finalText) {
+                cvHistorico.push({ role: 'assistant', content: finalText });
+                if (cvHistorico.length > 60) cvHistorico = cvHistorico.slice(-60);
+                // TTS SOMENTE aqui — texto 100% completo
+                cvFalarTTS(finalText);
+              } else {
+                cvPaulaTalando = false;
+                cvSetStatus('ouvindo');
+              }
             }
 
             if (data.error) {
