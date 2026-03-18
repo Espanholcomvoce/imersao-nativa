@@ -1031,6 +1031,10 @@ function cvPaulaResponde(isFirst) {
   var typingId = 'typing' + Date.now();
   cvAddTyping(typingId);
 
+  var msgEl = null;       // elemento da bolha de texto
+  var fullText = '';      // texto acumulado
+  var ttsDisparado = false; // TTS só dispara uma vez
+
   fetch(API + '/api/conversa/chat', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
@@ -1043,15 +1047,65 @@ function cvPaulaResponde(isFirst) {
       isFirst: isFirst
     })
   })
-  .then(function(r) { return r.json(); })
-  .then(function(data) {
+  .then(function(r) {
     var el = document.getElementById(typingId);
     if (el) el.remove();
-    var reply = data.reply || '';
-    if (!reply) { cvPaulaTalando = false; cvSetStatus('ouvindo'); return; }
-    cvAddMsg('paula', reply);
-    cvHistorico.push({ role: 'assistant', content: reply });
-    cvFalarTTS(reply);
+
+    // Ler stream SSE
+    var reader = r.body.getReader();
+    var decoder = new TextDecoder();
+    var buffer = '';
+
+    function lerChunk() {
+      return reader.read().then(function(result) {
+        if (result.done) return;
+        buffer += decoder.decode(result.value, { stream: true });
+        var lines = buffer.split(String.fromCharCode(10));
+        buffer = lines.pop();
+
+        lines.forEach(function(line) {
+          if (!line.startsWith('data: ')) return;
+          try {
+            var data = JSON.parse(line.slice(6));
+
+            if (data.delta) {
+              fullText += data.delta;
+              // Criar bolha na primeira letra
+              if (!msgEl) {
+                msgEl = cvAddMsgStream('paula');
+              }
+              // Atualizar texto em tempo real
+              cvUpdateMsgStream(msgEl, fullText);
+
+              // Disparar TTS quando tiver a primeira frase completa
+              if (!ttsDisparado && (fullText.includes('.') || fullText.includes('!') || fullText.includes('?') || fullText.length > 60)) {
+                ttsDisparado = true;
+                cvFalarTTS(fullText);
+              }
+            }
+
+            if (data.done) {
+              // Atualizar com texto final completo
+              if (msgEl) cvUpdateMsgStream(msgEl, data.reply || fullText);
+              var finalText = data.reply || fullText;
+              cvHistorico.push({ role: 'assistant', content: finalText });
+              if (cvHistorico.length > 60) cvHistorico = cvHistorico.slice(-60);
+              // Se TTS ainda não disparou (resposta muito curta)
+              if (!ttsDisparado && finalText) cvFalarTTS(finalText);
+            }
+
+            if (data.error) {
+              cvPaulaTalando = false;
+              cvSetStatus('ouvindo');
+            }
+          } catch(e) {}
+        });
+
+        return lerChunk();
+      });
+    }
+
+    return lerChunk();
   })
   .catch(function() {
     var el = document.getElementById(typingId);
@@ -1059,6 +1113,27 @@ function cvPaulaResponde(isFirst) {
     cvPaulaTalando = false;
     cvSetStatus('ouvindo');
   });
+}
+
+function cvAddMsgStream(who) {
+  var msgs = document.getElementById('conversaMsgs');
+  var wrap = document.createElement('div');
+  if (who === 'paula') {
+    var foto = document.getElementById('paulaFotoGlobal');
+    var src = foto ? foto.src : '';
+    wrap.style.cssText = 'display:flex;gap:12px;align-items:flex-start';
+    wrap.innerHTML = '<img src="' + src + '" style="width:32px;height:32px;border-radius:50%;object-fit:cover;object-position:center 5%;flex-shrink:0;margin-top:2px"><div class="cv-stream-text" style="flex:1;font-size:15px;color:#1a1a1a;line-height:1.65"></div>';
+  }
+  msgs.appendChild(wrap);
+  msgs.scrollTop = msgs.scrollHeight;
+  return wrap.querySelector('.cv-stream-text');
+}
+
+function cvUpdateMsgStream(el, text) {
+  if (!el) return;
+  el.innerHTML = text.split(String.fromCharCode(10)).join('<br>');
+  var msgs = document.getElementById('conversaMsgs');
+  if (msgs) msgs.scrollTop = msgs.scrollHeight;
 }
 
 function cvFalarTTS(text) {
