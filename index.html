@@ -1124,6 +1124,8 @@ function toggleConversaMic() {
   };
 
   var _finalTranscript = '';
+  var _sendTimer = null;
+
   conversaRec.onresult = function(e) {
     var interim = '';
     for (var i = e.resultIndex; i < e.results.length; i++) {
@@ -1136,19 +1138,27 @@ function toggleConversaMic() {
     var texto = (_finalTranscript + interim).trim();
     document.getElementById('conversaInput').value = texto;
     autoResize(document.getElementById('conversaInput'));
-    if (interim) {
-      document.getElementById('conversaListening').textContent = '🔴 ' + texto + '...';
+    document.getElementById('conversaListening').textContent = '🔴 ' + texto + '...';
+
+    // Cancelar timer anterior e agendar envio após pausa de 2s
+    if (_sendTimer) clearTimeout(_sendTimer);
+    if (_finalTranscript.trim()) {
+      _sendTimer = setTimeout(function() {
+        if (conversaListening && conversaRec) conversaRec.stop();
+      }, 2000);
     }
   };
 
   conversaRec.onend = function() {
+    if (_sendTimer) { clearTimeout(_sendTimer); _sendTimer = null; }
     conversaListening = false;
     micSetActive(false);
     var text = (_finalTranscript || document.getElementById('conversaInput').value).trim();
     _finalTranscript = '';
+    text = melhorarTexto(text);
     document.getElementById('conversaInput').value = text;
     if (text) {
-      setTimeout(function() { sendConversaMsg(); }, 100);
+      setTimeout(function() { sendConversaMsg(); }, 150);
     }
   };
 
@@ -1250,6 +1260,23 @@ endConversaSession = function() {
   desativarMaosLivres();
   _endConversaOrig();
 };
+
+function melhorarTexto(text) {
+  if (!text) return text;
+  // Capitalizar primeira letra
+  text = text.charAt(0).toUpperCase() + text.slice(1);
+  // Adicionar ponto final se não termina com pontuação
+  if (!/[.!?]$/.test(text)) text += '.';
+  // Palavras/expressões que indicam exclamação
+  var excl = ['ay', 'uy', 'uff', 'uf', 'wow', 'oye', 'claro', 'perfecto', 'genial', 'increíble', 'increible', 'buenísimo', 'buenisimo', 'qué bueno', 'qué rico', 'qué lindo'];
+  excl.forEach(function(w) {
+    var re = new RegExp('\\b' + w + '\\b', 'gi');
+    text = text.replace(re, function(m) { return m + '!'; });
+  });
+  // Remover pontuação dupla
+  text = text.replace(/[.!?]+([.!?])/g, '$1');
+  return text;
+}
 
 function micSetActive(active) {
   var btn = document.getElementById('conversaMicBtn');
