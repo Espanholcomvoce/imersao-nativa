@@ -1152,18 +1152,30 @@ function cvUpdateMsgStream(el, text) {
 }
 
 function cvFalarTTS(text) {
+  // Status imediato — não espera o áudio carregar
   cvSetStatus('falando');
+  
   fetch(API + '/api/conversa/tts', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
     body: JSON.stringify({ text: text })
   })
-  .then(function(r) { return r.blob(); })
+  .then(function(r) {
+    if (!r.ok) throw new Error('TTS error');
+    return r.blob();
+  })
   .then(function(blob) {
     var url = URL.createObjectURL(blob);
-    if (cvAudio) { try { cvAudio.pause(); } catch(e) {} }
+    if (cvAudio) { try { cvAudio.pause(); URL.revokeObjectURL(cvAudio.src); } catch(e) {} }
     cvAudio = new Audio(url);
-    cvAudio.play();
+    // Preload — começa a carregar antes de tocar
+    cvAudio.preload = 'auto';
+    cvAudio.load();
+    // Tocar assim que tiver dados suficientes
+    cvAudio.oncanplaythrough = function() {
+      cvAudio.oncanplaythrough = null;
+      cvAudio.play().catch(function() {});
+    };
     cvAudio.onended = function() {
       URL.revokeObjectURL(url);
       cvPaulaTalando = false;
