@@ -555,7 +555,7 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
       <button onclick="iniciarModoRealtime()" id="btnRealtime" style="width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#0090be,#36c551);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;touch-action:manipulation;box-shadow:0 4px 20px rgba(0,144,190,0.3)">
         <svg width="28" height="28" viewBox="0 0 20 20" fill="none"><rect x="1" y="8" width="2.5" height="4" rx="1.2" fill="white"/><rect x="5" y="5" width="2.5" height="10" rx="1.2" fill="white"/><rect x="9" y="2" width="2.5" height="16" rx="1.2" fill="white"/><rect x="13" y="5" width="2.5" height="10" rx="1.2" fill="white"/><rect x="17" y="8" width="2.5" height="4" rx="1.2" fill="white"/></svg>
       </button>
-      <div style="font-size:11px;color:var(--text2)">Toca para hablar con Paula</div>
+      <div id="rtHint" style="font-size:11px;color:var(--text2)">Toca para hablar con Paula</div>
       <!-- Barra de texto alternativa -->
       <div style="display:flex;gap:8px;width:100%;align-items:flex-end">
         <textarea class="tira-input" id="conversaInput" rows="1" placeholder="O escribe algo..." onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();enviarTexto()}" oninput="autoResize(this)"></textarea>
@@ -1102,12 +1102,21 @@ function startConversation(initialText) {
 // Función para iniciar Realtime manualmente (botón ondas)
 function iniciarModoRealtime() {
   if (rtAtivo) return;
-  cvAddMsg('paula', '¡Activando modo voz! Ahora puedes hablar directamente conmigo...');
+  var btn = document.getElementById('btnRealtime');
+  var hint = document.getElementById('rtHint');
+  // Feedback inmediato
+  if (btn) btn.style.opacity = '0.5';
+  if (hint) hint.textContent = 'Conectando...';
+
   iniciarRealtimeSession().then(function() {
+    // Activado — cambiar botón a verde pulsante
+    if (btn) { btn.style.opacity = '1'; btn.style.background = '#36c551'; btn.style.boxShadow = '0 0 30px rgba(54,197,81,0.5)'; btn.style.animation = 'rt-pulse 2s infinite'; }
+    if (hint) hint.textContent = 'En vivo — habla con Paula';
     document.getElementById('paulaStatusDot').innerHTML = '<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#36c551;animation:rt-pulse 2s infinite"></span> en vivo';
     document.getElementById('paulaStatusDot').style.color = '#36c551';
   }).catch(function(err) {
-    cvAddMsg('paula', 'No pude activar el modo voz, pero podemos seguir escribiendo sin problema.');
+    if (btn) btn.style.opacity = '1';
+    if (hint) hint.textContent = 'No disponible — escribe o graba';
     console.warn('[REALTIME]', err.message);
   });
 }
@@ -1672,6 +1681,8 @@ var _rtMsgElPaula = null;
 
 function rtTratarEvento(ev) {
   var dot = document.getElementById('paulaStatusDot');
+  var hint = document.getElementById('rtHint');
+  var btn = document.getElementById('btnRealtime');
 
   switch (ev.type) {
     case 'session.created':
@@ -1680,10 +1691,14 @@ function rtTratarEvento(ev) {
 
     case 'input_audio_buffer.speech_started':
       if (dot) dot.innerHTML = '<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#0090be;animation:rt-pulse 0.6s infinite"></span> ouvindo...';
+      if (hint) hint.textContent = 'Escuchando...';
+      if (btn) { btn.style.background = '#0090be'; btn.style.boxShadow = '0 0 30px rgba(0,144,190,0.5)'; }
       break;
 
     case 'input_audio_buffer.speech_stopped':
       if (dot) dot.innerHTML = '<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#ffcb15;animation:rt-pulse 1s infinite"></span> pensando...';
+      if (hint) hint.textContent = 'Paula piensa...';
+      if (btn) { btn.style.background = '#ffcb15'; btn.style.boxShadow = '0 0 30px rgba(255,203,21,0.4)'; }
       break;
 
     case 'conversation.item.input_audio_transcription.completed':
@@ -1716,7 +1731,9 @@ function rtTratarEvento(ev) {
     case 'response.audio.delta':
       if (!_rtPaulaFalando) {
         _rtPaulaFalando = true;
-        if (dot) dot.innerHTML = '<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#36c551;animation:rt-pulse 0.8s infinite"></span> Paula fala...';
+        if (dot) dot.innerHTML = '<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#36c551;animation:rt-pulse 0.8s infinite"></span> Paula habla...';
+        if (hint) hint.textContent = 'Paula habla...';
+        if (btn) { btn.style.background = 'linear-gradient(135deg,#36c551,#0090be)'; btn.style.boxShadow = '0 0 30px rgba(54,197,81,0.5)'; }
       }
       break;
 
@@ -1728,6 +1745,8 @@ function rtTratarEvento(ev) {
       _rtMsgElPaula = null;
       _rtTranscriptoPaula = '';
       if (dot) dot.innerHTML = '<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#36c551;animation:rt-pulse 2s infinite"></span> en vivo';
+      if (hint) hint.textContent = 'Tu turno — habla';
+      if (btn) { btn.style.background = '#36c551'; btn.style.boxShadow = '0 0 30px rgba(54,197,81,0.5)'; }
       break;
 
     case 'error':
