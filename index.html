@@ -1734,7 +1734,7 @@ function rtTratarEvento(ev) {
       var userText = (ev.transcript || '').trim();
       if (userText) {
         var ph2 = document.getElementById('rtUserPlaceholder');
-        if (ph2) { ph2.textContent = userText; ph2.style.opacity = '1'; ph2.id = ''; }
+        if (ph2) { ph2.innerHTML = userText + '<span class="cv-time">' + cvTimeStr() + '</span>'; ph2.style.opacity = '1'; ph2.id = ''; }
         else { cvAddMsg('user', userText); }
         cvHistorico.push({ role: 'user', content: userText });
         if (cvHistorico.length > 60) cvHistorico = cvHistorico.slice(-60);
@@ -1753,6 +1753,7 @@ function rtTratarEvento(ev) {
     case 'response.audio_transcript.done':
       var paulaText = (ev.transcript || _rtTranscriptoPaula || '').trim();
       if (paulaText) {
+        if (_rtMsgElPaula) cvUpdateMsgStream(_rtMsgElPaula, paulaText, true);
         cvHistorico.push({ role: 'assistant', content: paulaText });
         if (cvHistorico.length > 60) cvHistorico = cvHistorico.slice(-60);
       }
