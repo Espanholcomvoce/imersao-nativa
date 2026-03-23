@@ -299,48 +299,38 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
 .cv-topic-chip:active{transform:scale(0.95)}
 
 /* ══ IMERSÃO CULTURAL E AUDITIVA ══ */
-.country-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:20px}
-.country-card{background:var(--glass);border:1px solid var(--border);border-radius:16px;padding:16px;cursor:pointer;transition:all .2s;touch-action:manipulation;text-align:center;position:relative;overflow:hidden}
+.country-grid{display:grid;grid-template-columns:1fr;gap:16px;margin-bottom:20px}
+@media(min-width:480px){.country-grid{grid-template-columns:1fr 1fr}}
+.country-card{border-radius:20px;padding:0;cursor:pointer;transition:all .25s;touch-action:manipulation;text-align:left;position:relative;overflow:hidden;min-height:140px;display:flex;flex-direction:column;justify-content:flex-end}
 .country-card:active{transform:scale(0.97)}
-.country-card:hover{border-color:var(--gold)}
-.country-card .flag{font-size:36px;margin-bottom:6px;display:block}
-.country-card .cname{font-weight:600;font-size:14px;margin-bottom:2px}
-.country-card .cprogress{font-size:10px;color:var(--text3)}
-.country-card .cprogress-bar{height:3px;background:rgba(255,255,255,0.08);border-radius:2px;margin-top:4px;overflow:hidden}
-.country-card .cprogress-fill{height:100%;background:var(--gold);border-radius:2px;transition:width .3s}
-.country-card.completed{border-color:var(--green)}
-.country-card.completed::after{content:'✓';position:absolute;top:8px;right:10px;color:var(--green);font-weight:700;font-size:14px}
+.country-card:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.4)}
+.country-card .card-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 0%,rgba(0,0,0,.55) 100%);z-index:1}
+.country-card .card-content{position:relative;z-index:2;padding:20px 22px}
+.country-card .cname{font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(20px,5vw,24px);color:#fff;margin-bottom:4px;text-shadow:0 1px 4px rgba(0,0,0,.3)}
+.country-card .cprogress{font-size:12px;color:rgba(255,255,255,.75);margin-bottom:8px}
+.country-card .cprogress-bar{height:4px;background:rgba(255,255,255,0.2);border-radius:3px;overflow:hidden}
+.country-card .cprogress-fill{height:100%;background:#fff;border-radius:3px;transition:width .3s}
+.country-card.completed .cprogress-fill{background:var(--green)}
+.country-card.completed::after{content:'';position:absolute;top:14px;right:14px;width:28px;height:28px;border-radius:50%;background:var(--green);z-index:3;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.3);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='white' viewBox='0 0 16 16'%3E%3Cpath d='M13.854 3.646a.5.5 0 010 .708l-7 7a.5.5 0 01-.708 0l-3.5-3.5a.5.5 0 11.708-.708L6.5 10.293l6.646-6.647a.5.5 0 01.708 0z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center}
 
 /* Episode player */
-.ep-header{display:flex;align-items:center;gap:12px;margin-bottom:20px}
-.ep-flag{font-size:40px}
-.ep-title{font-family:'Playfair Display',serif;font-size:clamp(18px,5vw,22px);font-weight:700}
-.ep-sub{font-size:12px;color:var(--text2)}
-.ep-audio-bar{background:var(--glass);border:1px solid var(--border);border-radius:14px;padding:14px;margin-bottom:20px;display:flex;align-items:center;gap:12px}
-.ep-play-btn{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));border:none;color:#fff;font-size:18px;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:transform .15s;touch-action:manipulation}
+.ep-audio-bar{background:var(--glass);border:1px solid var(--border);border-radius:14px;padding:14px;margin-bottom:24px;display:flex;align-items:center;gap:12px}
+.ep-play-btn{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));border:none;color:#fff;font-size:18px;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:transform .15s;touch-action:manipulation;box-shadow:0 4px 14px rgba(245,166,35,.3)}
 .ep-play-btn:active{transform:scale(0.92)}
 .ep-progress{flex:1;height:4px;background:rgba(255,255,255,0.1);border-radius:2px;overflow:hidden;cursor:pointer}
 .ep-progress-fill{height:100%;background:var(--gold);border-radius:2px;width:0%;transition:width .3s}
 .ep-time{font-size:11px;color:var(--text3);font-variant-numeric:tabular-nums;min-width:36px;text-align:right}
 
-/* Episode text */
-.ep-section{margin-bottom:16px;padding:14px;border-radius:12px;background:var(--glass);border:1px solid var(--border);line-height:1.7;font-size:14px;color:var(--text1)}
-.ep-section .speaker-tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:2px 8px;border-radius:8px;margin-bottom:6px}
-.ep-section .speaker-tag.narrator{background:rgba(96,165,250,.15);color:#60a5fa}
-.ep-section .speaker-tag.guide{background:rgba(245,166,35,.15);color:var(--gold)}
-.ep-section.active{border-color:var(--gold);background:rgba(245,166,35,.06)}
+/* Episode text - documentary/podcast style */
+.ep-section{margin-bottom:0;padding:0 0 16px 0;border-radius:0;background:none;border:none;border-bottom:1px solid rgba(255,255,255,.05);line-height:1.85;font-size:clamp(14px,3.8vw,15px);color:rgba(240,249,255,.85)}
+.ep-section:last-child{border-bottom:none}
+.ep-section.active{color:var(--text);background:none;border-color:rgba(255,255,255,.05)}
+.ep-section.active::before{content:'';display:inline-block;width:3px;height:3px;border-radius:50%;background:var(--gold);margin-right:8px;vertical-align:middle}
 
 /* Cultural highlights */
 .ep-highlight{background:rgba(0,144,190,.08);border:1px solid rgba(0,144,190,.25);border-radius:12px;padding:12px 14px;margin:10px 0;font-size:13px}
 .ep-highlight .hl-icon{font-size:16px;margin-right:6px}
 .ep-highlight .hl-label{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#0090be;display:block;margin-bottom:4px}
-
-/* Local vocab */
-.ep-vocab{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
-.ep-vocab-chip{background:rgba(74,222,128,.08);border:1px solid rgba(74,222,128,.2);border-radius:20px;padding:5px 12px;font-size:12px}
-.ep-vocab-chip .local{color:var(--green);font-weight:600}
-.ep-vocab-chip .arrow{color:var(--text3);margin:0 4px}
-.ep-vocab-chip .universal{color:var(--text2)}
 
 /* Quiz */
 .ep-quiz{margin-top:20px;padding-top:20px;border-top:1px solid var(--border)}
@@ -743,7 +733,7 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
 <div class="content-wrap">
   <div class="page-header">
     <button class="back-btn" onclick="goTo('home')">&#8592;</button>
-    <div><div class="page-title">&#127758; Imersão Cultural</div><div class="page-subtitle">Descubra os países hispanos ouvindo</div></div>
+    <div><div class="page-title">Imersao Cultural</div><div class="page-subtitle">Descubra os paises hispanos ouvindo</div></div>
   </div>
   <div id="auditivaGrid" class="country-grid"></div>
 </div>
@@ -754,14 +744,14 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
 <div style="width:100%;max-width:680px;margin:0 auto;height:100vh;height:100dvh;display:flex;flex-direction:column;background:linear-gradient(180deg,var(--bg1),var(--bg2))">
   <div style="padding:14px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;flex-shrink:0;padding-top:max(14px,env(safe-area-inset-top))">
     <button onclick="goTo('auditiva')" style="background:none;border:none;cursor:pointer;color:var(--text2);font-size:20px;padding:4px 8px">&#8592;</button>
-    <div id="epHeaderFlag" style="font-size:28px"></div>
+    <div id="epHeaderFlag" style="display:none"></div>
     <div style="flex:1">
-      <div id="epHeaderTitle" style="font-weight:600;font-size:15px;color:var(--text1)"></div>
+      <div id="epHeaderTitle" style="font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(16px,4.2vw,18px);color:var(--text)"></div>
       <div id="epHeaderSub" style="font-size:11px;color:var(--text2)"></div>
     </div>
     <div id="epLevelBadge" style="font-size:10px;padding:3px 10px;border-radius:10px;font-weight:600;background:rgba(245,166,35,.2);border:1px solid var(--gold);color:var(--gold)"></div>
   </div>
-  <div id="epContent" style="flex:1;overflow-y:auto;padding:16px;-webkit-overflow-scrolling:touch">
+  <div id="epContent" style="flex:1;overflow-y:auto;padding:20px 16px;-webkit-overflow-scrolling:touch">
     <!-- Audio bar -->
     <div class="ep-audio-bar">
       <button class="ep-play-btn" id="epPlayBtn" onclick="epToggleAudio()">&#9654;</button>
@@ -769,9 +759,9 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
       <div class="ep-time" id="epTime">0:00</div>
     </div>
     <!-- Sections render here -->
-    <div id="epSections"></div>
-    <!-- Vocab local -->
-    <div id="epVocab"></div>
+    <div id="epSections" style="padding:0 4px"></div>
+    <!-- Vocab local (hidden) -->
+    <div id="epVocab" style="display:none"></div>
     <!-- Quiz -->
     <div id="epQuiz" class="ep-quiz" style="display:none"></div>
   </div>
@@ -3699,6 +3689,29 @@ var auditivaCurrentEp = null;
 var auditivaAudio = null;
 var auditivaQuizAnswered = false;
 
+var COUNTRY_GRADIENTS = {
+  argentina: 'linear-gradient(135deg, #75AADB, #FFFFFF)',
+  bolivia: 'linear-gradient(135deg, #D52B1E, #007934)',
+  chile: 'linear-gradient(135deg, #D52B1E, #0039A6)',
+  colombia: 'linear-gradient(135deg, #FCD116, #003893)',
+  costarica: 'linear-gradient(135deg, #002B7F, #CE1126)',
+  cuba: 'linear-gradient(135deg, #002A8F, #CB1515)',
+  ecuador: 'linear-gradient(135deg, #FFD100, #034EA2)',
+  elsalvador: 'linear-gradient(135deg, #0F47AF, #FFFFFF)',
+  espana: 'linear-gradient(135deg, #AA151B, #F1BF00)',
+  guatemala: 'linear-gradient(135deg, #4997D0, #FFFFFF)',
+  honduras: 'linear-gradient(135deg, #0073CF, #FFFFFF)',
+  mexico: 'linear-gradient(135deg, #006847, #CE1126)',
+  nicaragua: 'linear-gradient(135deg, #0067C6, #FFFFFF)',
+  panama: 'linear-gradient(135deg, #DA121A, #003DA5)',
+  paraguay: 'linear-gradient(135deg, #D52B1E, #0038A8)',
+  peru: 'linear-gradient(135deg, #D91023, #FFFFFF)',
+  puertorico: 'linear-gradient(135deg, #3C3B6E, #B22234)',
+  dominicana: 'linear-gradient(135deg, #002D62, #CE1126)',
+  uruguay: 'linear-gradient(135deg, #001489, #FFFFFF)',
+  venezuela: 'linear-gradient(135deg, #FCE300, #00247D)'
+};
+
 function getAuditivaProgress() {
   return JSON.parse(localStorage.getItem('auditiva_progress') || '{}');
 }
@@ -3719,11 +3732,14 @@ function renderAuditivaGrid() {
     var done = (prog[code] || []).length;
     var total = (c.episodes || []).length;
     var pct = total > 0 ? Math.round(done / total * 100) : 0;
-    return '<div class="country-card' + (pct >= 100 ? ' completed' : '') + '" onclick="openCountryEpisodes(\'' + code + '\')">' +
-      '<span class="flag">' + c.flag + '</span>' +
-      '<div class="cname">' + c.name + '</div>' +
-      '<div class="cprogress">' + done + '/' + total + ' episódios</div>' +
-      '<div class="cprogress-bar"><div class="cprogress-fill" style="width:' + pct + '%"></div></div>' +
+    var bg = COUNTRY_GRADIENTS[code] || 'linear-gradient(135deg, #334155, #1e293b)';
+    return '<div class="country-card' + (pct >= 100 ? ' completed' : '') + '" style="background:' + bg + '" onclick="openCountryEpisodes(\'' + code + '\')">' +
+      '<div class="card-overlay"></div>' +
+      '<div class="card-content">' +
+        '<div class="cname">' + c.name + '</div>' +
+        '<div class="cprogress">' + done + '/' + total + ' episódios</div>' +
+        '<div class="cprogress-bar"><div class="cprogress-fill" style="width:' + pct + '%"></div></div>' +
+      '</div>' +
       '</div>';
   }).join('');
 }
@@ -3743,10 +3759,9 @@ function openEpisode(countryCode, epIndex) {
   auditivaCurrentEp = ep;
   auditivaQuizAnswered = false;
 
-  // Header
-  document.getElementById('epHeaderFlag').textContent = c.flag;
+  // Header - documentary style, no guide
   document.getElementById('epHeaderTitle').textContent = ep.title;
-  document.getElementById('epHeaderSub').textContent = c.name + ' · ' + c.guide;
+  document.getElementById('epHeaderSub').textContent = c.name + ' · ' + ep.level;
   document.getElementById('epLevelBadge').textContent = ep.level;
 
   // Reset audio
@@ -3756,32 +3771,19 @@ function openEpisode(countryCode, epIndex) {
   document.getElementById('epProgressFill').style.width = '0%';
   document.getElementById('epTime').textContent = ep.duration || '5:00';
 
-  // Render sections
+  // Render sections - clean prose, no speaker tags
   var sectionsHtml = '';
   (ep.sections || []).forEach(function(sec, i) {
-    var isGuide = sec.speaker !== 'narrator';
-    var speakerName = isGuide ? c.guide : 'Narrador';
-    var speakerClass = isGuide ? 'guide' : 'narrator';
     sectionsHtml += '<div class="ep-section" id="epSec' + i + '">' +
-      '<span class="speaker-tag ' + speakerClass + '">' + speakerName + '</span>' +
-      '<div>' + sec.text + '</div>' +
+      sec.text +
       '</div>';
   });
   document.getElementById('epSections').innerHTML = sectionsHtml;
 
-  // Render vocab
-  var vocabHtml = '';
-  if (ep.vocabLocal && ep.vocabLocal.length) {
-    vocabHtml = '<div style="margin-top:16px;margin-bottom:8px;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text2)">Vocabulário Regional</div><div class="ep-vocab">';
-    ep.vocabLocal.forEach(function(v) {
-      vocabHtml += '<div class="ep-vocab-chip"><span class="local">' + v.local + '</span><span class="arrow">→</span><span class="universal">' + v.universal + '</span></div>';
-    });
-    vocabHtml += '</div>';
-  }
-  document.getElementById('epVocab').innerHTML = vocabHtml;
+  // Skip vocab - keep it clean
 
-  // Render quiz (hidden until audio "finishes")
-  var quizHtml = '<div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text2);margin-bottom:14px">&#128221; Teste de Compreensão</div>';
+  // Render quiz
+  var quizHtml = '<div style="font-family:\'Playfair Display\',serif;font-size:16px;font-weight:700;color:var(--text);margin-bottom:16px">Teste de Compreensao</div>';
   (ep.quiz || []).forEach(function(q, qi) {
     quizHtml += '<div class="eq-question" id="eqQ' + qi + '">' +
       '<div class="eq-q">' + (qi + 1) + '. ' + q.q + '</div>';
@@ -3856,7 +3858,7 @@ function epPlayNextSection() {
   // Buscar áudio da seção via API (gera on-demand, cache no backend)
   var url = API + '/api/auditiva/audio/' + ep.id + '/' + _epSectionIndex +
     '?text=' + encodeURIComponent(sec.text) +
-    '&speaker=' + encodeURIComponent(sec.speaker) +
+    '&speaker=narrator' +
     '&countryCode=' + encodeURIComponent(auditivaCurrentCountry);
 
   btn.innerHTML = '&#9203;';
