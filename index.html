@@ -5,6 +5,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>Imersão Nativa App 🌎</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<script>
+// Proteção anti-cópia básica
+document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+document.addEventListener('keydown', function(e) {
+  if ((e.ctrlKey || e.metaKey) && (e.key === 'u' || e.key === 's' || e.key === 'U' || e.key === 'S')) e.preventDefault();
+  if (e.key === 'F12') e.preventDefault();
+});
+// Anti DevTools (detecção básica)
+(function() {
+  var t = new Date().getTime();
+  setInterval(function() {
+    if (new Date().getTime() - t > 200) {
+      // DevTools provavelmente aberto — não faz nada agressivo, só log
+    }
+    t = new Date().getTime();
+  }, 100);
+})();
+</script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -208,28 +226,9 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
 .score-bar{height:8px;background:rgba(255,255,255,.1);border-radius:4px;margin-bottom:16px;overflow:hidden}
 .score-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--green),var(--gold));transition:width 1s}
 
-/* EXAMES DELE / SIELE */
-.exam-filters{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
-.exam-filter-btn{background:var(--glass);border:1px solid var(--border);border-radius:20px;padding:6px 14px;font-size:12px;cursor:pointer;color:var(--text2);font-family:inherit;transition:all .2s;touch-action:manipulation}
-.exam-filter-btn:active{transform:scale(0.95)}
-.exam-filter-btn.active{background:rgba(245,166,35,.2);border-color:var(--gold);color:var(--gold);font-weight:600}
-.exercise-card{background:var(--glass);border:1px solid var(--border);border-radius:16px;padding:16px;margin-bottom:10px;cursor:pointer;transition:all .2s;touch-action:manipulation}
-.exercise-card:active{transform:scale(0.98)}
-.exercise-card:hover{border-color:var(--gold)}
-.exercise-badges{display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap}
-.ex-badge{font-size:10px;padding:2px 8px;border-radius:10px;font-weight:600}
-.ex-badge.nivel{background:rgba(245,166,35,.2);border:1px solid var(--gold);color:var(--gold)}
-.ex-badge.audio{background:rgba(74,222,128,.2);border:1px solid var(--green);color:var(--green)}
 .exercise-title{font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(13px,3.5vw,14px);margin-bottom:4px}
 .exercise-meta{color:var(--text2);font-size:11px;font-style:italic}
-.exercise-modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:1000;align-items:flex-end;justify-content:center;backdrop-filter:blur(4px)}
-.exercise-modal-overlay.open{display:flex}
-.exercise-modal{background:linear-gradient(135deg,var(--bg1),var(--bg2));border:1px solid var(--border);border-radius:24px 24px 0 0;width:100%;max-width:520px;max-height:85vh;overflow-y:auto;padding:24px;-webkit-overflow-scrolling:touch}
 .modal-close-btn{background:var(--glass);border:1px solid var(--border);border-radius:50%;width:36px;height:36px;color:var(--text2);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;float:right;touch-action:manipulation}
-.dialogue-line{display:flex;gap:8px;margin-bottom:8px;font-size:13px;line-height:1.5}
-.dialogue-speaker{color:var(--gold);font-weight:600;min-width:70px;flex-shrink:0;font-family:'Playfair Display',serif}
-.vocab-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
-.vocab-tag{background:var(--glass);border:1px solid var(--border);border-radius:20px;padding:4px 10px;font-size:11px;color:var(--text2)}
 
 /* UTILS */
 .loading-spinner{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle;margin-right:6px}
@@ -291,6 +290,109 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
 .btn-proximo{width:100%;padding:14px;border-radius:14px;background:linear-gradient(135deg,var(--gold),var(--gold2));border:none;color:#fff;font-size:clamp(14px,3.8vw,15px);font-weight:700;cursor:pointer;font-family:'Playfair Display',serif;box-shadow:0 6px 20px rgba(245,166,35,.3);transition:transform .2s;touch-action:manipulation;display:none}
 .btn-proximo.visible{display:block}
 .btn-proximo:active{transform:scale(0.97)}
+
+/* ══ IMERSÃO CULTURAL E AUDITIVA ══ */
+.country-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:20px}
+.country-card{background:var(--glass);border:1px solid var(--border);border-radius:16px;padding:16px;cursor:pointer;transition:all .2s;touch-action:manipulation;text-align:center;position:relative;overflow:hidden}
+.country-card:active{transform:scale(0.97)}
+.country-card:hover{border-color:var(--gold)}
+.country-card .flag{font-size:36px;margin-bottom:6px;display:block}
+.country-card .cname{font-weight:600;font-size:14px;margin-bottom:2px}
+.country-card .cprogress{font-size:10px;color:var(--text3)}
+.country-card .cprogress-bar{height:3px;background:rgba(255,255,255,0.08);border-radius:2px;margin-top:4px;overflow:hidden}
+.country-card .cprogress-fill{height:100%;background:var(--gold);border-radius:2px;transition:width .3s}
+.country-card.completed{border-color:var(--green)}
+.country-card.completed::after{content:'✓';position:absolute;top:8px;right:10px;color:var(--green);font-weight:700;font-size:14px}
+
+/* Episode player */
+.ep-header{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.ep-flag{font-size:40px}
+.ep-title{font-family:'Playfair Display',serif;font-size:clamp(18px,5vw,22px);font-weight:700}
+.ep-sub{font-size:12px;color:var(--text2)}
+.ep-audio-bar{background:var(--glass);border:1px solid var(--border);border-radius:14px;padding:14px;margin-bottom:20px;display:flex;align-items:center;gap:12px}
+.ep-play-btn{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));border:none;color:#fff;font-size:18px;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:transform .15s;touch-action:manipulation}
+.ep-play-btn:active{transform:scale(0.92)}
+.ep-progress{flex:1;height:4px;background:rgba(255,255,255,0.1);border-radius:2px;overflow:hidden;cursor:pointer}
+.ep-progress-fill{height:100%;background:var(--gold);border-radius:2px;width:0%;transition:width .3s}
+.ep-time{font-size:11px;color:var(--text3);font-variant-numeric:tabular-nums;min-width:36px;text-align:right}
+
+/* Episode text */
+.ep-section{margin-bottom:16px;padding:14px;border-radius:12px;background:var(--glass);border:1px solid var(--border);line-height:1.7;font-size:14px;color:var(--text1)}
+.ep-section .speaker-tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:2px 8px;border-radius:8px;margin-bottom:6px}
+.ep-section .speaker-tag.narrator{background:rgba(96,165,250,.15);color:#60a5fa}
+.ep-section .speaker-tag.guide{background:rgba(245,166,35,.15);color:var(--gold)}
+.ep-section.active{border-color:var(--gold);background:rgba(245,166,35,.06)}
+
+/* Cultural highlights */
+.ep-highlight{background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.25);border-radius:12px;padding:12px 14px;margin:10px 0;font-size:13px}
+.ep-highlight .hl-icon{font-size:16px;margin-right:6px}
+.ep-highlight .hl-label{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#a78bfa;display:block;margin-bottom:4px}
+
+/* Local vocab */
+.ep-vocab{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.ep-vocab-chip{background:rgba(74,222,128,.08);border:1px solid rgba(74,222,128,.2);border-radius:20px;padding:5px 12px;font-size:12px}
+.ep-vocab-chip .local{color:var(--green);font-weight:600}
+.ep-vocab-chip .arrow{color:var(--text3);margin:0 4px}
+.ep-vocab-chip .universal{color:var(--text2)}
+
+/* Quiz */
+.ep-quiz{margin-top:20px;padding-top:20px;border-top:1px solid var(--border)}
+.eq-question{margin-bottom:16px}
+.eq-q{font-weight:600;font-size:14px;margin-bottom:8px}
+.eq-opt{background:var(--glass);border:1px solid var(--border);border-radius:10px;padding:10px 14px;margin-bottom:6px;font-size:13px;cursor:pointer;transition:all .15s;touch-action:manipulation}
+.eq-opt:active{transform:scale(0.98)}
+.eq-opt.selected{border-color:var(--gold);background:rgba(245,166,35,.1)}
+.eq-opt.correct{border-color:var(--green);background:rgba(74,222,128,.12);color:var(--green)}
+.eq-opt.wrong{border-color:var(--red);background:rgba(248,113,113,.1);color:var(--red);opacity:.6}
+.eq-exp{font-size:12px;color:var(--green);margin-top:4px;display:none}
+.eq-exp.visible{display:block}
+
+/* ══ REALTIME VOICE MODE (ChatGPT Voice style) ══ */
+#rtOverlay{position:fixed;inset:0;z-index:9999;background:#0d0d0d;display:none;flex-direction:column;align-items:center;justify-content:center;font-family:inherit}
+#rtOverlay.active{display:flex}
+#rtOverlay .rt-header{position:absolute;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:max(16px,env(safe-area-inset-top)) 20px 12px;z-index:2}
+#rtOverlay .rt-close{background:none;border:none;color:rgba(255,255,255,0.6);font-size:28px;cursor:pointer;padding:4px 8px;line-height:1}
+#rtOverlay .rt-timer{font-size:13px;color:rgba(255,255,255,0.5);font-variant-numeric:tabular-nums;background:rgba(255,255,255,0.08);border-radius:20px;padding:4px 14px}
+#rtOverlay .rt-timer.warning{color:#ef4444;font-weight:600;background:rgba(239,68,68,0.15)}
+#rtOverlay .rt-name{font-size:14px;color:rgba(255,255,255,0.7);font-weight:500}
+
+/* Orbe central */
+.rt-orb-wrap{position:relative;width:180px;height:180px;display:flex;align-items:center;justify-content:center;margin-bottom:32px}
+.rt-orb{width:120px;height:120px;border-radius:50%;background:radial-gradient(circle at 35% 35%, #3b82f6, #1d4ed8 50%, #1e3a8a);box-shadow:0 0 60px rgba(59,130,246,0.3),0 0 120px rgba(59,130,246,0.15);transition:all 0.4s ease}
+.rt-orb.listening{background:radial-gradient(circle at 35% 35%, #22c55e, #16a34a 50%, #166534);box-shadow:0 0 60px rgba(34,197,94,0.3),0 0 120px rgba(34,197,94,0.15)}
+.rt-orb.speaking{background:radial-gradient(circle at 35% 35%, #f59e0b, #d97706 50%, #92400e);box-shadow:0 0 60px rgba(245,158,11,0.4),0 0 120px rgba(245,158,11,0.2)}
+.rt-orb.user-speaking{background:radial-gradient(circle at 35% 35%, #a855f7, #7c3aed 50%, #4c1d95);box-shadow:0 0 60px rgba(168,85,247,0.4),0 0 120px rgba(168,85,247,0.2)}
+.rt-orb.thinking{background:radial-gradient(circle at 35% 35%, #6b7280, #4b5563 50%, #374151);box-shadow:0 0 40px rgba(107,114,128,0.2)}
+
+/* Animação do orbe — pulsar */
+@keyframes rt-pulse{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.08)}
+}
+@keyframes rt-pulse-active{
+  0%,100%{transform:scale(1)}
+  25%{transform:scale(1.12)}
+  75%{transform:scale(0.95)}
+}
+.rt-orb.listening{animation:rt-pulse 3s ease-in-out infinite}
+.rt-orb.speaking{animation:rt-pulse-active 0.8s ease-in-out infinite}
+.rt-orb.user-speaking{animation:rt-pulse-active 0.6s ease-in-out infinite}
+.rt-orb.thinking{animation:rt-pulse 2s ease-in-out infinite}
+
+/* Anel externo do orbe */
+.rt-orb-ring{position:absolute;inset:-10px;border-radius:50%;border:2px solid rgba(255,255,255,0.06);transition:all 0.4s}
+.rt-orb-ring.active{border-color:rgba(255,255,255,0.15);inset:-20px}
+
+/* Status e transcrição */
+#rtOverlay .rt-status{font-size:15px;color:rgba(255,255,255,0.6);margin-bottom:24px;transition:color 0.3s}
+#rtOverlay .rt-transcript{position:absolute;bottom:120px;left:20px;right:20px;text-align:center;font-size:16px;color:rgba(255,255,255,0.85);line-height:1.6;max-height:100px;overflow-y:auto;transition:opacity 0.3s}
+#rtOverlay .rt-transcript.user{color:rgba(168,85,247,0.9)}
+#rtOverlay .rt-transcript.paula{color:rgba(245,158,11,0.9)}
+
+/* Botão de encerrar */
+#rtOverlay .rt-end-btn{position:absolute;bottom:max(40px,env(safe-area-inset-bottom));background:rgba(239,68,68,0.15);border:1px solid rgba(239,68,68,0.3);border-radius:50%;width:60px;height:60px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.2s}
+#rtOverlay .rt-end-btn:active{transform:scale(0.92);background:rgba(239,68,68,0.3)}
+#rtOverlay .rt-end-btn svg{width:24px;height:24px}
 </style>
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#1a0533">
@@ -374,6 +476,11 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
       <div class="module-name">Leitura</div>
       <div class="module-desc">Textos por nível com perguntas</div>
     </div>
+    <div class="module-card" onclick="goTo('auditiva')">
+      <div class="module-icon">🎧</div>
+      <div class="module-name">Imersão Cultural</div>
+      <div class="module-desc">Ouça e descubra 20 países hispanos</div>
+    </div>
     <div class="module-card sre-card" onclick="goTo('sre')">
       <div class="module-icon" style="font-size:32px;margin-bottom:0">🧠</div>
       <div class="sre-card-text">
@@ -434,7 +541,7 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
 <div id="conversa" class="screen" style="padding:0;justify-content:flex-start;background:#fff">
 <div style="width:100%;max-width:680px;margin:0 auto;height:100vh;height:100dvh;display:flex;flex-direction:column">
   <div style="padding:14px 16px;border-bottom:1px solid #e5e5e5;display:flex;align-items:center;gap:12px;background:#fff;flex-shrink:0;padding-top:max(14px,env(safe-area-inset-top))">
-    <button onclick="endConversa();goTo('setup-conversa')" style="background:none;border:none;cursor:pointer;color:#666;font-size:20px;padding:4px 8px">&#8592;</button>
+    <button onclick="endRealtimeSession();goTo('setup-conversa')" style="background:none;border:none;cursor:pointer;color:#666;font-size:20px;padding:4px 8px">&#8592;</button>
     <img id="paulaAvatar" style="width:32px;height:32px;border-radius:50%;object-fit:cover;object-position:center 5%;flex-shrink:0">
     <div style="flex:1">
       <div style="font-weight:600;font-size:15px;color:#1a1a1a">Paula</div>
@@ -469,6 +576,24 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
     <div id="hintGravando" style="display:none;text-align:center;font-size:12px;color:#a855f7;margin-top:6px">&#128308; Gravando... solte para enviar</div>
   </div>
 </div>
+</div>
+
+<!-- REALTIME VOICE OVERLAY (ChatGPT Voice style) -->
+<div id="rtOverlay">
+  <div class="rt-header">
+    <button class="rt-close" onclick="endRealtimeSession();goTo('setup-conversa')">&#10005;</button>
+    <div class="rt-name">Paula</div>
+    <div class="rt-timer" id="rtTimerOverlay"></div>
+  </div>
+  <div class="rt-orb-wrap">
+    <div class="rt-orb-ring"></div>
+    <div class="rt-orb listening" id="rtOrb"></div>
+  </div>
+  <div class="rt-status" id="rtStatusOverlay">Conectando...</div>
+  <div class="rt-transcript" id="rtTranscript"></div>
+  <button class="rt-end-btn" onclick="endRealtimeSession();goTo('setup-conversa')">
+    <svg viewBox="0 0 24 24" fill="none"><path d="M6 18L18 6M6 6l12 12" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round"/></svg>
+  </button>
 </div>
 
 <!-- SRE -->
@@ -622,47 +747,44 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
   </div>
 </div>
 
-<!-- DELE -->
-<div id="dele" class="screen">
+<!-- IMERSÃO CULTURAL E AUDITIVA -->
+<div id="auditiva" class="screen">
 <div class="content-wrap">
   <div class="page-header">
-    <button class="back-btn" onclick="goTo('home')">←</button>
-    <div><div class="page-title">🎓 DELE</div><div class="page-subtitle">Diplomas de Español como Lengua Extranjera</div></div>
+    <button class="back-btn" onclick="goTo('home')">&#8592;</button>
+    <div><div class="page-title">&#127758; Imersão Cultural</div><div class="page-subtitle">Descubra os países hispanos ouvindo</div></div>
   </div>
-  <div class="exam-filters">
-    <button class="exam-filter-btn active" onclick="filterExam('dele','',event)">Todos</button>
-    <button class="exam-filter-btn" onclick="filterExam('dele','A2',event)">A2</button>
-    <button class="exam-filter-btn" onclick="filterExam('dele','B1',event)">B1</button>
-    <button class="exam-filter-btn" onclick="filterExam('dele','B2',event)">B2</button>
-    <button class="exam-filter-btn" onclick="filterExam('dele','C1',event)">C1</button>
-    <button class="exam-filter-btn" onclick="filterExam('dele','C2',event)">C2</button>
-  </div>
-  <div id="deleList"><div class="empty-state"><div class="empty-icon">🎓</div>Carregando exercícios...</div></div>
+  <div id="auditivaGrid" class="country-grid"></div>
 </div>
 </div>
 
-<!-- SIELE -->
-<div id="siele" class="screen">
-<div class="content-wrap">
-  <div class="page-header">
-    <button class="back-btn" onclick="goTo('home')">←</button>
-    <div><div class="page-title">💻 SIELE</div><div class="page-subtitle">Servicio Internacional de Evaluación de la Lengua Española</div></div>
+<!-- EPISÓDIO CULTURAL -->
+<div id="auditiva-ep" class="screen" style="padding:0;justify-content:flex-start;background:#fff">
+<div style="width:100%;max-width:680px;margin:0 auto;height:100vh;height:100dvh;display:flex;flex-direction:column;background:linear-gradient(180deg,var(--bg1),var(--bg2))">
+  <div style="padding:14px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;flex-shrink:0;padding-top:max(14px,env(safe-area-inset-top))">
+    <button onclick="goTo('auditiva')" style="background:none;border:none;cursor:pointer;color:var(--text2);font-size:20px;padding:4px 8px">&#8592;</button>
+    <div id="epHeaderFlag" style="font-size:28px"></div>
+    <div style="flex:1">
+      <div id="epHeaderTitle" style="font-weight:600;font-size:15px;color:var(--text1)"></div>
+      <div id="epHeaderSub" style="font-size:11px;color:var(--text2)"></div>
+    </div>
+    <div id="epLevelBadge" style="font-size:10px;padding:3px 10px;border-radius:10px;font-weight:600;background:rgba(245,166,35,.2);border:1px solid var(--gold);color:var(--gold)"></div>
   </div>
-  <div class="exam-filters">
-    <button class="exam-filter-btn active" onclick="filterExam('siele','',event)">Todos</button>
-    <button class="exam-filter-btn" onclick="filterExam('siele','A2',event)">A2</button>
-    <button class="exam-filter-btn" onclick="filterExam('siele','B1',event)">B1</button>
-    <button class="exam-filter-btn" onclick="filterExam('siele','B2',event)">B2</button>
-    <button class="exam-filter-btn" onclick="filterExam('siele','C1',event)">C1</button>
-    <button class="exam-filter-btn" onclick="filterExam('siele','C2',event)">C2</button>
+  <div id="epContent" style="flex:1;overflow-y:auto;padding:16px;-webkit-overflow-scrolling:touch">
+    <!-- Audio bar -->
+    <div class="ep-audio-bar">
+      <button class="ep-play-btn" id="epPlayBtn" onclick="epToggleAudio()">&#9654;</button>
+      <div class="ep-progress" onclick="epSeekAudio(event)"><div class="ep-progress-fill" id="epProgressFill"></div></div>
+      <div class="ep-time" id="epTime">0:00</div>
+    </div>
+    <!-- Sections render here -->
+    <div id="epSections"></div>
+    <!-- Vocab local -->
+    <div id="epVocab"></div>
+    <!-- Quiz -->
+    <div id="epQuiz" class="ep-quiz" style="display:none"></div>
   </div>
-  <div id="sieleList"><div class="empty-state"><div class="empty-icon">💻</div>Carregando exercícios...</div></div>
 </div>
-</div>
-
-<!-- MODAL EXERCÍCIO -->
-<div class="exercise-modal-overlay" id="exerciseModal" onclick="closeExerciseModal(event)">
-  <div class="exercise-modal" id="exerciseModalContent"></div>
 </div>
 
 
@@ -711,10 +833,13 @@ let selectedSit = null;
 let chatHistory = [];
 let msgCount = 0;
 let tiraHistory = [];
-let allExercises = [];
-let currentExam = 'dele';
-let currentFilter = '';
 let deferredPrompt = null;
+
+// ══ UTILS ══
+function autoResize(el) {
+  el.style.height = 'auto';
+  el.style.height = Math.min(el.scrollHeight, 120) + 'px';
+}
 
 // ══ VOCABULÁRIO PRÉ-CARREGADO (26 temas) ══
 const SRE_PRELOADED_DATA = (function(){
@@ -934,6 +1059,7 @@ function goTo(id) {
   if (id === 'home') updateHomeSreStats();
   if (id === 'lectura') renderLectura();
   if (id === 'sre-vocab') renderCards();
+  if (id === 'auditiva') renderAuditivaGrid();
 }
 
 // ══ SETUP CONVERSA ══
@@ -974,10 +1100,18 @@ function startConversation() {
   if (foto && av) av.src = foto.src;
   cvHistorico = [];
   document.getElementById('conversaMsgs').innerHTML = '';
-  document.getElementById('barraTexto').style.display = 'flex';
+  document.getElementById('barraTexto').style.display = 'none';
   document.getElementById('barraMaosLivres').style.display = 'none';
   goTo('conversa');
-  cvPaulaResponde(true);
+  // Tentar Realtime API (WebRTC) — fallback para pipeline antigo
+  iniciarRealtimeSession().catch(function(err) {
+    console.warn('[REALTIME] Fallback para pipeline antigo:', err.message);
+    rtAtivo = false;
+    var overlay = document.getElementById('rtOverlay');
+    if (overlay) overlay.classList.remove('active');
+    document.getElementById('barraTexto').style.display = 'flex';
+    cvPaulaResponde(true);
+  });
 }
 
 var cvHistorico = [];
@@ -990,6 +1124,16 @@ var cvStream = null;
 var cvChunks = [];
 var cvMlRec = null;
 var selectedGender = '';
+
+// ══ REALTIME API (WebRTC) ══
+var rtPC = null;           // RTCPeerConnection
+var rtDC = null;           // DataChannel para eventos
+var rtStream = null;       // MediaStream do microfone
+var rtAudioEl = null;      // <audio> para playback remoto
+var rtAtivo = false;       // Sessão Realtime ativa?
+var rtTimerInterval = null; // Intervalo do timer
+var rtSegundosRestantes = 0;
+var rtSessionStart = null;
 
 function selectGender(g) {
   selectedGender = g;
@@ -1381,9 +1525,246 @@ function endConversa() {
   cvGravando = false;
   document.getElementById('barraTexto').style.display = 'flex';
   document.getElementById('barraMaosLivres').style.display = 'none';
+  // Limpar estado Realtime
+  _rtTranscriptoPaula = '';
+  _rtPaulaFalando = false;
 }
 
-function endRealtimeSession() { endConversa(); }
+function endRealtimeSession() {
+  if (rtAtivo) {
+    rtAtivo = false;
+    if (rtTimerInterval) { clearInterval(rtTimerInterval); rtTimerInterval = null; }
+    if (rtDC) { try { rtDC.close(); } catch(e) {} rtDC = null; }
+    if (rtPC) { try { rtPC.close(); } catch(e) {} rtPC = null; }
+    if (rtStream) { rtStream.getTracks().forEach(function(t) { t.stop(); }); rtStream = null; }
+    if (rtAudioEl) { try { rtAudioEl.pause(); rtAudioEl.srcObject = null; } catch(e) {} rtAudioEl = null; }
+    // Fechar overlay
+    var overlay = document.getElementById('rtOverlay');
+    if (overlay) overlay.classList.remove('active');
+    var timerOv = document.getElementById('rtTimerOverlay');
+    if (timerOv) { timerOv.classList.remove('warning'); timerOv.textContent = ''; }
+    // Notificar backend
+    fetch(API + '/api/realtime/end', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token }
+    }).catch(function() {});
+  }
+  endConversa();
+}
+
+// ══ REALTIME API — WebRTC ══
+
+async function iniciarRealtimeSession() {
+  cvSetStatus('pensando');
+  cvAddMsg('paula', 'Conectando...');
+
+  // 1. Pedir ephemeral token ao backend
+  var tokenRes = await fetch(API + '/api/realtime/token', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+    body: JSON.stringify({ level: selectedLevel, situation: selectedSit })
+  });
+
+  if (!tokenRes.ok) {
+    var errData = await tokenRes.json().catch(function() { return {}; });
+    if (errData.limit_reached) {
+      document.getElementById('conversaMsgs').innerHTML = '';
+      cvAddMsg('paula', 'Você atingiu o limite diário de conversação. Volte amanhã! 😊');
+      cvSetStatus('ouvindo');
+      throw new Error('Limite diário atingido');
+    }
+    throw new Error('Token error: ' + tokenRes.status);
+  }
+
+  var tokenData = await tokenRes.json();
+  var ephemeralKey = tokenData.client_secret.value;
+  rtSegundosRestantes = tokenData.remaining_seconds || 900;
+  rtSessionStart = Date.now();
+
+  // 2. Criar RTCPeerConnection
+  rtPC = new RTCPeerConnection();
+
+  // 3. Configurar recepção de áudio remoto (voz da Paula)
+  rtAudioEl = document.createElement('audio');
+  rtAudioEl.autoplay = true;
+  rtPC.ontrack = function(ev) {
+    rtAudioEl.srcObject = ev.streams[0];
+  };
+
+  // 4. Capturar microfone e adicionar track local
+  rtStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+  rtStream.getTracks().forEach(function(track) {
+    rtPC.addTrack(track, rtStream);
+  });
+
+  // 5. Criar DataChannel para eventos
+  rtDC = rtPC.createDataChannel('oai-events');
+  rtDC.onopen = function() {
+    console.log('[REALTIME] DataChannel aberto');
+  };
+  rtDC.onmessage = function(ev) {
+    rtTratarEvento(JSON.parse(ev.data));
+  };
+
+  // 6. Criar offer SDP
+  var offer = await rtPC.createOffer();
+  await rtPC.setLocalDescription(offer);
+
+  // 7. Enviar offer para OpenAI e receber answer
+  var sdpRes = await fetch('https://api.openai.com/v1/realtime?model=gpt-4o-realtime-preview-2024-12-17', {
+    method: 'POST',
+    headers: {
+      'Authorization': 'Bearer ' + ephemeralKey,
+      'Content-Type': 'application/sdp'
+    },
+    body: offer.sdp
+  });
+
+  if (!sdpRes.ok) {
+    throw new Error('SDP error: ' + sdpRes.status);
+  }
+
+  var answerSdp = await sdpRes.text();
+  await rtPC.setRemoteDescription({ type: 'answer', sdp: answerSdp });
+
+  // 8. Sessão ativa!
+  rtAtivo = true;
+
+  // Mostrar overlay ChatGPT Voice style
+  rtMostrarOverlay();
+
+  // 9. Iniciar timer
+  rtIniciarTimer();
+
+  console.log('[REALTIME] WebRTC conectado! Latência mínima ativada.');
+}
+
+// ── Overlay ChatGPT Voice ──
+function rtMostrarOverlay() {
+  var overlay = document.getElementById('rtOverlay');
+  overlay.classList.add('active');
+  rtSetOrb('listening');
+  document.getElementById('rtStatusOverlay').textContent = 'Fale com a Paula...';
+  document.getElementById('rtTranscript').textContent = '';
+}
+
+// ── Timer de tempo restante ──
+function rtIniciarTimer() {
+  var timerEl = document.getElementById('rtTimerOverlay');
+
+  function atualizar() {
+    var elapsed = Math.floor((Date.now() - rtSessionStart) / 1000);
+    var restante = Math.max(0, rtSegundosRestantes - elapsed);
+    var min = Math.floor(restante / 60);
+    var seg = restante % 60;
+    timerEl.textContent = min + ':' + (seg < 10 ? '0' : '') + seg;
+
+    // Aviso de 2 minutos
+    if (restante <= 120) {
+      timerEl.classList.add('warning');
+    }
+
+    // Tempo esgotado
+    if (restante <= 0) {
+      document.getElementById('rtStatusOverlay').textContent = 'Tempo esgotado! Até amanhã 🌟';
+      rtSetOrb('thinking');
+      setTimeout(function() { endRealtimeSession(); goTo('setup-conversa'); }, 2500);
+      return;
+    }
+  }
+
+  atualizar();
+  rtTimerInterval = setInterval(atualizar, 1000);
+}
+
+// ── Tratar eventos do DataChannel ──
+var _rtTranscriptoPaula = '';
+var _rtPaulaFalando = false;
+
+function rtTratarEvento(ev) {
+  var statusEl = document.getElementById('rtStatusOverlay');
+  var transcriptEl = document.getElementById('rtTranscript');
+
+  switch (ev.type) {
+    case 'session.created':
+      console.log('[REALTIME] Sessão criada:', ev.session?.id);
+      break;
+
+    case 'input_audio_buffer.speech_started':
+      rtSetOrb('user-speaking');
+      if (statusEl) statusEl.textContent = 'Ouvindo você...';
+      if (transcriptEl) { transcriptEl.textContent = ''; transcriptEl.className = 'rt-transcript user'; }
+      break;
+
+    case 'input_audio_buffer.speech_stopped':
+      rtSetOrb('thinking');
+      if (statusEl) statusEl.textContent = 'Pensando...';
+      break;
+
+    case 'conversation.item.input_audio_transcription.completed':
+      var userText = (ev.transcript || '').trim();
+      if (userText && transcriptEl) {
+        transcriptEl.textContent = userText;
+        transcriptEl.className = 'rt-transcript user';
+        cvHistorico.push({ role: 'user', content: userText });
+        if (cvHistorico.length > 60) cvHistorico = cvHistorico.slice(-60);
+      }
+      break;
+
+    case 'response.audio_transcript.delta':
+      _rtTranscriptoPaula += (ev.delta || '');
+      if (transcriptEl) {
+        transcriptEl.textContent = _rtTranscriptoPaula;
+        transcriptEl.className = 'rt-transcript paula';
+      }
+      break;
+
+    case 'response.audio_transcript.done':
+      var paulaText = (ev.transcript || _rtTranscriptoPaula || '').trim();
+      if (paulaText) {
+        cvHistorico.push({ role: 'assistant', content: paulaText });
+        if (cvHistorico.length > 60) cvHistorico = cvHistorico.slice(-60);
+      }
+      break;
+
+    case 'response.audio.delta':
+      if (!_rtPaulaFalando) {
+        _rtPaulaFalando = true;
+        rtSetOrb('speaking');
+        if (statusEl) statusEl.textContent = 'Paula';
+      }
+      break;
+
+    case 'response.audio.done':
+      break;
+
+    case 'response.done':
+      _rtPaulaFalando = false;
+      _rtTranscriptoPaula = '';
+      rtSetOrb('listening');
+      if (statusEl) statusEl.textContent = 'Fale com a Paula...';
+      // Fade transcript after 2s
+      setTimeout(function() {
+        if (!_rtPaulaFalando && transcriptEl) transcriptEl.textContent = '';
+      }, 3000);
+      break;
+
+    case 'error':
+      console.error('[REALTIME] Erro:', ev.error);
+      if (statusEl) statusEl.textContent = 'Erro de conexão';
+      rtSetOrb('thinking');
+      break;
+  }
+}
+
+// ── Orbe visual ──
+function rtSetOrb(state) {
+  var orb = document.getElementById('rtOrb');
+  var ring = document.querySelector('.rt-orb-ring');
+  if (!orb) return;
+  orb.className = 'rt-orb ' + state;
+  if (ring) ring.className = 'rt-orb-ring' + (state === 'speaking' || state === 'user-speaking' ? ' active' : '');
+}
 
 
 // ══ SRE GAMIFICADO ══
@@ -1484,19 +1865,45 @@ function rateCard(rating) {
   if (!card) return;
   var orig = sreCards.find(c => c.id === card.id || (c.word === card.word && c.translation === card.translation));
   if (orig) {
-    var days = { hard: 1, ok: 3, easy: 7 };
+    // ── Algoritmo SM-2 simplificado ──
+    // Espaçamento cresce exponencialmente com acertos consecutivos
+    var reviews = (orig.reviews || 0) + 1;
+    var ease = orig.ease || 2.5;
+    var interval;
+    if (rating === 'hard') {
+      ease = Math.max(1.3, ease - 0.3);
+      interval = reviews === 1 ? 1 : Math.max(1, Math.round((orig.lastInterval || 1) * 0.5));
+    } else if (rating === 'ok') {
+      interval = reviews === 1 ? 1 : reviews === 2 ? 3 : Math.round((orig.lastInterval || 3) * ease);
+    } else { // easy
+      ease = Math.min(3.0, ease + 0.15);
+      interval = reviews === 1 ? 3 : reviews === 2 ? 7 : Math.round((orig.lastInterval || 7) * ease * 1.3);
+    }
+    // Cap em 180 dias
+    interval = Math.min(interval, 180);
     var next = new Date();
-    next.setDate(next.getDate() + days[rating]);
+    next.setDate(next.getDate() + interval);
     orig.nextReview = next.toISOString();
-    orig.reviews = (orig.reviews || 0) + 1;
+    orig.reviews = reviews;
+    orig.ease = ease;
+    orig.lastInterval = interval;
+    orig.lastRating = rating;
+    // Marcar como dominada se 3+ acertos com easy ou 5+ com ok
+    if ((rating === 'easy' && reviews >= 3) || reviews >= 5) {
+      orig.mastered = true;
+    }
     saveCards();
   }
   var stats = getSreStats();
   var todayKey = getTodayKey();
   if (stats.doneTodayKey !== todayKey) { stats.doneToday = 0; stats.doneTodayKey = todayKey; }
-  if (card._qtype === 'new') stats.doneToday = (stats.doneToday||0) + 1;
+  stats.doneToday = (stats.doneToday||0) + 1;
   var xpGain = rating === 'easy' ? 10 : rating === 'ok' ? 6 : 3;
+  // Bônus de streak
+  var streakBonus = Math.min(5, Math.floor((stats.streak || 0) / 3));
+  xpGain += streakBonus;
   stats.xp = (stats.xp||0) + xpGain;
+  stats.stars = (stats.stars||0) + (rating === 'easy' ? 2 : rating === 'ok' ? 1 : 0);
   showXpPopup(xpGain, document.getElementById('sreActions'));
   var lastDate = stats.lastStudyDate;
   var yesterday = new Date(); yesterday.setDate(yesterday.getDate()-1);
@@ -1518,8 +1925,30 @@ function rateCard(rating) {
 
 function showCelebration(done, stars, level) {
   var cel = document.getElementById('sreCelebration');
+  var mastered = sreCards.filter(function(c) { return c.mastered; }).length;
+  var total = sreCards.length;
+  var stats = getSreStats();
+  var streak = stats.streak || 1;
+
+  // Mensagens motivacionais contextuais
+  var msgs = [];
+  if (streak >= 7) msgs.push('🔥 ' + streak + ' dias seguidos! Você está imparável.');
+  else if (streak >= 3) msgs.push('💪 ' + streak + ' dias de sequência. Continue assim!');
+  else msgs.push('✨ Ótimo trabalho hoje!');
+
+  if (mastered > 0) msgs.push('📚 ' + mastered + ' de ' + total + ' palavras dominadas.');
+
+  // Preview do amanhã
+  var reviewTomorrow = sreCards.filter(function(c) {
+    if (!c.nextReview) return false;
+    var d = new Date(c.nextReview);
+    var tomorrow = new Date(); tomorrow.setDate(tomorrow.getDate() + 1);
+    return d.toISOString().slice(0,10) <= tomorrow.toISOString().slice(0,10);
+  }).length;
+  if (reviewTomorrow > 0) msgs.push('📋 Amanhã: ' + reviewTomorrow + ' palavras para revisar.');
+
   document.getElementById('celebrationEmoji').textContent = level.badge;
-  document.getElementById('celebrationText').textContent = level.badge + ' ' + done + ' palavras hoje! Nível: ' + level.name;
+  document.getElementById('celebrationText').innerHTML = done + ' palavras praticadas!<br><span style="font-size:13px;font-weight:400;color:var(--text2);line-height:1.8">' + msgs.join('<br>') + '</span>';
   cel.style.display = 'block';
   cel.scrollIntoView({behavior:'smooth', block:'center'});
 }
@@ -1540,7 +1969,7 @@ function addCard() {
   stats.stars = (stats.stars||0) + bonus;
   stats.xp = (stats.xp||0) + bonus * 5;
   saveSreStats(stats);
-  showXpPopup('+' + bonus + '⭐', document.querySelector('.add-card-form'));
+  showXpPopup(bonus + '⭐', document.querySelector('.add-card-form'));
   sreCards.push({
     id: 'user_' + Date.now(),
     word, translation: trans, example,
@@ -1881,132 +2310,8 @@ function checkLacunas() {
       : `${correct}/${inputs.length} corretas. As respostas: <strong>${currentLacuna.answers.join(', ')}</strong>` + trad;
 }
 
-// ══ EXERCÍCIOS DELE/SIELE ══
-async function loadExercises() {
-  try {
-    const res = await fetch(`${API}/api/exam-audio/list`, {
-      headers: { 'Authorization': `Bearer ${token}` }
-    });
-    if (res.ok) {
-      const data = await res.json();
-      allExercises = data.exercises || [];
-      renderExamList('dele');
-      renderExamList('siele');
-    }
-  } catch {}
-}
 
-function filterExam(exam, nivel, evt) {
-  currentExam = exam;
-  currentFilter = nivel;
-  const btns = document.querySelectorAll(`#${exam} .exam-filter-btn`);
-  btns.forEach(b => b.classList.remove('active'));
-  if (evt && evt.currentTarget) evt.currentTarget.classList.add('active');
-  renderExamList(exam);
-}
 
-function renderExamList(exam) {
-  const listEl = document.getElementById(`${exam}List`);
-  const filtered = allExercises.filter(e =>
-    e.examen && e.examen.toLowerCase() === exam &&
-    (!currentFilter || e.nivel === currentFilter)
-  );
-  if (filtered.length === 0) {
-    listEl.innerHTML = '<div class="empty-state"><div class="empty-icon">' + (exam === 'dele' ? '🎓' : '💻') + '</div>Nenhum exercício encontrado.</div>';
-    return;
-  }
-  listEl.innerHTML = filtered.map(ex => `
-    <div class="exercise-card" onclick="openExercise('${ex.id}')">
-      <div class="exercise-badges">
-        <span class="ex-badge nivel">${ex.nivel}</span>
-        ${ex.has_audio ? '<span class="ex-badge audio">▶ Áudio</span>' : ''}
-      </div>
-      <div class="exercise-title">${ex.titulo}</div>
-      <div class="exercise-meta">${ex.duracion_segundos}s • ${ex.num_personajes} personagens</div>
-    </div>
-  `).join('');
-}
-
-async function openExercise(id) {
-  try {
-    const res = await fetch(`${API}/api/exam-audio/${id}`, {
-      headers: { 'Authorization': `Bearer ${token}` }
-    });
-    if (!res.ok) return;
-    const ex = await res.json();
-    const modal = document.getElementById('exerciseModalContent');
-    modal.innerHTML = `
-      <button class="modal-close-btn" onclick="document.getElementById('exerciseModal').classList.remove('open')">×</button>
-      <div style="margin-bottom:16px">
-        <div style="display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap">
-          <span class="ex-badge nivel" style="font-size:11px;padding:3px 10px">${ex.nivel}</span>
-          <span class="ex-badge nivel" style="background:rgba(96,165,250,.2);border-color:var(--blue);color:var(--blue);font-size:11px;padding:3px 10px">${ex.examen}</span>
-        </div>
-        <div style="font-family:'Playfair Display',serif;font-weight:700;font-size:18px;margin-bottom:4px">${ex.titulo}</div>
-        <div style="color:var(--text2);font-size:12px;font-style:italic">${ex.duracion_segundos}s • ${ex.num_personajes} personagens</div>
-      </div>
-      <div style="margin-bottom:16px">
-        <button id="examAudioBtn" onclick="playExamAudio('${ex.id}')" style="width:100%;padding:14px;background:linear-gradient(135deg,rgba(168,85,247,.2),rgba(96,165,250,.2));border:1px solid rgba(168,85,247,.4);border-radius:14px;color:#a78bfa;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .2s">
-          ▶️ Ouvir Diálogo
-        </button>
-        <audio id="examAudioPlayer" style="width:100%;margin-top:10px;display:none;border-radius:8px" controls></audio>
-      </div>
-      <div style="margin-bottom:16px">
-        <div style="color:var(--text2);font-size:11px;text-transform:uppercase;letter-spacing:2px;margin-bottom:10px">Diálogo</div>
-        ${(ex.lineas||[]).map(line => {
-          const p = ex.personajes ? ex.personajes.find(p => p.nombre === line.personaje || p.id === line.personaje) : null;
-          return `<div class="dialogue-line"><span class="dialogue-speaker">${p ? p.nombre : line.personaje}</span><span>${line.texto}</span></div>`;
-        }).join('')}
-      </div>
-      <div style="margin-bottom:16px">
-        <div style="color:var(--text2);font-size:11px;text-transform:uppercase;letter-spacing:2px;margin-bottom:10px">Perguntas</div>
-        ${(ex.preguntas||[]).map(q => `<div style="background:var(--glass);border:1px solid var(--border);border-radius:10px;padding:10px 14px;margin-bottom:7px;font-size:13px;line-height:1.5">${q}</div>`).join('')}
-      </div>
-      <div style="margin-bottom:16px">
-        <div style="color:var(--text2);font-size:11px;text-transform:uppercase;letter-spacing:2px;margin-bottom:10px">Respostas</div>
-        ${(ex.respuestas_correctas||[]).map(a => `<div style="background:rgba(74,222,128,.08);border:1px solid rgba(74,222,128,.2);border-radius:10px;padding:10px 14px;margin-bottom:7px;font-size:13px;color:var(--green);line-height:1.5">${a}</div>`).join('')}
-      </div>
-      <div>
-        <div style="color:var(--text2);font-size:11px;text-transform:uppercase;letter-spacing:2px;margin-bottom:8px">Vocabulário-chave</div>
-        <div class="vocab-tags">${(ex.vocabulario_clave||[]).map(v => `<span class="vocab-tag">${v}</span>`).join('')}</div>
-      </div>
-    `;
-    document.getElementById('exerciseModal').classList.add('open');
-  } catch(e) {
-    console.error('[openExercise]', e);
-  }
-}
-
-function closeExerciseModal(e) {
-  if (e.target.id === 'exerciseModal') {
-    document.getElementById('exerciseModal').classList.remove('open');
-  }
-}
-
-async function playExamAudio(id) {
-  var btn = document.getElementById('examAudioBtn');
-  var player = document.getElementById('examAudioPlayer');
-  if (!btn || !player) return;
-  btn.textContent = '⏳ Gerando áudio...';
-  btn.disabled = true;
-  try {
-    var res = await fetch(API + '/api/exam-audio/' + id + '/audio', {
-      headers: { 'Authorization': 'Bearer ' + token }
-    });
-    if (!res.ok) throw new Error('Erro ao gerar áudio');
-    var blob = await res.blob();
-    var url = URL.createObjectURL(blob);
-    player.src = url;
-    player.style.display = 'block';
-    player.play();
-    btn.textContent = '▶️ Ouvir Diálogo';
-    btn.disabled = false;
-  } catch(e) {
-    btn.textContent = '❌ Erro ao gerar áudio';
-    btn.disabled = false;
-    console.error('[EXAM-AUDIO]', e);
-  }
-}
 
 // ══ LECTURA ══
 const LECTURA_DATA = {
@@ -2700,7 +3005,7 @@ const LECTURA_DATA = {
     ]}
   ],
 
-  B1: [
+  _B1b: [
     {titulo:'El teletrabajo: ventajas y desventajas',tema:'Trabajo',texto:'El teletrabajo, o trabajo a distancia, se ha convertido en una realidad para millones de personas en todo el mundo, especialmente tras la pandemia de COVID-19 que obligó a muchas empresas a adaptarse rápidamente. Entre sus principales ventajas destaca la flexibilidad horaria, que permite a los trabajadores organizar su jornada según sus necesidades personales. También se ahorra tiempo y dinero en transporte, y es posible conciliar mejor la vida familiar con la profesional. Sin embargo, el teletrabajo también presenta inconvenientes importantes. Muchos trabajadores sienten aislamiento social al no tener contacto diario con sus compañeros. Además, la línea entre el trabajo y la vida personal se vuelve borrosa, lo que dificulta desconectar al final del día. También es necesario disponer de un espacio adecuado en casa y una buena conexión a internet. Según encuestas recientes, el modelo híbrido, que combina días en la oficina con días en casa, es el preferido por la mayoría de los trabajadores.',preguntas:[
       {p:'¿Qué acontecimiento impulsó el teletrabajo?',ops:['La crisis económica','La digitalización','La pandemia de COVID-19','Un cambio de ley'],ok:2,exp:'El texto dice: "especialmente tras la pandemia de COVID-19 que obligó a muchas empresas a adaptarse."'},
       {p:'¿Cuál es una ventaja del teletrabajo según el texto?',ops:['Mejor comunicación con compañeros','Flexibilidad horaria y ahorro en transporte','Más productividad siempre','Mejor equipamiento tecnológico'],ok:1,exp:'El texto dice: "la flexibilidad horaria" y "se ahorra tiempo y dinero en transporte."'},
@@ -2822,7 +3127,7 @@ const LECTURA_DATA = {
     ]}
   ],
 
-  B2: [
+  _B2b: [
     {titulo:'La paradoja de la hiperconectividad',tema:'Tecnología y sociedad',texto:'Vivimos en la era de la mayor conectividad de la historia humana: miles de millones de personas están interconectadas en tiempo real a través de dispositivos inteligentes que llevan en sus bolsillos. Sin embargo, estudios sociológicos realizados en varios países revelan una paradoja profundamente inquietante: cuanto más conectados estamos digitalmente, mayores son los índices de soledad reportados por la población, especialmente entre los jóvenes de entre dieciséis y veinticinco años. Los investigadores apuntan a varios factores que explican este fenómeno: la superficialidad inherente a las interacciones digitales, la tendencia a proyectar versiones idealizadas de uno mismo en las redes sociales, la comparación constante con vidas aparentemente perfectas, y la sustitución progresiva del contacto presencial y físico por el virtual. La paradoja es que la tecnología diseñada para conectarnos puede estar erosionando precisamente los vínculos sociales profundos y auténticos que dan sentido a la existencia humana.',preguntas:[
       {p:'¿Cuál es la paradoja central del texto?',ops:['Más tecnología implica menos productividad','Mayor conectividad digital pero paradójicamente más soledad','Las redes sociales generan comunidad','Los jóvenes usan más redes que los adultos'],ok:1,exp:'El texto dice: "cuanto más conectados estamos digitalmente, mayores son los índices de soledad."'},
       {p:'¿A qué grupo afecta especialmente la soledad digital?',ops:['A los mayores de sesenta años','A los profesionales','A los jóvenes de entre dieciséis y veinticinco años','A los niños'],ok:2,exp:'El texto dice: "especialmente entre los jóvenes de entre dieciséis y veinticinco años."'},
@@ -2930,7 +3235,7 @@ const LECTURA_DATA = {
     ]}
   ],
 
-  C1: [
+  _C1b: [
     {titulo:'La epistemología y la naturaleza del conocimiento científico',tema:'Filosofía de la ciencia',texto:'La pregunta de qué distingue al conocimiento científico de otras formas de conocimiento ha ocupado a los filósofos durante siglos, pero fue en el siglo veinte cuando el debate adquirió su formulación más rigurosa y perdurable. Karl Popper propuso que el criterio de demarcación entre ciencia y no ciencia no es la verificación empírica, como sostenía el positivismo lógico del Círculo de Viena, sino la falsabilidad: una teoría es científica en la medida en que puede ser refutada por la experiencia, en que existe al menos en principio algún experimento o evidencia que podría demostrar su falsedad. Una teoría que no puede ser falsada no es científica, sino metafísica. Thomas Kuhn, por su parte, cuestionó la imagen de la ciencia como proceso acumulativo y lineal de conocimiento, argumentando que la historia de la ciencia muestra períodos de ciencia normal interrumpidos por revoluciones científicas en las que el paradigma vigente es abandonado y sustituido por uno nuevo radicalmente incompatible con el anterior.',preguntas:[
       {p:'¿Qué criterio propone Popper para la ciencia?',ops:['La verificación empírica','La falsabilidad: que pueda ser refutada por la experiencia','El consenso de los científicos','La precisión matemática'],ok:1,exp:'El texto dice: "una teoría es científica en la medida en que puede ser refutada por la experiencia."'},
       {p:'¿Qué es una teoría no falsable según Popper?',ops:['Una teoría verdadera','Una teoría muy compleja','Una teoría metafísica, no científica','Una teoría provisional'],ok:2,exp:'El texto dice: "Una teoría que no puede ser falsada no es científica, sino metafísica."'},
@@ -3038,7 +3343,7 @@ const LECTURA_DATA = {
     ]}
   ],
 
-  C2: [
+  _C2b: [
     {titulo:'La aporía del libre albedrío',tema:'Filosofía y neurociencia',texto:'El libre albedrío, la convicción de que somos los autores genuinos de nuestras acciones y podemos haber elegido de otra manera, es uno de los pilares sobre los que descansa la experiencia moral humana: el mérito, la culpa, la responsabilidad y el castigo solo tienen sentido si los seres humanos son libres de elegir. Sin embargo, los experimentos realizados por el neurocientífico Benjamin Libet en los años ochenta pusieron en cuestión esta convicción al demostrar que la actividad cerebral asociada a un movimiento voluntario, denominada potencial de preparación, precede en varios cientos de milisegundos a la consciencia del sujeto de haber tomado la decisión de moverse. Este hallazgo fue interpretado por muchos como evidencia de que la decisión consciente es en realidad un epifenómeno, una narrativa post hoc que el cerebro construye para explicar acciones que en realidad ya han sido iniciadas por procesos inconscientes. La controversia filosófica que desencadenó continúa sin resolución satisfactoria, tensionada entre el determinismo neurológico y la fenomenología irreductible de la deliberación y la responsabilidad moral.',preguntas:[
       {p:'¿Por qué es filosóficamente importante el libre albedrío?',ops:['Por razones religiosas únicamente','Porque sin él el mérito, la culpa y la responsabilidad moral pierden sentido','Por razones científicas','Porque hace a los humanos superiores'],ok:1,exp:'El texto dice: "el mérito, la culpa, la responsabilidad y el castigo solo tienen sentido si los seres humanos son libres de elegir."'},
       {p:'¿Qué descubrió Libet?',ops:['Que el libre albedrío existe claramente','Que la actividad cerebral del movimiento precede en cientos de milisegundos a la consciencia de decidir','Que el cerebro es determinista','Que la consciencia controla todo'],ok:1,exp:'El texto dice: "la actividad cerebral asociada a un movimiento voluntario... precede en varios cientos de milisegundos a la consciencia del sujeto de haber tomado la decisión."'},
@@ -3139,6 +3444,14 @@ const LECTURA_DATA = {
     ]}
   ]
 };
+// Mesclar textos duplicados de B1-C2
+['B1','B2','C1','C2'].forEach(function(k) {
+  var bk = '_' + k + 'b';
+  if (LECTURA_DATA[bk]) {
+    LECTURA_DATA[k] = (LECTURA_DATA[k] || []).concat(LECTURA_DATA[bk]);
+    delete LECTURA_DATA[bk];
+  }
+});
 
 let lecNivelActual = 'A1';
 let lecRespuestas = {};
@@ -3329,6 +3642,273 @@ function proximoTexto() {
   window.scrollTo({top: 0, behavior: 'smooth'});
 }
 
+// ══ IMERSÃO CULTURAL E AUDITIVA ══
+var auditivaCurrentCountry = null;
+var auditivaCurrentEp = null;
+var auditivaAudio = null;
+var auditivaQuizAnswered = false;
+
+function getAuditivaProgress() {
+  return JSON.parse(localStorage.getItem('auditiva_progress') || '{}');
+}
+function saveAuditivaProgress(countryCode, epId) {
+  var prog = getAuditivaProgress();
+  if (!prog[countryCode]) prog[countryCode] = [];
+  if (prog[countryCode].indexOf(epId) === -1) prog[countryCode].push(epId);
+  localStorage.setItem('auditiva_progress', JSON.stringify(prog));
+}
+
+function renderAuditivaGrid() {
+  var grid = document.getElementById('auditivaGrid');
+  if (!grid || typeof AUDITIVA_DATA === 'undefined') return;
+  var prog = getAuditivaProgress();
+  var countries = Object.keys(AUDITIVA_DATA);
+  grid.innerHTML = countries.map(function(code) {
+    var c = AUDITIVA_DATA[code];
+    var done = (prog[code] || []).length;
+    var total = (c.episodes || []).length;
+    var pct = total > 0 ? Math.round(done / total * 100) : 0;
+    return '<div class="country-card' + (pct >= 100 ? ' completed' : '') + '" onclick="openCountryEpisodes(\'' + code + '\')">' +
+      '<span class="flag">' + c.flag + '</span>' +
+      '<div class="cname">' + c.name + '</div>' +
+      '<div class="cprogress">' + done + '/' + total + ' episódios</div>' +
+      '<div class="cprogress-bar"><div class="cprogress-fill" style="width:' + pct + '%"></div></div>' +
+      '</div>';
+  }).join('');
+}
+
+function openCountryEpisodes(code) {
+  var c = AUDITIVA_DATA[code];
+  if (!c || !c.episodes || !c.episodes.length) return;
+  // For now, open the first episode
+  openEpisode(code, 0);
+}
+
+function openEpisode(countryCode, epIndex) {
+  var c = AUDITIVA_DATA[countryCode];
+  var ep = c.episodes[epIndex];
+  if (!ep) return;
+  auditivaCurrentCountry = countryCode;
+  auditivaCurrentEp = ep;
+  auditivaQuizAnswered = false;
+
+  // Header
+  document.getElementById('epHeaderFlag').textContent = c.flag;
+  document.getElementById('epHeaderTitle').textContent = ep.title;
+  document.getElementById('epHeaderSub').textContent = c.name + ' · ' + c.guide;
+  document.getElementById('epLevelBadge').textContent = ep.level;
+
+  // Reset audio
+  if (auditivaAudio) { try { auditivaAudio.pause(); } catch(e) {} }
+  auditivaAudio = null;
+  document.getElementById('epPlayBtn').innerHTML = '&#9654;';
+  document.getElementById('epProgressFill').style.width = '0%';
+  document.getElementById('epTime').textContent = ep.duration || '5:00';
+
+  // Render sections
+  var sectionsHtml = '';
+  (ep.sections || []).forEach(function(sec, i) {
+    var isGuide = sec.speaker !== 'narrator';
+    var speakerName = isGuide ? c.guide : 'Narrador';
+    var speakerClass = isGuide ? 'guide' : 'narrator';
+    sectionsHtml += '<div class="ep-section" id="epSec' + i + '">' +
+      '<span class="speaker-tag ' + speakerClass + '">' + speakerName + '</span>' +
+      '<div>' + sec.text + '</div>' +
+      '</div>';
+  });
+  document.getElementById('epSections').innerHTML = sectionsHtml;
+
+  // Render vocab
+  var vocabHtml = '';
+  if (ep.vocabLocal && ep.vocabLocal.length) {
+    vocabHtml = '<div style="margin-top:16px;margin-bottom:8px;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text2)">Vocabulário Regional</div><div class="ep-vocab">';
+    ep.vocabLocal.forEach(function(v) {
+      vocabHtml += '<div class="ep-vocab-chip"><span class="local">' + v.local + '</span><span class="arrow">→</span><span class="universal">' + v.universal + '</span></div>';
+    });
+    vocabHtml += '</div>';
+  }
+  document.getElementById('epVocab').innerHTML = vocabHtml;
+
+  // Render quiz (hidden until audio "finishes")
+  var quizHtml = '<div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text2);margin-bottom:14px">&#128221; Teste de Compreensão</div>';
+  (ep.quiz || []).forEach(function(q, qi) {
+    quizHtml += '<div class="eq-question" id="eqQ' + qi + '">' +
+      '<div class="eq-q">' + (qi + 1) + '. ' + q.q + '</div>';
+    (q.ops || []).forEach(function(opt, oi) {
+      quizHtml += '<div class="eq-opt" onclick="answerQuiz(' + qi + ',' + oi + ')">' + String.fromCharCode(65 + oi) + ') ' + opt + '</div>';
+    });
+    quizHtml += '<div class="eq-exp" id="eqExp' + qi + '">' + (q.exp || '') + '</div></div>';
+  });
+  quizHtml += '<div id="eqResult" style="display:none;text-align:center;margin-top:20px"></div>';
+  document.getElementById('epQuiz').innerHTML = quizHtml;
+  document.getElementById('epQuiz').style.display = 'block';
+
+  goTo('auditiva-ep');
+  document.getElementById('epContent').scrollTop = 0;
+}
+
+var _epSectionIndex = 0;
+var _epPlaying = false;
+
+function epToggleAudio() {
+  var btn = document.getElementById('epPlayBtn');
+  if (!auditivaCurrentEp) return;
+
+  // Se já tem áudio tocando, toggle play/pause
+  if (auditivaAudio && !auditivaAudio.ended) {
+    if (auditivaAudio.paused) {
+      auditivaAudio.play();
+      btn.innerHTML = '&#9646;&#9646;';
+    } else {
+      auditivaAudio.pause();
+      btn.innerHTML = '&#9654;';
+    }
+    return;
+  }
+
+  // Iniciar reprodução sequencial das seções
+  _epSectionIndex = 0;
+  _epPlaying = true;
+  btn.innerHTML = '&#9203;';
+  epPlayNextSection();
+}
+
+function epPlayNextSection() {
+  var ep = auditivaCurrentEp;
+  var sections = ep.sections || [];
+  var btn = document.getElementById('epPlayBtn');
+  var progressFill = document.getElementById('epProgressFill');
+  var timeEl = document.getElementById('epTime');
+
+  if (_epSectionIndex >= sections.length || !_epPlaying) {
+    // Todas as seções tocaram
+    btn.innerHTML = '&#9654;';
+    progressFill.style.width = '100%';
+    timeEl.textContent = '0:00';
+    _epPlaying = false;
+    auditivaAudio = null;
+    return;
+  }
+
+  var sec = sections[_epSectionIndex];
+  var secEl = document.getElementById('epSec' + _epSectionIndex);
+
+  // Highlight seção atual
+  document.querySelectorAll('.ep-section').forEach(function(s) { s.classList.remove('active'); });
+  if (secEl) { secEl.classList.add('active'); secEl.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+
+  // Atualizar progresso visual
+  var totalSections = sections.length;
+  var pct = (_epSectionIndex / totalSections) * 100;
+  progressFill.style.width = pct + '%';
+
+  // Buscar áudio da seção via API (gera on-demand, cache no backend)
+  var url = API + '/api/auditiva/audio/' + ep.id + '/' + _epSectionIndex +
+    '?text=' + encodeURIComponent(sec.text) +
+    '&speaker=' + encodeURIComponent(sec.speaker) +
+    '&countryCode=' + encodeURIComponent(auditivaCurrentCountry);
+
+  btn.innerHTML = '&#9203;';
+  timeEl.textContent = (_epSectionIndex + 1) + '/' + totalSections;
+
+  fetch(url, { headers: { 'Authorization': 'Bearer ' + token } })
+  .then(function(r) { return r.ok ? r.blob() : Promise.reject('Audio error ' + r.status); })
+  .then(function(blob) {
+    var audioUrl = URL.createObjectURL(blob);
+    auditivaAudio = new Audio(audioUrl);
+    btn.innerHTML = '&#9646;&#9646;';
+
+    auditivaAudio.ontimeupdate = function() {
+      if (auditivaAudio.duration) {
+        var secPct = pct + (auditivaAudio.currentTime / auditivaAudio.duration) * (100 / totalSections);
+        progressFill.style.width = secPct + '%';
+      }
+    };
+
+    auditivaAudio.onended = function() {
+      URL.revokeObjectURL(audioUrl);
+      _epSectionIndex++;
+      epPlayNextSection();
+    };
+
+    auditivaAudio.onerror = function() {
+      _epSectionIndex++;
+      epPlayNextSection();
+    };
+
+    auditivaAudio.play().catch(function() {
+      _epSectionIndex++;
+      epPlayNextSection();
+    });
+  })
+  .catch(function(err) {
+    console.warn('[AUDITIVA] Áudio falhou para seção ' + _epSectionIndex + ':', err);
+    _epSectionIndex++;
+    epPlayNextSection();
+  });
+}
+
+function epSeekAudio(ev) {
+  if (!auditivaAudio || !auditivaAudio.duration) return;
+  var bar = ev.currentTarget;
+  var rect = bar.getBoundingClientRect();
+  var pct = (ev.clientX - rect.left) / rect.width;
+  auditivaAudio.currentTime = pct * auditivaAudio.duration;
+}
+
+var _eqAnswers = {};
+var _eqTotal = 0;
+var _eqCorrect = 0;
+
+function answerQuiz(qi, oi) {
+  if (_eqAnswers[qi] !== undefined) return; // Already answered
+  _eqAnswers[qi] = oi;
+  var ep = auditivaCurrentEp;
+  var q = ep.quiz[qi];
+  var correct = q.ok;
+  var qEl = document.getElementById('eqQ' + qi);
+  var opts = qEl.querySelectorAll('.eq-opt');
+  opts.forEach(function(opt, i) {
+    if (i === correct) opt.classList.add('correct');
+    else if (i === oi && oi !== correct) opt.classList.add('wrong');
+    opt.style.pointerEvents = 'none';
+  });
+  var expEl = document.getElementById('eqExp' + qi);
+  if (expEl) expEl.classList.add('visible');
+
+  _eqTotal++;
+  if (oi === correct) _eqCorrect++;
+
+  // Check if all answered
+  if (_eqTotal === (ep.quiz || []).length) {
+    var resultEl = document.getElementById('eqResult');
+    var pct = Math.round(_eqCorrect / _eqTotal * 100);
+    var emoji = pct >= 80 ? '🌟' : pct >= 60 ? '👍' : '💪';
+    resultEl.innerHTML = '<div style="font-size:40px;margin-bottom:8px">' + emoji + '</div>' +
+      '<div style="font-family:\'Playfair Display\',serif;font-size:20px;font-weight:700;color:var(--gold);margin-bottom:4px">' + _eqCorrect + '/' + _eqTotal + ' corretas</div>' +
+      '<div style="color:var(--text2);font-size:13px;margin-bottom:16px">' + (pct >= 80 ? 'Excelente compreensão!' : pct >= 60 ? 'Bom trabalho! Continue praticando.' : 'Ouça novamente e tente de novo!') + '</div>';
+    resultEl.style.display = 'block';
+
+    // Save progress
+    if (pct >= 60) {
+      saveAuditivaProgress(auditivaCurrentCountry, auditivaCurrentEp.id);
+    }
+
+    // Reset quiz state for next episode
+    _eqAnswers = {};
+    _eqTotal = 0;
+    _eqCorrect = 0;
+  }
+}
+
+
+</script>
+<script src="auditiva-data.js"></script>
+<script>
+// Inicializar grid auditiva se dados carregaram
+if (typeof AUDITIVA_DATA !== 'undefined' && document.getElementById('auditivaGrid')) {
+  renderAuditivaGrid();
+}
 </script>
 <img id="paulaFotoGlobal" src="data:image/jpeg;base64,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" style="display:none">
 </body>
