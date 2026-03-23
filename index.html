@@ -1694,6 +1694,16 @@ function rtTratarEvento(ev) {
       break;
 
     case 'input_audio_buffer.speech_started':
+      // Crear placeholder del usuario INMEDIATAMENTE (se reemplaza después)
+      if (!document.getElementById('rtUserPlaceholder')) {
+        var ph = document.createElement('div');
+        ph.id = 'rtUserPlaceholder';
+        ph.className = 'tira-msg user';
+        ph.style.opacity = '0.5';
+        ph.textContent = '...';
+        document.getElementById('conversaMsgs').appendChild(ph);
+        document.getElementById('conversaMsgs').scrollTop = document.getElementById('conversaMsgs').scrollHeight;
+      }
       if (dot) dot.innerHTML = '<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#0090be;animation:rt-pulse 0.6s infinite"></span> ouvindo...';
       if (hint) hint.textContent = 'Escuchando...';
       if (btn) { btn.style.background = '#0090be'; btn.style.boxShadow = '0 0 30px rgba(0,144,190,0.5)'; }
@@ -1706,27 +1716,19 @@ function rtTratarEvento(ev) {
       break;
 
     case 'conversation.item.input_audio_transcription.completed':
-      // Guardar texto del usuario — se insertará ANTES de la próxima respuesta de Paula
+      // Reemplazar placeholder con texto real del usuario
       var userText = (ev.transcript || '').trim();
       if (userText) {
-        _rtUserTextPending = userText;
+        var ph2 = document.getElementById('rtUserPlaceholder');
+        if (ph2) { ph2.textContent = userText; ph2.style.opacity = '1'; ph2.id = ''; }
+        else { cvAddMsg('user', userText); }
         cvHistorico.push({ role: 'user', content: userText });
         if (cvHistorico.length > 60) cvHistorico = cvHistorico.slice(-60);
-        // Si Paula aún no empezó a responder, mostrar ahora
-        if (!_rtMsgElPaula) {
-          cvAddMsg('user', _rtUserTextPending);
-          _rtUserTextPending = '';
-        }
       }
       break;
 
     case 'response.audio_transcript.delta':
-      // Antes de la primera burbuja de Paula, insertar texto del usuario si está pendiente
       if (!_rtMsgElPaula) {
-        if (_rtUserTextPending) {
-          cvAddMsg('user', _rtUserTextPending);
-          _rtUserTextPending = '';
-        }
         _rtMsgElPaula = cvAddMsgStream('paula');
         _rtTranscriptoPaula = '';
       }
@@ -1758,8 +1760,6 @@ function rtTratarEvento(ev) {
       _rtPaulaFalando = false;
       _rtMsgElPaula = null;
       _rtTranscriptoPaula = '';
-      // Si quedó texto del usuario pendiente, mostrarlo ahora
-      if (_rtUserTextPending) { cvAddMsg('user', _rtUserTextPending); _rtUserTextPending = ''; }
       if (dot) dot.innerHTML = '<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#36c551;animation:rt-pulse 2s infinite"></span> en vivo';
       if (hint) hint.textContent = 'Tu turno — habla';
       if (btn) { btn.style.background = '#36c551'; btn.style.boxShadow = '0 0 30px rgba(54,197,81,0.5)'; }
