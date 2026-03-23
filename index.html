@@ -1102,8 +1102,6 @@ function startConversation(initialText) {
   iniciarRealtimeSession().catch(function(err) {
     console.warn('[REALTIME] Fallback para pipeline antigo:', err.message);
     rtAtivo = false;
-    var overlay = document.getElementById('rtOverlay');
-    if (overlay) overlay.classList.remove('active');
     document.getElementById('barraTexto').style.display = 'flex';
     if (initialText) {
       cvAddMsg('user', initialText);
@@ -1539,11 +1537,9 @@ function endRealtimeSession() {
     if (rtPC) { try { rtPC.close(); } catch(e) {} rtPC = null; }
     if (rtStream) { rtStream.getTracks().forEach(function(t) { t.stop(); }); rtStream = null; }
     if (rtAudioEl) { try { rtAudioEl.pause(); rtAudioEl.srcObject = null; } catch(e) {} rtAudioEl = null; }
-    // Fechar overlay
-    var overlay = document.getElementById('rtOverlay');
-    if (overlay) overlay.classList.remove('active');
-    var timerOv = document.getElementById('rtTimerOverlay');
-    if (timerOv) { timerOv.classList.remove('warning'); timerOv.textContent = ''; }
+    // Resetar status
+    var dot = document.getElementById('paulaStatusDot');
+    if (dot) { dot.innerHTML = '&#9679; offline'; dot.style.color = '#94a3b8'; }
     // Notificar backend
     fetch(API + '/api/realtime/end', {
       method: 'POST',
@@ -1628,25 +1624,17 @@ async function iniciarRealtimeSession() {
   var answerSdp = await sdpRes.text();
   await rtPC.setRemoteDescription({ type: 'answer', sdp: answerSdp });
 
-  // 8. Sessão ativa!
+  // 8. Sessão ativa — mostrar chat con burbujas (sin overlay)
   rtAtivo = true;
+  document.getElementById('barraTexto').style.display = 'flex';
+  // Indicador de voz ativa no header
+  document.getElementById('paulaStatusDot').innerHTML = '<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#36c551;animation:rt-pulse 2s infinite"></span> en vivo';
+  document.getElementById('paulaStatusDot').style.color = '#36c551';
 
-  // Mostrar overlay ChatGPT Voice style
-  rtMostrarOverlay();
-
-  // 9. Iniciar timer
+  // 9. Iniciar timer silencioso (sin UI)
   rtIniciarTimer();
 
-  console.log('[REALTIME] WebRTC conectado! Latência mínima ativada.');
-}
-
-// ── Overlay ChatGPT Voice ──
-function rtMostrarOverlay() {
-  var overlay = document.getElementById('rtOverlay');
-  overlay.classList.add('active');
-  rtSetOrb('listening');
-  document.getElementById('rtStatusOverlay').textContent = 'Fale com a Paula...';
-  document.getElementById('rtTranscript').textContent = '';
+  console.log('[REALTIME] WebRTC conectado! Chat con burbujas ativo.');
 }
 
 // ── Timer de tempo restante ──
@@ -1665,13 +1653,10 @@ function rtIniciarTimer() {
       timerEl.classList.add('warning');
     }
 
-    // Sessão terminando — despedida cariñosa
+    // Sessão terminando — despedida como burbuja de Paula
     if (restante <= 0) {
-      document.getElementById('rtStatusOverlay').textContent = '';
-      document.getElementById('rtTranscript').textContent = '¡Hablamos mucho en español hoy! Descansa y nos vemos mañana para seguir practicando 💛';
-      document.getElementById('rtTranscript').className = 'rt-transcript paula';
-      rtSetOrb('listening');
-      setTimeout(function() { endRealtimeSession(); goTo('setup-conversa'); }, 4000);
+      cvAddMsg('paula', '¡Hablamos mucho en español hoy! Descansa y nos vemos mañana para seguir practicando 💛');
+      setTimeout(function() { endRealtimeSession(); }, 3000);
       return;
     }
   }
@@ -1680,13 +1665,13 @@ function rtIniciarTimer() {
   rtTimerInterval = setInterval(atualizar, 1000);
 }
 
-// ── Tratar eventos do DataChannel ──
+// ── Tratar eventos do DataChannel — burbujas de chat ──
 var _rtTranscriptoPaula = '';
 var _rtPaulaFalando = false;
+var _rtMsgElPaula = null;
 
 function rtTratarEvento(ev) {
-  var statusEl = document.getElementById('rtStatusOverlay');
-  var transcriptEl = document.getElementById('rtTranscript');
+  var dot = document.getElementById('paulaStatusDot');
 
   switch (ev.type) {
     case 'session.created':
@@ -1694,32 +1679,30 @@ function rtTratarEvento(ev) {
       break;
 
     case 'input_audio_buffer.speech_started':
-      rtSetOrb('user-speaking');
-      if (statusEl) statusEl.textContent = 'Ouvindo você...';
-      if (transcriptEl) { transcriptEl.textContent = ''; transcriptEl.className = 'rt-transcript user'; }
+      if (dot) dot.innerHTML = '<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#0090be;animation:rt-pulse 0.6s infinite"></span> ouvindo...';
       break;
 
     case 'input_audio_buffer.speech_stopped':
-      rtSetOrb('thinking');
-      if (statusEl) statusEl.textContent = 'Pensando...';
+      if (dot) dot.innerHTML = '<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#ffcb15;animation:rt-pulse 1s infinite"></span> pensando...';
       break;
 
     case 'conversation.item.input_audio_transcription.completed':
       var userText = (ev.transcript || '').trim();
-      if (userText && transcriptEl) {
-        transcriptEl.textContent = userText;
-        transcriptEl.className = 'rt-transcript user';
+      if (userText) {
+        cvAddMsg('user', userText);
         cvHistorico.push({ role: 'user', content: userText });
         if (cvHistorico.length > 60) cvHistorico = cvHistorico.slice(-60);
       }
       break;
 
     case 'response.audio_transcript.delta':
-      _rtTranscriptoPaula += (ev.delta || '');
-      if (transcriptEl) {
-        transcriptEl.textContent = _rtTranscriptoPaula;
-        transcriptEl.className = 'rt-transcript paula';
+      // Streaming — criar bolha e ir preenchendo em tempo real
+      if (!_rtMsgElPaula) {
+        _rtMsgElPaula = cvAddMsgStream('paula');
+        _rtTranscriptoPaula = '';
       }
+      _rtTranscriptoPaula += (ev.delta || '');
+      cvUpdateMsgStream(_rtMsgElPaula, _rtTranscriptoPaula);
       break;
 
     case 'response.audio_transcript.done':
@@ -1733,8 +1716,7 @@ function rtTratarEvento(ev) {
     case 'response.audio.delta':
       if (!_rtPaulaFalando) {
         _rtPaulaFalando = true;
-        rtSetOrb('speaking');
-        if (statusEl) statusEl.textContent = 'Paula';
+        if (dot) dot.innerHTML = '<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#36c551;animation:rt-pulse 0.8s infinite"></span> Paula fala...';
       }
       break;
 
@@ -1743,30 +1725,17 @@ function rtTratarEvento(ev) {
 
     case 'response.done':
       _rtPaulaFalando = false;
+      _rtMsgElPaula = null;
       _rtTranscriptoPaula = '';
-      rtSetOrb('listening');
-      if (statusEl) statusEl.textContent = 'Fale com a Paula...';
-      // Fade transcript after 2s
-      setTimeout(function() {
-        if (!_rtPaulaFalando && transcriptEl) transcriptEl.textContent = '';
-      }, 3000);
+      if (dot) dot.innerHTML = '<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#36c551;animation:rt-pulse 2s infinite"></span> en vivo';
       break;
 
     case 'error':
       console.error('[REALTIME] Erro:', ev.error);
-      if (statusEl) statusEl.textContent = 'Erro de conexão';
-      rtSetOrb('thinking');
+      if (dot) dot.innerHTML = '&#9679; offline';
+      dot.style.color = '#ef4444';
       break;
   }
-}
-
-// ── Orbe visual ──
-function rtSetOrb(state) {
-  var orb = document.getElementById('rtOrb');
-  var ring = document.querySelector('.rt-orb-ring');
-  if (!orb) return;
-  orb.className = 'rt-orb ' + state;
-  if (ring) ring.className = 'rt-orb-ring' + (state === 'speaking' || state === 'user-speaking' ? ' active' : '');
 }
 
 
