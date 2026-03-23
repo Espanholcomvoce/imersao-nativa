@@ -1786,15 +1786,14 @@ function rtTratarEvento(ev) {
 
 // Finalizar charla manualmente
 function finalizarCharla() {
+  // Cuando el ALUMNO elige irse — Paula responde a la despedida
   var despedidas = [
-    '¡Oye, me tengo que ir! Pero me encantó hablar contigo, ¿seguimos mañana?',
-    '¡Ay, ya me tengo que ir corriendo! Estuvo genial la charla, ¡nos vemos pronto!',
-    '¡Me están llamando! Pero qué bien la pasamos, mañana seguimos con todo, ¿dale?',
-    '¡Bueno, me voy volando! Hablamos re bien hoy, mañana te cuento algo que me pasó...',
-    '¡Uy, se me hace tarde! Fue una charla increíble, ¡mañana la seguimos!',
-    '¡Qué rápido se pasó! Me tengo que ir, pero mañana te tengo que contar algo...',
-    '¡Tengo que salir ya! Pero oye, qué buena onda la charla, nos vemos mañana.',
-    '¡Ya me voy! Practica un poquito por tu cuenta y mañana me cuentas cómo te fue.'
+    '¡Fue genial hablar contigo! Cuando quieras, aquí estoy. ¡Hasta pronto!',
+    '¡Me encantó la charla! Descansa y vuelve cuando quieras practicar.',
+    '¡Qué bien la pasamos! Ojalá vuelvas pronto, me gusta platicar contigo.',
+    '¡Hasta la próxima! Hablaste muy bien hoy, sigue así.',
+    '¡Chao! Me quedé con ganas de seguir charlando, pero ya habrá tiempo.',
+    '¡Nos vemos! Y acuérdate de practicar un poquito cada día, hace la diferencia.'
   ];
   cvAddMsg('paula', despedidas[Math.floor(Math.random() * despedidas.length)]);
   setTimeout(function() {
