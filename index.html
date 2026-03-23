@@ -1653,10 +1653,16 @@ function rtIniciarTimer() {
       timerEl.classList.add('warning');
     }
 
-    // Sessão terminando — despedida como burbuja de Paula
+    // Sessão terminando — Paula se despide naturalmente
     if (restante <= 0) {
-      cvAddMsg('paula', '¡Hablamos mucho en español hoy! Descansa y nos vemos mañana para seguir practicando 💛');
-      setTimeout(function() { endRealtimeSession(); }, 3000);
+      var despedidas = [
+        '¡Oye, me tengo que ir! Pero me encantó hablar contigo, ¿seguimos mañana?',
+        '¡Ay, ya me tengo que ir corriendo! Estuvo genial la charla, ¡nos vemos pronto!',
+        '¡Me están llamando! Pero qué bien la pasamos, mañana seguimos con todo, ¿dale?',
+        '¡Bueno, me voy volando! Hablamos re bien hoy, mañana te cuento algo que me pasó...'
+      ];
+      cvAddMsg('paula', despedidas[Math.floor(Math.random() * despedidas.length)]);
+      setTimeout(function() { endRealtimeSession(); }, 4000);
       return;
     }
   }
