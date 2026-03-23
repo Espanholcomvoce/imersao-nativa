@@ -547,7 +547,7 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
     </div>
     <div id="paulaStatusDot" style="font-size:12px;color:var(--green);margin-left:auto">&#9679; online</div>
   </div>
-  <div class="tira-chat" style="max-height:none;flex:1;margin-bottom:0">
+  <div class="tira-chat" style="max-height:none;flex:1;margin-bottom:0;overflow:visible">
     <div class="tira-messages" id="conversaMsgs"></div>
   </div>
   <div id="barraTexto" style="display:flex;flex-direction:column;align-items:center;gap:12px;padding:12px 0">
@@ -1584,6 +1584,7 @@ async function iniciarRealtimeSession() {
   var tokenData = await tokenRes.json();
   var ephemeralKey = tokenData.client_secret.value;
   rtSegundosRestantes = tokenData.remaining_seconds || 900;
+  console.log('[REALTIME] Minutos restantes hoy:', Math.floor(rtSegundosRestantes / 60));
   rtSessionStart = Date.now();
 
   // 2. Criar RTCPeerConnection
