@@ -19,7 +19,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: '¡Hola, che! Soy Valentina y estoy re contenta de que estés acá. Mirá, Buenos Aires es una ciudad que nunca duerme. Acá podés caminar por San Telmo un domingo y encontrarte con milongas al aire libre, ferias de antigüedades y el mejor choripán del mundo.'
+            text: 'Buenos Aires es una ciudad que nunca duerme. Los domingos, el barrio de San Telmo se transforma con milongas al aire libre, ferias de antigüedades y puestos de choripán que atraen a locales y visitantes por igual. Como dicen los porteños, "acá podés caminar y encontrarte con de todo, che".'
           },
           {
             speaker: 'narrator',
@@ -27,7 +27,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'El tango no es solo un baile, ¿sabés? Es una forma de sentir. Cuando vas a una milonga, se te pone la piel de gallina. Mi abuela siempre me decía que el tango se baila con el corazón, no con los pies. Si venís a Buenos Aires, tenés que ir al barrio de La Boca y ver un show en el Caminito.'
+            text: 'El tango no es solo un baile, es una forma de sentir. En una milonga, la emoción se palpa en el aire y se pone la piel de gallina. Como dicen los porteños, el tango se baila con el corazón, no con los pies. El barrio de La Boca y el famoso Caminito son paradas obligatorias para vivir esta experiencia.'
           },
           {
             speaker: 'narrator',
@@ -35,7 +35,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'Acá el asado es sagrado, no te voy a mentir. Mi viejo se levanta temprano los domingos para prender el fuego con leña. Siempre dice que el secreto es la paciencia: un buen asado lleva horas. Y obvio, mientras esperás, tomás unos buenos mates con la familia. El mate es nuestra forma de decir "te quiero".'
+            text: 'En Argentina, el asado es sagrado. Los domingos, las familias encienden el fuego temprano con leña y se preparan para horas de cocción pausada. El secreto, dicen, es la paciencia. Mientras se espera, se comparten mates en ronda, una costumbre que los argentinos describen como su forma de decir "te quiero".'
           },
           {
             speaker: 'narrator',
@@ -43,7 +43,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'Si te gusta la naturaleza, tenés que ir a la Patagonia. Es un lugar que te deja sin palabras, posta. Yo fui al Perito Moreno el año pasado y cuando escuchás los bloques de hielo que se desprenden y caen al agua, es una cosa de locos. También podés ver ballenas en Puerto Madryn entre junio y diciembre.'
+            text: 'La Patagonia es un destino que deja sin palabras, posta. Frente al Perito Moreno, los visitantes escuchan los bloques de hielo desprenderse y caer al agua con un estruendo que resulta, como dicen los locales, "una cosa de locos". En Puerto Madryn, entre junio y diciembre, es posible avistar ballenas francas australes desde la costa.'
           },
           {
             speaker: 'narrator',
@@ -51,7 +51,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'Te dejo una expresión bien argentina: cuando algo te gusta mucho, decimos "es una masa". Por ejemplo, "este alfajor de dulce de leche es una masa". Y si alguien te cae bien, le decís "sos un copado". ¡Espero que Argentina te parezca una masa, che!'
+            text: 'Una expresión bien argentina: cuando algo gusta mucho, se dice "es una masa". Por ejemplo, "este alfajor de dulce de leche es una masa". Y si alguien cae bien, se le dice "sos un copado". Estas expresiones reflejan la calidez y el humor característicos del habla rioplatense.'
           }
         ],
         quiz: [
@@ -133,6 +133,55 @@ var AUDITIVA_DATA = {
             meaning: 'Adjetivo que significa "legal", "bacana", usado para pessoas ou situações'
           }
         ]
+      },
+      {
+        id: 'ar_a1',
+        title: 'Conociendo Argentina',
+        level: 'A1',
+        duration: '3 min',
+        sections: [
+          {
+            speaker: 'narrator',
+            text: 'Argentina es un país grande en el sur de América. Su capital es Buenos Aires. Muchas personas viven allí.'
+          },
+          {
+            speaker: 'narrator',
+            text: 'La comida más famosa de Argentina es el asado. Es carne cocinada a la parrilla. Las familias comen asado los domingos.'
+          },
+          {
+            speaker: 'narrator',
+            text: 'El tango es un baile muy famoso de Argentina. Nació en Buenos Aires. Las personas bailan tango en las calles.'
+          },
+          {
+            speaker: 'narrator',
+            text: 'La Patagonia está en el sur de Argentina. Tiene montañas, lagos y glaciares. El glaciar Perito Moreno es muy grande y hermoso.'
+          },
+          {
+            speaker: 'narrator',
+            text: '¿Sabías que Argentina consume más carne que cualquier otro país? También beben mucho mate. ¡Hola, che! Así saludan los argentinos.'
+          }
+        ],
+        quiz: [
+          {
+            q: '¿Cuál es la capital de Argentina?',
+            ops: ['Lima', 'Buenos Aires', 'Santiago', 'Bogotá'],
+            ok: 1,
+            exp: 'Buenos Aires es la capital de Argentina.'
+          },
+          {
+            q: '¿Qué baile es famoso en Argentina?',
+            ops: ['Salsa', 'Cumbia', 'Tango', 'Flamenco'],
+            ok: 2,
+            exp: 'El tango es el baile más famoso de Argentina.'
+          },
+          {
+            q: '¿Qué comida es típica de Argentina?',
+            ops: ['Tacos', 'Asado', 'Paella', 'Ceviche'],
+            ok: 1,
+            exp: 'El asado es la comida más típica de Argentina.'
+          }
+        ],
+        vocabLocal: []
       }
     ]
   },
@@ -156,7 +205,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: '¡Bienvenido, pues! Soy Marisol y soy paceña. Aquí en La Paz vivimos entre las nubes, nomás. Al principio cuesta un poco respirar por la altura, pero uno se acostumbra. Lo bonito es que desde cualquier parte de la ciudad podés ver el nevado Illimani, nuestro guardián.'
+            text: 'En La Paz, la vida transcurre entre las nubes, nomás. A los visitantes les cuesta un poco respirar al principio por la altura, pero el cuerpo se acostumbra. Lo bonito es que desde cualquier parte de la ciudad se puede ver el nevado Illimani, al que los paceños llaman su guardián.'
           },
           {
             speaker: 'narrator',
@@ -164,7 +213,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'El Carnaval de Oruro es algo que tenés que vivir. Mi familia viaja cada año desde La Paz. Los danzantes practican meses para la entrada. La Diablada te pone los pelos de punta, pues. Los trajes pesan como veinte kilos y aun así bailan horas y horas sin parar.'
+            text: 'El Carnaval de Oruro es una experiencia que hay que vivir en persona. Familias de todo el país viajan para presenciarlo. Los danzantes practican durante meses para la entrada. La Diablada pone los pelos de punta, pues. Los trajes pesan alrededor de veinte kilos y aun así los bailarines danzan horas y horas sin parar.'
           },
           {
             speaker: 'narrator',
@@ -172,7 +221,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'Acá en Bolivia la salteña es casi una religión. Hay que comerla inclinada para que no se derrame el juguito. Mi mamá hace las mejores salteñas del barrio, pues. El secreto está en el jigote, que es el relleno. También tenés que probar el api con pastel, que es una bebida caliente de maíz morado.'
+            text: 'En Bolivia, la salteña es casi una religión. Hay que comerla inclinada para que no se derrame el juguito. Cada familia boliviana asegura tener la mejor receta del barrio, pues. El secreto está en el jigote, que es el relleno. Otra delicia imperdible es el api con pastel, una bebida caliente de maíz morado.'
           },
           {
             speaker: 'narrator',
@@ -180,7 +229,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'El Salar de Uyuni es mágico, no exagero. Cuando llueve y se forma el espejo, parece que estás caminando sobre el cielo. Los turistas se vuelven locos sacando fotos con perspectiva. Yo fui con mis amigas y nos sacamos unas fotos bien lindas jugando con la perspectiva, parecía que éramos gigantes.'
+            text: 'El Salar de Uyuni es un lugar mágico, sin exageración. Cuando llueve y se forma el espejo, parece que se camina sobre el cielo. Los turistas se vuelven locos sacando fotos con perspectiva, jugando con las ilusiones ópticas que crea esa superficie infinita donde todo parece posible.'
           },
           {
             speaker: 'narrator',
@@ -188,7 +237,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'Aquí en Bolivia decimos "jallalla" cuando queremos expresar alegría o celebrar algo, viene del aymara y significa algo como "¡viva!". También usamos mucho "yapa", que es cuando te dan un poquito extra de algo. Si comprás fruta en el mercado, siempre pedí tu yapa, pues.'
+            text: 'En Bolivia se dice "jallalla" para expresar alegría o celebrar algo; viene del aymara y significa algo como "¡viva!". También se usa mucho "yapa", que es cuando dan un poquito extra de algo. En los mercados bolivianos, pedir la yapa al comprar fruta es toda una tradición, pues.'
           }
         ],
         quiz: [
@@ -265,6 +314,55 @@ var AUDITIVA_DATA = {
             meaning: 'Partícula usada no fim das frases como marcador discursivo, muito comum na Bolívia'
           }
         ]
+      },
+      {
+        id: 'bo_a1',
+        title: 'Conociendo Bolivia',
+        level: 'A1',
+        duration: '3 min',
+        sections: [
+          {
+            speaker: 'narrator',
+            text: 'Bolivia es un país en el centro de América del Sur. Tiene dos capitales: Sucre y La Paz. La Paz es una ciudad muy alta en las montañas.'
+          },
+          {
+            speaker: 'narrator',
+            text: 'La salteña es una comida muy popular en Bolivia. Es como una empanada con carne, papas y salsa. Se come en la mañana.'
+          },
+          {
+            speaker: 'narrator',
+            text: 'El Salar de Uyuni es el desierto de sal más grande del mundo. Está en Bolivia. Es blanco y muy bonito.'
+          },
+          {
+            speaker: 'narrator',
+            text: 'Bolivia tiene muchas culturas indígenas. La gente habla español, quechua y aymara. Las mujeres cholitas usan faldas grandes y sombreros.'
+          },
+          {
+            speaker: 'narrator',
+            text: '¿Sabías que La Paz tiene un teleférico muy largo? Es una forma de transporte. ¡Hola, pues! Así saludan en Bolivia.'
+          }
+        ],
+        quiz: [
+          {
+            q: '¿Cuántas capitales tiene Bolivia?',
+            ops: ['Una', 'Dos', 'Tres', 'Ninguna'],
+            ok: 1,
+            exp: 'Bolivia tiene dos capitales: Sucre y La Paz.'
+          },
+          {
+            q: '¿Qué es el Salar de Uyuni?',
+            ops: ['Un lago', 'Un volcán', 'Un desierto de sal', 'Una montaña'],
+            ok: 2,
+            exp: 'El Salar de Uyuni es el desierto de sal más grande del mundo.'
+          },
+          {
+            q: '¿Qué es una salteña?',
+            ops: ['Un baile', 'Una bebida', 'Una comida como empanada', 'Una canción'],
+            ok: 2,
+            exp: 'La salteña es una comida popular de Bolivia, parecida a una empanada.'
+          }
+        ],
+        vocabLocal: []
       }
     ]
   },
@@ -288,7 +386,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: '¡Hola, po! Soy la Catalina y soy de Santiago. Mira, Chile es bacán porque tenís de todo: desierto, montañas, playas, bosques y glaciares. Yo soy santiaguina pero me encanta arrancarme al sur cuando puedo. La cordillera de los Andes nos acompaña por todo el país, es como nuestra columna vertebral.'
+            text: 'Chile es bacán porque tiene de todo: desierto, montañas, playas, bosques y glaciares. Los santiaguinos aprovechan cualquier oportunidad para "arrancarse" al sur, como dicen ellos. La cordillera de los Andes acompaña al país de norte a sur, como una columna vertebral natural.'
           },
           {
             speaker: 'narrator',
@@ -296,7 +394,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'El dieciocho es lo máximo, po. En las fondas hay cueca, empanadas, choripán y harto terremoto, que es un trago con helado de piña y vino pipeño. Todo el mundo se pone huaso y baila cueca, aunque no sepa. Mi familia arma una ramada en el campo y estamos como tres días celebrando, es la mejor fiesta del año.'
+            text: 'El dieciocho es lo máximo para los chilenos, po. En las fondas hay cueca, empanadas, choripán y harto terremoto, que es un trago con helado de piña y vino pipeño. Todo el mundo se pone huaso y baila cueca, aunque no sepa. Las familias arman ramadas en el campo y celebran durante tres días seguidos, la mejor fiesta del año.'
           },
           {
             speaker: 'narrator',
@@ -304,7 +402,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'El pastel de choclo de mi abuelita es el mejor, como dice todo chileno de su abuela. Se come en pocillo de greda y hay que ponerle una cucharadita de azúcar encima antes de comerlo, eso es clave. También tenís que probar la cazuela y el caldillo de congrio, que hasta Neruda le escribió un poema.'
+            text: 'Todo chileno asegura que el pastel de choclo de su abuela es el mejor. Se come en pocillo de greda y hay que ponerle una cucharadita de azúcar encima antes de comerlo, eso es clave. Otros platos imprescindibles son la cazuela y el caldillo de congrio, al que hasta Neruda le dedicó un poema.'
           },
           {
             speaker: 'narrator',
@@ -312,7 +410,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'Si vai al Atacama, te vai a sentir en otro planeta, en serio. Los géiseres del Tatio, el Valle de la Luna, las lagunas altiplánicas, todo es surreal. Y de noche, el cielo estrellado es una cosa increíble. La primera vez que fui, me quedé mirando las estrellas como dos horas sin moverme.'
+            text: 'Visitar el Atacama es como estar en otro planeta, en serio. Los géiseres del Tatio, el Valle de la Luna y las lagunas altiplánicas crean paisajes surrealistas. De noche, el cielo estrellado es una cosa increíble. Los visitantes suelen quedarse horas contemplando las estrellas, hipnotizados por la claridad del firmamento.'
           },
           {
             speaker: 'narrator',
@@ -320,7 +418,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'En Chile usamos mucho la palabra "cachai", que significa "¿entiendes?". Por ejemplo, "el sur de Chile es hermoso, ¿cachai?". Y cuando algo es muy bueno decimos que es "bacán". Ah, y si alguien te dice "al tiro", significa "ahora mismo". ¡Ojalá vengai pronto a conocernos, po!'
+            text: 'En Chile se usa mucho la palabra "cachai", que significa "¿entiendes?". Por ejemplo, "el sur de Chile es hermoso, ¿cachai?". Cuando algo es muy bueno se dice que es "bacán". Y si alguien dice "al tiro", significa "ahora mismo". Estas expresiones forman parte esencial del habla chilena cotidiana.'
           }
         ],
         quiz: [
@@ -402,6 +500,55 @@ var AUDITIVA_DATA = {
             meaning: 'Expressão que significa "agora mesmo", "imediatamente"'
           }
         ]
+      },
+      {
+        id: 'cl_a1',
+        title: 'Conociendo Chile',
+        level: 'A1',
+        duration: '3 min',
+        sections: [
+          {
+            speaker: 'narrator',
+            text: 'Chile es un país largo y estrecho en el oeste de América del Sur. Su capital es Santiago. Chile está al lado del océano Pacífico.'
+          },
+          {
+            speaker: 'narrator',
+            text: 'La empanada de pino es una comida típica de Chile. Tiene carne, cebolla, huevo y aceituna. Los chilenos la comen mucho.'
+          },
+          {
+            speaker: 'narrator',
+            text: 'El desierto de Atacama está en el norte de Chile. Es el desierto más seco del mundo. Por la noche se ven muchas estrellas.'
+          },
+          {
+            speaker: 'narrator',
+            text: 'Chile produce mucho vino. Los viñedos están en el centro del país. El vino chileno es famoso en todo el mundo.'
+          },
+          {
+            speaker: 'narrator',
+            text: '¿Sabías que Chile es el país más largo del mundo? Tiene más de cuatro mil kilómetros. ¡Hola, ¿cómo estái? Así hablan los chilenos.'
+          }
+        ],
+        quiz: [
+          {
+            q: '¿Cuál es la capital de Chile?',
+            ops: ['Valparaíso', 'Santiago', 'Concepción', 'Lima'],
+            ok: 1,
+            exp: 'Santiago es la capital de Chile.'
+          },
+          {
+            q: '¿Qué tiene de especial el desierto de Atacama?',
+            ops: ['Es el más grande', 'Es el más frío', 'Es el más seco del mundo', 'Es el más alto'],
+            ok: 2,
+            exp: 'El desierto de Atacama es el más seco del mundo.'
+          },
+          {
+            q: '¿Qué es una empanada de pino?',
+            ops: ['Una fruta', 'Una bebida', 'Una comida con carne y cebolla', 'Un postre'],
+            ok: 2,
+            exp: 'La empanada de pino es una comida chilena con carne, cebolla, huevo y aceituna.'
+          }
+        ],
+        vocabLocal: []
       }
     ]
   },
@@ -425,7 +572,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: '¡Quiubo, parcero! Soy Camila, de Bogotá. Ay, qué chimba que estés aprendiendo de Colombia. Mira, este país es una nota: tenemos playas caribeñas, selva amazónica, montañas nevadas y ciudades súper modernas. Acá la gente es muy querida y siempre te recibe con los brazos abiertos.'
+            text: 'Colombia es, como dicen los locales, "una nota": playas caribeñas, selva amazónica, montañas nevadas y ciudades súper modernas conviven en un mismo territorio. La gente colombiana es muy querida y siempre recibe a los visitantes con los brazos abiertos. Qué chimba de país, dirían los bogotanos.'
           },
           {
             speaker: 'narrator',
@@ -433,7 +580,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'El Carnaval de Barranquilla es una locura total, parce. La gente se disfraza, baila cumbia y mapalé por las calles, y todo el mundo goza. Mi primo es barranquillero y cada año me invita. La energía es brutal, uno termina con los pies destruidos de tanto bailar pero feliz. "Quien lo vive es quien lo goza", dicen allá.'
+            text: 'El Carnaval de Barranquilla es una locura total, parce. La gente se disfraza, baila cumbia y mapalé por las calles, y todo el mundo goza. La energía es brutal; los asistentes terminan con los pies destruidos de tanto bailar pero felices. Como dicen los barranquilleros, "quien lo vive es quien lo goza".'
           },
           {
             speaker: 'narrator',
@@ -441,7 +588,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'La bandeja paisa es de esas comidas que te dejan lleno por todo el día. Eso sí, hay que comerse todo, porque los paisas no perdonan que dejes comida en el plato. También tienes que probar el ajiaco bogotano, que es una sopa con tres tipos de papa, pollo, mazorca y guasca. Con mi mamá lo hacemos cada domingo.'
+            text: 'La bandeja paisa es de esas comidas que dejan lleno por todo el día. Eso sí, hay que comérselo todo, porque los paisas no perdonan que se deje comida en el plato. Otro imperdible es el ajiaco bogotano, una sopa con tres tipos de papa, pollo, mazorca y guasca, plato dominical por excelencia en las familias capitalinas.'
           },
           {
             speaker: 'narrator',
@@ -449,7 +596,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'Cartagena es divina, parce. Caminar por la Ciudad Amurallada de noche es súper romántico. Las palenqueras, que son mujeres afrocolombianas, venden frutas tropicales en la calle con sus vestidos coloridos. Getsemaní es el barrio más bacano, lleno de arte callejero y restaurantes chéveres. Si vas, come cocadas y patacones.'
+            text: 'Cartagena es divina, parce. Caminar por la Ciudad Amurallada de noche resulta súper romántico. Las palenqueras, mujeres afrocolombianas, venden frutas tropicales en la calle con sus vestidos coloridos. Getsemaní es el barrio más bacano, lleno de arte callejero y restaurantes chéveres. Las cocadas y los patacones son paradas obligatorias.'
           },
           {
             speaker: 'narrator',
@@ -457,7 +604,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'En Colombia decimos "¡qué chimba!" cuando algo nos parece genial o increíble. Y si alguien es tu amigo cercano, le dices "parcero" o "parce". También usamos mucho "de una", que significa que estás de acuerdo o que haces algo de inmediato. ¡Visita Colombia, de una!'
+            text: 'En Colombia se dice "¡qué chimba!" cuando algo parece genial o increíble. A un amigo cercano se le llama "parcero" o "parce". También se usa mucho "de una", que significa estar de acuerdo o hacer algo de inmediato. Estas expresiones reflejan la energía y la calidez del habla colombiana.'
           }
         ],
         quiz: [
@@ -562,7 +709,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: '¡Pura vida, mae! Soy Fernanda y soy tica, como nos dicen a los costarricenses. Aquí en Costa Rica somos bien tranquilos y felices. Nuestro lema es "pura vida" y lo usamos para todo: para saludar, para despedirnos, para decir que algo está bien. Es más que una frase, es nuestra filosofía de vida.'
+            text: 'Los costarricenses, o "ticos" como se les conoce, son gente bien tranquila y feliz. Su lema es "pura vida" y lo usan para todo: para saludar, para despedirse, para decir que algo está bien. Más que una frase, "pura vida" es la filosofía de vida de todo un país.'
           },
           {
             speaker: 'narrator',
@@ -570,7 +717,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'Eso es algo de lo que estamos muy orgullosos, mae. No tener ejército nos define como pueblo. Cada primero de diciembre celebramos la abolición del ejército. Mi abuelita siempre dice que es mejor invertir en libros que en armas. Costa Rica además es uno de los países más felices del mundo según muchos estudios.'
+            text: 'La abolición del ejército es motivo de enorme orgullo para los ticos, mae. No tener ejército los define como pueblo. Cada primero de diciembre se celebra esta decisión histórica. Como dice un refrán costarricense, es mejor invertir en libros que en armas. Costa Rica además es uno de los países más felices del mundo según muchos estudios.'
           },
           {
             speaker: 'narrator',
@@ -578,7 +725,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'El gallo pinto es sagrado para los ticos. Sin gallo pinto en la mañana, el día no empieza bien. El secreto es la salsa Lizano, que le da ese sabor único. Yo lo como todos los días con un cafecito bien cargado. También te recomiendo probar el casado, que es nuestro almuerzo típico con arroz, frijoles, ensalada, plátano y carne.'
+            text: 'El gallo pinto es sagrado para los ticos. Sin gallo pinto en la mañana, el día no empieza bien. El secreto es la salsa Lizano, que le da ese sabor único. Se acompaña con un cafecito bien cargado. Otro plato imperdible es el casado, el almuerzo típico costarricense con arroz, frijoles, ensalada, plátano y carne.'
           },
           {
             speaker: 'narrator',
@@ -586,7 +733,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'Manuel Antonio es una joya, mae. Imagínate estar en la playa y que un mono capuchino te robe la fruta del bolso. A mí me pasó y me dio mucha risa. También tenés que visitar Monteverde, que es un bosque nuboso donde podés ver el quetzal, uno de los pájaros más bonitos del mundo. Y Tortuguero, donde las tortugas marinas llegan a desovar.'
+            text: 'Manuel Antonio es una joya, mae. No es raro estar en la playa y que un mono capuchino robe la fruta del bolso de algún visitante desprevenido. También destaca Monteverde, un bosque nuboso donde se puede avistar el quetzal, uno de los pájaros más bonitos del mundo. Y Tortuguero, donde las tortugas marinas llegan a desovar.'
           },
           {
             speaker: 'narrator',
@@ -594,7 +741,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'Aquí en Costa Rica usamos "mae" para todo, es como decir "amigo" o "tipo". También decimos "tuanis" cuando algo está muy bien. Y "diay", que es como decir "pues" o "entonces". Por ejemplo: "Diay, mae, ¿vamos a la playa?" "¡Tuanis!" ¡Pura vida!'
+            text: 'En Costa Rica se usa "mae" para todo, es como decir "amigo" o "tipo". También se dice "tuanis" cuando algo está muy bien. Y "diay", que es como decir "pues" o "entonces". Por ejemplo: "Diay, mae, ¿vamos a la playa?" "¡Tuanis!" Estas expresiones son el corazón del habla tica.'
           }
         ],
         quiz: [
@@ -699,7 +846,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: '¡Oye, qué bolá! Soy Yanelis, de La Habana. Mira, mi niño, Cuba es una isla que te atrapa el corazón. Aquí la gente es alegre, inventiva y musical. Caminá por el Malecón al atardecer y vas a ver familias, parejas, músicos y pescadores, todo mezclado. La Habana tiene un encanto que no se parece a ningún otro lugar del mundo.'
+            text: 'Cuba es una isla que atrapa el corazón. La gente cubana es alegre, inventiva y musical. Al atardecer, el Malecón de La Habana se llena de familias, parejas, músicos y pescadores, todo mezclado. La Habana tiene un encanto que no se parece a ningún otro lugar del mundo. Como dicen los habaneros, "¡qué bolá!"'
           },
           {
             speaker: 'narrator',
@@ -707,7 +854,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'Aquí en Cuba la música está en todas partes, chico. En mi cuadra siempre hay alguien tocando guitarra o tumbadora. Mi abuelo era sonero y me enseñó a bailar casino desde chiquita. Si vienes a La Habana, tienes que ir a la Bodeguita del Medio a escuchar música en vivo. La rumba de los domingos en Callejón de Hamel es tremenda.'
+            text: 'En Cuba la música está en todas partes, chico. En cada cuadra siempre hay alguien tocando guitarra o tumbadora. La tradición sonera se transmite de generación en generación, junto con el baile casino. La Bodeguita del Medio ofrece música en vivo inigualable, y la rumba de los domingos en Callejón de Hamel es tremenda.'
           },
           {
             speaker: 'narrator',
@@ -715,7 +862,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'La ropa vieja de mi mamá es lo máximo, asere. Ella la cocina despacito, con mucho amor y sofrito. Los frijoles negros los hacemos dormidos, o sea, del día anterior recalentados, que quedan más sabrosos. Y el arroz congrí orientalito, con frijoles colorados, también es buenísimo. Aquí resolvemos con lo que hay y siempre sale algo rico.'
+            text: 'La ropa vieja casera es lo máximo en Cuba, asere. Se cocina despacito, con mucho amor y sofrito. Los frijoles negros se preparan "dormidos", o sea, del día anterior recalentados, que quedan más sabrosos. El arroz congrí orientalito, con frijoles colorados, también es buenísimo. En Cuba se "resuelve" con lo que hay y siempre sale algo rico.'
           },
           {
             speaker: 'narrator',
@@ -723,7 +870,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'La Habana Vieja es preciosa, te lo juro. Mi lugar favorito es la Plaza Vieja, donde antes había un mercado y ahora hay galerías de arte y cafeterías. También me encanta el Capitolio, que se parece al de Washington pero los cubanos decimos que el nuestro es más bonito. Y los almendrones, los carros viejos de los cincuenta, le dan un toque único a todo.'
+            text: 'La Habana Vieja es preciosa. La Plaza Vieja, donde antes había un mercado y ahora hay galerías de arte y cafeterías, es uno de sus rincones más encantadores. El Capitolio se parece al de Washington, pero los cubanos aseguran que el suyo es más bonito. Y los almendrones, los carros clásicos de los años cincuenta, le dan un toque único a todo.'
           },
           {
             speaker: 'narrator',
@@ -731,7 +878,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'En Cuba decimos "asere" para hablar con un amigo, y "¿qué bolá?" es nuestra forma de decir "¿qué tal?". Si algo es muy bueno, decimos que es "tremendo". Y cuando alguien resuelve un problema con creatividad, decimos que "inventó". Acá somos expertos en inventar. ¡Nos vemos en La Habana, asere!'
+            text: 'En Cuba se dice "asere" para hablar con un amigo, y "¿qué bolá?" es la forma cubana de decir "¿qué tal?". Si algo es muy bueno, se dice que es "tremendo". Y cuando alguien resuelve un problema con creatividad, se dice que "inventó". Los cubanos son expertos en inventar, una habilidad que define su carácter.'
           }
         ],
         quiz: [
@@ -831,7 +978,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: '¡Hola, ñaño! Soy Soledad, de Quito. Mira, Ecuador es chiquitito pero tiene de todito. Acá puedes estar en la playa por la mañana, almorzar en la sierra y cenar en la selva, todo el mismo día. Quito es lindísimo, está rodeado de volcanes y el centro histórico parece un museo al aire libre.'
+            text: 'Ecuador es chiquitito pero tiene de todito, como dicen los ecuatorianos. Se puede estar en la playa por la mañana, almorzar en la sierra y cenar en la selva, todo el mismo día. Quito es lindísimo, está rodeado de volcanes y su centro histórico parece un museo al aire libre.'
           },
           {
             speaker: 'narrator',
@@ -839,7 +986,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'La Mama Negra es una fiesta bien bonita, ñaño. Toda la ciudad participa y hay desfiles, música y mucha comida. La gente se disfraza y baila por las calles. Es una tradición que mezcla todo: lo indígena, lo español y lo africano. Mi familia va cada año desde Quito, es una tradición que no nos perdemos por nada.'
+            text: 'La Mama Negra es una fiesta bien bonita, ñaño. Toda la ciudad de Latacunga participa y hay desfiles, música y mucha comida. La gente se disfraza y baila por las calles. Es una tradición que mezcla todo: lo indígena, lo español y lo africano. Familias de todo Ecuador viajan cada año para presenciarla.'
           },
           {
             speaker: 'narrator',
@@ -847,7 +994,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'El encebollado es sagrado para los ecuatorianos, especialmente en la costa. En Quito, a nosotros nos gusta más el locro de papas, que es una sopita de papas con queso y aguacate. Cuando estoy resfriada, mi mamita me hace un locrito calentito y me curo al toque. También tienes que probar las empanadas de verde, que son de plátano verde.'
+            text: 'El encebollado es sagrado para los ecuatorianos, especialmente en la costa. En Quito, los quiteños prefieren el locro de papas, una sopita de papas con queso y aguacate. El locrito calentito es considerado un remedio casero infalible que cura al toque. También destacan las empanadas de verde, hechas de plátano verde.'
           },
           {
             speaker: 'narrator',
@@ -855,7 +1002,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'Las Galápagos son un sueño, de verdad. Yo fui con mis papás cuando era chiquita y fue la mejor experiencia de mi vida. Puedes nadar con lobos marinos, ver tortugas gigantes de cerquita y los piqueros de patas azules son graciosos con su danza de cortejo. Es como estar en otro planeta.'
+            text: 'Las Galápagos son un sueño, de verdad. Los visitantes pueden nadar con lobos marinos, ver tortugas gigantes de cerquita y observar a los piqueros de patas azules con su graciosa danza de cortejo. Quienes han estado allí aseguran que es como estar en otro planeta.'
           },
           {
             speaker: 'narrator',
@@ -863,7 +1010,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'En Ecuador usamos "ñaño" o "ñaña" para hablar con amigos cercanos o hermanos, viene del quichua. Si algo está muy bien, decimos que está "chévere" o "bacán". Y usamos mucho los diminutivos: "ahorita", "cerquita", "todito". Es que somos bien cariñosos, ñaño.'
+            text: 'En Ecuador se usa "ñaño" o "ñaña" para hablar con amigos cercanos o hermanos; viene del quichua. Si algo está muy bien, se dice que está "chévere" o "bacán". Los ecuatorianos usan mucho los diminutivos: "ahorita", "cerquita", "todito". Es que son bien cariñosos, ñaño.'
           }
         ],
         quiz: [
@@ -963,7 +1110,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: '¡Hola! Soy Gabriela y soy salvadoreña, o como decimos acá, guanaca. Mirá, El Salvador es chiquito pero lleno de cariño y tradiciones. Acá la gente es bien trabajadora y alegre. Aunque somos el país más pequeño, somos grandes de corazón. Tenemos playas increíbles para surfear, volcanes para escalar y pueblos con mucho encanto.'
+            text: 'Los salvadoreños, o "guanacas" como se llaman a sí mismos, son gente bien trabajadora y alegre. El Salvador es chiquito pero lleno de cariño y tradiciones. Aunque es el país más pequeño de Centroamérica, es grande de corazón. Tiene playas increíbles para surfear, volcanes para escalar y pueblos con mucho encanto.'
           },
           {
             speaker: 'narrator',
@@ -971,7 +1118,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'El Día de la Pupusa es una fiesta bien alegre. En mi colonia todos salen a hacer pupusas en la calle y se arma un gran convivio. Mi mamá hace las mejores pupusas revueltas, con chicharrón, frijol y queso. Se comen con curtido, que es como un repollo encurtido, y salsa de tomate. Podés comerte como diez sin parar.'
+            text: 'El Día de la Pupusa es una fiesta bien alegre. En cada colonia la gente sale a hacer pupusas en la calle y se arma un gran convivio. Las pupusas revueltas, con chicharrón, frijol y queso, son las más populares. Se comen con curtido, que es como un repollo encurtido, y salsa de tomate. Los salvadoreños aseguran que pueden comerse como diez sin parar.'
           },
           {
             speaker: 'narrator',
@@ -979,7 +1126,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'La pupusa de loroco con queso es mi favorita, es un sabor que no encontrás en ningún otro lugar del mundo. El loroco es una florecita que solo crece acá en la región y le da un sabor único. Mi abuela me enseñó a hacer pupusas cuando yo era cipota y ahora las hago todos los fines de semana para la familia.'
+            text: 'La pupusa de loroco con queso es una de las favoritas, con un sabor que no se encuentra en ningún otro lugar del mundo. El loroco es una florecita que solo crece en la región centroamericana y le da un sabor único. La tradición de hacer pupusas se transmite de generación en generación, desde que los salvadoreños son cipotes.'
           },
           {
             speaker: 'narrator',
@@ -987,7 +1134,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'Joya de Cerén es bien interesante. Podés ver cómo vivían los mayas: sus casas, su cocina, hasta los cultivos que tenían. Es como viajar al pasado. También te recomiendo visitar la Ruta de las Flores, que son unos pueblitos en la montaña con café, artesanías y atoles calientes. Juayúa tiene una feria gastronómica los fines de semana que es brutal.'
+            text: 'Joya de Cerén es bien interesante. Se puede ver cómo vivían los mayas: sus casas, su cocina, hasta los cultivos que tenían. Es como viajar al pasado. Otro destino destacado es la Ruta de las Flores, unos pueblitos en la montaña con café, artesanías y atoles calientes. Juayúa alberga una feria gastronómica los fines de semana que es brutal.'
           },
           {
             speaker: 'narrator',
@@ -995,7 +1142,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'En El Salvador decimos "cipote" o "cipota" para referirnos a un niño o joven. Si algo es genial, decimos que es "chivo" o "cheque". Y "va pues" es nuestra forma de decir "de acuerdo" o "está bien". Por ejemplo: "¿Vamos por pupusas?" "¡Va pues!" ¡Venite a conocernos!'
+            text: 'En El Salvador se dice "cipote" o "cipota" para referirse a un niño o joven. Si algo es genial, se dice que es "chivo" o "cheque". Y "va pues" es la forma salvadoreña de decir "de acuerdo" o "está bien". Por ejemplo: "¿Vamos por pupusas?" "¡Va pues!" Estas expresiones definen el habla cotidiana del país.'
           }
         ],
         quiz: [
@@ -1095,7 +1242,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: '¡Hola! Soy Lucía, de Madrid. Mira, tío, España es un país que mola mucho. Tenemos playas alucinantes en el Mediterráneo, montañas en los Pirineos, ciudades históricas y una gastronomía que es flipante. Y lo mejor: aquí nos encanta disfrutar de la vida. Las terrazas de los bares siempre están llenas porque los españoles somos muy de calle.'
+            text: 'España es un país que mola mucho, como dirían los madrileños. Tiene playas alucinantes en el Mediterráneo, montañas en los Pirineos, ciudades históricas y una gastronomía que es flipante. Y lo mejor: a los españoles les encanta disfrutar de la vida. Las terrazas de los bares siempre están llenas porque los españoles son muy de calle.'
           },
           {
             speaker: 'narrator',
@@ -1103,7 +1250,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'La Feria de Abril es una pasada, en serio. Yo fui con mis amigas el año pasado y no dormimos en cinco días, literal. Las sevillanas se bailan en todas las casetas y la gente no para hasta el amanecer. El rebujito, que es manzanilla con Seven Up, entra superbién con el calor sevillano. Si vais a España en abril, no os lo perdáis.'
+            text: 'La Feria de Abril es una pasada, en serio. Los asistentes pueden pasar cinco días sin dormir, literal. Las sevillanas se bailan en todas las casetas y la gente no para hasta el amanecer. El rebujito, que es manzanilla con Seven Up, entra superbién con el calor sevillano. Es una experiencia imprescindible de la cultura española.'
           },
           {
             speaker: 'narrator',
@@ -1111,7 +1258,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'La tortilla de patatas es sagrada aquí. La de mi madre es la mejor, claro, como dice todo español. Yo soy del equipo con cebolla, que quede constancia. Y las tapas son nuestra forma de vida: vas de bar en bar con los colegas, pidiendo cañitas y tapitas. En Granada te ponen la tapa gratis con la bebida, es una maravilla.'
+            text: 'La tortilla de patatas es sagrada en España. Todo español asegura que la de su madre es la mejor. El país se divide entre el equipo con cebolla y el equipo sin cebolla, un debate nacional sin fin. Las tapas son una forma de vida: se va de bar en bar con los colegas, pidiendo cañitas y tapitas. En Granada ponen la tapa gratis con la bebida, una maravilla.'
           },
           {
             speaker: 'narrator',
@@ -1119,7 +1266,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'La Sagrada Familia es una obra de arte brutal. Cada vez que voy a Barcelona me quedo alucinada mirándola. Por dentro es como estar en un bosque de piedra con la luz de colores entrando por las vidrieras. También os recomiendo la Alhambra de Granada, que es una pasada, y el Camino de Santiago, que lo hace mucha gente de todo el mundo.'
+            text: 'La Sagrada Familia es una obra de arte brutal. Los visitantes se quedan alucinados mirándola cada vez que van a Barcelona. Por dentro es como estar en un bosque de piedra con la luz de colores entrando por las vidrieras. Otros destinos imprescindibles son la Alhambra de Granada, que es una pasada, y el Camino de Santiago, que recorre gente de todo el mundo.'
           },
           {
             speaker: 'narrator',
@@ -1127,7 +1274,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'En España decimos "mola" cuando algo nos gusta mucho, por ejemplo "esta ciudad mola un montón". Si algo es genial, es "flipante" o "una pasada". Y si quedáis con amigos, en España siempre se llega un poco tarde, es cultural. Ah, y aquí cenamos tardísimo, a las diez de la noche como pronto. ¡Bienvenidos, tíos!'
+            text: 'En España se dice "mola" cuando algo gusta mucho, por ejemplo "esta ciudad mola un montón". Si algo es genial, es "flipante" o "una pasada". Al quedar con amigos, en España siempre se llega un poco tarde, es cultural. Y se cena tardísimo, a las diez de la noche como pronto. Estas costumbres definen el estilo de vida español.'
           }
         ],
         quiz: [
@@ -1232,7 +1379,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: '¡Hola, vos! Soy Ixchel, de Guatemala. Mi nombre es maya y significa "diosa de la luna". Mirá, Guatemala es un país bien lindo con mucha historia. Acá los volcanes son parte de la vida diaria: los vemos desde la ventana, subimos a ellos los fines de semana y hasta algunos tienen lava que podés ver de noche.'
+            text: 'Guatemala es un país bien lindo con mucha historia, vos. Los volcanes son parte de la vida diaria de los guatemaltecos: se ven desde las ventanas, se suben los fines de semana y algunos hasta tienen lava visible de noche. Nombres mayas como Ixchel, que significa "diosa de la luna", siguen vivos en la cultura.'
           },
           {
             speaker: 'narrator',
@@ -1240,7 +1387,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'La Semana Santa en Antigua es algo que tenés que ver con tus propios ojos, vos. Las alfombras son una obra de arte y la gente se pasa la noche entera haciéndolas, sabiendo que la procesión las va a destruir al pasar. Mi familia va a Antigua cada año y ayudamos a hacer alfombras en la calle de los vecinos.'
+            text: 'La Semana Santa en Antigua es algo que hay que ver con los propios ojos, vos. Las alfombras son una obra de arte y la gente se pasa la noche entera haciéndolas, sabiendo que la procesión las va a destruir al pasar. Familias enteras participan cada año en la elaboración de las alfombras en las calles de sus vecinos.'
           },
           {
             speaker: 'narrator',
@@ -1248,7 +1395,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'El pepián de mi abuela es el mejor, sin discusión. Ella tuesta las pepitas y el ajonjolí en comal de barro, como hacían los mayas. Se tarda horas en hacerlo pero vale la pena cada minuto. También tenés que probar los tamales colorados, que acá los comemos en Navidad, y el kak-ik, que es una sopa de chunto con chile rojo.'
+            text: 'Todo guatemalteco asegura que el pepián de su abuela es el mejor, sin discusión. Se tuestan las pepitas y el ajonjolí en comal de barro, como hacían los mayas. Se tarda horas en hacerlo pero vale la pena cada minuto. Otros platos imprescindibles son los tamales colorados, que se comen en Navidad, y el kak-ik, una sopa de chunto con chile rojo.'
           },
           {
             speaker: 'narrator',
@@ -1256,7 +1403,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'Tikal es mágico, vos. Cuando subís al Templo IV y ves las puntas de las pirámides saliendo de la selva, con los monos aulladores gritando y los tucanes volando, es una experiencia que no se olvida. Yo fui para ver el amanecer y casi me pongo a llorar de lo bonito. Si te gusta la historia, también visitá el Lago de Atitlán, que es impresionante.'
+            text: 'Tikal es mágico, vos. Desde lo alto del Templo IV se ven las puntas de las pirámides saliendo de la selva, con los monos aulladores gritando y los tucanes volando, una experiencia que no se olvida. El amanecer desde esa altura es tan conmovedor que muchos visitantes no pueden contener la emoción. El Lago de Atitlán, rodeado de volcanes, es otro destino impresionante.'
           },
           {
             speaker: 'narrator',
@@ -1264,7 +1411,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'En Guatemala usamos "vos" en lugar de "tú" y decimos "¿qué onda?" para saludar. Si algo está bonito, decimos que es "bien chilero". Y "a huevo" es nuestra forma de decir "claro que sí" o "por supuesto". Ah, y cuidado: acá "ahorita" puede significar ahora, en un rato o nunca. ¡Venite a Guatemala, vos!'
+            text: 'En Guatemala se usa "vos" en lugar de "tú" y se dice "¿qué onda?" para saludar. Si algo está bonito, se dice que es "bien chilero". Y "a huevo" es la forma guatemalteca de decir "claro que sí" o "por supuesto". Cuidado: "ahorita" puede significar ahora, en un rato o nunca. Una ambigüedad muy centroamericana.'
           }
         ],
         quiz: [
@@ -1364,7 +1511,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: '¡Hola, vos! Soy Xiomara, de Tegucigalpa, o como decimos acá, Tegus. Honduras es un país bien bonito que muchos no conocen. Tenemos playas increíbles en el Caribe, ruinas mayas impresionantes y gente muy acogedora. Acá decimos que Honduras es un secreto bien guardado.'
+            text: 'Honduras es un país bien bonito que muchos no conocen. Tegucigalpa, o "Tegus" como la llaman los locales, es su capital. El país cuenta con playas increíbles en el Caribe, ruinas mayas impresionantes y gente muy acogedora. Como dicen los hondureños, Honduras es un secreto bien guardado.'
           },
           {
             speaker: 'narrator',
@@ -1372,7 +1519,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'La Feria Juniana es tremenda, maje. Toda la gente de San Pedro y de los pueblos cercanos sale a las calles. Hay carnavalito, desfiles de carrozas bien adornadas y conciertos todas las noches. Mi tía vive allá y cada año me invita. El ambiente es bien alegre, se come machuca, se toman jugos naturales y se baila punta toda la noche.'
+            text: 'La Feria Juniana es tremenda, maje. Toda la gente de San Pedro y de los pueblos cercanos sale a las calles. Hay carnavalito, desfiles de carrozas bien adornadas y conciertos todas las noches. El ambiente es bien alegre: se come machuca, se toman jugos naturales y se baila punta toda la noche.'
           },
           {
             speaker: 'narrator',
@@ -1380,7 +1527,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'La baleada es la comida de Honduras, así de simple. No hay hondureño que no coma baleadas. Mi favorita es la baleada sencilla con frijolitos bien machucados, quesillo y crema. Pero también las hacen con de todo: pollo, chorizo, aguacate. Acá en Tegus hay un puesto en cada esquina. También tenés que probar la sopa de caracol, que es bien sabrosa.'
+            text: 'La baleada es la comida de Honduras, así de simple. No hay hondureño que no coma baleadas. La baleada sencilla lleva frijolitos bien machucados, quesillo y crema, pero también las hacen con de todo: pollo, chorizo, aguacate. En Tegus hay un puesto en cada esquina. Otro plato destacado es la sopa de caracol, que es bien sabrosa.'
           },
           {
             speaker: 'narrator',
@@ -1388,7 +1535,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'Copán es un lugar especial, vos. Las esculturas y los altares son increíbles, y hay guacamayas rojas volando por todas partes. También te recomiendo ir a Roatán, que es una isla en las Islas de la Bahía con aguas cristalinas para bucear. El arrecife de coral es espectacular, podés nadar con tortugas marinas y tiburones ballena.'
+            text: 'Copán es un lugar especial, vos. Las esculturas y los altares son increíbles, y hay guacamayas rojas volando por todas partes. Otro destino imperdible es Roatán, una isla en las Islas de la Bahía con aguas cristalinas para bucear. El arrecife de coral es espectacular; se puede nadar con tortugas marinas y tiburones ballena.'
           },
           {
             speaker: 'narrator',
@@ -1396,7 +1543,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'En Honduras usamos "maje" para hablar con un amigo, como decir "tío" o "amigo". Si algo está muy bueno, decimos que está "bien chivo". Y "catracho" es como nos llamamos los hondureños. Viene de un general llamado Florencio Xatruch. Así que si escuchás "soy catracho", ya sabés que es hondureño. ¡Dale, venite!'
+            text: 'En Honduras se usa "maje" para hablar con un amigo, como decir "tío" o "amigo". Si algo está muy bueno, se dice que está "bien chivo". Y "catracho" es como se llaman los hondureños, un gentilicio que viene del general Florencio Xatruch. Si alguien dice "soy catracho", es hondureño sin duda.'
           }
         ],
         quiz: [
@@ -1496,7 +1643,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: '¡Qué onda! Soy Jimena, de la Ciudad de México, o como decimos acá, la CDMX. Mira, güey, México es un país padrísimo con una cultura bien rica. Tenemos de todo: playas, desiertos, selvas, montañas nevadas y ciudades enormes. Y la comida, ay, la comida mexicana es patrimonio de la humanidad, y con razón.'
+            text: 'México es un país padrísimo con una cultura bien rica. La Ciudad de México, o "la CDMX" como la llaman los locales, es su corazón. El país tiene de todo: playas, desiertos, selvas, montañas nevadas y ciudades enormes. Y la comida mexicana es patrimonio de la humanidad, y con razón, güey.'
           },
           {
             speaker: 'narrator',
@@ -1504,7 +1651,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'El Día de Muertos es bien bonito, no es triste para nada. En mi familia armamos un altar enorme con las fotos de mis abuelitos, les ponemos su comida favorita, mezcalito y sus cigarros. Los panteones se llenan de familias que van a limpiar las tumbas y a convivir con sus muertos. En Mixquic y Pátzcuaro es donde se vive más padre.'
+            text: 'El Día de Muertos es bien bonito, no es triste para nada. Las familias arman altares enormes con fotos de sus seres queridos, su comida favorita, mezcalito y cigarros. Los panteones se llenan de familias que van a limpiar las tumbas y a convivir con sus muertos. En Mixquic y Pátzcuaro es donde la tradición se vive más padre.'
           },
           {
             speaker: 'narrator',
@@ -1512,7 +1659,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'Güey, los tacos al pastor son lo máximo. Acá en la CDMX hay taquerías en cada esquina y cada una dice que son los mejores. Mi taquería favorita está en la colonia Condesa y llevan como cincuenta años. El secreto es la salsa, cada taquero tiene su receta secreta. También tienes que probar los tamales, el pozole y los chiles en nogada.'
+            text: 'Los tacos al pastor son lo máximo, güey. En la CDMX hay taquerías en cada esquina y cada una asegura tener los mejores. Algunas llevan más de cincuenta años en el mismo lugar. El secreto es la salsa: cada taquero tiene su receta secreta. Otros platos imperdibles son los tamales, el pozole y los chiles en nogada.'
           },
           {
             speaker: 'narrator',
@@ -1520,7 +1667,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'Teotihuacán es impresionante, neta. Cuando subes a la Pirámide del Sol y ves toda la Calzada de los Muertos desde arriba, se te pone la piel chinita. Yo he ido como diez veces y siempre me emociono. También te recomiendo Chichén Itzá en Yucatán y Monte Albán en Oaxaca. México tiene más de treinta y cinco sitios Patrimonio de la Humanidad.'
+            text: 'Teotihuacán es impresionante, neta. Al subir a la Pirámide del Sol y ver toda la Calzada de los Muertos desde arriba, se pone la piel chinita. Los mexicanos aseguran que, por más veces que se visite, la emoción no disminuye. Chichén Itzá en Yucatán y Monte Albán en Oaxaca son otros destinos arqueológicos extraordinarios. México tiene más de treinta y cinco sitios Patrimonio de la Humanidad.'
           },
           {
             speaker: 'narrator',
@@ -1528,7 +1675,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'En México decimos "güey" a los amigos, "¿qué onda?" para saludar y "neta" cuando algo es verdad. Si algo está increíble, decimos que está "padrísimo" o "chido". Y "no manches" es nuestra forma de expresar sorpresa. Por ejemplo: "No manches, güey, este taco está padrísimo". ¡Ven a México, no te vas a arrepentir!'
+            text: 'En México se dice "güey" a los amigos, "¿qué onda?" para saludar y "neta" cuando algo es verdad. Si algo está increíble, se dice que está "padrísimo" o "chido". Y "no manches" es la forma mexicana de expresar sorpresa. Por ejemplo: "No manches, güey, este taco está padrísimo". Estas expresiones son el alma del habla mexicana.'
           }
         ],
         quiz: [
@@ -1633,7 +1780,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: '¡Hola, vos! Soy Damaris, de Managua. Ideay, Nicaragua es bien bonita y la gente es bien amable. Acá tenemos volcanes donde podés hacer sandboarding, lagos con islas dentro y playas desiertas. Y somos bien orgullosos de Rubén Darío, nuestro poeta. En cada esquina de León hay una referencia a él.'
+            text: 'Nicaragua es bien bonita y la gente es bien amable. Ideay, el país tiene volcanes donde se puede hacer sandboarding, lagos con islas dentro y playas desiertas. Los nicaragüenses son bien orgullosos de Rubén Darío, su poeta. En cada esquina de León hay una referencia a él.'
           },
           {
             speaker: 'narrator',
@@ -1641,7 +1788,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'La Purísima es la fiesta más bonita de Nicaragua. La gente decora altares a la Virgen en sus casas y cuando los visitantes llegan a cantar, les dan golosinas: caña, ayote en miel, limones rellenos, gofios. Es bien lindo porque toda la comunidad participa. Mi mamá empieza a preparar los dulces desde noviembre.'
+            text: 'La Purísima es la fiesta más bonita de Nicaragua. La gente decora altares a la Virgen en sus casas y cuando los visitantes llegan a cantar, les dan golosinas: caña, ayote en miel, limones rellenos, gofios. Es bien lindo porque toda la comunidad participa. Las familias empiezan a preparar los dulces desde noviembre.'
           },
           {
             speaker: 'narrator',
@@ -1649,7 +1796,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'El gallo pinto de Nicaragua es el mejor del mundo, y que no me vengan los ticos a decir lo contrario. Los frijolitos rojos le dan un sabor especial. Yo lo como todos los días con su quesito frito y su tajadita de plátano. Y si vas a Granada, tenés que probar el vigorón, que se sirve en una hoja de plátano en el Parque Central.'
+            text: 'Los nicaragüenses aseguran que su gallo pinto es el mejor del mundo, y que no vengan los ticos a decir lo contrario. Los frijolitos rojos le dan un sabor especial. Se come todos los días con su quesito frito y su tajadita de plátano. En Granada, el vigorón se sirve en una hoja de plátano en el Parque Central y es otro clásico imperdible.'
           },
           {
             speaker: 'narrator',
@@ -1657,7 +1804,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'Ometepe es mágica, vos. Imaginate una isla con dos volcanes en medio de un lago enorme. Yo subí el volcán Maderas y arriba hay una laguna en el cráter, es increíble. También te recomiendo Granada, que es una ciudad colonial preciosa a orillas del lago, y León, que es la ciudad universitaria con catedrales hermosas y murales revolucionarios.'
+            text: 'Ometepe es mágica, vos. Una isla con dos volcanes en medio de un lago enorme. En la cima del volcán Maderas hay una laguna en el cráter que resulta increíble. Granada, una ciudad colonial preciosa a orillas del lago, y León, la ciudad universitaria con catedrales hermosas y murales revolucionarios, son otros destinos destacados.'
           },
           {
             speaker: 'narrator',
@@ -1665,7 +1812,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'En Nicaragua decimos "ideay" cuando estamos sorprendidos o para decir "pues". Es nuestra palabra favorita. Si algo es muy bueno, decimos que es "tuani". Y cuando algo es aburrido o feo, decimos que es "chafa". Por ejemplo: "Ideay, vos, este vigorón está bien tuani". ¡Venite a Nicaragua!'
+            text: 'En Nicaragua se dice "ideay" para expresar sorpresa o como equivalente de "pues". Es la palabra favorita de los nicaragüenses. Si algo es muy bueno, se dice que es "tuani". Y cuando algo es aburrido o feo, se dice que es "chafa". Por ejemplo: "Ideay, vos, este vigorón está bien tuani".'
           }
         ],
         quiz: [
@@ -1765,7 +1912,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: '¡Xopá, fren! Soy Mireya, de Ciudad de Panamá. Mira, Panamá es un país bien chiquitito pero súper importante porque conecta dos continentes y dos océanos. Acá tenemos de todo: rascacielos modernos, selvas tropicales, playas del Caribe y del Pacífico, y comunidades indígenas que mantienen vivas sus tradiciones.'
+            text: 'Panamá es un país bien chiquitito pero súper importante porque conecta dos continentes y dos océanos. Tiene de todo: rascacielos modernos, selvas tropicales, playas del Caribe y del Pacífico, y comunidades indígenas que mantienen vivas sus tradiciones. Como dicen los panameños, "¡xopá, fren!"'
           },
           {
             speaker: 'narrator',
@@ -1773,7 +1920,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'El Canal es el orgullo de Panamá, fren. Puedes ir a las esclusas de Miraflores y ver cómo pasan los barcos enormes. Es impresionante ver esos buques gigantes subir y bajar con el agua. Mi abuelo trabajó en el Canal y siempre nos contaba historias de los barcos que pasaban de todas partes del mundo.'
+            text: 'El Canal es el orgullo de Panamá, fren. Desde las esclusas de Miraflores se puede ver cómo pasan los barcos enormes. Es impresionante ver esos buques gigantes subir y bajar con el agua. Generaciones de panameños han trabajado en el Canal, y sus historias sobre los barcos que llegan de todas partes del mundo forman parte de la identidad nacional.'
           },
           {
             speaker: 'narrator',
@@ -1781,7 +1928,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'El sancocho de mi mamá es lo mejor del mundo, fren. Ella lo hace con gallina criolla y culantro fresco del patio. Después de una fiesta, no hay nada mejor que un sancocho caliente para recuperarse. También tienes que probar las carimañolas, que son como croquetas de yuca rellenas de carne, y el arroz con pollo panameño que lleva aceitunas.'
+            text: 'Todo panameño asegura que el sancocho de su familia es lo mejor del mundo, fren. Se hace con gallina criolla y culantro fresco. Después de una fiesta, no hay nada mejor que un sancocho caliente para recuperarse. Otros platos imperdibles son las carimañolas, croquetas de yuca rellenas de carne, y el arroz con pollo panameño que lleva aceitunas.'
           },
           {
             speaker: 'narrator',
@@ -1789,7 +1936,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'San Blas es un paraíso, en serio. Las islas son pequeñitas, con palmeras y agua turquesa. Los Gunas son bien amables y te muestran su artesanía, las molas, que son telas bordadas con diseños coloridos bien bonitos. Si vas, respeta sus costumbres porque es su territorio. También te recomiendo Bocas del Toro, que tiene playas brutales.'
+            text: 'San Blas es un paraíso, en serio. Las islas son pequeñitas, con palmeras y agua turquesa. Los Gunas son bien amables y muestran a los visitantes su artesanía, las molas, telas bordadas con diseños coloridos bien bonitos. Es importante respetar sus costumbres porque es su territorio. Bocas del Toro, con playas brutales, es otro destino destacado.'
           },
           {
             speaker: 'narrator',
@@ -1797,7 +1944,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'En Panamá decimos "xopá" como saludo, que es "¿qué pasó?" al revés. A los amigos les decimos "fren", del inglés "friend". Y si algo está muy bueno decimos que está "brutal" o "fino". También usamos "vaina" para referirnos a cualquier cosa. Por ejemplo: "Pásame esa vaina, fren". ¡Nos vemos en Panamá!'
+            text: 'En Panamá se dice "xopá" como saludo, que es "¿qué pasó?" al revés. A los amigos se les dice "fren", del inglés "friend". Si algo está muy bueno se dice que está "brutal" o "fino". También se usa "vaina" para referirse a cualquier cosa. Por ejemplo: "Pásame esa vaina, fren". Estas expresiones reflejan la influencia caribeña y anglosajona en el habla panameña.'
           }
         ],
         quiz: [
@@ -1897,7 +2044,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: '¡Hola, luego! Soy Araceli, de Asunción. Acá en Paraguay hablamos jopará, que es una mezcla de español y guaraní. Es algo único en el mundo. Mi abuela habla más guaraní que español y siempre me dice "ñande roga" que significa "nuestra casa". Paraguay es tranquilo, verde y con gente muy cálida.'
+            text: 'En Paraguay se habla jopará, que es una mezcla de español y guaraní. Es algo único en el mundo, luego. Las generaciones mayores hablan más guaraní que español y usan expresiones como "ñande roga", que significa "nuestra casa". Paraguay es un país tranquilo, verde y con gente muy cálida.'
           },
           {
             speaker: 'narrator',
@@ -1905,7 +2052,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'San Juan es la fiesta más divertida del año, luego. Los juegos con fuego parecen peligrosos pero es una tradición que llevamos en la sangre. El pelota tatá es fútbol con una pelota de fuego, imaginate. En mi barrio todos participan y hay música, comida y alegría toda la noche. También se camina sobre brasas, los más valientes.'
+            text: 'San Juan es la fiesta más divertida del año, luego. Los juegos con fuego parecen peligrosos pero es una tradición que los paraguayos llevan en la sangre. El pelota tatá es fútbol con una pelota de fuego. En cada barrio todos participan y hay música, comida y alegría toda la noche. Los más valientes caminan sobre brasas.'
           },
           {
             speaker: 'narrator',
@@ -1913,7 +2060,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'La sopa paraguaya es nuestro orgullo, luego. En cada asado y en cada fiesta hay sopa paraguaya. Mi mamá la hace en tatakua, que es el horno de barro paraguayo, y queda perfecta. También tenés que probar la chipa, que es un panecito de almidón de mandioca con queso que comemos en Semana Santa. Y el tereré, que es nuestro mate frío con agua helada.'
+            text: 'La sopa paraguaya es el orgullo gastronómico del país, luego. En cada asado y en cada fiesta hay sopa paraguaya. La versión horneada en tatakua, el horno de barro paraguayo, queda perfecta. Otro imperdible es la chipa, un panecito de almidón de mandioca con queso típico de Semana Santa. Y el tereré, el mate frío con agua helada, es la bebida nacional.'
           },
           {
             speaker: 'narrator',
@@ -1921,7 +2068,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'Las Misiones de Trinidad son preciosas, especialmente de noche cuando las iluminan. Podés ver las ruinas de la iglesia, las casas y hasta el sistema de agua que tenían. Es increíble pensar que hace cuatrocientos años los guaraníes y los jesuitas construyeron todo eso. También te recomiendo ir al Chaco, que es un lugar salvaje con naturaleza pura.'
+            text: 'Las Misiones de Trinidad son preciosas, especialmente de noche cuando las iluminan. Se pueden ver las ruinas de la iglesia, las casas y hasta el sistema de agua que tenían. Es increíble pensar que hace cuatrocientos años los guaraníes y los jesuitas construyeron todo eso. Otro destino destacado es el Chaco, un lugar salvaje con naturaleza pura.'
           },
           {
             speaker: 'narrator',
@@ -1929,7 +2076,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'En Paraguay decimos "luego" al final de las frases para dar énfasis, no tiene nada que ver con el tiempo. También usamos muchas palabras en guaraní: "ko" significa "este" y "gua\'u" significa "mentira". Si alguien te dice "nde gua\'u", te está diciendo que sos mentiroso. ¡Eju Paraguay pe, luego! Que significa "¡vengan a Paraguay!"'
+            text: 'En Paraguay se dice "luego" al final de las frases para dar énfasis, sin relación con el tiempo. También se usan muchas palabras en guaraní: "ko" significa "este" y "gua\'u" significa "mentira". Si alguien dice "nde gua\'u", está diciendo que uno es mentiroso. "Eju Paraguay pe, luego" significa "¡vengan a Paraguay!"'
           }
         ],
         quiz: [
@@ -2029,7 +2176,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: '¡Hola, causa! Soy Milagros, de Lima. Oye, Perú es un país que te vuela la cabeza, pe. Tenemos Machu Picchu, que es una de las siete maravillas del mundo moderno, la mejor comida de Latinoamérica y una historia milenaria. En Lima puedes comer en restaurantes de clase mundial y luego ir a una huarique, que es un restaurante escondido con comida casera brutal.'
+            text: 'Perú es un país que vuela la cabeza, pe. Tiene Machu Picchu, una de las siete maravillas del mundo moderno, la mejor comida de Latinoamérica y una historia milenaria. En Lima se puede comer en restaurantes de clase mundial y luego ir a una huarique, que es un restaurante escondido con comida casera brutal, como dicen los limeños.'
           },
           {
             speaker: 'narrator',
@@ -2037,7 +2184,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'El Inti Raymi es impresionante, causa. Miles de personas van a Sacsayhuamán a ver la ceremonia. Los actores llevan trajes incas y el Sapa Inca saluda al sol en quechua. Se me pone la piel de gallina cada vez que voy. Mi familia es de Cusco y para ellos es una fecha sagrada. Todo Cusco se transforma durante esos días.'
+            text: 'El Inti Raymi es impresionante, causa. Miles de personas van a Sacsayhuamán a ver la ceremonia. Los actores llevan trajes incas y el Sapa Inca saluda al sol en quechua. La emoción pone la piel de gallina. Para las familias cusqueñas es una fecha sagrada. Todo Cusco se transforma durante esos días.'
           },
           {
             speaker: 'narrator',
@@ -2045,7 +2192,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'El ceviche peruano es el mejor del mundo, y eso no se discute, pe. El secreto está en el pescado fresco y el limón peruano, que tiene un sabor especial. Mi papá me lleva al terminal pesquero tempranito para comprar el pescado del día y hacer ceviche en casa los domingos. La leche de tigre levanta muertos, como decimos acá.'
+            text: 'Los peruanos aseguran que su ceviche es el mejor del mundo, y eso no se discute, pe. El secreto está en el pescado fresco y el limón peruano, que tiene un sabor especial. Los domingos, las familias limeñas van tempranito al terminal pesquero a comprar el pescado del día para hacer ceviche en casa. La leche de tigre "levanta muertos", como dicen los peruanos.'
           },
           {
             speaker: 'narrator',
@@ -2053,7 +2200,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'Machu Picchu es de esas cosas que no puedes creer hasta que las ves con tus propios ojos. Yo fui caminando por el Camino Inca, cuatro días de trekking, y cuando llegué a la Puerta del Sol y vi la ciudadela abajo entre las nubes, me puse a llorar de la emoción. También puedes ir en tren desde Cusco, que es más fácil pero igual de bonito.'
+            text: 'Machu Picchu es de esas cosas que no se pueden creer hasta verlas con los propios ojos. Los caminantes que recorren el Camino Inca durante cuatro días de trekking llegan a la Puerta del Sol y ven la ciudadela abajo entre las nubes, una imagen que conmueve hasta las lágrimas. También se puede llegar en tren desde Cusco, más fácil pero igual de bonito.'
           },
           {
             speaker: 'narrator',
@@ -2061,7 +2208,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'En Perú decimos "causa" para referirnos a un amigo cercano, y "pe" al final de las frases para dar énfasis. Si algo está muy bueno, decimos que es "bravazo". Y "jato" es tu casa. Así que si te dicen "vamos a mi jato, causa", te están invitando a su casa. ¡Chévere, pe!'
+            text: 'En Perú se dice "causa" para referirse a un amigo cercano, y "pe" al final de las frases para dar énfasis. Si algo está muy bueno, se dice que es "bravazo". Y "jato" significa casa. Así que si alguien dice "vamos a mi jato, causa", está invitando a su casa. Estas expresiones son el sello del habla peruana.'
           }
         ],
         quiz: [
@@ -2166,7 +2313,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: '¡Wepa! Soy Yaritza, de San Juan. Mira, Puerto Rico es una isla chiquita pero con un corazón enorme. Nosotros los boricuas somos bien orgullosos de nuestra cultura. Aquí hablamos español con unas cuantas palabras en inglés y tenemos la mejor música del Caribe. Somos la cuna del reggaetón, eso no se lo discuto a nadie.'
+            text: 'Puerto Rico es una isla chiquita pero con un corazón enorme. Los boricuas, como se llaman a sí mismos, son bien orgullosos de su cultura. En la isla se habla español con unas cuantas palabras en inglés y se produce la mejor música del Caribe. Puerto Rico es la cuna del reggaetón, algo que ningún boricua le discute a nadie. ¡Wepa!'
           },
           {
             speaker: 'narrator',
@@ -2174,7 +2321,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'La SanSe, como le decimos, es la fiesta más brutal del año. Imagínate las calles del Viejo San Juan repletas de gente bailando bomba y plena, con los vejigantes asustando a la gente y todo el mundo pasándola bien. Es como un carnaval boricua. Mi grupo de amigas no se pierde una SanSe, llevamos como diez años yendo seguidos.'
+            text: 'La SanSe, como le dicen los locales, es la fiesta más brutal del año. Las calles del Viejo San Juan se llenan de gente bailando bomba y plena, con los vejigantes asustando a los asistentes y todo el mundo pasándola bien. Es como un carnaval boricua. Grupos de amigos y familias repiten año tras año sin falta.'
           },
           {
             speaker: 'narrator',
@@ -2182,7 +2329,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'El mofongo es vida, nena. Mi abuela hace el mejor mofongo relleno de camarones al ajillo que te puedas imaginar. El secreto está en el pilón: hay que majar el plátano con cariño y un buen sofrito. También tienes que probar el arroz con gandules, que es nuestro plato de Navidad, y los pasteles, que son como tamales de plátano y carne.'
+            text: 'El mofongo es vida para los boricuas, nena. Cada familia asegura que el suyo es el mejor, especialmente el relleno de camarones al ajillo. El secreto está en el pilón: hay que majar el plátano con cariño y un buen sofrito. Otros imprescindibles son el arroz con gandules, el plato de Navidad por excelencia, y los pasteles, como tamales de plátano y carne.'
           },
           {
             speaker: 'narrator',
@@ -2190,7 +2337,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'El Viejo San Juan es precioso, especialmente al atardecer cuando el sol le da a las murallas del Morro. Los nenes vuelan chiringa ahí los domingos y la brisa del mar es deliciosa. Y El Yunque es mágico: llueve casi todos los días pero cuando sale el sol entre las nubes y los árboles, se ve como un bosque encantado. Hay coquíes cantando por todas partes.'
+            text: 'El Viejo San Juan es precioso, especialmente al atardecer cuando el sol ilumina las murallas del Morro. Los nenes vuelan chiringa ahí los domingos y la brisa del mar es deliciosa. El Yunque es mágico: llueve casi todos los días, pero cuando sale el sol entre las nubes y los árboles, se transforma en un bosque encantado. Los coquíes cantan por todas partes.'
           },
           {
             speaker: 'narrator',
@@ -2198,7 +2345,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'En Puerto Rico decimos "¡wepa!" para expresar alegría o emoción. A los amigos les decimos "bro" o "broki". Si algo está muy bueno, está "brutal". Y "la que hay" es como decimos "lo que hay" o "así son las cosas". Por ejemplo: "Esa playa está brutal, bro, ¡wepa!" ¡Ven a Borinquen!'
+            text: 'En Puerto Rico se dice "¡wepa!" para expresar alegría o emoción. A los amigos se les dice "bro" o "broki". Si algo está muy bueno, está "brutal". Y "la que hay" significa "lo que hay" o "así son las cosas". Por ejemplo: "Esa playa está brutal, bro, ¡wepa!" Estas expresiones capturan la energía boricua.'
           }
         ],
         quiz: [
@@ -2298,7 +2445,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: '¡Klk, manito! Soy Yolanda, de Santo Domingo. Mira, República Dominicana es un país que te enamora desde que llegas. Aquí la gente es bien jocosa y alegre. Tenemos las playas más bonitas del Caribe, una comida que es un vacilón y música pa\' rato. El dominicano siempre está inventando y pasándola bien.'
+            text: 'República Dominicana es un país que enamora desde que se llega. La gente dominicana es bien jocosa y alegre. El país tiene las playas más bonitas del Caribe, una comida que es un vacilón y música pa\' rato. Como dicen los locales con su típico "klk, manito", el dominicano siempre está inventando y pasándola bien.'
           },
           {
             speaker: 'narrator',
@@ -2306,7 +2453,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'El merengue está en nuestra sangre, manito. Todo dominicano nace sabiendo bailar merengue, eso es así. Juan Luis Guerra y Johnny Ventura son nuestros grandes artistas. En las fiestas familiares, que aquí son bien grandes, siempre hay merengue y bachata sonando. Mi mamá me enseñó a bailar merengue antes de caminar, en serio.'
+            text: 'El merengue está en la sangre dominicana, manito. Todo dominicano nace sabiendo bailar merengue, eso es así. Juan Luis Guerra y Johnny Ventura son los grandes artistas nacionales. En las fiestas familiares, que en el país son bien grandes, siempre hay merengue y bachata sonando. Los dominicanos dicen que aprenden a bailar merengue antes de caminar.'
           },
           {
             speaker: 'narrator',
@@ -2314,7 +2461,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'La bandera es nuestra comida de todos los días. No hay dominicano que no coma su arrocito con habichuela. Y el mangú del desayuno con su salami frito y sus huevos revueltos te da energía pa\' to\' el día. Mi abuela hace el mejor sancocho de siete carnes del mundo, eso te lo digo yo. Lo hace en un caldero enorme y toda la familia viene a comer.'
+            text: 'La bandera es la comida de todos los días en el país. No hay dominicano que no coma su arrocito con habichuela. Y el mangú del desayuno con su salami frito y sus huevos revueltos da energía pa\' to\' el día. El sancocho de siete carnes, preparado en un caldero enorme, es un ritual familiar dominical que reúne a toda la familia.'
           },
           {
             speaker: 'narrator',
@@ -2322,7 +2469,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'La Zona Colonial es histórica de verdad, porque ahí empezó todo. Imagínate caminar por la misma calle que pisó Cristóbal Colón. El Alcázar de Colón, donde vivía el hijo de Colón, es un museo precioso. Y de noche la Zona Colonial se llena de música y vida. También te recomiendo ir a Samaná a ver las ballenas jorobadas entre enero y marzo.'
+            text: 'La Zona Colonial es histórica de verdad, porque ahí empezó todo. Los visitantes caminan por las mismas calles que pisó Cristóbal Colón. El Alcázar de Colón, donde vivía el hijo del navegante, es un museo precioso. De noche, la Zona Colonial se llena de música y vida. Otro destino destacado es Samaná, donde se pueden ver ballenas jorobadas entre enero y marzo.'
           },
           {
             speaker: 'narrator',
@@ -2330,7 +2477,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'En República Dominicana decimos "klk" que viene de "¿qué es lo que es?" y es como decir "¿qué tal?". Si algo está bueno, decimos que está "jevi" o "de madre". Y "vaina" lo usamos para todo, literalmente para cualquier cosa. "Pásame esa vaina" puede ser un lápiz, un plato, un celular, lo que sea. ¡Nos vemos, manito!'
+            text: 'En República Dominicana se dice "klk", que viene de "¿qué es lo que es?", como equivalente de "¿qué tal?". Si algo está bueno, se dice que está "jevi" o "de madre". Y "vaina" se usa para todo, literalmente para cualquier cosa. "Pásame esa vaina" puede referirse a un lápiz, un plato, un celular, lo que sea.'
           }
         ],
         quiz: [
@@ -2430,7 +2577,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: '¡Hola, bo! Soy Florencia, de Montevideo. Uruguay es chiquito pero matón, como decimos acá. Somos apenas tres millones y medio de personas pero tenemos dos Copas del Mundo de fútbol y un montón de escritores famosos. Acá la vida es tranquila, la gente es educada y siempre hay tiempo para un mate con amigos en la rambla.'
+            text: 'Uruguay es chiquito pero matón, como dicen los uruguayos. Con apenas tres millones y medio de habitantes, el país tiene dos Copas del Mundo de fútbol y un montón de escritores famosos. La vida es tranquila, la gente es educada y siempre hay tiempo para un mate con amigos en la rambla de Montevideo.'
           },
           {
             speaker: 'narrator',
@@ -2438,7 +2585,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'El carnaval uruguayo es único, bo. No es como el de Río, es diferente. Acá tenemos las murgas, que son grupos que cantan letras de crítica social con humor, y las Llamadas con los tambores de candombe que te hacen vibrar el pecho. Cuando pasan las comparsas por la calle, todo el barrio sale a bailar. Es una cosa que te pone la piel de gallina.'
+            text: 'El carnaval uruguayo es único, bo. No es como el de Río, es diferente. Uruguay tiene las murgas, grupos que cantan letras de crítica social con humor, y las Llamadas con los tambores de candombe que hacen vibrar el pecho. Cuando pasan las comparsas por la calle, todo el barrio sale a bailar. Es una experiencia que pone la piel de gallina.'
           },
           {
             speaker: 'narrator',
@@ -2446,7 +2593,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'El chivito es nuestro orgullo gastronómico, bo. Es un sándwich que necesitás las dos manos y servilletas extra. El de la panadería de mi barrio es legendario. También el asado uruguayo es sagrado como en Argentina, pero acá le ponemos pamplona, que es un matambre relleno. Y el medio y medio, que es mitad champagne y mitad vino blanco, se toma en el Mercado del Puerto.'
+            text: 'El chivito es el orgullo gastronómico uruguayo, bo. Es un sándwich que necesita las dos manos y servilletas extra. Cada barrio tiene su panadería legendaria. El asado uruguayo es sagrado como en Argentina, pero se le agrega pamplona, que es un matambre relleno. Y el medio y medio, mitad champagne y mitad vino blanco, se toma en el Mercado del Puerto de Montevideo.'
           },
           {
             speaker: 'narrator',
@@ -2454,7 +2601,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'Colonia es divina, especialmente para ir un fin de semana. Las calles empedradas, las casas de colores, el atardecer desde el faro, todo es precioso. Y Punta del Este, que es nuestro balneario estrella, se llena de turistas en verano. La escultura de los dedos en la arena de Playa Brava es icónica. También te recomiendo Cabo Polonio, que es un pueblo sin luz eléctrica con lobos marinos.'
+            text: 'Colonia es divina, especialmente para ir un fin de semana. Las calles empedradas, las casas de colores, el atardecer desde el faro, todo es precioso. Punta del Este, el balneario estrella uruguayo, se llena de turistas en verano. La escultura de los dedos en la arena de Playa Brava es icónica. Cabo Polonio, un pueblo sin luz eléctrica con lobos marinos, es otro destino único.'
           },
           {
             speaker: 'narrator',
@@ -2462,7 +2609,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'En Uruguay decimos "bo" a los amigos, que viene de "botija". Si algo está muy bueno, decimos que es "bárbaro". Y "ta" es nuestra forma de decir "está bien" o "de acuerdo". Por ejemplo: "¿Vamos a tomar mate en la rambla?" "Ta, dale". Ah, y acá el termo con mate debajo del brazo es parte del uniforme nacional. ¡Venite, bo!'
+            text: 'En Uruguay se dice "bo" a los amigos, que viene de "botija". Si algo está muy bueno, se dice que es "bárbaro". Y "ta" es la forma uruguaya de decir "está bien" o "de acuerdo". Por ejemplo: "¿Vamos a tomar mate en la rambla?" "Ta, dale". El termo con mate debajo del brazo es parte del uniforme nacional uruguayo.'
           }
         ],
         quiz: [
@@ -2562,7 +2709,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: '¡Épale, chamo! Soy Andreína, de Caracas. Mira, Venezuela es un país bellísimo con una naturaleza que no te imaginas. Tenemos el salto de agua más alto del mundo, playas paradisíacas, montañas nevadas y una sabana infinita. Y la gente venezolana es bien calurosa y echadora de broma. Acá siempre hay razón para reír.'
+            text: 'Venezuela es un país bellísimo con una naturaleza que sorprende. Tiene el salto de agua más alto del mundo, playas paradisíacas, montañas nevadas y una sabana infinita. La gente venezolana es bien calurosa y echadora de broma. Como dicen los caraqueños con su típico "¡épale, chamo!", siempre hay razón para reír.'
           },
           {
             speaker: 'narrator',
@@ -2570,7 +2717,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'Los Diablos Danzantes de Yare son una cosa impresionante, chamo. Los diablos salen con sus máscaras rojas bailando al ritmo de los tambores y al final se arrodillan ante la iglesia, representando el triunfo del bien sobre el mal. Mi familia es de los Valles del Tuy y cada año vamos a ver la celebración. Es una tradición que te llena el alma.'
+            text: 'Los Diablos Danzantes de Yare son una cosa impresionante, chamo. Los diablos salen con sus máscaras rojas bailando al ritmo de los tambores y al final se arrodillan ante la iglesia, representando el triunfo del bien sobre el mal. Familias de los Valles del Tuy y de todo el país acuden cada año a presenciar esta tradición que llena el alma.'
           },
           {
             speaker: 'narrator',
@@ -2578,7 +2725,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'La arepa es sagrada para los venezolanos, chamo. Desayuno, almuerzo, cena, merienda, a cualquier hora cae bien una arepita. Mi favorita es la reina pepiada, que la inventaron en honor a una Miss Mundo venezolana. También me encanta la de pabellón, con carne mechada, caraotas negras y plátano. Y el pabellón criollo, que es nuestro plato nacional, es esa misma combinación pero con arroz.'
+            text: 'La arepa es sagrada para los venezolanos, chamo. Desayuno, almuerzo, cena, merienda, a cualquier hora cae bien una arepita. La reina pepiada, inventada en honor a una Miss Mundo venezolana, es una de las más populares. La de pabellón, con carne mechada, caraotas negras y plátano, es otra favorita. El pabellón criollo, esa misma combinación pero con arroz, es el plato nacional.'
           },
           {
             speaker: 'narrator',
@@ -2586,7 +2733,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'El Salto Ángel es una maravilla, de verdad te lo digo. Cuando estás en la canoa acercándote y ves esa cortina de agua cayendo de una mesa gigante de roca, te quedas sin palabras. La Gran Sabana parece otro planeta con sus tepuyes. También te recomiendo Los Roques, que es un archipiélago con las aguas más cristalinas que puedas ver, y Mérida con su teleférico, el más alto del mundo.'
+            text: 'El Salto Ángel es una maravilla. Desde la canoa que se acerca a la base, la cortina de agua cayendo de una mesa gigante de roca deja sin palabras. La Gran Sabana parece otro planeta con sus tepuyes. Los Roques, un archipiélago con aguas cristalinas extraordinarias, y Mérida, con su teleférico, el más alto del mundo, son otros destinos imprescindibles.'
           },
           {
             speaker: 'narrator',
@@ -2594,7 +2741,7 @@ var AUDITIVA_DATA = {
           },
           {
             speaker: 'narrator',
-            text: 'En Venezuela decimos "chamo" o "chama" a los amigos, y "épale" para saludar. Si algo está muy bien, decimos que es "fino" o "chévere". Y "ladilla" es cuando algo o alguien es muy fastidioso. Por ejemplo: "Esa cola en el tráfico es una ladilla, chamo, pero la arepa que me espera está fina". ¡Vengan a Venezuela!'
+            text: 'En Venezuela se dice "chamo" o "chama" a los amigos, y "épale" para saludar. Si algo está muy bien, se dice que es "fino" o "chévere". Y "ladilla" es cuando algo o alguien es muy fastidioso. Por ejemplo: "Esa cola en el tráfico es una ladilla, chamo, pero la arepa que me espera está fina". Estas expresiones definen el habla venezolana.'
           }
         ],
         quiz: [
