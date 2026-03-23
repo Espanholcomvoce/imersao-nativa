@@ -554,9 +554,9 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
     <div id="barraTexto" style="display:flex;align-items:flex-end;gap:8px;background:rgba(255,255,255,0.06);border-radius:24px;padding:10px 10px 10px 16px;border:1px solid rgba(255,255,255,0.1)">
       <textarea id="conversaInput" rows="1" placeholder="Preguntar a Paula..." onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();enviarTexto()}" oninput="autoResize(this)" style="flex:1;background:transparent;border:none;outline:none;resize:none;font-size:15px;color:#fff;font-family:inherit;max-height:120px;padding:2px 0;line-height:1.5"></textarea>
       <button id="btnMic" onmousedown="iniciarGravacao()" onmouseup="pararGravacao()" ontouchstart="event.preventDefault();iniciarGravacao()" ontouchend="event.preventDefault();pararGravacao()" style="width:36px;height:36px;border-radius:50%;background:transparent;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;touch-action:none">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="7" y="1" width="6" height="11" rx="3" fill="#666"/><path d="M3.5 9.5a6.5 6.5 0 0013 0" stroke="#666" stroke-width="1.5" stroke-linecap="round"/><line x1="10" y1="16" x2="10" y2="19" stroke="#666" stroke-width="1.5" stroke-linecap="round"/><line x1="7" y1="19" x2="13" y2="19" stroke="#666" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="7" y="1" width="6" height="11" rx="3" fill="#94a3b8"/><path d="M3.5 9.5a6.5 6.5 0 0013 0" stroke="#94a3b8" stroke-width="1.5" stroke-linecap="round"/><line x1="10" y1="16" x2="10" y2="19" stroke="#94a3b8" stroke-width="1.5" stroke-linecap="round"/><line x1="7" y1="19" x2="13" y2="19" stroke="#94a3b8" stroke-width="1.5" stroke-linecap="round"/></svg>
       </button>
-      <button id="btnMaosLivres" onclick="toggleMaosLivres()" style="width:36px;height:36px;border-radius:50%;background:#1a1a1a;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+      <button id="btnMaosLivres" onclick="iniciarModoRealtime()" style="width:36px;height:36px;border-radius:50%;background:rgba(0,144,190,0.3);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0" title="Modo voz en vivo">
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="1" y="8" width="2.5" height="4" rx="1.2" fill="white"/><rect x="5" y="5" width="2.5" height="10" rx="1.2" fill="white"/><rect x="9" y="2" width="2.5" height="16" rx="1.2" fill="white"/><rect x="13" y="5" width="2.5" height="10" rx="1.2" fill="white"/><rect x="17" y="8" width="2.5" height="4" rx="1.2" fill="white"/></svg>
       </button>
     </div>
@@ -1099,7 +1099,7 @@ function startConversation(initialText) {
   document.getElementById('barraMaosLivres').style.display = 'none';
   goTo('conversa');
 
-  // Siempre iniciar con texto (fallback funciona siempre)
+  // Paula saluda inmediatamente
   if (initialText) {
     cvAddMsg('user', initialText);
     cvHistorico.push({ role: 'user', content: initialText });
@@ -1107,14 +1107,18 @@ function startConversation(initialText) {
   } else {
     cvPaulaResponde(true);
   }
+}
 
-  // Intentar conectar Realtime en paralelo (mejora la experiencia si funciona)
+// Función para iniciar Realtime manualmente (botón ondas)
+function iniciarModoRealtime() {
+  if (rtAtivo) return;
+  cvAddMsg('paula', '¡Activando modo voz! Ahora puedes hablar directamente conmigo...');
   iniciarRealtimeSession().then(function() {
-    // Realtime conectado — indicar en vivo
     document.getElementById('paulaStatusDot').innerHTML = '<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#36c551;animation:rt-pulse 2s infinite"></span> en vivo';
     document.getElementById('paulaStatusDot').style.color = '#36c551';
   }).catch(function(err) {
-    console.warn('[REALTIME] Sin Realtime, usando texto+voz:', err.message);
+    cvAddMsg('paula', 'No pude activar el modo voz, pero podemos seguir escribiendo sin problema.');
+    console.warn('[REALTIME]', err.message);
   });
 }
 
