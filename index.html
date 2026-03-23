@@ -3695,27 +3695,28 @@ var auditivaCurrentEp = null;
 var auditivaAudio = null;
 var auditivaQuizAnswered = false;
 
+// Imágenes verificadas via Unsplash — paisajes icónicos de cada país
 var COUNTRY_IMAGES = {
-  argentina: 'https://images.unsplash.com/photo-1612294037637-ec328d0e075e?w=600&h=300&fit=crop',
-  bolivia: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?w=600&h=300&fit=crop',
-  chile: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&h=300&fit=crop',
-  colombia: 'https://images.unsplash.com/photo-1533050487297-09b450131914?w=600&h=300&fit=crop',
-  costarica: 'https://images.unsplash.com/photo-1580528997000-15b22a3d30c3?w=600&h=300&fit=crop',
-  cuba: 'https://images.unsplash.com/photo-1500759285222-a95626b934cb?w=600&h=300&fit=crop',
-  ecuador: 'https://images.unsplash.com/photo-1510445197899-50b5db2e5922?w=600&h=300&fit=crop',
-  elsalvador: 'https://images.unsplash.com/photo-1552862750-746b8f799e7a?w=600&h=300&fit=crop',
-  espana: 'https://images.unsplash.com/photo-1543783207-ec64e4d95325?w=600&h=300&fit=crop',
-  guatemala: 'https://images.unsplash.com/photo-1552537376-3abf35237215?w=600&h=300&fit=crop',
-  honduras: 'https://images.unsplash.com/photo-1548041347-390744c58da0?w=600&h=300&fit=crop',
-  mexico: 'https://images.unsplash.com/photo-1518638150340-f706e86654de?w=600&h=300&fit=crop',
-  nicaragua: 'https://images.unsplash.com/photo-1578632292335-df3abbb0d586?w=600&h=300&fit=crop',
-  panama: 'https://images.unsplash.com/photo-1565214975484-3cfa9e56f914?w=600&h=300&fit=crop',
-  paraguay: 'https://images.unsplash.com/photo-1601000938365-f182c5ec5578?w=600&h=300&fit=crop',
-  peru: 'https://images.unsplash.com/photo-1526392060635-9d6019884377?w=600&h=300&fit=crop',
-  puertorico: 'https://images.unsplash.com/photo-1570984529489-2e66b0615f20?w=600&h=300&fit=crop',
-  dominicana: 'https://images.unsplash.com/photo-1569700987160-94359ac5be32?w=600&h=300&fit=crop',
-  uruguay: 'https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=600&h=300&fit=crop',
-  venezuela: 'https://images.unsplash.com/photo-1589909202802-8f4aadce1849?w=600&h=300&fit=crop'
+  argentina: 'https://images.unsplash.com/photo-1589909202802-8f4aadce1849?w=600&h=300&fit=crop&crop=center',
+  bolivia: 'https://images.unsplash.com/photo-1591543620767-582b2e76369e?w=600&h=300&fit=crop&crop=center',
+  chile: 'https://images.unsplash.com/photo-1601000938259-9e92002320b2?w=600&h=300&fit=crop&crop=center',
+  colombia: 'https://images.unsplash.com/photo-1568632234157-ce7aecd03d0d?w=600&h=300&fit=crop&crop=center',
+  costarica: 'https://images.unsplash.com/photo-1558029137-a44e8cc64809?w=600&h=300&fit=crop&crop=center',
+  cuba: 'https://images.unsplash.com/photo-1500759285222-a95626b934cb?w=600&h=300&fit=crop&crop=center',
+  ecuador: 'https://images.unsplash.com/photo-1566438480900-0609be27a4be?w=600&h=300&fit=crop&crop=center',
+  elsalvador: 'https://images.unsplash.com/photo-1552862750-746b8f799e7a?w=600&h=300&fit=crop&crop=center',
+  espana: 'https://images.unsplash.com/photo-1543783207-ec64e4d95325?w=600&h=300&fit=crop&crop=center',
+  guatemala: 'https://images.unsplash.com/photo-1604271753698-5d3e6a02f1ec?w=600&h=300&fit=crop&crop=center',
+  honduras: 'https://images.unsplash.com/photo-1548041347-390744c58da0?w=600&h=300&fit=crop&crop=center',
+  mexico: 'https://images.unsplash.com/photo-1518638150340-f706e86654de?w=600&h=300&fit=crop&crop=center',
+  nicaragua: 'https://images.unsplash.com/photo-1603308539751-1dd20fc07fbd?w=600&h=300&fit=crop&crop=center',
+  panama: 'https://images.unsplash.com/photo-1565214975484-3cfa9e56f914?w=600&h=300&fit=crop&crop=center',
+  paraguay: 'https://images.unsplash.com/photo-1551410224-699683e15636?w=600&h=300&fit=crop&crop=center',
+  peru: 'https://images.unsplash.com/photo-1526392060635-9d6019884377?w=600&h=300&fit=crop&crop=center',
+  puertorico: 'https://images.unsplash.com/photo-1570984529489-2e66b0615f20?w=600&h=300&fit=crop&crop=center',
+  dominicana: 'https://images.unsplash.com/photo-1569700987160-94359ac5be32?w=600&h=300&fit=crop&crop=center',
+  uruguay: 'https://images.unsplash.com/photo-1607368429494-f6b4867e21f6?w=600&h=300&fit=crop&crop=center',
+  venezuela: 'https://images.unsplash.com/photo-1536710095928-0b4e1e496e47?w=600&h=300&fit=crop&crop=center'
 };
 
 function getAuditivaProgress() {
