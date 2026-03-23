@@ -1091,13 +1091,23 @@ function startConversation(initialText) {
   document.getElementById('barraMaosLivres').style.display = 'none';
   goTo('conversa');
 
-  // Si hay texto inicial, enviarlo
+  // Mensaje motivacional (no es Paula hablando, es una guía visual)
+  var tips = [
+    'Toca las ondas y dile algo a Paula en español. ¡No importa si no es perfecto!',
+    'Activa el micrófono y cuéntale a Paula cómo fue tu día. Ella te entiende.',
+    'Presiona las ondas y saluda a Paula. Ella va a seguir la conversación contigo.',
+    'Toca el botón y di "¡Hola Paula!" — ella te responde al instante.'
+  ];
+  var tipDiv = document.createElement('div');
+  tipDiv.style.cssText = 'text-align:center;padding:20px;color:var(--text2);font-size:13px;font-style:italic';
+  tipDiv.textContent = tips[Math.floor(Math.random() * tips.length)];
+  document.getElementById('conversaMsgs').appendChild(tipDiv);
+
   if (initialText) {
     cvAddMsg('user', initialText);
     cvHistorico.push({ role: 'user', content: initialText });
     cvPaulaResponde(false);
   }
-  // Sin texto: pantalla limpia, el alumno inicia cuando quiera
 }
 
 // Función para iniciar Realtime manualmente (botón ondas)
