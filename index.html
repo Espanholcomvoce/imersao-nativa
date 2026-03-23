@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>Imersão Nativa App 🌎</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script>
 // Proteção anti-cópia básica
 document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
@@ -33,7 +33,7 @@ document.addEventListener('keydown', function(e) {
   --text:#f0f9ff;--text2:#94a3b8;--text3:rgba(255,255,255,0.3);
 }
 html{font-size:16px;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent;height:100%;overflow:hidden}
-body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:linear-gradient(165deg,var(--bg1) 0%,var(--bg2) 50%,var(--bg1) 100%);color:var(--text);overflow:hidden;position:fixed;width:100%;-webkit-font-smoothing:antialiased}
+body{font-family:'Inter',sans-serif;height:100vh;height:100dvh;background:linear-gradient(165deg,var(--bg1) 0%,var(--bg2) 50%,var(--bg1) 100%);color:var(--text);overflow:hidden;position:fixed;width:100%;-webkit-font-smoothing:antialiased}
 .screen{display:none;height:100vh;height:100dvh;flex-direction:column;align-items:center;padding:20px;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch}
 .screen.active{display:flex}
 
@@ -50,7 +50,7 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
 .sre-card-stats{display:flex;gap:10px;margin-top:6px;justify-content:center;flex-wrap:wrap}
 .sre-mini-stat{font-size:11px;color:var(--text2)}
 .module-icon{font-size:clamp(28px,8vw,32px);margin-bottom:6px}
-.module-name{font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(13px,3.5vw,14px);margin-bottom:3px}
+.module-name{font-family:'Inter',sans-serif;font-weight:700;font-size:clamp(13px,3.5vw,14px);margin-bottom:3px}
 .module-desc{color:var(--text2);font-size:clamp(10px,2.8vw,11px);font-style:italic;line-height:1.4}
 .hint-text{color:var(--text3);font-size:clamp(10px,2.8vw,11px);margin-top:12px;font-style:italic}
 
@@ -58,7 +58,7 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
 .page-header{width:100%;max-width:520px;display:flex;align-items:center;gap:12px;padding:16px 0;margin-bottom:20px;flex-shrink:0}
 .back-btn{background:none;border:none;color:var(--text2);font-size:20px;cursor:pointer;padding:4px;touch-action:manipulation}
 .back-btn:active{opacity:0.6}
-.page-title{font-family:'Playfair Display',serif;font-size:clamp(20px,5vw,22px);font-weight:700;flex:1}
+.page-title{font-family:'Inter',sans-serif;font-size:clamp(20px,5vw,22px);font-weight:700;flex:1}
 .page-subtitle{color:var(--text2);font-size:clamp(11px,3vw,12px);font-style:italic}
 .content-wrap{width:100%;max-width:520px}
 
@@ -67,7 +67,7 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
 .chat-wrap{width:100%;max-width:520px;height:100vh;height:100dvh;display:flex;flex-direction:column;margin:0 auto;overflow:hidden}
 .chat-header{padding:14px 18px;background:rgba(0,0,0,.3);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;flex-shrink:0;padding-top:max(14px,env(safe-area-inset-top))}
 .chat-info{flex:1}
-.chat-sit-name{font-weight:700;font-size:clamp(14px,3.8vw,15px);font-family:'Playfair Display',serif}
+.chat-sit-name{font-weight:700;font-size:clamp(14px,3.8vw,15px);font-family:'Inter',sans-serif}
 .chat-meta{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
 .messages{flex:1;overflow-y:auto;overflow-x:hidden;padding:16px;display:flex;flex-direction:column;gap:12px;-webkit-overflow-scrolling:touch}
 .msg-row{display:flex}
@@ -101,7 +101,7 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
 .level-option.sel-beginner{background:rgba(74,222,128,.12);border-color:var(--green)}
 .level-option.sel-intermediate{background:rgba(250,204,21,.12);border-color:var(--yellow)}
 .level-option.sel-advanced{background:rgba(248,113,113,.12);border-color:var(--red)}
-.level-name{font-weight:600;font-size:clamp(13px,3.5vw,14px);font-family:'Playfair Display',serif}
+.level-name{font-weight:600;font-size:clamp(13px,3.5vw,14px);font-family:'Inter',sans-serif}
 .level-desc{color:var(--text2);font-size:clamp(10px,2.8vw,11px);font-style:italic;margin-top:2px}
 .level-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;border:2px solid;transition:background .2s}
 .situations-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:24px}
@@ -109,19 +109,19 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
 .sit-option:active{transform:scale(0.97)}
 .sit-option.selected{background:rgba(245,166,35,.15);border-color:var(--gold)}
 .sit-emoji{font-size:clamp(22px,6vw,24px);margin-bottom:4px}
-.sit-name{color:var(--text);font-size:clamp(11px,3vw,12px);font-weight:600;font-family:'Playfair Display',serif}
-.btn-gold{width:100%;padding:clamp(14px,4vw,16px);border-radius:14px;background:linear-gradient(135deg,#0090be,#36c551);border:none;color:#fff;font-size:clamp(15px,4vw,17px);font-weight:700;cursor:pointer;font-family:'Playfair Display',serif;box-shadow:0 8px 28px rgba(0,144,190,.3);transition:transform .2s;touch-action:manipulation}
+.sit-name{color:var(--text);font-size:clamp(11px,3vw,12px);font-weight:600;font-family:'Inter',sans-serif}
+.btn-gold{width:100%;padding:clamp(14px,4vw,16px);border-radius:14px;background:linear-gradient(135deg,#0090be,#36c551);border:none;color:#fff;font-size:clamp(15px,4vw,17px);font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;box-shadow:0 8px 28px rgba(0,144,190,.3);transition:transform .2s;touch-action:manipulation}
 .btn-gold:active{transform:scale(0.97)}
 .btn-disabled{background:var(--glass)!important;color:var(--text3)!important;cursor:not-allowed!important;box-shadow:none!important;transform:none!important}
 
 /* SRE */
 .flashcard{background:var(--glass);border:1px solid var(--border);border-radius:20px;padding:28px 24px;text-align:center;min-height:180px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin-bottom:16px;position:relative;cursor:pointer;transition:all .3s;backdrop-filter:blur(10px);touch-action:manipulation}
 .flashcard:active{transform:scale(0.98)}
-.card-front{font-size:clamp(24px,7vw,28px);font-weight:700;font-family:'Playfair Display',serif;margin-bottom:8px}
+.card-front{font-size:clamp(24px,7vw,28px);font-weight:700;font-family:'Inter',sans-serif;margin-bottom:8px}
 .card-hint{color:var(--text2);font-size:clamp(12px,3.2vw,13px);font-style:italic}
 .card-back{display:none;width:100%}
 .card-back.visible{display:block}
-.card-translation{font-size:clamp(18px,5vw,20px);font-weight:600;font-family:'Playfair Display',serif;color:var(--green);margin-bottom:8px}
+.card-translation{font-size:clamp(18px,5vw,20px);font-weight:600;font-family:'Inter',sans-serif;color:var(--green);margin-bottom:8px}
 .card-example{color:var(--text2);font-size:clamp(12px,3.2vw,13px);font-style:italic;margin-bottom:6px}
 .flip-hint{color:var(--text3);font-size:11px;position:absolute;bottom:12px;right:16px;font-style:italic}
 .sre-actions{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:20px}
@@ -163,7 +163,7 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
 .add-bonus{font-size:12px;color:var(--gold);font-weight:600;margin-left:8px}
 .xp-popup{position:fixed;pointer-events:none;font-weight:800;font-size:18px;color:var(--gold);text-shadow:0 0 10px rgba(245,158,11,.5);animation:xpFloat 1.2s ease-out forwards;z-index:9999}
 @keyframes xpFloat{0%{opacity:1;transform:translateY(0)}100%{opacity:0;transform:translateY(-60px)}}
-.form-title{font-family:'Playfair Display',serif;font-weight:600;font-size:clamp(14px,3.8vw,15px);margin-bottom:14px}
+.form-title{font-family:'Inter',sans-serif;font-weight:600;font-size:clamp(14px,3.8vw,15px);margin-bottom:14px}
 .field-group{margin-bottom:12px}
 .field-label{color:var(--text2);font-size:11px;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px;display:block}
 .field-input{width:100%;background:rgba(0,0,0,.3);border:1px solid var(--border);border-radius:10px;padding:10px 13px;color:var(--text);font-size:clamp(13px,3.5vw,14px);font-family:inherit;outline:none;transition:border-color .2s}
@@ -173,7 +173,7 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
 .btn-sm:active{transform:scale(0.97)}
 .cards-list{display:flex;flex-direction:column;gap:8px;margin-bottom:20px}
 .card-item{background:var(--glass);border:1px solid var(--border);border-radius:12px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between}
-.card-item-word{font-weight:600;font-size:clamp(13px,3.5vw,14px);font-family:'Playfair Display',serif}
+.card-item-word{font-weight:600;font-size:clamp(13px,3.5vw,14px);font-family:'Inter',sans-serif}
 .card-item-trans{color:var(--text2);font-size:clamp(12px,3.2vw,13px);font-style:italic}
 .card-item-meta{display:flex;align-items:center;gap:8px}
 .due-badge{font-size:11px;padding:2px 8px;border-radius:10px;background:rgba(248,113,113,.2);color:var(--red);border:1px solid var(--red)}
@@ -226,7 +226,7 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
 .score-bar{height:8px;background:rgba(255,255,255,.1);border-radius:4px;margin-bottom:16px;overflow:hidden}
 .score-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--green),var(--gold));transition:width 1s}
 
-.exercise-title{font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(13px,3.5vw,14px);margin-bottom:4px}
+.exercise-title{font-family:'Inter',sans-serif;font-weight:700;font-size:clamp(13px,3.5vw,14px);margin-bottom:4px}
 .exercise-meta{color:var(--text2);font-size:11px;font-style:italic}
 .modal-close-btn{background:var(--glass);border:1px solid var(--border);border-radius:50%;width:36px;height:36px;color:var(--text2);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;float:right;touch-action:manipulation}
 
@@ -266,7 +266,7 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
 .texto-nivel-tag{font-size:10px;font-weight:700;padding:3px 10px;border-radius:10px;text-transform:uppercase;letter-spacing:1px}
 .texto-tema-tag{font-size:11px;color:var(--text2);font-style:italic}
 .texto-num{margin-left:auto;font-size:11px;color:var(--text3)}
-.texto-titulo{font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(15px,4vw,17px);margin-bottom:12px;line-height:1.35}
+.texto-titulo{font-family:'Inter',sans-serif;font-weight:700;font-size:clamp(15px,4vw,17px);margin-bottom:12px;line-height:1.35}
 .texto-corpo{font-size:clamp(13px,3.5vw,14px);line-height:1.85;color:rgba(255,255,255,.82);margin-bottom:20px;padding:14px 16px;background:rgba(255,255,255,.04);border-left:3px solid rgba(245,166,35,.4);border-radius:0 10px 10px 0;font-style:italic}
 .preguntas-titulo{color:var(--text2);font-size:11px;text-transform:uppercase;letter-spacing:2px;margin-bottom:14px}
 .pregunta-bloque{margin-bottom:20px}
@@ -285,9 +285,9 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
 .resultado-card{background:linear-gradient(135deg,rgba(74,222,128,.1),rgba(245,166,35,.08));border:1px solid rgba(74,222,128,.25);border-radius:14px;padding:20px;text-align:center;margin-top:16px;display:none}
 .resultado-card.visible{display:block}
 .resultado-emoji{font-size:40px;margin-bottom:8px}
-.resultado-texto{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--gold);margin-bottom:4px}
+.resultado-texto{font-family:'Inter',sans-serif;font-size:18px;font-weight:700;color:var(--gold);margin-bottom:4px}
 .resultado-detalhe{color:var(--text2);font-size:13px;margin-bottom:14px}
-.btn-proximo{width:100%;padding:14px;border-radius:14px;background:linear-gradient(135deg,var(--gold),var(--gold2));border:none;color:#fff;font-size:clamp(14px,3.8vw,15px);font-weight:700;cursor:pointer;font-family:'Playfair Display',serif;box-shadow:0 6px 20px rgba(245,166,35,.3);transition:transform .2s;touch-action:manipulation;display:none}
+.btn-proximo{width:100%;padding:14px;border-radius:14px;background:linear-gradient(135deg,var(--gold),var(--gold2));border:none;color:#fff;font-size:clamp(14px,3.8vw,15px);font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;box-shadow:0 6px 20px rgba(245,166,35,.3);transition:transform .2s;touch-action:manipulation;display:none}
 .btn-proximo.visible{display:block}
 .btn-proximo:active{transform:scale(0.97)}
 
@@ -306,7 +306,7 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
 .country-card:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.4)}
 .country-card .card-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 0%,rgba(0,0,0,.55) 100%);z-index:1}
 .country-card .card-content{position:relative;z-index:2;padding:20px 22px}
-.country-card .cname{font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(20px,5vw,24px);color:#fff;margin-bottom:4px;text-shadow:0 1px 4px rgba(0,0,0,.3)}
+.country-card .cname{font-family:'Inter',sans-serif;font-weight:700;font-size:clamp(20px,5vw,24px);color:#fff;margin-bottom:4px;text-shadow:0 1px 4px rgba(0,0,0,.3)}
 .country-card .cprogress{font-size:12px;color:rgba(255,255,255,.75);margin-bottom:8px}
 .country-card .cprogress-bar{height:4px;background:rgba(255,255,255,0.2);border-radius:3px;overflow:hidden}
 .country-card .cprogress-fill{height:100%;background:#fff;border-radius:3px;transition:width .3s}
@@ -408,23 +408,23 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
     <div style="font-family:'Lora',serif;font-size:clamp(10px,2.5vw,11px);font-weight:300;letter-spacing:4px;color:rgba(255,255,255,0.55);text-transform:uppercase;margin-bottom:14px">APP EXCLUSIVO</div>
 
     <!-- PROGRAMA badge -->
-    <div style="display:inline-block;border:1px solid rgba(96,165,250,0.5);border-radius:30px;padding:5px 22px;font-family:'Playfair Display',serif;font-size:clamp(13px,3.5vw,15px);font-weight:400;letter-spacing:3px;color:#60a5fa;text-transform:uppercase;margin-bottom:16px">PROGRAMA</div>
+    <div style="display:inline-block;border:1px solid rgba(96,165,250,0.5);border-radius:30px;padding:5px 22px;font-family:'Inter',sans-serif;font-size:clamp(13px,3.5vw,15px);font-weight:400;letter-spacing:3px;color:#60a5fa;text-transform:uppercase;margin-bottom:16px">PROGRAMA</div>
 
     <!-- IMERSÃO NATIVA colorido -->
-    <div style="font-family:'Playfair Display',serif;font-size:clamp(40px,12vw,52px);font-weight:700;line-height:1;letter-spacing:-1px;margin-bottom:4px">
+    <div style="font-family:'Inter',sans-serif;font-size:clamp(40px,12vw,52px);font-weight:700;line-height:1;letter-spacing:-1px;margin-bottom:4px">
       <span style="color:#60a5fa">I</span><span style="color:#38bdf8">M</span><span style="color:#34d399">E</span><span style="color:#86efac">R</span><span style="color:#bef264">S</span><span style="color:#facc15">Ã</span><span style="color:#fb923c">O</span>
     </div>
-    <div style="font-family:'Playfair Display',serif;font-size:clamp(13px,3.5vw,15px);font-weight:400;letter-spacing:7px;color:rgba(255,255,255,0.6);text-transform:uppercase;margin-bottom:14px">N A T I V A</div>
+    <div style="font-family:'Inter',sans-serif;font-size:clamp(13px,3.5vw,15px);font-weight:400;letter-spacing:7px;color:rgba(255,255,255,0.6);text-transform:uppercase;margin-bottom:14px">N A T I V A</div>
 
     <!-- linha gradiente -->
     <div style="width:48px;height:2px;background:linear-gradient(90deg,#60a5fa,#fb923c);border-radius:2px;margin:0 auto 28px"></div>
 
     <!-- Card login -->
     <div style="background:var(--glass);border:1px solid var(--border);border-radius:18px;padding:28px 24px;backdrop-filter:blur(10px)">
-      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(20px,5vw,24px);font-weight:700;margin-bottom:8px">Bem-vindo!</h2>
+      <h2 style="font-family:'Inter',sans-serif;font-size:clamp(20px,5vw,24px);font-weight:700;margin-bottom:8px">Bem-vindo!</h2>
       <p style="color:var(--text2);font-size:clamp(12px,3.2vw,13px);font-style:italic;margin-bottom:20px">Entre com seu email de aluno</p>
       <input type="email" id="loginEmail" placeholder="seu@email.com" onkeydown="if(event.key==='Enter')loginUser()" style="width:100%;background:rgba(0,0,0,.3);border:1px solid var(--border);border-radius:12px;padding:14px 16px;color:var(--text);font-size:clamp(14px,3.8vw,15px);font-family:inherit;outline:none;margin-bottom:12px"/>
-      <button id="loginBtn" onclick="loginUser()" style="width:100%;padding:clamp(14px,4vw,16px);border-radius:14px;background:linear-gradient(135deg,var(--gold),var(--gold2));border:none;color:#fff;font-size:clamp(15px,4vw,17px);font-weight:700;cursor:pointer;font-family:'Playfair Display',serif;box-shadow:0 8px 28px rgba(245,166,35,.4);margin-bottom:8px">Entrar</button>
+      <button id="loginBtn" onclick="loginUser()" style="width:100%;padding:clamp(14px,4vw,16px);border-radius:14px;background:linear-gradient(135deg,var(--gold),var(--gold2));border:none;color:#fff;font-size:clamp(15px,4vw,17px);font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;box-shadow:0 8px 28px rgba(245,166,35,.4);margin-bottom:8px">Entrar</button>
       <div id="loginError" style="color:var(--red);font-size:clamp(11px,3vw,12px);margin-top:8px;min-height:20px"></div>
     </div>
 
@@ -439,10 +439,10 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
 <div class="home-inner">
   <div style="margin-bottom:6px">
     <div style="display:inline-block;background:rgba(96,165,250,0.15);border:1px solid rgba(96,165,250,0.35);border-radius:20px;padding:4px 14px;font-size:clamp(9px,2.5vw,10px);font-weight:700;letter-spacing:2.5px;color:#60a5fa;text-transform:uppercase;margin-bottom:14px">PROGRAMA EXCLUSIVO</div>
-    <div style="font-family:'Playfair Display',serif;font-size:clamp(40px,12vw,48px);font-weight:700;line-height:1;letter-spacing:-1px;margin-bottom:2px">
+    <div style="font-family:'Inter',sans-serif;font-size:clamp(40px,12vw,48px);font-weight:700;line-height:1;letter-spacing:-1px;margin-bottom:2px">
       <span style="color:#60a5fa">I</span><span style="color:#38bdf8">M</span><span style="color:#34d399">E</span><span style="color:#86efac">R</span><span style="color:#bef264">S</span><span style="color:#facc15">Ã</span><span style="color:#fb923c">O</span>
     </div>
-    <div style="font-family:'Playfair Display',serif;font-size:clamp(13px,3.5vw,15px);font-weight:400;letter-spacing:6px;color:rgba(255,255,255,0.6);text-transform:uppercase;margin-bottom:18px">N A T I V A</div>
+    <div style="font-family:'Inter',sans-serif;font-size:clamp(13px,3.5vw,15px);font-weight:400;letter-spacing:6px;color:rgba(255,255,255,0.6);text-transform:uppercase;margin-bottom:18px">N A T I V A</div>
     <div style="width:48px;height:3px;background:linear-gradient(90deg,#60a5fa,#fb923c);border-radius:2px;margin:0 auto 18px"></div>
     <div style="display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:12px">
       <span style="background:rgba(74,222,128,0.15);border:1px solid var(--green);padding:3px 10px;border-radius:14px;font-size:10px;color:var(--green);font-weight:600">●</span>
@@ -493,7 +493,7 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
 <div style="width:100%;max-width:500px;padding:20px;text-align:center">
   <button class="back-btn" onclick="goTo('home')" style="position:absolute;top:max(16px,env(safe-area-inset-top));left:16px;color:rgba(255,255,255,0.4)">&#8592;</button>
   <img id="paulaAvatarSetup" style="width:64px;height:64px;border-radius:50%;object-fit:cover;object-position:center 5%;border:2px solid rgba(0,144,190,0.4);margin-bottom:16px">
-  <div style="font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:#fff;margin-bottom:4px">Paula</div>
+  <div style="font-family:'Inter',sans-serif;font-size:24px;font-weight:700;color:#fff;margin-bottom:4px">Paula</div>
   <div style="font-size:13px;color:#94a3b8;margin-bottom:28px">Sua amiga hispana para praticar espanhol</div>
 
   <!-- Nível inline -->
@@ -746,12 +746,17 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
     <button onclick="goTo('auditiva')" style="background:none;border:none;cursor:pointer;color:var(--text2);font-size:20px;padding:4px 8px">&#8592;</button>
     <div id="epHeaderFlag" style="display:none"></div>
     <div style="flex:1">
-      <div id="epHeaderTitle" style="font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(16px,4.2vw,18px);color:var(--text)"></div>
+      <div id="epHeaderTitle" style="font-family:'Inter',sans-serif;font-weight:700;font-size:clamp(16px,4.2vw,18px);color:var(--text)"></div>
       <div id="epHeaderSub" style="font-size:11px;color:var(--text2)"></div>
     </div>
     <div id="epLevelBadge" style="font-size:10px;padding:3px 10px;border-radius:10px;font-weight:600;background:rgba(245,166,35,.2);border:1px solid var(--gold);color:var(--gold)"></div>
   </div>
-  <div id="epContent" style="flex:1;overflow-y:auto;padding:20px 16px;-webkit-overflow-scrolling:touch">
+  <div id="epContent" style="flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch">
+    <!-- Banner image -->
+    <div id="epBanner" style="width:100%;height:180px;background-size:cover;background-position:center;border-radius:0;position:relative;display:none">
+      <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,var(--bg1) 100%)"></div>
+    </div>
+    <div style="padding:0 16px 20px">
     <!-- Audio bar -->
     <div class="ep-audio-bar">
       <button class="ep-play-btn" id="epPlayBtn" onclick="epToggleAudio()">&#9654;</button>
@@ -764,6 +769,7 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
     <div id="epVocab" style="display:none"></div>
     <!-- Quiz -->
     <div id="epQuiz" class="ep-quiz" style="display:none"></div>
+    </div>
   </div>
 </div>
 </div>
@@ -3689,27 +3695,27 @@ var auditivaCurrentEp = null;
 var auditivaAudio = null;
 var auditivaQuizAnswered = false;
 
-var COUNTRY_GRADIENTS = {
-  argentina: 'linear-gradient(135deg, #75AADB, #FFFFFF)',
-  bolivia: 'linear-gradient(135deg, #D52B1E, #007934)',
-  chile: 'linear-gradient(135deg, #D52B1E, #0039A6)',
-  colombia: 'linear-gradient(135deg, #FCD116, #003893)',
-  costarica: 'linear-gradient(135deg, #002B7F, #CE1126)',
-  cuba: 'linear-gradient(135deg, #002A8F, #CB1515)',
-  ecuador: 'linear-gradient(135deg, #FFD100, #034EA2)',
-  elsalvador: 'linear-gradient(135deg, #0F47AF, #FFFFFF)',
-  espana: 'linear-gradient(135deg, #AA151B, #F1BF00)',
-  guatemala: 'linear-gradient(135deg, #4997D0, #FFFFFF)',
-  honduras: 'linear-gradient(135deg, #0073CF, #FFFFFF)',
-  mexico: 'linear-gradient(135deg, #006847, #CE1126)',
-  nicaragua: 'linear-gradient(135deg, #0067C6, #FFFFFF)',
-  panama: 'linear-gradient(135deg, #DA121A, #003DA5)',
-  paraguay: 'linear-gradient(135deg, #D52B1E, #0038A8)',
-  peru: 'linear-gradient(135deg, #D91023, #FFFFFF)',
-  puertorico: 'linear-gradient(135deg, #3C3B6E, #B22234)',
-  dominicana: 'linear-gradient(135deg, #002D62, #CE1126)',
-  uruguay: 'linear-gradient(135deg, #001489, #FFFFFF)',
-  venezuela: 'linear-gradient(135deg, #FCE300, #00247D)'
+var COUNTRY_IMAGES = {
+  argentina: 'https://images.unsplash.com/photo-1589909202802-8f4aadce1849?w=600&h=300&fit=crop',
+  bolivia: 'https://images.unsplash.com/photo-1591543620767-582b2e76369e?w=600&h=300&fit=crop',
+  chile: 'https://images.unsplash.com/photo-1478827536114-da961b7f86d2?w=600&h=300&fit=crop',
+  colombia: 'https://images.unsplash.com/photo-1568632234157-ce7aecd03d0d?w=600&h=300&fit=crop',
+  costarica: 'https://images.unsplash.com/photo-1519689680058-324335c77eba?w=600&h=300&fit=crop',
+  cuba: 'https://images.unsplash.com/photo-1500759285222-a95626b934cb?w=600&h=300&fit=crop',
+  ecuador: 'https://images.unsplash.com/photo-1566438480900-0609be27a4be?w=600&h=300&fit=crop',
+  elsalvador: 'https://images.unsplash.com/photo-1592259630809-e36cc9899eab?w=600&h=300&fit=crop',
+  espana: 'https://images.unsplash.com/photo-1543783207-ec64e4d95325?w=600&h=300&fit=crop',
+  guatemala: 'https://images.unsplash.com/photo-1604271753698-5d3e6a02f1ec?w=600&h=300&fit=crop',
+  honduras: 'https://images.unsplash.com/photo-1608236247470-ef579fc99e7b?w=600&h=300&fit=crop',
+  mexico: 'https://images.unsplash.com/photo-1518638150340-f706e86654de?w=600&h=300&fit=crop',
+  nicaragua: 'https://images.unsplash.com/photo-1603308539751-1dd20fc07fbd?w=600&h=300&fit=crop',
+  panama: 'https://images.unsplash.com/photo-1565214975484-3cfa9e56f914?w=600&h=300&fit=crop',
+  paraguay: 'https://images.unsplash.com/photo-1629816680747-26e67bb0c9e0?w=600&h=300&fit=crop',
+  peru: 'https://images.unsplash.com/photo-1526392060635-9d6019884377?w=600&h=300&fit=crop',
+  puertorico: 'https://images.unsplash.com/photo-1570984529489-2e66b0615f20?w=600&h=300&fit=crop',
+  dominicana: 'https://images.unsplash.com/photo-1569700987160-94359ac5be32?w=600&h=300&fit=crop',
+  uruguay: 'https://images.unsplash.com/photo-1612294037637-ec328d0e075e?w=600&h=300&fit=crop',
+  venezuela: 'https://images.unsplash.com/photo-1589909202802-8f4aadce1849?w=600&h=300&fit=crop'
 };
 
 function getAuditivaProgress() {
@@ -3732,8 +3738,8 @@ function renderAuditivaGrid() {
     var done = (prog[code] || []).length;
     var total = (c.episodes || []).length;
     var pct = total > 0 ? Math.round(done / total * 100) : 0;
-    var bg = COUNTRY_GRADIENTS[code] || 'linear-gradient(135deg, #334155, #1e293b)';
-    return '<div class="country-card' + (pct >= 100 ? ' completed' : '') + '" style="background:' + bg + '" onclick="openCountryEpisodes(\'' + code + '\')">' +
+    var img = COUNTRY_IMAGES[code] || '';
+    return '<div class="country-card' + (pct >= 100 ? ' completed' : '') + '" style="background-image:url(' + img + ');background-size:cover;background-position:center" onclick="openCountryEpisodes(\'' + code + '\')">' +
       '<div class="card-overlay"></div>' +
       '<div class="card-content">' +
         '<div class="cname">' + c.name + '</div>' +
@@ -3763,6 +3769,18 @@ function openEpisode(countryCode, epIndex) {
   document.getElementById('epHeaderTitle').textContent = ep.title;
   document.getElementById('epHeaderSub').textContent = c.name + ' · ' + ep.level;
   document.getElementById('epLevelBadge').textContent = ep.level;
+
+  // Banner image
+  var bannerImg = COUNTRY_IMAGES[countryCode] || '';
+  var bannerEl = document.getElementById('epBanner');
+  if (bannerEl) {
+    if (bannerImg) {
+      bannerEl.style.backgroundImage = 'url(' + bannerImg + ')';
+      bannerEl.style.display = 'block';
+    } else {
+      bannerEl.style.display = 'none';
+    }
+  }
 
   // Reset audio
   if (auditivaAudio) { try { auditivaAudio.pause(); } catch(e) {} }
