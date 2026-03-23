@@ -551,7 +551,8 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
     <div class="tira-messages" id="conversaMsgs"></div>
     <div class="tira-input-row" id="barraTexto">
       <textarea class="tira-input" id="conversaInput" rows="1" placeholder="Preguntar a Paula..." onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();enviarTexto()}" oninput="autoResize(this)"></textarea>
-      <button class="tira-send" id="btnMic" onmousedown="iniciarGravacao()" onmouseup="pararGravacao()" ontouchstart="event.preventDefault();iniciarGravacao()" ontouchend="event.preventDefault();pararGravacao()" style="touch-action:none">&#127908;</button>
+      <button class="tira-send" id="btnMic" onmousedown="iniciarGravacao()" onmouseup="pararGravacao()" ontouchstart="event.preventDefault();iniciarGravacao()" ontouchend="event.preventDefault();pararGravacao()" style="touch-action:none" title="Mantén presionado para grabar">&#127908;</button>
+      <button class="tira-send" onclick="iniciarModoRealtime()" title="Modo voz en vivo" style="background:rgba(0,144,190,0.3);color:#0090be">&#9835;</button>
       <button class="tira-send" onclick="enviarTexto()">&#10148;</button>
     </div>
   </div>
@@ -1083,20 +1084,14 @@ function startConversation(initialText) {
   document.getElementById('barraMaosLivres').style.display = 'none';
   goTo('conversa');
 
-  // Saludo estático inmediato (no depende de API)
-  var saludos = [
-    '¡Hola! ¿Qué tal tu día? Yo aquí tomando un cafecito ☕',
-    '¡Hey! Qué bueno verte por aquí. ¿De qué hablamos hoy?',
-    '¡Hola! Justo estaba pensando en ti. ¿Cómo va todo?',
-    '¡Buenas! ¿Lista para practicar un poco? Cuéntame algo...'
-  ];
-  cvAddMsg('paula', saludos[Math.floor(Math.random() * saludos.length)]);
-
-  // Si hay texto inicial, enviarlo
+  // Si hay texto inicial, enviarlo directo
   if (initialText) {
     cvAddMsg('user', initialText);
     cvHistorico.push({ role: 'user', content: initialText });
     cvPaulaResponde(false);
+  } else {
+    // Paula saluda via API (texto + voz)
+    cvPaulaResponde(true);
   }
 }
 
