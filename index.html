@@ -556,6 +556,7 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
         <svg width="28" height="28" viewBox="0 0 20 20" fill="none"><rect x="1" y="8" width="2.5" height="4" rx="1.2" fill="white"/><rect x="5" y="5" width="2.5" height="10" rx="1.2" fill="white"/><rect x="9" y="2" width="2.5" height="16" rx="1.2" fill="white"/><rect x="13" y="5" width="2.5" height="10" rx="1.2" fill="white"/><rect x="17" y="8" width="2.5" height="4" rx="1.2" fill="white"/></svg>
       </button>
       <div id="rtHint" style="font-size:11px;color:var(--text2)">Toca para hablar con Paula</div>
+      <button id="btnEndRt" onclick="finalizarCharla()" style="display:none;background:none;border:1px solid rgba(255,255,255,0.15);border-radius:20px;padding:5px 16px;font-size:11px;color:var(--text2);cursor:pointer;font-family:inherit">Finalizar charla</button>
       <!-- Barra de texto alternativa -->
       <div style="display:flex;gap:8px;width:100%;align-items:flex-end">
         <textarea class="tira-input" id="conversaInput" rows="1" placeholder="O escribe algo..." onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();enviarTexto()}" oninput="autoResize(this)"></textarea>
@@ -1112,6 +1113,8 @@ function iniciarModoRealtime() {
     // Activado — cambiar botón a verde pulsante
     if (btn) { btn.style.opacity = '1'; btn.style.background = '#36c551'; btn.style.boxShadow = '0 0 30px rgba(54,197,81,0.5)'; btn.style.animation = 'rt-pulse 2s infinite'; }
     if (hint) hint.textContent = 'En vivo — habla con Paula';
+    var endBtn = document.getElementById('btnEndRt');
+    if (endBtn) endBtn.style.display = 'inline-block';
     document.getElementById('paulaStatusDot').innerHTML = '<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#36c551;animation:rt-pulse 2s infinite"></span> en vivo';
     document.getElementById('paulaStatusDot').style.color = '#36c551';
   }).catch(function(err) {
@@ -1678,6 +1681,7 @@ function rtIniciarTimer() {
 var _rtTranscriptoPaula = '';
 var _rtPaulaFalando = false;
 var _rtMsgElPaula = null;
+var _rtUserTextPending = ''; // Buffer para texto del usuario (llega tarde)
 
 function rtTratarEvento(ev) {
   var dot = document.getElementById('paulaStatusDot');
@@ -1702,17 +1706,27 @@ function rtTratarEvento(ev) {
       break;
 
     case 'conversation.item.input_audio_transcription.completed':
+      // Guardar texto del usuario — se insertará ANTES de la próxima respuesta de Paula
       var userText = (ev.transcript || '').trim();
       if (userText) {
-        cvAddMsg('user', userText);
+        _rtUserTextPending = userText;
         cvHistorico.push({ role: 'user', content: userText });
         if (cvHistorico.length > 60) cvHistorico = cvHistorico.slice(-60);
+        // Si Paula aún no empezó a responder, mostrar ahora
+        if (!_rtMsgElPaula) {
+          cvAddMsg('user', _rtUserTextPending);
+          _rtUserTextPending = '';
+        }
       }
       break;
 
     case 'response.audio_transcript.delta':
-      // Streaming — criar bolha e ir preenchendo em tempo real
+      // Antes de la primera burbuja de Paula, insertar texto del usuario si está pendiente
       if (!_rtMsgElPaula) {
+        if (_rtUserTextPending) {
+          cvAddMsg('user', _rtUserTextPending);
+          _rtUserTextPending = '';
+        }
         _rtMsgElPaula = cvAddMsgStream('paula');
         _rtTranscriptoPaula = '';
       }
@@ -1744,6 +1758,8 @@ function rtTratarEvento(ev) {
       _rtPaulaFalando = false;
       _rtMsgElPaula = null;
       _rtTranscriptoPaula = '';
+      // Si quedó texto del usuario pendiente, mostrarlo ahora
+      if (_rtUserTextPending) { cvAddMsg('user', _rtUserTextPending); _rtUserTextPending = ''; }
       if (dot) dot.innerHTML = '<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#36c551;animation:rt-pulse 2s infinite"></span> en vivo';
       if (hint) hint.textContent = 'Tu turno — habla';
       if (btn) { btn.style.background = '#36c551'; btn.style.boxShadow = '0 0 30px rgba(54,197,81,0.5)'; }
@@ -1755,6 +1771,30 @@ function rtTratarEvento(ev) {
       dot.style.color = '#ef4444';
       break;
   }
+}
+
+// Finalizar charla manualmente
+function finalizarCharla() {
+  var despedidas = [
+    '¡Oye, me tengo que ir! Pero me encantó hablar contigo, ¿seguimos mañana?',
+    '¡Ay, ya me tengo que ir corriendo! Estuvo genial la charla, ¡nos vemos pronto!',
+    '¡Me están llamando! Pero qué bien la pasamos, mañana seguimos con todo, ¿dale?',
+    '¡Bueno, me voy volando! Hablamos re bien hoy, mañana te cuento algo que me pasó...',
+    '¡Uy, se me hace tarde! Fue una charla increíble, ¡mañana la seguimos!',
+    '¡Qué rápido se pasó! Me tengo que ir, pero mañana te tengo que contar algo...',
+    '¡Tengo que salir ya! Pero oye, qué buena onda la charla, nos vemos mañana.',
+    '¡Ya me voy! Practica un poquito por tu cuenta y mañana me cuentas cómo te fue.'
+  ];
+  cvAddMsg('paula', despedidas[Math.floor(Math.random() * despedidas.length)]);
+  setTimeout(function() {
+    endRealtimeSession();
+    var btn = document.getElementById('btnRealtime');
+    var hint = document.getElementById('rtHint');
+    var endBtn = document.getElementById('btnEndRt');
+    if (btn) { btn.style.background = 'linear-gradient(135deg,#0090be,#36c551)'; btn.style.boxShadow = '0 4px 20px rgba(0,144,190,0.3)'; btn.style.animation = 'none'; }
+    if (hint) hint.textContent = 'Toca para hablar con Paula';
+    if (endBtn) endBtn.style.display = 'none';
+  }, 3000);
 }
 
 
