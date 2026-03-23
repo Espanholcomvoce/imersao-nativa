@@ -539,35 +539,25 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
 
 <!-- CONVERSA -->
 <div id="conversa" class="screen">
-<div class="chat-wrap">
-  <div class="chat-header">
-    <button onclick="endRealtimeSession();goTo('setup-conversa')" class="back-btn">&#8592;</button>
-    <img id="paulaAvatar" style="width:36px;height:36px;border-radius:50%;object-fit:cover;object-position:center 5%;flex-shrink:0">
-    <div class="chat-info">
-      <div class="chat-sit-name">Paula</div>
-      <div id="chatLevelBadge" class="chat-meta" style="font-size:11px;color:var(--text2)"></div>
+<div class="content-wrap">
+  <div class="page-header">
+    <button class="back-btn" onclick="endRealtimeSession();goTo('setup-conversa')">&#8592;</button>
+    <div>
+      <div class="page-title" style="display:flex;align-items:center;gap:8px"><img id="paulaAvatar" style="width:28px;height:28px;border-radius:50%;object-fit:cover;object-position:center 5%"> Paula</div>
+      <div id="chatLevelBadge" class="page-subtitle"></div>
     </div>
-    <div id="paulaStatusDot" style="font-size:12px;color:var(--green)">&#9679; online</div>
+    <div id="paulaStatusDot" style="font-size:12px;color:var(--green);margin-left:auto">&#9679; online</div>
   </div>
-  <div id="conversaMsgs" style="flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:16px;-webkit-overflow-scrolling:touch"></div>
-  <div style="padding:12px 16px;flex-shrink:0;padding-bottom:max(12px,env(safe-area-inset-bottom))">
-    <div id="barraTexto" style="display:flex;align-items:flex-end;gap:8px;background:var(--glass);border-radius:24px;padding:10px 10px 10px 16px;border:1px solid var(--border)">
-      <textarea id="conversaInput" rows="1" placeholder="Preguntar a Paula..." onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();enviarTexto()}" oninput="autoResize(this)" style="flex:1;background:transparent;border:none;outline:none;resize:none;font-size:15px;color:var(--text);font-family:inherit;max-height:120px;padding:2px 0;line-height:1.5"></textarea>
-      <button id="btnMic" onmousedown="iniciarGravacao()" onmouseup="pararGravacao()" ontouchstart="event.preventDefault();iniciarGravacao()" ontouchend="event.preventDefault();pararGravacao()" style="width:36px;height:36px;border-radius:50%;background:transparent;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;touch-action:none">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="7" y="1" width="6" height="11" rx="3" fill="#94a3b8"/><path d="M3.5 9.5a6.5 6.5 0 0013 0" stroke="#94a3b8" stroke-width="1.5" stroke-linecap="round"/><line x1="10" y1="16" x2="10" y2="19" stroke="#94a3b8" stroke-width="1.5" stroke-linecap="round"/><line x1="7" y1="19" x2="13" y2="19" stroke="#94a3b8" stroke-width="1.5" stroke-linecap="round"/></svg>
-      </button>
-      <button id="btnMaosLivres" onclick="iniciarModoRealtime()" style="width:36px;height:36px;border-radius:50%;background:rgba(0,144,190,0.3);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0" title="Modo voz en vivo">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="1" y="8" width="2.5" height="4" rx="1.2" fill="white"/><rect x="5" y="5" width="2.5" height="10" rx="1.2" fill="white"/><rect x="9" y="2" width="2.5" height="16" rx="1.2" fill="white"/><rect x="13" y="5" width="2.5" height="10" rx="1.2" fill="white"/><rect x="17" y="8" width="2.5" height="4" rx="1.2" fill="white"/></svg>
-      </button>
+  <div class="tira-chat">
+    <div class="tira-messages" id="conversaMsgs"></div>
+    <div class="tira-input-row" id="barraTexto">
+      <textarea class="tira-input" id="conversaInput" rows="1" placeholder="Preguntar a Paula..." onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();enviarTexto()}" oninput="autoResize(this)"></textarea>
+      <button class="tira-send" id="btnMic" onmousedown="iniciarGravacao()" onmouseup="pararGravacao()" ontouchstart="event.preventDefault();iniciarGravacao()" ontouchend="event.preventDefault();pararGravacao()" style="touch-action:none">&#127908;</button>
+      <button class="tira-send" onclick="enviarTexto()">&#10148;</button>
     </div>
-    <div id="barraMaosLivres" style="display:none;flex-direction:column;align-items:center;gap:10px;padding:8px 0">
-      <div style="display:flex;align-items:center;gap:5px;height:44px">
-        <div class="ml-bar" style="width:4px;border-radius:2px;background:#d1d5db"></div>
-        <div class="ml-bar" style="width:4px;border-radius:2px;background:#d1d5db"></div>
-        <div class="ml-bar" style="width:4px;border-radius:2px;background:#d1d5db"></div>
-        <div class="ml-bar" style="width:4px;border-radius:2px;background:#d1d5db"></div>
-        <div class="ml-bar" style="width:4px;border-radius:2px;background:#d1d5db"></div>
-        <div class="ml-bar" style="width:4px;border-radius:2px;background:#d1d5db"></div>
+  </div>
+</div>
+<div id="barraMaosLivres" style="display:none">
         <div class="ml-bar" style="width:4px;border-radius:2px;background:#d1d5db"></div>
       </div>
       <div id="mlStatus" style="font-size:13px;color:#666">Ouvindo...</div>
@@ -1291,16 +1281,11 @@ function cvPaulaResponde(isFirst) {
 
 function cvAddMsgStream(who) {
   var msgs = document.getElementById('conversaMsgs');
-  var wrap = document.createElement('div');
-  if (who === 'paula') {
-    var foto = document.getElementById('paulaFotoGlobal');
-    var src = foto ? foto.src : '';
-    wrap.style.cssText = 'display:flex;gap:12px;align-items:flex-start';
-    wrap.innerHTML = '<img src="' + src + '" style="width:30px;height:30px;border-radius:50%;object-fit:cover;object-position:center 5%;flex-shrink:0;margin-top:2px"><div class="cv-stream-text" style="flex:1;font-size:15px;color:var(--text);line-height:1.65"></div>';
-  }
-  msgs.appendChild(wrap);
+  var div = document.createElement('div');
+  div.className = 'tira-msg assistant cv-stream-text';
+  msgs.appendChild(div);
   msgs.scrollTop = msgs.scrollHeight;
-  return wrap.querySelector('.cv-stream-text');
+  return div;
 }
 
 function cvUpdateMsgStream(el, text) {
@@ -1502,18 +1487,10 @@ function cvSetStatus(state) {
 
 function cvAddMsg(who, text) {
   var msgs = document.getElementById('conversaMsgs');
-  var wrap = document.createElement('div');
-  var safe = text.split('\n').join('<br>');
-  if (who === 'paula') {
-    var foto = document.getElementById('paulaFotoGlobal');
-    var src = foto ? foto.src : '';
-    wrap.style.cssText = 'display:flex;gap:10px;align-items:flex-start';
-    wrap.innerHTML = '<img src="' + src + '" style="width:30px;height:30px;border-radius:50%;object-fit:cover;object-position:center 5%;flex-shrink:0;margin-top:2px"><div style="flex:1;font-size:15px;color:var(--text);line-height:1.65">' + safe + '</div>';
-  } else {
-    wrap.style.cssText = 'display:flex;justify-content:flex-end';
-    wrap.innerHTML = '<div style="background:var(--glass);border:1px solid var(--border);border-radius:18px 18px 4px 18px;padding:10px 15px;max-width:78%;font-size:15px;color:var(--text);line-height:1.5">' + safe + '</div>';
-  }
-  msgs.appendChild(wrap);
+  var div = document.createElement('div');
+  div.className = 'tira-msg ' + (who === 'paula' ? 'assistant' : 'user');
+  div.innerHTML = text.split('\n').join('<br>');
+  msgs.appendChild(div);
   msgs.scrollTop = msgs.scrollHeight;
 }
 
