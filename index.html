@@ -549,11 +549,17 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
   </div>
   <div class="tira-chat">
     <div class="tira-messages" id="conversaMsgs"></div>
-    <div class="tira-input-row" id="barraTexto">
-      <textarea class="tira-input" id="conversaInput" rows="1" placeholder="Preguntar a Paula..." onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();enviarTexto()}" oninput="autoResize(this)"></textarea>
-      <button class="tira-send" id="btnMic" onmousedown="iniciarGravacao()" onmouseup="pararGravacao()" ontouchstart="event.preventDefault();iniciarGravacao()" ontouchend="event.preventDefault();pararGravacao()" style="touch-action:none" title="Mantén presionado para grabar">&#127908;</button>
-      <button class="tira-send" onclick="iniciarModoRealtime()" title="Modo voz en vivo" style="background:rgba(0,144,190,0.3);color:#0090be">&#9835;</button>
-      <button class="tira-send" onclick="enviarTexto()">&#10148;</button>
+    <div id="barraTexto" style="display:flex;flex-direction:column;align-items:center;gap:12px">
+      <!-- Botón Real Time central -->
+      <button onclick="iniciarModoRealtime()" id="btnRealtime" style="width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#0090be,#36c551);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;touch-action:manipulation;box-shadow:0 4px 20px rgba(0,144,190,0.3)">
+        <svg width="28" height="28" viewBox="0 0 20 20" fill="none"><rect x="1" y="8" width="2.5" height="4" rx="1.2" fill="white"/><rect x="5" y="5" width="2.5" height="10" rx="1.2" fill="white"/><rect x="9" y="2" width="2.5" height="16" rx="1.2" fill="white"/><rect x="13" y="5" width="2.5" height="10" rx="1.2" fill="white"/><rect x="17" y="8" width="2.5" height="4" rx="1.2" fill="white"/></svg>
+      </button>
+      <div style="font-size:11px;color:var(--text2)">Toca para hablar con Paula</div>
+      <!-- Barra de texto alternativa -->
+      <div style="display:flex;gap:8px;width:100%;align-items:flex-end">
+        <textarea class="tira-input" id="conversaInput" rows="1" placeholder="O escribe algo..." onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();enviarTexto()}" oninput="autoResize(this)"></textarea>
+        <button class="tira-send" onclick="enviarTexto()">&#10148;</button>
+      </div>
     </div>
   </div>
 </div>
@@ -1084,15 +1090,13 @@ function startConversation(initialText) {
   document.getElementById('barraMaosLivres').style.display = 'none';
   goTo('conversa');
 
-  // Si hay texto inicial, enviarlo directo
+  // Si hay texto inicial, enviarlo
   if (initialText) {
     cvAddMsg('user', initialText);
     cvHistorico.push({ role: 'user', content: initialText });
     cvPaulaResponde(false);
-  } else {
-    // Paula saluda via API (texto + voz)
-    cvPaulaResponde(true);
   }
+  // Sin texto: pantalla limpia, el alumno inicia cuando quiera
 }
 
 // Función para iniciar Realtime manualmente (botón ondas)
