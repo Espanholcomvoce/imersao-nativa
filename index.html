@@ -1095,21 +1095,26 @@ function startConversation(initialText) {
   document.getElementById('chatLevelBadge').textContent = 'Paula';
   cvHistorico = [];
   document.getElementById('conversaMsgs').innerHTML = '';
-  document.getElementById('barraTexto').style.display = 'none';
+  document.getElementById('barraTexto').style.display = 'flex';
   document.getElementById('barraMaosLivres').style.display = 'none';
   goTo('conversa');
-  // Tentar Realtime API (WebRTC) — fallback para pipeline antigo
-  iniciarRealtimeSession().catch(function(err) {
-    console.warn('[REALTIME] Fallback para pipeline antigo:', err.message);
-    rtAtivo = false;
-    document.getElementById('barraTexto').style.display = 'flex';
-    if (initialText) {
-      cvAddMsg('user', initialText);
-      cvHistorico.push({ role: 'user', content: initialText });
-      cvPaulaResponde(false);
-    } else {
-      cvPaulaResponde(true);
-    }
+
+  // Siempre iniciar con texto (fallback funciona siempre)
+  if (initialText) {
+    cvAddMsg('user', initialText);
+    cvHistorico.push({ role: 'user', content: initialText });
+    cvPaulaResponde(false);
+  } else {
+    cvPaulaResponde(true);
+  }
+
+  // Intentar conectar Realtime en paralelo (mejora la experiencia si funciona)
+  iniciarRealtimeSession().then(function() {
+    // Realtime conectado — indicar en vivo
+    document.getElementById('paulaStatusDot').innerHTML = '<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#36c551;animation:rt-pulse 2s infinite"></span> en vivo';
+    document.getElementById('paulaStatusDot').style.color = '#36c551';
+  }).catch(function(err) {
+    console.warn('[REALTIME] Sin Realtime, usando texto+voz:', err.message);
   });
 }
 
