@@ -290,6 +290,10 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
 .btn-proximo.visible{display:block}
 .btn-proximo:active{transform:scale(0.97)}
 
+/* ══ CONVERSA LEVEL CHIPS ══ */
+.cv-level-chip{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:6px 16px;font-size:12px;color:rgba(255,255,255,0.5);cursor:pointer;font-family:inherit;transition:all .2s;touch-action:manipulation}
+.cv-level-chip.active{background:rgba(168,85,247,0.2);border-color:rgba(168,85,247,0.4);color:#a78bfa;font-weight:600}
+
 /* ══ IMERSÃO CULTURAL E AUDITIVA ══ */
 .country-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:20px}
 .country-card{background:var(--glass);border:1px solid var(--border);border-radius:16px;padding:16px;cursor:pointer;transition:all .2s;touch-action:manipulation;text-align:center;position:relative;overflow:hidden}
@@ -490,42 +494,35 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
 </div>
 </div>
 
-<!-- SETUP CONVERSA -->
-<div id="setup-conversa" class="screen">
-<div class="setup-inner">
-  <div class="page-header">
-    <button class="back-btn" onclick="goTo('home')">←</button>
-    <div>
-      <div class="page-title">Conversação</div>
-      <div class="page-subtitle">Configure sua sessão de prática</div>
+<!-- SETUP CONVERSA (pantalla limpia tipo ChatGPT) -->
+<div id="setup-conversa" class="screen" style="background:linear-gradient(180deg,#0f0f0f,#1a1a2e);justify-content:center">
+<div style="width:100%;max-width:500px;padding:20px;text-align:center">
+  <button class="back-btn" onclick="goTo('home')" style="position:absolute;top:max(16px,env(safe-area-inset-top));left:16px;color:rgba(255,255,255,0.4)">&#8592;</button>
+  <img id="paulaAvatarSetup" style="width:64px;height:64px;border-radius:50%;object-fit:cover;object-position:center 5%;border:2px solid rgba(168,85,247,0.3);margin-bottom:16px">
+  <div style="font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:#fff;margin-bottom:4px">Paula</div>
+  <div style="font-size:13px;color:rgba(255,255,255,0.45);margin-bottom:32px">Sua amiga hispana para praticar espanhol</div>
+
+  <!-- Nível inline (discreto) -->
+  <div style="display:flex;gap:8px;justify-content:center;margin-bottom:32px">
+    <button class="cv-level-chip" id="cvLvlBeg" onclick="selectLevel('beginner')">A1-A2</button>
+    <button class="cv-level-chip active" id="cvLvlInt" onclick="selectLevel('intermediate')">B1-B2</button>
+    <button class="cv-level-chip" id="cvLvlAdv" onclick="selectLevel('advanced')">C1-C2</button>
+  </div>
+
+  <!-- 3 opciones de inicio -->
+  <div style="display:flex;flex-direction:column;gap:12px;max-width:360px;margin:0 auto">
+    <button onclick="selectedSit='libre';startConversation()" style="width:100%;padding:16px;background:linear-gradient(135deg,rgba(168,85,247,0.2),rgba(96,165,250,0.15));border:1px solid rgba(168,85,247,0.3);border-radius:16px;color:#fff;font-size:15px;font-weight:600;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:10px;transition:all .2s;touch-action:manipulation">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3.5 9.5a6.5 6.5 0 0013 0" stroke="#a78bfa" stroke-width="1.5" stroke-linecap="round"/><rect x="7" y="1" width="6" height="11" rx="3" fill="#a78bfa"/><line x1="10" y1="16" x2="10" y2="19" stroke="#a78bfa" stroke-width="1.5"/></svg>
+      Hablar con Paula
+    </button>
+    <div style="display:flex;gap:12px">
+      <div style="flex:1;position:relative">
+        <input id="cvQuickInput" placeholder="Escribe algo en español..." onkeydown="if(event.key==='Enter'){selectedSit='libre';startConversationWithText(this.value)}" style="width:100%;padding:14px 16px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:14px;color:#fff;font-size:14px;font-family:inherit;outline:none">
+      </div>
+      <button onclick="selectedSit='libre';startConversationWithText(document.getElementById('cvQuickInput').value)" style="width:48px;height:48px;border-radius:14px;background:rgba(168,85,247,0.2);border:1px solid rgba(168,85,247,0.3);color:#a78bfa;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0">&#10148;</button>
     </div>
   </div>
-  <p class="section-label">Seu nível</p>
-  <div class="level-option" id="lvl-beginner" onclick="selectLevel('beginner')">
-    <div><div class="level-name">Iniciante (A1–A2)</div><div class="level-desc">Vocabulário básico, frases simples</div></div>
-    <div class="level-dot" style="border-color:var(--green)" id="dot-beginner"></div>
-  </div>
-  <div class="level-option" id="lvl-intermediate" onclick="selectLevel('intermediate')">
-    <div><div class="level-name">Intermediário (B1–B2)</div><div class="level-desc">Conversas cotidianas, gramática fluente</div></div>
-    <div class="level-dot" style="border-color:var(--yellow)" id="dot-intermediate"></div>
-  </div>
-  <div class="level-option" id="lvl-advanced" onclick="selectLevel('advanced')">
-    <div><div class="level-name">Avançado (C1–C2)</div><div class="level-desc">Discussões complexas, nuances culturais</div></div>
-    <div class="level-dot" style="border-color:var(--red)" id="dot-advanced"></div>
-  </div>
-  <div style="margin-bottom:20px"></div>
-  <p class="section-label">Escolha uma situação</p>
-  <div class="situations-grid">
-    <div class="sit-option" onclick="selectSit(this,'café')"><div class="sit-emoji">☕</div><div class="sit-name">No Café</div></div>
-    <div class="sit-option" onclick="selectSit(this,'hotel')"><div class="sit-emoji">🏨</div><div class="sit-name">No Hotel</div></div>
-    <div class="sit-option" onclick="selectSit(this,'trabajo')"><div class="sit-emoji">💼</div><div class="sit-name">Trabalho</div></div>
-    <div class="sit-option" onclick="selectSit(this,'médico')"><div class="sit-emoji">🏥</div><div class="sit-name">Médico</div></div>
-    <div class="sit-option" onclick="selectSit(this,'viaje')"><div class="sit-emoji">✈️</div><div class="sit-name">Viagem</div></div>
-    <div class="sit-option" onclick="selectSit(this,'mercado')"><div class="sit-emoji">🛒</div><div class="sit-name">Mercado</div></div>
-    <div class="sit-option" onclick="selectSit(this,'amigos')"><div class="sit-emoji">👥</div><div class="sit-name">Amigos</div></div>
-    <div class="sit-option" onclick="selectSit(this,'libre')"><div class="sit-emoji">🗣️</div><div class="sit-name">Livre</div></div>
-  </div>
-  <button class="btn-gold btn-disabled" id="startChatBtn" onclick="startConversation()">Iniciar Conversação &#8594;</button>
+</div>
 </div>
 </div>
 
@@ -575,7 +572,7 @@ body{font-family:'Lora',Georgia,serif;height:100vh;height:100dvh;background:line
   <div class="rt-header">
     <button class="rt-close" onclick="endRealtimeSession();goTo('setup-conversa')">&#10005;</button>
     <div class="rt-name">Paula</div>
-    <div class="rt-timer" id="rtTimerOverlay"></div>
+    <div class="rt-timer" id="rtTimerOverlay" style="display:none"></div>
   </div>
   <div class="rt-orb-wrap">
     <div class="rt-orb-ring"></div>
@@ -1052,44 +1049,39 @@ function goTo(id) {
   if (id === 'lectura') renderLectura();
   if (id === 'sre-vocab') renderCards();
   if (id === 'auditiva') renderAuditivaGrid();
-}
-
-// ══ SETUP CONVERSA ══
-function selectLevel(lvl) {
-  selectedLevel = lvl;
-  ['beginner','intermediate','advanced'].forEach(l => {
-    document.getElementById(`lvl-${l}`).className = 'level-option';
-    document.getElementById(`dot-${l}`).style.background = 'transparent';
-  });
-  document.getElementById(`lvl-${lvl}`).className = `level-option sel-${lvl}`;
-  document.getElementById(`dot-${lvl}`).style.background = lvl === 'beginner' ? 'var(--green)' : lvl === 'intermediate' ? 'var(--yellow)' : 'var(--red)';
-  checkStartReady();
-}
-
-function selectSit(el, sit) {
-  selectedSit = sit;
-  document.querySelectorAll('.sit-option').forEach(s => s.classList.remove('selected'));
-  el.classList.add('selected');
-  checkStartReady();
-}
-
-function checkStartReady() {
-  const btn = document.getElementById('startChatBtn');
-  if (selectedLevel && selectedSit) {
-    btn.classList.remove('btn-disabled');
-  } else {
-    btn.classList.add('btn-disabled');
+  if (id === 'setup-conversa') {
+    var foto = document.getElementById('paulaFotoGlobal');
+    var av = document.getElementById('paulaAvatarSetup');
+    if (foto && av) av.src = foto.src;
   }
 }
 
-function startConversation() {
-  if (!selectedLevel || !selectedSit) return;
-  var sn = {'café':'No Café','hotel':'No Hotel','trabajo':'Trabalho','médico':'Médico','viaje':'Viagem','mercado':'Mercado','amigos':'Amigos','libre':'Livre'};
-  var ln = {'beginner':'Iniciante A1-A2','intermediate':'Intermediário B1-B2','advanced':'Avançado C1-C2'};
-  document.getElementById('chatLevelBadge').textContent = (sn[selectedSit]||selectedSit)+' · '+(ln[selectedLevel]||selectedLevel);
+// ══ SETUP CONVERSA ══
+selectedLevel = 'intermediate'; // default
+selectedSit = 'libre';
+
+function selectLevel(lvl) {
+  selectedLevel = lvl;
+  document.querySelectorAll('.cv-level-chip').forEach(function(c) { c.classList.remove('active'); });
+  var map = {beginner:'cvLvlBeg', intermediate:'cvLvlInt', advanced:'cvLvlAdv'};
+  var el = document.getElementById(map[lvl]);
+  if (el) el.classList.add('active');
+}
+
+function startConversationWithText(text) {
+  var txt = (text || '').trim();
+  if (!txt) { selectedSit = 'libre'; startConversation(); return; }
+  selectedSit = 'libre';
+  startConversation(txt);
+}
+
+function startConversation(initialText) {
+  if (!selectedLevel) selectedLevel = 'intermediate';
+  if (!selectedSit) selectedSit = 'libre';
   var foto = document.getElementById('paulaFotoGlobal');
   var av = document.getElementById('paulaAvatar');
   if (foto && av) av.src = foto.src;
+  document.getElementById('chatLevelBadge').textContent = 'Paula';
   cvHistorico = [];
   document.getElementById('conversaMsgs').innerHTML = '';
   document.getElementById('barraTexto').style.display = 'none';
@@ -1102,7 +1094,13 @@ function startConversation() {
     var overlay = document.getElementById('rtOverlay');
     if (overlay) overlay.classList.remove('active');
     document.getElementById('barraTexto').style.display = 'flex';
-    cvPaulaResponde(true);
+    if (initialText) {
+      cvAddMsg('user', initialText);
+      cvHistorico.push({ role: 'user', content: initialText });
+      cvPaulaResponde(false);
+    } else {
+      cvPaulaResponde(true);
+    }
   });
 }
 
@@ -1656,11 +1654,13 @@ function rtIniciarTimer() {
       timerEl.classList.add('warning');
     }
 
-    // Tempo esgotado
+    // Sessão terminando — despedida cariñosa
     if (restante <= 0) {
-      document.getElementById('rtStatusOverlay').textContent = 'Tempo esgotado! Até amanhã 🌟';
-      rtSetOrb('thinking');
-      setTimeout(function() { endRealtimeSession(); goTo('setup-conversa'); }, 2500);
+      document.getElementById('rtStatusOverlay').textContent = '';
+      document.getElementById('rtTranscript').textContent = '¡Hablamos mucho en español hoy! Descansa y nos vemos mañana para seguir practicando 💛';
+      document.getElementById('rtTranscript').className = 'rt-transcript paula';
+      rtSetOrb('listening');
+      setTimeout(function() { endRealtimeSession(); goTo('setup-conversa'); }, 4000);
       return;
     }
   }
