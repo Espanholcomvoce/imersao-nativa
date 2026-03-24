@@ -137,55 +137,6 @@ var AUDITIVA_DATA = {
             meaning: 'Adjetivo que significa "legal", "bacana", usado para pessoas ou situações'
           }
         ]
-      },
-      {
-        id: 'ar_a1',
-        title: 'Conociendo Argentina',
-        level: 'A1',
-        duration: '3 min',
-        sections: [
-          {
-            speaker: 'narrator',
-            text: 'Argentina es un país grande en el sur de América. Su capital es Buenos Aires. Muchas personas viven allí.'
-          },
-          {
-            speaker: 'narrator',
-            text: 'La comida más famosa de Argentina es el asado. Es carne cocinada a la parrilla. Las familias comen asado los domingos.'
-          },
-          {
-            speaker: 'narrator',
-            text: 'El tango es un baile muy famoso de Argentina. Nació en Buenos Aires. Las personas bailan tango en las calles.'
-          },
-          {
-            speaker: 'narrator',
-            text: 'La Patagonia está en el sur de Argentina. Tiene montañas, lagos y glaciares. El glaciar Perito Moreno es muy grande y hermoso.'
-          },
-          {
-            speaker: 'narrator',
-            text: '¿Sabías que Argentina consume más carne que cualquier otro país? También beben mucho mate. ¡Hola, che! Así saludan los argentinos.'
-          }
-        ],
-        quiz: [
-          {
-            q: '¿Cuál es la capital de Argentina?',
-            ops: ['Lima', 'Buenos Aires', 'Santiago', 'Bogotá'],
-            ok: 1,
-            exp: 'Buenos Aires es la capital de Argentina.'
-          },
-          {
-            q: '¿Qué baile es famoso en Argentina?',
-            ops: ['Salsa', 'Cumbia', 'Tango', 'Flamenco'],
-            ok: 2,
-            exp: 'El tango es el baile más famoso de Argentina.'
-          },
-          {
-            q: '¿Qué comida es típica de Argentina?',
-            ops: ['Tacos', 'Asado', 'Paella', 'Ceviche'],
-            ok: 1,
-            exp: 'El asado es la comida más típica de Argentina.'
-          }
-        ],
-        vocabLocal: []
       }
     ]
   },
@@ -322,55 +273,6 @@ var AUDITIVA_DATA = {
             meaning: 'Partícula usada no fim das frases como marcador discursivo, muito comum na Bolívia'
           }
         ]
-      },
-      {
-        id: 'bo_a1',
-        title: 'Conociendo Bolivia',
-        level: 'A1',
-        duration: '3 min',
-        sections: [
-          {
-            speaker: 'narrator',
-            text: 'Bolivia es un país en el centro de América del Sur. Tiene dos capitales: Sucre y La Paz. La Paz es una ciudad muy alta en las montañas.'
-          },
-          {
-            speaker: 'narrator',
-            text: 'La salteña es una comida muy popular en Bolivia. Es como una empanada con carne, papas y salsa. Se come en la mañana.'
-          },
-          {
-            speaker: 'narrator',
-            text: 'El Salar de Uyuni es el desierto de sal más grande del mundo. Está en Bolivia. Es blanco y muy bonito.'
-          },
-          {
-            speaker: 'narrator',
-            text: 'Bolivia tiene muchas culturas indígenas. La gente habla español, quechua y aymara. Las mujeres cholitas usan faldas grandes y sombreros.'
-          },
-          {
-            speaker: 'narrator',
-            text: '¿Sabías que La Paz tiene un teleférico muy largo? Es una forma de transporte. ¡Hola, pues! Así saludan en Bolivia.'
-          }
-        ],
-        quiz: [
-          {
-            q: '¿Cuántas capitales tiene Bolivia?',
-            ops: ['Una', 'Dos', 'Tres', 'Ninguna'],
-            ok: 1,
-            exp: 'Bolivia tiene dos capitales: Sucre y La Paz.'
-          },
-          {
-            q: '¿Qué es el Salar de Uyuni?',
-            ops: ['Un lago', 'Un volcán', 'Un desierto de sal', 'Una montaña'],
-            ok: 2,
-            exp: 'El Salar de Uyuni es el desierto de sal más grande del mundo.'
-          },
-          {
-            q: '¿Qué es una salteña?',
-            ops: ['Un baile', 'Una bebida', 'Una comida como empanada', 'Una canción'],
-            ok: 2,
-            exp: 'La salteña es una comida popular de Bolivia, parecida a una empanada.'
-          }
-        ],
-        vocabLocal: []
       }
     ]
   },
@@ -512,55 +414,6 @@ var AUDITIVA_DATA = {
             meaning: 'Expressão que significa "agora mesmo", "imediatamente"'
           }
         ]
-      },
-      {
-        id: 'cl_a1',
-        title: 'Conociendo Chile',
-        level: 'A1',
-        duration: '3 min',
-        sections: [
-          {
-            speaker: 'narrator',
-            text: 'Chile es un país largo y estrecho en el oeste de América del Sur. Su capital es Santiago. Chile está al lado del océano Pacífico.'
-          },
-          {
-            speaker: 'narrator',
-            text: 'La empanada de pino es una comida típica de Chile. Tiene carne, cebolla, huevo y aceituna. Los chilenos la comen mucho.'
-          },
-          {
-            speaker: 'narrator',
-            text: 'El desierto de Atacama está en el norte de Chile. Es el desierto más seco del mundo. Por la noche se ven muchas estrellas.'
-          },
-          {
-            speaker: 'narrator',
-            text: 'Chile produce mucho vino. Los viñedos están en el centro del país. El vino chileno es famoso en todo el mundo.'
-          },
-          {
-            speaker: 'narrator',
-            text: '¿Sabías que Chile es el país más largo del mundo? Tiene más de cuatro mil kilómetros. ¡Hola, ¿cómo estái? Así hablan los chilenos.'
-          }
-        ],
-        quiz: [
-          {
-            q: '¿Cuál es la capital de Chile?',
-            ops: ['Valparaíso', 'Santiago', 'Concepción', 'Lima'],
-            ok: 1,
-            exp: 'Santiago es la capital de Chile.'
-          },
-          {
-            q: '¿Qué tiene de especial el desierto de Atacama?',
-            ops: ['Es el más grande', 'Es el más frío', 'Es el más seco del mundo', 'Es el más alto'],
-            ok: 2,
-            exp: 'El desierto de Atacama es el más seco del mundo.'
-          },
-          {
-            q: '¿Qué es una empanada de pino?',
-            ops: ['Una fruta', 'Una bebida', 'Una comida con carne y cebolla', 'Un postre'],
-            ok: 2,
-            exp: 'La empanada de pino es una comida chilena con carne, cebolla, huevo y aceituna.'
-          }
-        ],
-        vocabLocal: []
       }
     ]
   },

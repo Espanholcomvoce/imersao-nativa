@@ -756,7 +756,7 @@ body{font-family:'Inter',sans-serif;height:100vh;height:100dvh;background:linear
     <div id="epBanner" style="width:100%;height:180px;background-size:cover;background-position:center;border-radius:0;position:relative;display:none">
       <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,var(--bg1) 100%)"></div>
     </div>
-    <div style="padding:0 16px 20px">
+    <div id="epEpisodeContent" style="padding:0 16px 20px">
     <!-- Audio bar -->
     <div class="ep-audio-bar">
       <button class="ep-play-btn" id="epPlayBtn" onclick="epToggleAudio()">&#9654;</button>
@@ -3376,15 +3376,22 @@ function openCountryEpisodes(code) {
   var bannerEl = document.getElementById('epBanner');
   if (bannerEl) bannerEl.style.display = 'none';
 
-  var contentArea = document.getElementById('epContent');
-  contentArea.innerHTML = html;
+  // Hide episode content, show level selector
+  var epEpCont = document.getElementById('epEpisodeContent');
+  if (epEpCont) epEpCont.style.display = 'none';
 
-  // Hide audio controls
-  var audioBar = document.querySelector('#auditiva-ep .ep-audio-bar');
-  if (audioBar) audioBar.style.display = 'none';
+  // Create or update level selector
+  var sel = document.getElementById('epLevelSelector');
+  if (!sel) {
+    sel = document.createElement('div');
+    sel.id = 'epLevelSelector';
+    document.getElementById('epContent').insertBefore(sel, document.getElementById('epContent').firstChild);
+  }
+  sel.innerHTML = html;
+  sel.style.display = 'block';
 
   goTo('auditiva-ep');
-  contentArea.scrollTop = 0;
+  document.getElementById('epContent').scrollTop = 0;
 }
 
 function openEpisode(countryCode, epIndex) {
@@ -3395,7 +3402,11 @@ function openEpisode(countryCode, epIndex) {
   auditivaCurrentEp = ep;
   auditivaQuizAnswered = false;
 
-  // Restore audio bar if hidden by level selector
+  // Hide level selector, show episode content
+  var sel = document.getElementById('epLevelSelector');
+  if (sel) sel.style.display = 'none';
+  var epEpCont = document.getElementById('epEpisodeContent');
+  if (epEpCont) epEpCont.style.display = '';
   var audioBar = document.querySelector('#auditiva-ep .ep-audio-bar');
   if (audioBar) audioBar.style.display = '';
 
@@ -3444,6 +3455,47 @@ function openEpisode(countryCode, epIndex) {
   quizHtml += '<div id="eqResult" style="display:none;text-align:center;margin-top:20px"></div>';
   document.getElementById('epQuiz').innerHTML = quizHtml;
   document.getElementById('epQuiz').style.display = 'block';
+
+  // Navigation buttons (prev/next level)
+  var lvOrder = ['A1','A2','B1','B2','C1'];
+  var sortedEps = c.episodes.slice().sort(function(a, b) { return lvOrder.indexOf(a.level) - lvOrder.indexOf(b.level); });
+  var currentLvIdx = -1;
+  for (var si = 0; si < sortedEps.length; si++) {
+    if (sortedEps[si].level === ep.level) { currentLvIdx = si; break; }
+  }
+  var prevEp = currentLvIdx > 0 ? sortedEps[currentLvIdx - 1] : null;
+  var nextEp = currentLvIdx < sortedEps.length - 1 ? sortedEps[currentLvIdx + 1] : null;
+
+  // Find original indices for prev/next
+  var prevIdx = -1, nextIdx = -1;
+  if (prevEp) { for (var pi = 0; pi < c.episodes.length; pi++) { if (c.episodes[pi].level === prevEp.level) { prevIdx = pi; break; } } }
+  if (nextEp) { for (var ni = 0; ni < c.episodes.length; ni++) { if (c.episodes[ni].level === nextEp.level) { nextIdx = ni; break; } } }
+
+  var navHtml = '<div style="display:flex;gap:10px;margin-top:24px;margin-bottom:32px;padding:0 4px">';
+  if (prevEp) {
+    navHtml += '<button onclick="openEpisode(\'' + countryCode + '\',' + prevIdx + ')" style="flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:14px 16px;background:var(--card);border:1px solid var(--border);border-radius:12px;cursor:pointer;color:var(--text);font-size:13px;font-weight:600;transition:transform 0.2s" onmouseover="this.style.transform=\'scale(1.03)\'" onmouseout="this.style.transform=\'scale(1)\'">' +
+      '<span style="font-size:16px">&#8592;</span> <span style="opacity:0.6">' + prevEp.level + '</span> Anterior</button>';
+  } else {
+    navHtml += '<button onclick="openCountryEpisodes(\'' + countryCode + '\')" style="flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:14px 16px;background:var(--card);border:1px solid var(--border);border-radius:12px;cursor:pointer;color:var(--text);font-size:13px;font-weight:600;transition:transform 0.2s" onmouseover="this.style.transform=\'scale(1.03)\'" onmouseout="this.style.transform=\'scale(1)\'">' +
+      '<span style="font-size:16px">&#8592;</span> Niveles</button>';
+  }
+  if (nextEp) {
+    navHtml += '<button onclick="openEpisode(\'' + countryCode + '\',' + nextIdx + ')" style="flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:14px 16px;background:linear-gradient(135deg,var(--gold),#e6a100);border:none;border-radius:12px;cursor:pointer;color:#000;font-size:13px;font-weight:700;transition:transform 0.2s" onmouseover="this.style.transform=\'scale(1.03)\'" onmouseout="this.style.transform=\'scale(1)\'">' +
+      'Siguiente <span style="opacity:0.7">' + nextEp.level + '</span> <span style="font-size:16px">&#8594;</span></button>';
+  } else {
+    navHtml += '<button onclick="openCountryEpisodes(\'' + countryCode + '\')" style="flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:14px 16px;background:linear-gradient(135deg,#4caf50,#2e7d32);border:none;border-radius:12px;cursor:pointer;color:#fff;font-size:13px;font-weight:700;transition:transform 0.2s" onmouseover="this.style.transform=\'scale(1.03)\'" onmouseout="this.style.transform=\'scale(1)\'">' +
+      '&#10003; Completado</button>';
+  }
+  navHtml += '</div>';
+
+  // Insert nav after quiz
+  var navContainer = document.getElementById('epNav');
+  if (!navContainer) {
+    navContainer = document.createElement('div');
+    navContainer.id = 'epNav';
+    document.getElementById('epQuiz').insertAdjacentElement('afterend', navContainer);
+  }
+  navContainer.innerHTML = navHtml;
 
   goTo('auditiva-ep');
   document.getElementById('epContent').scrollTop = 0;
