@@ -3329,8 +3329,62 @@ function renderAuditivaGrid() {
 function openCountryEpisodes(code) {
   var c = AUDITIVA_DATA[code];
   if (!c || !c.episodes || !c.episodes.length) return;
-  // For now, open the first episode
-  openEpisode(code, 0);
+
+  // If only 1 episode, open directly
+  if (c.episodes.length === 1) { openEpisode(code, 0); return; }
+
+  // Show level selector
+  var levels = c.episodes.map(function(ep, i) { return { level: ep.level, index: i, title: ep.title, duration: ep.duration }; });
+  // Sort by level
+  var lvOrder = ['A1','A2','B1','B2','C1'];
+  levels.sort(function(a, b) { return lvOrder.indexOf(a.level) - lvOrder.indexOf(b.level); });
+
+  var img = (typeof COUNTRY_IMAGES !== 'undefined' && COUNTRY_IMAGES[code]) || '';
+  var html = '<div style="width:100%;height:160px;background:' + (img ? 'url(' + img + ')' : 'linear-gradient(135deg,#1e3a5f,#0a1628)') + ';background-size:cover;background-position:center;position:relative">' +
+    '<div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 30%,var(--bg1) 100%)"></div>' +
+    '<div style="position:absolute;bottom:16px;left:16px;right:16px">' +
+    '<div style="font-family:Inter,sans-serif;font-weight:800;font-size:clamp(22px,5.5vw,28px);color:#fff;text-shadow:0 2px 8px rgba(0,0,0,0.5)">' + c.name + '</div>' +
+    '<div style="font-size:12px;color:rgba(255,255,255,0.8)">' + c.capital + ' · ' + levels.length + ' niveles</div>' +
+    '</div></div>';
+
+  html += '<div style="padding:16px">';
+  html += '<div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text2);margin-bottom:12px">Selecciona tu nivel</div>';
+
+  levels.forEach(function(lv) {
+    var done = JSON.parse(localStorage.getItem('auditiva_done_' + code + '_' + lv.level) || 'false');
+    html += '<div onclick="openEpisode(\'' + code + '\',' + lv.index + ')" style="display:flex;align-items:center;gap:14px;padding:14px;margin-bottom:10px;background:var(--card);border-radius:12px;cursor:pointer;border:1px solid var(--border);transition:transform 0.2s" onmouseover="this.style.transform=\'scale(1.02)\'" onmouseout="this.style.transform=\'scale(1)\'">' +
+      '<div style="width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;flex-shrink:0;' +
+      (lv.level === 'A1' ? 'background:rgba(76,175,80,0.15);color:#4caf50' :
+       lv.level === 'A2' ? 'background:rgba(139,195,74,0.15);color:#8bc34a' :
+       lv.level === 'B1' ? 'background:rgba(255,193,7,0.15);color:#ffc107' :
+       lv.level === 'B2' ? 'background:rgba(255,152,0,0.15);color:#ff9800' :
+       'background:rgba(244,67,54,0.15);color:#f44336') + '">' + lv.level + '</div>' +
+      '<div style="flex:1;min-width:0">' +
+      '<div style="font-weight:600;font-size:14px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">' + lv.title + '</div>' +
+      '<div style="font-size:11px;color:var(--text2);margin-top:2px">' + lv.duration + '</div>' +
+      '</div>' +
+      (done ? '<div style="color:#4caf50;font-size:18px">&#10003;</div>' : '<div style="color:var(--text2);font-size:16px">&#9654;</div>') +
+      '</div>';
+  });
+
+  html += '</div>';
+
+  // Use the episode screen but with level selector content
+  document.getElementById('epHeaderTitle').textContent = c.name;
+  document.getElementById('epHeaderSub').textContent = 'Elige un nivel para escuchar';
+  document.getElementById('epLevelBadge').textContent = levels.length + ' niveles';
+  var bannerEl = document.getElementById('epBanner');
+  if (bannerEl) bannerEl.style.display = 'none';
+
+  var contentArea = document.getElementById('epContent');
+  contentArea.innerHTML = html;
+
+  // Hide audio controls
+  var audioBar = document.querySelector('#auditiva-ep .ep-audio-bar');
+  if (audioBar) audioBar.style.display = 'none';
+
+  goTo('auditiva-ep');
+  contentArea.scrollTop = 0;
 }
 
 function openEpisode(countryCode, epIndex) {
@@ -3340,6 +3394,10 @@ function openEpisode(countryCode, epIndex) {
   auditivaCurrentCountry = countryCode;
   auditivaCurrentEp = ep;
   auditivaQuizAnswered = false;
+
+  // Restore audio bar if hidden by level selector
+  var audioBar = document.querySelector('#auditiva-ep .ep-audio-bar');
+  if (audioBar) audioBar.style.display = '';
 
   // Header - documentary style, no guide
   document.getElementById('epHeaderTitle').textContent = ep.title;
