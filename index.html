@@ -33,7 +33,7 @@ document.addEventListener('keydown', function(e) {
   --text:#f0f9ff;--text2:#94a3b8;--text3:rgba(255,255,255,0.3);
 }
 html{font-size:16px;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent;height:100%;overflow:hidden}
-body{font-family:'Inter',sans-serif;height:100vh;height:100dvh;background:#000;color:var(--text);overflow:hidden;position:fixed;width:100%;-webkit-font-smoothing:antialiased;display:flex;justify-content:center}
+body{font-family:'Inter',sans-serif;height:100vh;height:100dvh;background:var(--bg1,#001e38);color:var(--text);overflow:hidden;position:fixed;width:100%;-webkit-font-smoothing:antialiased;display:flex;justify-content:center}
 .app-shell{width:100%;max-width:480px;height:100vh;height:100dvh;position:relative;overflow:hidden;background:linear-gradient(165deg,var(--bg1) 0%,var(--bg2) 50%,var(--bg1) 100%);box-shadow:0 0 40px rgba(0,0,0,0.5)}
 .screen{display:none;height:100vh;height:100dvh;flex-direction:column;align-items:center;padding:20px;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch}
 .screen.active{display:flex}
@@ -954,16 +954,31 @@ window.addEventListener('DOMContentLoaded', async () => {
       });
       if (res.ok) {
         const data = await res.json();
-        showApp(data.email || userEmail);
+        if (data.valid) {
+          showApp(data.email || userEmail);
+        } else {
+          // Acesso revogado (reembolso/cancelamento)
+          token = null;
+          localStorage.removeItem('in_token');
+          localStorage.removeItem('in_email');
+        }
+      } else if (res.status === 403) {
+        // Acesso revogado pelo Hotmart (reembolso/cancelamento)
+        token = null;
+        localStorage.removeItem('in_token');
+        localStorage.removeItem('in_email');
+        const errDiv = document.getElementById('loginError');
+        if (errDiv) errDiv.textContent = 'Seu acesso foi encerrado. Verifique o status da sua compra.';
       } else {
+        // Token expirado ou inválido
         token = null;
         localStorage.removeItem('in_token');
       }
     } catch {
+      // Sem conexão — permite acesso offline com token existente
       showApp(userEmail);
     }
   }
-  // loadLacuna removido
 });
 
 // ══ PWA ══
