@@ -26,7 +26,7 @@ document.addEventListener('keydown', function(e) {
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg1:#001e38;--bg2:#0a3050;--bg3:#002e1a;
+  --bg1:#001e38;--bg2:#0a3050;--bg3:#001e38;
   --gold:#ffcb15;--gold2:#e8a910;
   --green:#36c551;--yellow:#ffcb15;--red:#f87171;--blue:#0090be;--purple:#0090be;
   --glass:rgba(255,255,255,0.06);--border:rgba(255,255,255,0.08);
@@ -403,14 +403,32 @@ body{font-family:'Inter',sans-serif;height:100vh;height:100dvh;background:#000;c
 <div class="app-shell">
 
 <!-- ══ LOGIN ══ -->
-<div id="loginScreen" style="display:flex;align-items:center;justify-content:center;min-height:100vh;padding:20px;background:linear-gradient(135deg,var(--bg1) 0%,var(--bg2) 50%,var(--bg3) 100%)">
-  <div style="max-width:400px;width:100%;text-align:center">
+<div id="loginScreen" style="display:flex;align-items:center;justify-content:center;min-height:100vh;padding:20px;position:relative;overflow:hidden;background:linear-gradient(165deg,#001e38 0%,#0a3050 50%,#001e38 100%)">
+  <!-- Blobs de luz como el site de ventas -->
+  <div style="position:absolute;top:-200px;right:-200px;width:700px;height:700px;background:radial-gradient(circle,rgba(0,144,190,0.10) 0%,transparent 70%);border-radius:50%;filter:blur(80px);pointer-events:none"></div>
+  <div style="position:absolute;bottom:-150px;left:-150px;width:600px;height:600px;background:radial-gradient(circle,rgba(54,197,81,0.08) 0%,transparent 70%);border-radius:50%;filter:blur(80px);pointer-events:none"></div>
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:800px;height:400px;background:radial-gradient(ellipse,rgba(0,144,190,0.06) 0%,transparent 70%);filter:blur(60px);pointer-events:none"></div>
 
-    <!-- LOGO -->
-    <img src="logo.png" alt="Imersão Nativa" style="width:clamp(200px,60vw,280px);margin:0 auto 24px;display:block">
+  <div style="max-width:400px;width:100%;text-align:center;position:relative;z-index:1">
+
+    <!-- APP EXCLUSIVO -->
+    <div style="font-family:'Lora',serif;font-size:clamp(10px,2.5vw,11px);font-weight:300;letter-spacing:4px;color:rgba(255,255,255,0.55);text-transform:uppercase;margin-bottom:14px">APP EXCLUSIVO</div>
+
+    <!-- PROGRAMA badge -->
+    <div style="display:inline-block;background:rgba(0,144,190,0.1);border:1px solid rgba(0,144,190,0.3);border-radius:100px;padding:5px 22px;font-family:'Inter',sans-serif;font-size:clamp(13px,3.5vw,15px);font-weight:700;letter-spacing:3px;color:#0090be;text-transform:uppercase;margin-bottom:16px">PROGRAMA</div>
+
+    <!-- IMERSÃO NATIVA colorido -->
+    <div style="font-family:'Inter',sans-serif;font-size:clamp(40px,12vw,52px);font-weight:700;line-height:1;letter-spacing:-1px;margin-bottom:4px">
+      <span style="color:#60a5fa">I</span><span style="color:#38bdf8">M</span><span style="color:#34d399">E</span><span style="color:#86efac">R</span><span style="color:#bef264">S</span><span style="color:#facc15">Ã</span><span style="color:#fb923c">O</span>
+    </div>
+    <div style="font-family:'Inter',sans-serif;font-size:clamp(13px,3.5vw,15px);font-weight:400;letter-spacing:7px;color:rgba(255,255,255,0.6);text-transform:uppercase;margin-bottom:14px">N A T I V A</div>
+
+    <!-- linha gradiente -->
+    <div style="width:48px;height:2px;background:linear-gradient(90deg,#0090be,#fb923c);border-radius:2px;margin:0 auto 28px"></div>
 
     <!-- Card login -->
-    <div style="background:var(--glass);border:1px solid var(--border);border-radius:18px;padding:28px 24px;backdrop-filter:blur(10px)">
+    <div style="position:relative;background:rgba(0,20,45,0.4);border:1px solid rgba(0,144,190,0.15);border-radius:18px;padding:28px 24px;backdrop-filter:blur(12px);overflow:hidden">
+      <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(0,144,190,0.18) 0%,rgba(0,144,190,0.05) 50%,transparent 80%);pointer-events:none;border-radius:18px"></div>
       <h2 style="font-family:'Inter',sans-serif;font-size:clamp(20px,5vw,24px);font-weight:700;margin-bottom:8px">Bem-vindo!</h2>
       <p style="color:var(--text2);font-size:clamp(12px,3.2vw,13px);font-style:italic;margin-bottom:20px">Entre com seu email de aluno</p>
       <input type="email" id="loginEmail" placeholder="seu@email.com" onkeydown="if(event.key==='Enter')loginUser()" style="width:100%;background:rgba(0,0,0,.3);border:1px solid var(--border);border-radius:12px;padding:14px 16px;color:var(--text);font-size:clamp(14px,3.8vw,15px);font-family:inherit;outline:none;margin-bottom:12px"/>
@@ -428,7 +446,12 @@ body{font-family:'Inter',sans-serif;height:100vh;height:100dvh;background:#000;c
 <div id="home" class="screen active">
 <div class="home-inner">
   <div style="margin-bottom:6px">
-    <img src="logo.png" alt="Imersão Nativa" style="width:clamp(180px,55vw,240px);margin:0 auto 12px;display:block">
+    <div style="display:inline-block;background:rgba(96,165,250,0.15);border:1px solid rgba(96,165,250,0.35);border-radius:20px;padding:4px 14px;font-size:clamp(9px,2.5vw,10px);font-weight:700;letter-spacing:2.5px;color:#60a5fa;text-transform:uppercase;margin-bottom:14px">PROGRAMA EXCLUSIVO</div>
+    <div style="font-family:'Inter',sans-serif;font-size:clamp(40px,12vw,48px);font-weight:700;line-height:1;letter-spacing:-1px;margin-bottom:2px">
+      <span style="color:#60a5fa">I</span><span style="color:#38bdf8">M</span><span style="color:#34d399">E</span><span style="color:#86efac">R</span><span style="color:#bef264">S</span><span style="color:#facc15">Ã</span><span style="color:#fb923c">O</span>
+    </div>
+    <div style="font-family:'Inter',sans-serif;font-size:clamp(13px,3.5vw,15px);font-weight:400;letter-spacing:6px;color:rgba(255,255,255,0.6);text-transform:uppercase;margin-bottom:18px">N A T I V A</div>
+    <div style="width:48px;height:3px;background:linear-gradient(90deg,#60a5fa,#fb923c);border-radius:2px;margin:0 auto 18px"></div>
     <div style="display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:12px">
       <span style="background:rgba(74,222,128,0.15);border:1px solid var(--green);padding:3px 10px;border-radius:14px;font-size:10px;color:var(--green);font-weight:600">●</span>
       <span id="userEmailBadge" style="color:var(--text2);font-size:11px;font-style:italic"></span>
