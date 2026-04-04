@@ -9,98 +9,90 @@ var AUDITIVA_DATA = {
     "episodes": [
       {
         "id": "ar_c1",
-        "title": "Argentina: paradojas de una identidad en tensión",
+        "title": "Argentina profunda: psicoanálisis, cine y el alma porteña",
         "level": "C1",
-        "duration": "7 min",
+        "duration": "4 min",
         "sections": [
           {
             "speaker": "narrator",
-            "text": "Resulta paradójico que Argentina, una nación edificada sobre la inmigración masiva europea de finales del siglo XIX y principios del XX, haya construido un imaginario nacional que oscila perpetuamente entre la nostalgia por una Europa idealizada y la reivindicación de una autenticidad latinoamericana que nunca termina de definirse. Esta tensión fundacional ha permeado la literatura, la política y hasta la forma en que los argentinos se perciben a sí mismos frente al espejo continental."
+            "text": "Argentina ostenta el récord mundial de psicólogos per cápita: más de doscientos por cada cien mil habitantes. Este fenómeno refleja una cultura profundamente introspectiva donde el análisis personal se ha convertido en práctica cotidiana, casi en ritual social tan arraigado como el mate o el asado dominical."
           },
           {
             "speaker": "narrator",
-            "text": "El peronismo, fenómeno político que ha dominado la arena argentina durante más de siete décadas, constituye quizás el caso más emblemático de movimiento populista en América Latina. Surgido como respuesta a las desigualdades estructurales de una oligarquía terrateniente, el peronismo desafió las categorías tradicionales de izquierda y derecha, generando una polarización que, lejos de resolverse, se ha perpetuado como eje vertebrador de la cultura política del país."
+            "text": "El lunfardo, jerga surgida a finales del siglo XIX en los conventillos porteños, constituye un fascinante fenómeno lingüístico de hibridación. Fusionando vocablos italianos, españoles, africanos y amerindios, esta variante evolucionó de argot marginal a lengua poética consagrada por el tango."
           },
           {
             "speaker": "narrator",
-            "text": "La crisis económica de 2001, con el célebre corralito bancario y la sucesión de cinco presidentes en diez días, no fue un accidente aislado sino la culminación de décadas de políticas económicas pendulares. Es imprescindible que se comprenda cómo la alternancia entre modelos liberales y proteccionistas ha configurado un ciclo recurrente de bonanza y colapso que los economistas denominan \"el péndulo argentino\"."
+            "text": "El cine argentino goza de reconocimiento internacional sostenido: dos Óscares a Mejor Película Extranjera, con La historia oficial de Luis Puenzo y El secreto de sus ojos de Juan José Campanella. Ambas obras trascienden el entretenimiento para convertirse en documentos sobre la identidad nacional y la memoria colectiva."
           },
           {
             "speaker": "narrator",
-            "text": "Jorge Luis Borges, acaso el escritor argentino más universal, encarnó en su obra la tensión entre lo local y lo cosmopolita que define al intelectual rioplatense. Sus laberintos metafísicos y sus reflexiones sobre el infinito conviven con milongas, cuchilleros y arrabales porteños. Que un autor tan profundamente argentino haya sido simultáneamente el más universal de los escritores latinoamericanos constituye, en sí mismo, una paradoja borgiana."
+            "text": "Las estancias patagónicas ofrecen una experiencia de turismo rural que preserva técnicas ancestrales de doma y arreo mientras integra al visitante en la filosofía del gaucho: una ética de austeridad, destreza y profundo respeto por los ciclos naturales de la pampa."
           },
           {
             "speaker": "narrator",
-            "text": "El tango, declarado Patrimonio Inmaterial de la Humanidad, trasciende con creces la mera categoría de género musical. Nacido en los conventillos donde cohabitaban inmigrantes italianos, españoles y criollos, el tango fue la primera expresión artística verdaderamente mestiza del Río de la Plata. Su evolución desde los prostíbulos portuarios hasta las salas de concierto europeas refleja las aspiraciones de ascenso social de toda una nación."
+            "text": "El Glaciar San Martín, menos transitado que el Perito Moreno, ofrece al senderista avanzado una inmersión en la dinámica glaciológica. Caminar sobre el hielo azulado implica comprender físicamente los procesos de compresión centenaria que dan forma a estos archivos climáticos de la Tierra."
           },
           {
             "speaker": "narrator",
-            "text": "La diáspora argentina, intensificada tras las sucesivas crisis económicas, ha generado un fenómeno de \"fuga de cerebros\" que plantea interrogantes fundamentales sobre el contrato social. Resulta inquietante que un país con universidades públicas de excelencia reconocida internacionalmente no logre retener a sus profesionales más cualificados, quienes terminan contribuyendo al desarrollo de otras economías."
-          },
-          {
-            "speaker": "narrator",
-            "text": "La cuestión de las Islas Malvinas, lejos de ser un mero diferendo territorial, funciona como catalizador de la identidad nacional argentina. La guerra de 1982, librada bajo una dictadura militar que buscaba legitimarse mediante el fervor patriótico, dejó cicatrices que aún supuran en la memoria colectiva. Es fundamental que se analice cómo este episodio traumático ha sido instrumentalizado por distintos gobiernos para desviar la atención de problemas internos."
-          },
-          {
-            "speaker": "narrator",
-            "text": "La Patagonia, ese vasto territorio que ocupa casi un tercio de la superficie continental argentina, enfrenta hoy dilemas medioambientales que epitomizan la tensión global entre desarrollo extractivista y preservación ecológica. La minería a cielo abierto, la explotación petrolera en Vaca Muerta y el retroceso de los glaciares andinos plantean un debate urgente sobre qué modelo de desarrollo resulta sostenible para las generaciones venideras."
+            "text": "Tierra del Fuego alberga una biodiversidad que desafía la percepción del extremo austral como territorio inhóspito. El bosque magallánico de lengas, las colonias de pingüinos de Magallanes y la presencia del huillín —nutria patagónica en peligro— componen un ecosistema de fragilidad y riqueza extraordinarias."
           }
         ],
         "quiz": [
           {
-            "q": "Según el análisis presentado, ¿por qué el peronismo desafía las categorías políticas tradicionales?",
+            "q": "¿Qué fenómeno lingüístico describe el lunfardo?",
             "ops": [
-              "Porque es exclusivamente un movimiento de izquierda radical",
-              "Porque surgió como respuesta a desigualdades estructurales sin encajar en el eje izquierda-derecha convencional",
-              "Porque fue creado por militares conservadores",
-              "Porque solo representa a la clase media urbana"
+              "Un dialecto regional de Córdoba",
+              "Una jerga de hibridación surgida en Buenos Aires con influencias migratorias",
+              "Una lengua indígena precolombina",
+              "Un registro formal de la literatura gauchesca"
             ],
             "ok": 1,
-            "exp": "El peronismo desafió las categorías tradicionales al surgir como respuesta a desigualdades estructurales sin encajar en el esquema izquierda-derecha."
+            "exp": "El lunfardo es una jerga que fusiona vocablos italianos, españoles, africanos y amerindios."
           },
           {
-            "q": "¿Qué paradoja borgiana se identifica en el texto respecto a la literatura argentina?",
+            "q": "¿Cuántos Óscares a Mejor Película Extranjera ha ganado Argentina?",
             "ops": [
-              "Que Borges nunca escribió sobre Argentina",
-              "Que el escritor más universal de Latinoamérica fue simultáneamente el más profundamente argentino",
-              "Que Borges rechazaba el tango",
-              "Que la literatura argentina no tiene reconocimiento internacional"
-            ],
-            "ok": 1,
-            "exp": "La paradoja es que un autor profundamente argentino haya sido simultáneamente el más universal de los escritores latinoamericanos."
-          },
-          {
-            "q": "¿Qué concepto se utiliza para explicar los ciclos económicos recurrentes de Argentina?",
-            "ops": [
-              "La espiral inflacionaria",
-              "El efecto dominó",
-              "El péndulo argentino entre modelos liberales y proteccionistas",
-              "La trampa de la deuda externa"
+              "Uno",
+              "Tres",
+              "Dos",
+              "Ninguno"
             ],
             "ok": 2,
-            "exp": "Se denomina \"el péndulo argentino\" a la alternancia entre modelos liberales y proteccionistas que genera ciclos de bonanza y colapso."
+            "exp": "Argentina ganó dos Óscares con La historia oficial y El secreto de sus ojos."
           },
           {
-            "q": "¿Qué función cumple la cuestión de las Malvinas según el análisis crítico del texto?",
+            "q": "¿Qué caracteriza al turismo en estancias patagónicas?",
             "ops": [
-              "Es un problema exclusivamente diplomático sin implicaciones internas",
-              "Funciona como catalizador de identidad nacional y ha sido instrumentalizada políticamente",
-              "Solo afecta a las relaciones con el Reino Unido",
-              "Es un tema olvidado por la sociedad argentina"
+              "Deportes extremos en alta montaña",
+              "Integración en técnicas ganaderas y filosofía gaucha",
+              "Estudio académico de fauna",
+              "Degustación de vinos en bodegas"
             ],
             "ok": 1,
-            "exp": "Las Malvinas funcionan como catalizador de identidad nacional y han sido instrumentalizadas por distintos gobiernos para desviar la atención de problemas internos."
+            "exp": "Las estancias integran al visitante en la filosofía del gaucho."
           },
           {
-            "q": "¿Qué dilema contemporáneo enfrenta la Patagonia según el texto?",
+            "q": "¿Qué dato refleja la cultura introspectiva argentina?",
             "ops": [
-              "La falta de población en la región",
-              "La tensión entre desarrollo extractivista y preservación ecológica",
-              "El aislamiento cultural respecto a Buenos Aires",
-              "La disputa territorial con Chile"
+              "Mayor número de filósofos",
+              "Más de 200 psicólogos por cada 100.000 habitantes",
+              "Mayor cantidad de librerías per cápita",
+              "Exportó el psicoanálisis a Europa"
             ],
             "ok": 1,
-            "exp": "La Patagonia enfrenta la tensión entre desarrollo extractivista (minería, petróleo) y preservación ecológica (glaciares, ecosistemas)."
+            "exp": "Argentina tiene más de 200 psicólogos por cada 100.000 habitantes."
+          },
+          {
+            "q": "¿Qué animal en peligro habita Tierra del Fuego?",
+            "ops": [
+              "El cóndor andino",
+              "El huemul patagónico",
+              "El huillín o nutria patagónica",
+              "El puma austral"
+            ],
+            "ok": 2,
+            "exp": "El huillín es una nutria patagónica en peligro de extinción."
           }
         ],
         "vocabLocal": []
@@ -477,98 +469,90 @@ var AUDITIVA_DATA = {
     "episodes": [
       {
         "id": "bo_c1",
-        "title": "Bolivia: plurinacionalidad y descolonización del imaginario",
+        "title": "Bolivia ancestral: cosmología, pueblos originarios y riquezas estratégicas",
         "level": "C1",
-        "duration": "7 min",
+        "duration": "4 min",
         "sections": [
           {
             "speaker": "narrator",
-            "text": "Bolivia constituye un caso excepcional en el panorama latinoamericano al haberse refundado constitucionalmente en 2009 como Estado Plurinacional, un concepto que trasciende el multiculturalismo liberal para proponer una reorganización radical de las relaciones entre el Estado y los pueblos originarios. Esta transformación jurídica, impulsada por el gobierno de Evo Morales, planteó interrogantes fundamentales sobre si era posible descolonizar las estructuras institucionales heredadas de la república criolla."
+            "text": "La astronomía aymara no es una reliquia histórica sino un sistema de conocimiento vivo. Los aymaras desarrollaron un calendario agrícola-astronómico que integra la observación de las Pléyades para predecir lluvias y rendimientos de cosecha. Esta cosmovisión concibe el tiempo de forma espiral, no lineal."
           },
           {
             "speaker": "narrator",
-            "text": "La coexistencia de treinta y seis naciones indígenas reconocidas constitucionalmente dentro de un mismo Estado representa un experimento político sin precedentes en la región. Los pueblos quechua y aymara, mayoritarios en el altiplano, y las naciones guaraní, mojeña y chiquitana de las tierras bajas articulan cosmovisiones radicalmente distintas que el concepto de \"vivir bien\" o sumak qamaña intenta armonizar como alternativa al paradigma desarrollista occidental."
+            "text": "Los uru-chipayas son considerados el pueblo más antiguo de las Américas, anterior a Tiwanaku. Habitando el altiplano boliviano desde hace más de tres mil años, preservan una lengua aislada sin parentesco demostrado con ninguna familia lingüística conocida, un enigma fascinante de la lingüística americana."
           },
           {
             "speaker": "narrator",
-            "text": "La Guerra del Agua de Cochabamba en el año 2000 y la Guerra del Gas en 2003 no fueron meras protestas sociales sino episodios que evidenciaron la fractura entre una élite que había privatizado los recursos naturales y una mayoría indígena y campesina despojada históricamente de sus derechos. Es fundamental que se comprenda cómo estos conflictos prefiguraron el ascenso de los movimientos sociales al poder político formal."
+            "text": "Bolivia posee el mayor depósito de litio del mundo en el salar de Uyuni, mineral esencial para las baterías de la transición energética global. Esta circunstancia convierte al país en actor estratégico del siglo XXI, generando debate sobre soberanía de recursos naturales y desarrollo sostenible."
           },
           {
             "speaker": "narrator",
-            "text": "Potosí, cuyo Cerro Rico alimentó durante siglos las arcas del Imperio español, encarna la paradoja colonial por excelencia: la montaña que financió el capitalismo europeo temprano dejó tras de sí una de las regiones más empobrecidas del continente. Eduardo Galeano inmortalizó esta ironía al describir cómo las venas abiertas de América Latina sangraron con particular intensidad en las minas altiplanas."
+            "text": "El Parque Nacional Madidi ha sido catalogado como uno de los territorios con mayor biodiversidad del planeta: más de mil especies de aves, doscientas cincuenta de mamíferos y una flora que los botánicos estiman aún no ha sido catalogada en su totalidad."
           },
           {
             "speaker": "narrator",
-            "text": "La hoja de coca, satanizada por las políticas antidrogas impuestas desde Washington, posee un significado sagrado y milenario para los pueblos andinos que resulta irreductible a la lógica prohibicionista. La tensión entre la sacralización ancestral de la coca y su criminalización internacional constituye un microcosmos de las relaciones asimétricas entre el Norte y el Sur global, donde la soberanía cultural se ve permanentemente amenazada."
+            "text": "La lucha cholita trasciende el espectáculo para convertirse en símbolo de reivindicación cultural. Mujeres aymaras vestidas con pollera y bombín protagonizan combates teatralizados que articulan una narrativa de empoderamiento y resignificación de la identidad indígena en el contexto urbano de El Alto."
           },
           {
             "speaker": "narrator",
-            "text": "El Salar de Uyuni, además de su espectacular belleza paisajística, alberga las mayores reservas mundiales de litio, mineral indispensable para las baterías de los vehículos eléctricos. Bolivia se enfrenta así al dilema de cómo industrializar este recurso estratégico sin repetir el patrón extractivista que históricamente ha condenado al país a exportar materias primas baratas e importar productos manufacturados costosos."
-          },
-          {
-            "speaker": "narrator",
-            "text": "La religiosidad boliviana, donde conviven rituales católicos con ofrendas a la Pachamama y festividades sincréticas como el Carnaval de Oruro, desafía cualquier intento de clasificación binaria entre lo cristiano y lo pagano. Las challas, las mesas rituales y la devoción al Ekeko revelan una espiritualidad mestiza que ni la evangelización colonial ni la modernidad secularizadora han logrado domesticar por completo."
-          },
-          {
-            "speaker": "narrator",
-            "text": "El futuro de Bolivia como proyecto plurinacional depende en gran medida de su capacidad para resolver la tensión estructural entre las tierras altas, predominantemente indígenas y vinculadas a la economía campesina, y las tierras bajas orientales, donde una élite agroindustrial de ascendencia europea ha resistido históricamente los procesos de redistribución. Que estas dos Bolivias logren articular un proyecto común constituye el mayor desafío político del siglo XXI para esta nación."
+            "text": "El api morado y el tojorí son bebidas ancestrales que condensan siglos de sabiduría culinaria andina. El api, elaborado con maíz morado y especias, y el tojorí, a base de maíz blanco tostado, forman parte del desayuno altiplánico desde tiempos precolombinos."
           }
         ],
         "quiz": [
           {
-            "q": "¿Qué implica la refundación de Bolivia como Estado Plurinacional según el análisis?",
+            "q": "¿Qué hace única a la lengua chipaya?",
             "ops": [
-              "Un cambio meramente simbólico en el nombre del país",
-              "Una reorganización radical de las relaciones Estado-pueblos originarios que trasciende el multiculturalismo liberal",
-              "La eliminación de todas las instituciones republicanas",
-              "La independencia política de cada nación indígena"
+              "Es variante del quechua",
+              "No tiene parentesco con ninguna familia lingüística conocida",
+              "Fue lengua diplomática de Tiwanaku",
+              "Es idéntica al aymara"
             ],
             "ok": 1,
-            "exp": "Implica una reorganización radical de las relaciones entre el Estado y los pueblos originarios, trascendiendo el multiculturalismo liberal."
+            "exp": "La lengua chipaya es un aislado lingüístico sin parentesco demostrado."
           },
           {
-            "q": "¿Por qué Potosí encarna la \"paradoja colonial por excelencia\"?",
+            "q": "¿Por qué el litio boliviano tiene relevancia estratégica?",
             "ops": [
-              "Porque nunca tuvo riquezas minerales importantes",
-              "Porque la montaña que financió el capitalismo europeo dejó tras de sí una de las regiones más empobrecidas",
-              "Porque los colonizadores nunca llegaron a Potosí",
-              "Porque fue la primera ciudad libre de América"
+              "Es el único país que puede exportarlo",
+              "Bolivia patentó su uso industrial",
+              "Es mineral esencial para baterías de la transición energética",
+              "Se usa solo en medicina"
             ],
-            "ok": 1,
-            "exp": "Potosí financió el capitalismo europeo temprano pero dejó tras de sí una de las regiones más empobrecidas del continente."
+            "ok": 2,
+            "exp": "El litio es esencial para baterías de la revolución eléctrica global."
           },
           {
-            "q": "¿Qué dilema estratégico plantea el litio del Salar de Uyuni?",
+            "q": "¿Qué concepción del tiempo tiene la cosmovisión aymara?",
             "ops": [
-              "Cómo exportarlo rápidamente sin procesarlo",
-              "Cómo industrializarlo sin repetir el patrón extractivista histórico",
-              "Cómo impedir que otros países lo exploten",
-              "Cómo reemplazarlo por otros minerales"
+              "Cíclica basada en calendario gregoriano",
+              "Niega el concepto de tiempo",
+              "Espiral, en contraste con la lineal occidental",
+              "Divide en eras geológicas"
             ],
-            "ok": 1,
-            "exp": "El dilema es cómo industrializar el litio sin repetir el patrón de exportar materias primas baratas e importar productos manufacturados costosos."
+            "ok": 2,
+            "exp": "Los aymaras conciben el tiempo de forma espiral."
           },
           {
-            "q": "¿Qué revelan las Guerras del Agua y del Gas según el texto?",
+            "q": "¿Qué simboliza la lucha cholita?",
             "ops": [
-              "Conflictos menores entre municipios vecinos",
-              "La fractura entre una élite privatizadora y una mayoría indígena despojada históricamente",
-              "Disputas comerciales con países vecinos",
-              "Desacuerdos entre partidos políticos tradicionales"
+              "Influencia del wrestling estadounidense",
+              "Reivindicación y resignificación de identidad indígena",
+              "Sincretismo español-aymara",
+              "Preparación para el Carnaval"
             ],
             "ok": 1,
-            "exp": "Evidenciaron la fractura entre una élite privatizadora de recursos naturales y una mayoría indígena y campesina despojada de sus derechos."
+            "exp": "La lucha cholita simboliza empoderamiento y resignificación de la identidad indígena."
           },
           {
-            "q": "¿Cuál es la tensión estructural que amenaza el proyecto plurinacional boliviano?",
+            "q": "¿Qué pueblo es considerado el más antiguo de las Américas?",
             "ops": [
-              "La rivalidad deportiva entre regiones",
-              "El conflicto entre tierras altas indígenas-campesinas y tierras bajas con élite agroindustrial europea",
-              "La disputa por la capital entre Sucre y La Paz",
-              "El desacuerdo sobre el idioma oficial"
+              "Los aymaras",
+              "Los quechuas",
+              "Los uru-chipayas",
+              "Los guaraníes"
             ],
-            "ok": 1,
-            "exp": "La tensión entre tierras altas indígenas y tierras bajas con élite agroindustrial de ascendencia europea constituye el mayor desafío."
+            "ok": 2,
+            "exp": "Los uru-chipayas son considerados el pueblo más antiguo de las Américas."
           }
         ],
         "vocabLocal": []
@@ -940,98 +924,90 @@ var AUDITIVA_DATA = {
     "episodes": [
       {
         "id": "cl_c1",
-        "title": "Chile: neoliberalismo, memoria y reinvención social",
+        "title": "Chile en el cosmos: astronomía, arte y lenguas vivas",
         "level": "C1",
-        "duration": "7 min",
+        "duration": "4 min",
         "sections": [
           {
             "speaker": "narrator",
-            "text": "Chile ocupa un lugar singular en la historia política latinoamericana como laboratorio del neoliberalismo avant la lettre. El golpe militar de 1973, que derrocó al gobierno democráticamente elegido de Salvador Allende, no solo instauró una dictadura represiva sino que inauguró un modelo económico radical diseñado por los llamados \"Chicago Boys\", economistas formados bajo la tutela de Milton Friedman, cuyas políticas de desregulación y privatización se aplicaron en Chile antes que en cualquier otro país del mundo."
+            "text": "El norte de Chile alberga la mayor concentración de observatorios astronómicos del mundo: el ALMA con sesenta y seis antenas, y el VLT del Observatorio Paranal. Más de trescientas noches despejadas al año, altitud extrema y nula polución lumínica convierten al Atacama en el mejor laboratorio astronómico del planeta."
           },
           {
             "speaker": "narrator",
-            "text": "La transición democrática chilena, frecuentemente elogiada como modélica por su carácter pactado y gradual, dejó sin resolver contradicciones profundas que terminarían por estallar décadas después. La Constitución de 1980, redactada durante la dictadura de Pinochet, permaneció vigente con modificaciones hasta bien entrado el siglo XXI, lo cual plantea la inquietante pregunta de hasta qué punto es posible construir una democracia plena sobre cimientos institucionales autoritarios."
+            "text": "Violeta Parra no fue simplemente compositora: fue etnomusicóloga y artista visual. Su labor de recopilación de la música folclórica campesina chilena en los años cincuenta salvó un patrimonio que la modernización amenazaba borrar. Gracias a la vida condensa una visión estética del agradecimiento existencial que trasciende el folklore."
           },
           {
             "speaker": "narrator",
-            "text": "El estallido social de octubre de 2019, detonado por un aumento en la tarifa del metro de Santiago, reveló que las desigualdades acumuladas bajo el modelo neoliberal habían alcanzado un punto de ruptura insostenible. La consigna \"no son treinta pesos, son treinta años\" condensaba magistralmente la frustración de generaciones que habían crecido en un sistema donde la educación, la salud y las pensiones estaban mercantilizadas hasta un grado sin parangón en la región."
+            "text": "Chile reclama soberanía sobre el Territorio Antártico Chileno. Los científicos chilenos llevan décadas estudiando la dinámica del hielo antártico, los patrones de corrientes oceánicas australes y la respuesta ecosistémica al cambio climático, contribuyendo datos cruciales a la ciencia global."
           },
           {
             "speaker": "narrator",
-            "text": "La figura de Gabriela Mistral, primera latinoamericana en recibir el Premio Nobel de Literatura, ha sido objeto de sucesivas reinterpretaciones que reflejan las transformaciones de la sociedad chilena. Mistral, reivindicada inicialmente como maestra rural y poetisa maternal, ha sido releída en décadas recientes desde perspectivas feministas y de diversidad sexual que iluminan dimensiones de su vida y obra deliberadamente ocultadas por el canon oficial."
+            "text": "La revitalización del mapudungun, lengua del pueblo mapuche, es uno de los proyectos lingüísticos más significativos de Chile contemporáneo. Con hasta trescientas mil personas hablantes, el mapudungun posee una estructura morfológica polisintética y aglutinante de extraordinaria complejidad."
           },
           {
             "speaker": "narrator",
-            "text": "El desierto de Atacama, el más árido del planeta, funciona como metáfora involuntaria del modelo extractivista chileno. Bajo su superficie se encuentran las mayores reservas mundiales de cobre y litio, minerales que han sido simultáneamente la bendición y la maldición de la economía nacional. Es imprescindible que se examine cómo la dependencia de las exportaciones mineras ha condicionado las posibilidades de diversificación productiva."
+            "text": "Los murales de Valparaíso constituyen uno de los movimientos de arte urbano más sostenidos de América Latina. Lo que comenzó como expresión espontánea en los cerros porteños ha evolucionado hacia un diálogo permanente entre artistas locales e internacionales, convirtiendo la ciudad en galería al aire libre."
           },
           {
             "speaker": "narrator",
-            "text": "La cuestión mapuche constituye la deuda histórica más antigua y más urgente del Estado chileno. La denominada \"Pacificación de la Araucanía\" en el siglo XIX, eufemismo que encubre una campaña de despojo territorial y violencia sistemática, sentó las bases de un conflicto que se ha intensificado en las últimas décadas ante la expansión de la industria forestal sobre tierras ancestrales reivindicadas por las comunidades originarias."
-          },
-          {
-            "speaker": "narrator",
-            "text": "Pablo Neruda, cuya poesía abarcó desde el surrealismo erótico hasta el compromiso político militante, ejemplifica la tensión irresoluble entre estética y ética que ha atravesado la cultura chilena. Su adhesión al estalinismo y las controversias póstumas sobre aspectos de su vida personal han obligado a la sociedad chilena a confrontar la complejidad moral de sus íconos culturales sin recurrir a simplificaciones maniqueas."
-          },
-          {
-            "speaker": "narrator",
-            "text": "El proceso constituyente chileno, con sus avances y retrocesos, ha evidenciado que la refundación de un contrato social no puede reducirse a un ejercicio técnico-jurídico sino que requiere una deliberación genuina sobre qué tipo de sociedad se aspira a construir. Que Chile haya sido capaz de canalizar institucionalmente una crisis social de tal magnitud constituye, con todas sus imperfecciones, un precedente significativo para la región."
+            "text": "Las iglesias de Chiloé, Patrimonio de la Humanidad, son prodigio de arquitectura vernácula. Construidas sin clavos metálicos mediante ensamble en madera de alerce y ciprés, representan la síntesis entre la misión jesuita y la tradición constructiva indígena chilota, sin equivalente en el mundo."
           }
         ],
         "quiz": [
           {
-            "q": "¿Por qué se describe a Chile como \"laboratorio del neoliberalismo avant la lettre\"?",
+            "q": "¿Qué hace al Atacama ideal para la astronomía?",
             "ops": [
-              "Porque rechazó completamente las políticas neoliberales",
-              "Porque las políticas de desregulación y privatización se aplicaron allí antes que en cualquier otro país",
-              "Porque Chile inventó la teoría económica neoliberal",
-              "Porque el neoliberalismo fracasó únicamente en Chile"
+              "Proximidad al ecuador",
+              "Más de 300 noches despejadas, altitud y nula polución lumínica",
+              "Ausencia total de viento",
+              "Temperatura constante"
             ],
             "ok": 1,
-            "exp": "Las políticas neoliberales diseñadas por los Chicago Boys se aplicaron en Chile antes que en cualquier otro país del mundo."
+            "exp": "El Atacama combina cielos despejados, altitud y nula contaminación lumínica."
           },
           {
-            "q": "¿Qué significaba la consigna \"no son treinta pesos, son treinta años\"?",
+            "q": "¿Cuál fue la contribución etnomusicológica de Violeta Parra?",
             "ops": [
-              "Una queja exclusivamente sobre el transporte público",
-              "La frustración acumulada durante décadas bajo un modelo que mercantilizó servicios básicos",
-              "Un reclamo salarial de los trabajadores del metro",
-              "Una referencia a la inflación de tres décadas"
+              "Componer el himno nacional",
+              "Introducir instrumentos europeos",
+              "Recopilar música folclórica campesina amenazada por la modernización",
+              "Fundar el primer conservatorio"
             ],
-            "ok": 1,
-            "exp": "Condensaba la frustración de generaciones que crecieron en un sistema donde educación, salud y pensiones estaban mercantilizadas."
+            "ok": 2,
+            "exp": "Violeta Parra recopiló música folclórica campesina que la modernización amenazaba borrar."
           },
           {
-            "q": "¿Qué contradicción señala el texto respecto a la transición democrática chilena?",
+            "q": "¿Qué característica lingüística distingue al mapudungun?",
             "ops": [
-              "Que fue demasiado rápida y violenta",
-              "Que la democracia se construyó sobre cimientos institucionales autoritarios como la Constitución de 1980",
-              "Que no hubo ninguna transición real",
-              "Que fue impuesta por países extranjeros"
+              "Es lengua tonal como el mandarín",
+              "Estructura polisintética y aglutinante de gran complejidad",
+              "Tiene alfabeto propio de 42 grafemas",
+              "Parentesco directo con quechua y aymara"
             ],
             "ok": 1,
-            "exp": "La Constitución de 1980, redactada en dictadura, permaneció vigente, planteando si es posible democracia plena sobre cimientos autoritarios."
+            "exp": "El mapudungun tiene estructura morfológica polisintética y aglutinante."
           },
           {
-            "q": "¿Qué eufemismo encubre la violencia contra el pueblo mapuche según el texto?",
+            "q": "¿Qué técnica constructiva caracteriza a las iglesias de Chiloé?",
             "ops": [
-              "La Conquista del Desierto",
-              "La Pacificación de la Araucanía",
-              "La Guerra del Pacífico",
-              "La Reforma Agraria"
+              "Piedra volcánica y cemento",
+              "Ensamble en madera sin clavos metálicos",
+              "Adobe con paja de trigo",
+              "Acero forjado con fachada de madera"
             ],
             "ok": 1,
-            "exp": "La \"Pacificación de la Araucanía\" encubre una campaña de despojo territorial y violencia sistemática contra los mapuche."
+            "exp": "Las iglesias se construyen con ensamble en madera sin clavos."
           },
           {
-            "q": "¿Qué tensión irresoluble ejemplifica la figura de Pablo Neruda?",
+            "q": "¿Cómo describe el episodio el arte mural de Valparaíso?",
             "ops": [
-              "La tensión entre campo y ciudad",
-              "La tensión entre estética y ética en la cultura chilena",
-              "La tensión entre poesía y narrativa",
-              "La tensión entre idioma mapuche y español"
+              "Propaganda política municipal",
+              "Imitación del muralismo mexicano",
+              "Diálogo entre artistas que usa la topografía como soporte narrativo",
+              "Movimiento turístico comercial"
             ],
-            "ok": 1,
-            "exp": "Neruda ejemplifica la tensión irresoluble entre estética y ética que ha atravesado la cultura chilena."
+            "ok": 2,
+            "exp": "Los murales son un diálogo artístico que usa la topografía como soporte narrativo."
           }
         ],
         "vocabLocal": []
@@ -1408,98 +1384,90 @@ var AUDITIVA_DATA = {
     "episodes": [
       {
         "id": "co_c1",
-        "title": "Colombia: violencia, resiliencia y la búsqueda de la paz",
+        "title": "Colombia plural: dialectos, arte y culturas del Pacífico",
         "level": "C1",
-        "duration": "7 min",
+        "duration": "4 min",
         "sections": [
           {
             "speaker": "narrator",
-            "text": "Colombia ha sido durante más de medio siglo el escenario de uno de los conflictos armados más prolongados y complejos del hemisferio occidental. La violencia, lejos de ser un fenómeno coyuntural, hunde sus raíces en desigualdades estructurales que se remontan a la concentración latifundista de la tierra y a la exclusión política institucionalizada mediante el Frente Nacional, pacto bipartidista que durante dieciséis años excluyó del poder a cualquier fuerza que no fuera liberal o conservadora."
+            "text": "Colombia exhibe una diversidad dialectal del español sin parangón en Latinoamérica: el voseo antioqueño, el tuteo costeño, el yeísmo del interior y la entonación caribeña de Barranquilla son variedades que coexisten donde la geografía actuó como fronteras naturales favoreciendo la diferenciación lingüística."
           },
           {
             "speaker": "narrator",
-            "text": "El narcotráfico, que alcanzó su apogeo con los carteles de Medellín y Cali en las décadas de los ochenta y noventa, no puede comprenderse como un fenómeno aislado del contexto socioeconómico colombiano. Es imperativo que se analice cómo la ausencia del Estado en vastas regiones rurales, combinada con la demanda insaciable de cocaína en los países consumidores del Norte global, creó las condiciones estructurales para que economías ilícitas sustituyeran al Estado como proveedoras de empleo e infraestructura."
+            "text": "Fernando Botero elaboró un lenguaje plástico de coherencia filosófica extraordinaria: la volumetría exagerada no es capricho estético sino método de ampliar la superficie sensorial de la obra. Cada metro cuadrado de piel pintada se convierte en espacio donde la luz y la emoción se intensifican mediante la dilatación formal."
           },
           {
             "speaker": "narrator",
-            "text": "Gabriel García Márquez, al recibir el Nobel de Literatura en 1982, declaró que la realidad latinoamericana superaba cualquier ficción. Su realismo mágico no constituía una estilización literaria caprichosa sino un instrumento epistemológico para aprehender una realidad donde lo extraordinario y lo cotidiano se entrelazan de maneras que el racionalismo europeo resulta incapaz de capturar. Macondo, lejos de ser un pueblo imaginario, es el espejo hiperbólico de Colombia entera."
+            "text": "La Ciudad Perdida, o Teyuna, construida por la cultura Tairona hacia el siglo IX, precede en varios siglos a Machu Picchu. Oculta bajo la selva de la Sierra Nevada de Santa Marta hasta 1972, sus terrazas circulares y sistema hidráulico revelan un grado de planificación urbana asombroso."
           },
           {
             "speaker": "narrator",
-            "text": "El Acuerdo de Paz firmado con las FARC en 2016 representó un hito histórico cuya implementación, no obstante, ha revelado las enormes dificultades de transitar de la guerra a la reconciliación. La reincorporación de excombatientes, la sustitución de cultivos ilícitos y la reforma rural integral constituyen promesas cuyo cumplimiento parcial alimenta tanto la esperanza como el escepticismo entre las comunidades más afectadas por el conflicto."
+            "text": "El currulao del Pacífico colombiano, declarado Patrimonio Inmaterial, es una música ritual donde los tambores cununos, los bombos y el canto responsorial construyen una gramática sonora de raíz bantú que sobrevivió al trauma histórico de la diáspora africana."
           },
           {
             "speaker": "narrator",
-            "text": "La biodiversidad colombiana, la segunda más rica del planeta después de Brasil, enfrenta amenazas que se han intensificado paradójicamente tras el acuerdo de paz. La retirada de las FARC de vastos territorios selváticos generó un vacío que fue rápidamente ocupado por otros actores armados y por la deforestación acelerada, lo cual evidencia que la conservación ambiental está indisolublemente ligada a la gobernanza territorial y a la justicia social."
+            "text": "Colombia alberga más especies de orquídeas que cualquier otro país: aproximadamente cuatro mil catalogadas, el quince por ciento del total mundial. La diversidad altitudinal del territorio crea una multiplicidad de nichos ecológicos donde la especiación ha alcanzado niveles extraordinarios."
           },
           {
             "speaker": "narrator",
-            "text": "Bogotá ha experimentado una transformación urbanística que la ha convertido en referente internacional de innovación social. El sistema TransMilenio, las ciclovías dominicales y las bibliotecas públicas en barrios marginales representan políticas que desafiaron el determinismo que condenaba a las ciudades latinoamericanas al caos. No obstante, la segregación socioespacial persiste y la gentrificación amenaza con revertir logros arduamente conquistados."
-          },
-          {
-            "speaker": "narrator",
-            "text": "La diáspora colombiana, una de las más numerosas de América Latina, ha reconfigurado comunidades enteras en ciudades como Miami, Nueva York y Madrid. Esta migración, motivada tanto por la violencia como por la búsqueda de oportunidades económicas, ha generado un fenómeno de remesas que sostiene economías locales pero que simultáneamente profundiza la dependencia de ingresos externos y la desarticulación del tejido social comunitario."
-          },
-          {
-            "speaker": "narrator",
-            "text": "El vallenato, la cumbia y la champeta, géneros musicales que nacieron en las comunidades afrocolombianas e indígenas del Caribe, han recorrido un camino desde la marginalización hasta el reconocimiento patrimonial que refleja las transformaciones en las jerarquías culturales del país. Que ritmos otrora despreciados por las élites capitalinas sean hoy emblemas de la identidad nacional ilustra cómo la cultura popular termina por subvertir las taxonomías impuestas desde el poder."
+            "text": "La cocina del Pacífico colombiano posee una sofisticación técnica notable. El encocado, guiso de frutos del mar en leche de coco con hierbas autóctonas, y el tapao, hervido de pescado con plátano verde, incorporan ingredientes africanos, indígenas y coloniales en combinaciones de profundidad excepcional."
           }
         ],
         "quiz": [
           {
-            "q": "¿Qué factores estructurales explican el surgimiento del narcotráfico según el análisis?",
+            "q": "¿Qué factores explican la diversidad dialectal colombiana?",
             "ops": [
-              "Exclusivamente la ambición de individuos criminales",
-              "La ausencia estatal en regiones rurales combinada con la demanda de cocaína del Norte global",
-              "La legalización de las drogas en Colombia",
-              "La influencia de gobiernos extranjeros directamente"
+              "Distintas colonias europeas",
+              "La geografía de cordilleras y selvas como frontera natural",
+              "Política gubernamental de preservación",
+              "Aislamiento de comunidades indígenas"
             ],
             "ok": 1,
-            "exp": "La ausencia del Estado en regiones rurales y la demanda de cocaína del Norte global crearon las condiciones estructurales."
+            "exp": "La geografía de cordilleras y selvas actuó como fronteras naturales favoreciendo la diferenciación."
           },
           {
-            "q": "¿Qué paradoja ambiental generó el acuerdo de paz con las FARC?",
+            "q": "¿Cómo describe Botero su estilo volumétrico?",
             "ops": [
-              "La selva creció sin control",
-              "La retirada de las FARC dejó un vacío ocupado por deforestación y otros actores armados",
-              "Se prohibió toda actividad económica en zonas rurales",
-              "La biodiversidad aumentó inmediatamente"
+              "Crítica a la obesidad",
+              "Influencia precolombina",
+              "Lo monumental: método para ampliar la superficie sensorial",
+              "Técnica del barroco español"
             ],
-            "ok": 1,
-            "exp": "La retirada de las FARC generó un vacío rápidamente ocupado por otros actores armados y por deforestación acelerada."
+            "ok": 2,
+            "exp": "Botero lo llama 'lo monumental', un método de ampliar la superficie sensorial de la obra."
           },
           {
-            "q": "¿Qué función cumplía el realismo mágico de García Márquez según el texto?",
+            "q": "¿Qué distingue a Ciudad Perdida arquitectónicamente?",
             "ops": [
-              "Era un mero ejercicio estilístico decorativo",
-              "Constituía un instrumento epistemológico para aprehender una realidad que el racionalismo europeo no puede capturar",
-              "Buscaba entretener al público europeo",
-              "Era una copia de técnicas literarias francesas"
+              "Pirámides similares a Teotihuacán",
+              "Piedra volcánica negra",
+              "Terrazas circulares con sistema hidráulico avanzado",
+              "Comunicación solo por canales acuáticos"
             ],
-            "ok": 1,
-            "exp": "El realismo mágico era un instrumento epistemológico para aprehender una realidad donde lo extraordinario y lo cotidiano se entrelazan."
+            "ok": 2,
+            "exp": "Ciudad Perdida tiene terrazas circulares y sistema hidráulico de planificación avanzada."
           },
           {
-            "q": "¿Qué revela la evolución del vallenato y la cumbia sobre la sociedad colombiana?",
+            "q": "¿Cuál es el origen musical del currulao?",
             "ops": [
-              "Que la música siempre fue valorada igualmente",
-              "Que la cultura popular termina por subvertir las jerarquías culturales impuestas desde el poder",
-              "Que las élites siempre apoyaron la música caribeña",
-              "Que estos géneros fueron creados por las clases altas"
+              "Síntesis española e indígena",
+              "Gramática sonora de raíz bantú de la diáspora africana",
+              "Versión urbana de la cumbia",
+              "Adaptación del vallenato"
             ],
             "ok": 1,
-            "exp": "Ritmos otrora despreciados por las élites son hoy emblemas nacionales, ilustrando cómo la cultura popular subvierte taxonomías del poder."
+            "exp": "El currulao tiene raíz bantú que sobrevivió a la diáspora africana."
           },
           {
-            "q": "¿Qué efecto dual tienen las remesas de la diáspora colombiana?",
+            "q": "¿Por qué Colombia tiene tantas orquídeas?",
             "ops": [
-              "Solo benefician a las familias receptoras",
-              "Sostienen economías locales pero profundizan la dependencia de ingresos externos y desarticulan el tejido social",
-              "No tienen ningún impacto económico significativo",
-              "Solo benefician a los migrantes en el exterior"
+              "Importación de especies exóticas",
+              "El Amazonas crea microclima único",
+              "Diversidad altitudinal que genera múltiples nichos ecológicos",
+              "Colonizadores introdujeron variedades asiáticas"
             ],
-            "ok": 1,
-            "exp": "Las remesas sostienen economías locales pero profundizan la dependencia de ingresos externos y desarticulan el tejido social."
+            "ok": 2,
+            "exp": "La diversidad altitudinal crea nichos ecológicos que favorecen la especiación."
           }
         ],
         "vocabLocal": []
@@ -1876,98 +1844,90 @@ var AUDITIVA_DATA = {
     "episodes": [
       {
         "id": "cr_c1",
-        "title": "Costa Rica: excepcionalidad democrática y dilemas ecológicos",
+        "title": "Costa Rica profunda: oro precolombino, cosmología indígena y mar vivo",
         "level": "C1",
-        "duration": "7 min",
+        "duration": "4 min",
         "sections": [
           {
             "speaker": "narrator",
-            "text": "Costa Rica ha cultivado durante décadas una narrativa de excepcionalidad en el contexto centroamericano que merece ser examinada con rigor crítico. La abolición del ejército en 1948, frecuentemente citada como gesto visionario, fue en realidad el resultado de una guerra civil cuyo bando vencedor consolidó su poder eliminando la institución militar que podría haberlo desafiado. Que esta decisión estratégica haya devenido en virtud democrática constituye una de las ironías más productivas de la historia regional."
+            "text": "El Museo del Oro Precolombino de San José alberga la colección más importante de orfebrería indígena de Centroamérica. Los artesanos dominaron la técnica de fundición a la cera perdida y la aleación tumbaga para crear piezas rituales que codificaban jerarquías cósmicas y ciclos agrícolas."
           },
           {
             "speaker": "narrator",
-            "text": "El sistema de áreas protegidas costarricense, que abarca aproximadamente el veintiséis por ciento del territorio nacional, ha posicionado al país como referente mundial en conservación ambiental. Sin embargo, es imprescindible que se cuestione si este modelo es genuinamente sostenible o si depende en exceso del ecoturismo internacional, una industria que, al vincular la preservación al consumo, reproduce paradójicamente las lógicas del capitalismo que generan la destrucción ecológica."
+            "text": "La cosmología del pueblo bribri concibe el cacao como el árbol sagrado que sostiene el cosmos. Su preparación y consumo ritual están regulados por conocimientos transmitidos exclusivamente a través de linajes matrilineales en una de las sociedades indígenas más sofisticadas de América Central."
           },
           {
             "speaker": "narrator",
-            "text": "La democracia costarricense, la más longeva de América Latina en funcionamiento ininterrumpido, no está exenta de fisuras. El bipartidismo que durante décadas alternó a Liberación Nacional y al Partido Unidad Social Cristiana en el poder se fragmentó a principios del siglo XXI, dando lugar a un paisaje político atomizado donde la desafección ciudadana y el abstencionismo creciente plantean interrogantes sobre la salud del sistema representativo."
+            "text": "La Isla del Coco, a quinientos kilómetros de la costa, es considerada el equivalente oceánico de las Galápagos. Sus aguas albergan concentraciones extraordinarias de tiburones martillo y mantarrayas oceánicas. Su aislamiento ha generado una biodiversidad marina endémica sin paralelo en el Pacífico oriental."
           },
           {
             "speaker": "narrator",
-            "text": "La inmigración nicaragüense, que constituye la comunidad extranjera más numerosa del país, ha puesto a prueba los valores de tolerancia y solidaridad que Costa Rica proclama como parte de su identidad nacional. La xenofobia latente, que aflora periódicamente en discursos populistas y en la discriminación laboral cotidiana, revela que la autoproclamada \"Suiza centroamericana\" no es inmune a las pulsiones excluyentes que afectan a toda sociedad receptora de migrantes."
+            "text": "Los manglares costarricenses actúan como infraestructura ecológica multifuncional: criaderos de fauna marina, barreras contra huracanes y sumideros de carbono más eficientes que los bosques tropicales terrestres. Costa Rica los gestiona como capital natural estratégico."
           },
           {
             "speaker": "narrator",
-            "text": "El café costarricense, cuyo cultivo transformó la estructura socioeconómica del país en el siglo XIX al crear una clase media rural de pequeños propietarios, ofrece un contraste instructivo con las economías de enclave bananero que predominaron en el resto de Centroamérica. Esta diferencia en la estructura agraria temprana contribuye a explicar, aunque no de manera determinista, la divergencia en las trayectorias políticas de la región."
+            "text": "La tradición teatral costarricense, articulada en torno al Teatro Nacional de San José inaugurado en 1897, ha dado lugar a una escena dramatúrgica que equilibra repertorio universal con dramaturgia nacional. Autores como Samuel Rovinski desarrollaron una dramaturgia que explora la identidad tica desde la ironía social."
           },
           {
             "speaker": "narrator",
-            "text": "La educación pública gratuita y obligatoria, pilar del contrato social costarricense desde el siglo XIX, enfrenta hoy presiones que amenazan su carácter igualitario. La proliferación de instituciones privadas, la brecha entre educación urbana y rural, y la insuficiente inversión en infraestructura educativa generan un sistema cada vez más estratificado que contradice el discurso oficial de igualdad de oportunidades."
-          },
-          {
-            "speaker": "narrator",
-            "text": "La biodiversidad de Costa Rica, desproporcionada en relación con su reducido territorio, plantea dilemas éticos sobre quién tiene derecho a beneficiarse del patrimonio genético. La biopiratería, práctica mediante la cual corporaciones farmacéuticas patentan compuestos derivados de conocimientos tradicionales indígenas sin compensación adecuada, constituye una forma contemporánea de extractivismo que el marco legal costarricense ha intentado combatir con resultados dispares."
-          },
-          {
-            "speaker": "narrator",
-            "text": "El \"pura vida\", expresión omnipresente que los costarricenses emplean como saludo, despedida y filosofía vital, ha sido simultáneamente celebrado como reflejo de una sociedad pacífica y criticado como mecanismo de evasión que impide confrontar problemas estructurales. Que una nación se defina a través de una expresión que invita a la conformidad plantea la pregunta de si el optimismo costarricense es fortaleza genuina o anestesia social."
+            "text": "Costa Rica lideró la innovación en procesamiento del café con el método honey, que deja parte de la pulpa adherida al grano durante el secado, potenciando dulzura y complejidad aromática. Esta innovación ha sido adoptada por caficultores de especialidad en todo el mundo."
           }
         ],
         "quiz": [
           {
-            "q": "¿Qué ironía histórica señala el texto sobre la abolición del ejército en Costa Rica?",
+            "q": "¿Qué es la tumbaga en orfebrería precolombina?",
             "ops": [
-              "Que fue una decisión tomada por los militares mismos",
-              "Que una decisión estratégica del bando vencedor de una guerra civil deviniera en virtud democrática",
-              "Que Estados Unidos impuso la abolición",
-              "Que nunca existió realmente un ejército costarricense"
+              "Tipo de horno de cerámica",
+              "Aleación de oro con cobre para artefactos rituales",
+              "Nombre de un dios chorotega",
+              "Técnica de grabado en piedra"
             ],
             "ok": 1,
-            "exp": "La abolición fue resultado estratégico del bando vencedor de una guerra civil, y su transformación en virtud democrática constituye una ironía productiva."
+            "exp": "La tumbaga es una aleación de oro con cobre usada para crear artefactos rituales."
           },
           {
-            "q": "¿Qué paradoja identifica el texto en el modelo de ecoturismo costarricense?",
+            "q": "¿Qué rol cumple el cacao en la cosmología bribri?",
             "ops": [
-              "Que destruye más bosques de los que protege",
-              "Que al vincular preservación al consumo, reproduce las lógicas del capitalismo que causan destrucción ecológica",
-              "Que no genera ningún ingreso económico",
-              "Que solo beneficia a turistas extranjeros"
+              "Cultivo comercial",
+              "Representa al sol",
+              "Árbol sagrado que sostiene el cosmos",
+              "Moneda de intercambio"
             ],
-            "ok": 1,
-            "exp": "El ecoturismo, al vincular preservación al consumo, reproduce paradójicamente las lógicas capitalistas que generan destrucción ecológica."
+            "ok": 2,
+            "exp": "El cacao es el árbol sagrado que sostiene el cosmos en la tradición bribri."
           },
           {
-            "q": "¿Cómo explica el texto la divergencia política de Costa Rica respecto al resto de Centroamérica?",
+            "q": "¿Por qué la Isla del Coco se compara con las Galápagos?",
             "ops": [
-              "Por la intervención directa de Estados Unidos",
-              "Por la estructura agraria cafetalera de pequeños propietarios versus las economías de enclave bananero regionales",
-              "Por su ubicación geográfica privilegiada",
-              "Por la influencia de la inmigración europea masiva"
+              "Parte del mismo archipiélago",
+              "Biodiversidad marina endémica como laboratorio evolutivo",
+              "Administrada por Costa Rica y Ecuador",
+              "Base de Darwin"
             ],
             "ok": 1,
-            "exp": "La estructura agraria cafetalera de pequeños propietarios, distinta del enclave bananero regional, contribuye a explicar la divergencia."
+            "exp": "Su biodiversidad marina endémica la convierte en laboratorio evolutivo."
           },
           {
-            "q": "¿Qué crítica se plantea sobre la expresión \"pura vida\"?",
+            "q": "¿Qué ventaja tienen los manglares sobre bosques terrestres?",
             "ops": [
-              "Que es una expresión importada de otro país",
-              "Que podría funcionar como mecanismo de evasión que impide confrontar problemas estructurales",
-              "Que nadie la usa realmente en Costa Rica",
-              "Que solo la emplean los turistas"
+              "Más oxígeno por hectárea",
+              "Son sumideros de carbono más eficientes",
+              "Más biodiversidad de aves",
+              "Se regeneran en un año"
             ],
             "ok": 1,
-            "exp": "Se cuestiona si el \"pura vida\" es fortaleza genuina o anestesia social que impide confrontar problemas estructurales."
+            "exp": "Los manglares son sumideros de carbono más eficientes que los bosques terrestres."
           },
           {
-            "q": "¿Qué forma contemporánea de extractivismo enfrenta la biodiversidad costarricense?",
+            "q": "¿Qué distingue al método honey del café?",
             "ops": [
-              "La minería de oro a cielo abierto",
-              "La biopiratería: corporaciones que patentan compuestos de conocimientos tradicionales sin compensación",
-              "La tala ilegal de maderas preciosas",
-              "La exportación masiva de animales exóticos"
+              "Usa miel de abeja",
+              "Fermenta 96 horas",
+              "Deja pulpa adherida al grano potenciando dulzura y aroma",
+              "Inmersión en agua de manantial"
             ],
-            "ok": 1,
-            "exp": "La biopiratería permite a corporaciones patentar compuestos derivados de conocimientos tradicionales indígenas sin compensación adecuada."
+            "ok": 2,
+            "exp": "El método honey deja pulpa adherida al grano para potenciar dulzura y complejidad."
           }
         ],
         "vocabLocal": []
@@ -2344,98 +2304,90 @@ var AUDITIVA_DATA = {
     "episodes": [
       {
         "id": "cu_c1",
-        "title": "Cuba: revolución, utopía y las contradicciones del socialismo caribeño",
+        "title": "Cuba: tambores, cine y letras universales",
         "level": "C1",
-        "duration": "7 min",
+        "duration": "4 min",
         "sections": [
           {
             "speaker": "narrator",
-            "text": "Cuba constituye quizás el caso más polarizante de la política latinoamericana contemporánea, un país donde cualquier análisis equilibrado resulta sospechoso para ambos bandos. La Revolución de 1959, que derrocó la dictadura de Fulgencio Batista con amplio respaldo popular, inauguró un proyecto socialista que durante más de seis décadas ha sido simultáneamente idealizado como bastión de la justicia social y denunciado como régimen autoritario, sin que ninguna de estas caracterizaciones unidimensionales logre capturar la complejidad de la experiencia cubana."
+            "text": "Los tambores batá constituyen el corazón sonoro de la tradición yoruba en Cuba. Estas percusiones sagradas, tocadas en tríos con distintos registros, se utilizan en ceremonias de invocación. La UNESCO reconoció en 2008 su carácter de patrimonio inmaterial, destacando su complejidad rítmica."
           },
           {
             "speaker": "narrator",
-            "text": "Los logros de Cuba en educación y salud pública, ampliamente documentados por organismos internacionales, resultan tanto más notables cuanto se han conseguido bajo el peso de un embargo económico estadounidense que ha durado más de sesenta años. Que una isla caribeña con recursos limitados haya alcanzado indicadores de desarrollo humano comparables a los de naciones industrializadas plantea preguntas incómodas tanto para los defensores del capitalismo como para quienes reducen el socialismo cubano a mera dictadura."
+            "text": "El Instituto Cubano del Arte e Industria Cinematográficos transformó el cine latinoamericano. Directores como Tomás Gutiérrez Alea elevaron el género con obras de sofisticación narrativa sin precedentes. Memorias del subdesarrollo (1968) se considera referente mundial del cine de autor."
           },
           {
             "speaker": "narrator",
-            "text": "El período especial que siguió al colapso de la Unión Soviética en los años noventa sometió a la sociedad cubana a privaciones materiales extremas que pusieron a prueba los límites de la resiliencia humana. La dependencia de un socio comercial único reveló la vulnerabilidad estructural de un modelo económico que, pese a sus aspiraciones soberanistas, no había logrado diversificar suficientemente su base productiva ni superar la condición monoexportadora heredada de la era colonial azucarera."
+            "text": "La rumba cubana, Patrimonio Cultural Inmaterial de la UNESCO desde 2016, surgió en los solares habaneros del siglo XIX. Sus tres modalidades —yambú, columbia y guaguancó— codifican formas distintas de cortejo, celebración y resistencia cultural en cada movimiento."
           },
           {
             "speaker": "narrator",
-            "text": "La cultura cubana, desde la literatura de Alejo Carpentier y José Lezama Lima hasta la nueva trova de Silvio Rodríguez y Pablo Milanés, ha producido un corpus artístico que trasciende las fronteras ideológicas. Es significativo que algunas de las obras más lúcidas sobre las contradicciones del proceso revolucionario hayan surgido precisamente de intelectuales comprometidos con el proyecto socialista, cuya crítica desde dentro resulta más devastadora que cualquier impugnación externa."
+            "text": "Alejo Carpentier formuló lo real maravilloso americano, mientras José Lezama Lima construyó en Paradiso un universo barroco de densa erudición poética. Ambos escritores demostraron que el idioma español podía desplegarse con una prodigalidad expresiva radicalmente nueva."
           },
           {
             "speaker": "narrator",
-            "text": "La diáspora cubana, concentrada mayoritariamente en el sur de Florida, ha configurado un actor político transnacional cuya influencia sobre la política exterior estadounidense hacia la isla resulta desproporcionada. El exilio cubano, lejos de constituir un bloque monolítico, alberga diferencias generacionales profundas entre quienes abandonaron Cuba en los primeros años de la revolución y las oleadas migratorias posteriores, motivadas más por razones económicas que estrictamente políticas."
+            "text": "El cimarrón —esclavo fugitivo que huía a comunidades libres llamadas palenques— dejó herencia cultural profunda. Miguel Barnet recogió este legado en Biografía de un cimarrón, obra testimonial que convirtió la memoria oral en literatura mayor y definió un género narrativo propio."
           },
           {
             "speaker": "narrator",
-            "text": "La Habana, con su arquitectura colonial en estado de deterioro majestuoso, funciona como metáfora involuntaria del propio proyecto revolucionario: una estructura grandiosa cuyo mantenimiento ha resultado insostenible. La restauración selectiva del casco histórico para el turismo internacional coexiste con el hacinamiento y las condiciones precarias en que vive la mayoría de los habaneros, evidenciando las tensiones entre la economía dolarizada del turismo y la economía del peso en que transcurre la vida cotidiana."
-          },
-          {
-            "speaker": "narrator",
-            "text": "La relación de Cuba con su propia memoria es particularmente compleja. El relato oficial de la revolución como epopeya heroica ininterrumpida coexiste con memorias subalternas de represión, censura y exilio forzado que pugnan por encontrar espacio en el discurso público. Que una sociedad no pueda procesar libremente su pasado constituye un obstáculo fundamental para la construcción de un futuro genuinamente democrático y plural."
-          },
-          {
-            "speaker": "narrator",
-            "text": "Las reformas económicas graduales implementadas en las últimas décadas, desde la autorización del trabajo por cuenta propia hasta la apertura a la inversión extranjera en sectores estratégicos, han generado desigualdades inéditas en una sociedad que durante décadas proclamó la igualdad como valor supremo. Cuba se enfrenta así al dilema existencial de cómo introducir mecanismos de mercado sin desmantelar las conquistas sociales que constituyen la principal fuente de legitimidad del sistema."
+            "text": "La Oficina del Historiador de La Habana desarrolló una filosofía de restauración singular: recuperar edificios coloniales sin convertirlos en museos inertes, reintegrándolos a la vida social. Este modelo equilibra conservación rigurosa con generación de recursos para los residentes del centro histórico."
           }
         ],
         "quiz": [
           {
-            "q": "¿Por qué el texto califica a Cuba como \"el caso más polarizante\" de la política latinoamericana?",
+            "q": "¿En qué año reconoció la UNESCO los tambores batá?",
             "ops": [
-              "Porque nadie tiene opinión sobre Cuba",
-              "Porque cualquier análisis equilibrado resulta sospechoso para ambos bandos ideológicos",
-              "Porque Cuba no tiene relevancia política",
-              "Porque todos coinciden en su evaluación"
+              "2003",
+              "2008",
+              "2012",
+              "2016"
             ],
             "ok": 1,
-            "exp": "Cualquier análisis equilibrado resulta sospechoso, y ninguna caracterización unidimensional captura la complejidad cubana."
+            "exp": "La UNESCO reconoció los tambores batá en 2008."
           },
           {
-            "q": "¿Qué reveló el período especial sobre el modelo económico cubano?",
+            "q": "¿Qué concepto literario formuló Alejo Carpentier?",
             "ops": [
-              "Que era completamente autosuficiente",
-              "La vulnerabilidad de depender de un socio único sin haber diversificado la base productiva",
-              "Que el turismo siempre fue la base económica",
-              "Que Cuba no necesitaba comercio exterior"
+              "El realismo mágico",
+              "Lo real maravilloso americano",
+              "El boom latinoamericano",
+              "La literatura del absurdo"
             ],
             "ok": 1,
-            "exp": "Reveló la vulnerabilidad de un modelo que no diversificó su base productiva ni superó la condición monoexportadora."
+            "exp": "Carpentier formuló lo real maravilloso americano."
           },
           {
-            "q": "¿Qué función cumple La Habana como metáfora según el análisis?",
+            "q": "¿Cuántas modalidades tiene la rumba cubana?",
             "ops": [
-              "Representa la modernización exitosa del país",
-              "Su arquitectura deteriorada pero grandiosa refleja un proyecto revolucionario cuyo mantenimiento resultó insostenible",
-              "Simboliza la influencia estadounidense",
-              "Representa exclusivamente el turismo caribeño"
+              "Dos",
+              "Cuatro",
+              "Tres",
+              "Cinco"
             ],
-            "ok": 1,
-            "exp": "La Habana funciona como metáfora del proyecto revolucionario: una estructura grandiosa cuyo mantenimiento ha resultado insostenible."
+            "ok": 2,
+            "exp": "La rumba tiene tres modalidades: yambú, columbia y guaguancó."
           },
           {
-            "q": "¿Qué dilema existencial enfrentan las reformas económicas recientes?",
+            "q": "¿Qué eran los palenques?",
             "ops": [
-              "Cómo eliminar toda la economía estatal inmediatamente",
-              "Cómo introducir mecanismos de mercado sin desmantelar las conquistas sociales que legitiman el sistema",
-              "Cómo volver al modelo soviético",
-              "Cómo atraer exclusivamente inversión estadounidense"
+              "Bohíos",
+              "Comunidades libres de cimarrones",
+              "Quilombos",
+              "Caseríos"
             ],
             "ok": 1,
-            "exp": "El dilema es introducir mecanismos de mercado sin desmantelar conquistas sociales que son la principal fuente de legitimidad del sistema."
+            "exp": "Los palenques eran comunidades libres de esclavos fugitivos."
           },
           {
-            "q": "¿Por qué la crítica intelectual \"desde dentro\" resulta más significativa según el texto?",
+            "q": "¿Qué película de Gutiérrez Alea es referente del cine de autor?",
             "ops": [
-              "Porque los intelectuales externos nunca critican a Cuba",
-              "Porque la crítica de intelectuales comprometidos con el proyecto resulta más devastadora que cualquier impugnación externa",
-              "Porque los intelectuales cubanos no tienen formación académica",
-              "Porque la crítica externa es siempre más objetiva"
+              "Fresa y chocolate",
+              "La muerte de un burócrata",
+              "Memorias del subdesarrollo",
+              "Guantanamera"
             ],
-            "ok": 1,
-            "exp": "La crítica desde dentro, de intelectuales comprometidos con el socialismo, resulta más devastadora que cualquier impugnación externa."
+            "ok": 2,
+            "exp": "Memorias del subdesarrollo (1968) es referente mundial del cine de autor."
           }
         ],
         "vocabLocal": []
@@ -2807,98 +2759,90 @@ var AUDITIVA_DATA = {
     "episodes": [
       {
         "id": "ec_c1",
-        "title": "Ecuador: megadiversidad, extractivismo y los derechos de la naturaleza",
+        "title": "Ecuador: evolución, pueblos ancestrales y biodiversidad extrema",
         "level": "C1",
-        "duration": "7 min",
+        "duration": "4 min",
         "sections": [
           {
             "speaker": "narrator",
-            "text": "Ecuador se distingue en el panorama jurídico mundial por haber sido el primer país en otorgar derechos constitucionales a la naturaleza en 2008, un giro paradigmático que trascendió el ambientalismo convencional para proponer una ontología donde la Pachamama deja de ser objeto de protección y deviene sujeto de derechos. Esta innovación, enraizada en la cosmovisión andina del sumak kawsay o buen vivir, plantea el desafío de cómo operacionalizar jurídicamente un concepto que subvierte los fundamentos del derecho occidental."
+            "text": "Los pinzones de Darwin en las Galápagos proporcionaron la evidencia empírica de la selección natural. Cada isla moldeó picos con morfologías distintas adaptadas a nichos específicos. Este fenómeno de radiación adaptativa sigue siendo modelo de estudio en biología evolutiva."
           },
           {
             "speaker": "narrator",
-            "text": "La iniciativa Yasuní-ITT, mediante la cual Ecuador propuso a la comunidad internacional dejar bajo tierra las reservas petroleras del Parque Nacional Yasuní a cambio de una compensación económica equivalente a la mitad de los ingresos que habría generado su explotación, constituye uno de los experimentos más audaces de diplomacia ambiental jamás intentados. Su fracaso, ante la negativa de los países industrializados a contribuir significativamente, evidenció los límites de la corresponsabilidad global frente a la crisis climática."
+            "text": "Los Tsáchila, conocidos como Colorados por teñirse el cabello con achiote, habitan las estribaciones occidentales de los Andes. Su sistema de medicina chamánica, basado en profundo conocimiento etnobotánico de la selva húmeda, atrae investigadores de todo el mundo."
           },
           {
             "speaker": "narrator",
-            "text": "Las Islas Galápagos, cuya fauna inspiró la teoría de la evolución de Charles Darwin, enfrentan hoy presiones que habrían resultado inconcebibles para el naturalista victoriano. El turismo masivo, la pesca ilegal y las especies invasoras introducidas accidentalmente amenazan un ecosistema que resulta irreemplazable para la ciencia. Es imperativo que se examine la tensión entre la necesidad económica de explotar turísticamente las islas y la obligación ética de preservar su integridad ecológica."
+            "text": "Ingapirca, el complejo arqueológico más importante del Ecuador precolombino, evidencia la coexistencia inca-cañari. La elipse central, orientada astronómicamente para marcar los solsticios, demuestra sofisticado conocimiento calendárico. La piedra se ensamblaba sin mortero con precisión extraordinaria."
           },
           {
             "speaker": "narrator",
-            "text": "La dolarización de la economía ecuatoriana, adoptada en el año 2000 tras una crisis bancaria devastadora, eliminó la soberanía monetaria del país a cambio de una estabilidad macroeconómica relativa. Esta decisión, que supuso la renuncia a uno de los instrumentos fundamentales de política económica, plantea interrogantes sobre hasta qué punto un país puede ser genuinamente soberano cuando no controla su propia moneda ni puede devaluarla para ajustarse a choques externos."
+            "text": "Ecuador posee la mayor biodiversidad por kilómetro cuadrado del planeta. En apenas 283.000 km² alberga más de 1.600 especies de aves y el 10% de las plantas vasculares del mundo. La confluencia de corrientes oceánicas, la cordillera andina y la cuenca amazónica crean esta riqueza ecológica incomparable."
           },
           {
             "speaker": "narrator",
-            "text": "Quito, primera ciudad declarada Patrimonio de la Humanidad por la UNESCO, encarna las contradicciones de la modernización urbana en Latinoamérica. Su centro histórico colonial, el mejor preservado de la región, coexiste con periferias informales donde las comunidades indígenas migrantes reproducen formas de organización comunitaria que desafían la lógica individualista del urbanismo convencional."
+            "text": "El sombrero de paja toquilla de Montecristi representa la cima del tejido artesanal. Los maestros trabajan de madrugada, cuando la humedad da flexibilidad a la fibra, durante meses para un solo ejemplar. Los más finos pueden enrollarse sin arrugarse y pasar por un anillo."
           },
           {
             "speaker": "narrator",
-            "text": "La plurinacionalidad ecuatoriana, reconocida constitucionalmente, ha sido puesta a prueba repetidamente por los levantamientos indígenas que desde los años noventa han demostrado la capacidad de la Confederación de Nacionalidades Indígenas del Ecuador para paralizar el país y forzar negociaciones con el Estado. Estos episodios revelan que la democracia ecuatoriana se juega no solo en las urnas sino en las calles, plazas y carreteras donde los movimientos sociales ejercen su poder de veto."
-          },
-          {
-            "speaker": "narrator",
-            "text": "La migración ecuatoriana hacia España y Estados Unidos, intensificada tras la crisis de finales de los noventa, desintegró familias enteras y generó una generación de niños criados por abuelos mientras sus padres enviaban remesas desde el exterior. Las consecuencias psicosociales de esta diáspora, frecuentemente invisibilizadas tras las cifras macroeconómicas de las remesas, constituyen una herida abierta en el tejido social ecuatoriano."
-          },
-          {
-            "speaker": "narrator",
-            "text": "La riqueza cultural ecuatoriana, donde coexisten la tradición otavaleña textil, la música pasillera de raíz mestiza y las expresiones artísticas afroecuatorianas del valle del Chota, desafía cualquier narrativa homogeneizadora de la identidad nacional. Que un país tan pequeño albergue tal diversidad étnica, lingüística y cultural obliga a repensar las categorías con que las ciencias sociales han abordado la construcción de las naciones latinoamericanas."
+            "text": "El bosque nublado de Mindo concentra más de 500 especies de orquídeas. Cada especie desarrolló estrategias de atracción únicas: formas, fragancias y pigmentaciones que imitan con asombrosa fidelidad a otras especies para atraer polinizadores específicos."
           }
         ],
         "quiz": [
           {
-            "q": "¿Qué innovación jurídica sin precedentes introdujo Ecuador en 2008?",
+            "q": "¿Qué evidencia aportaron los pinzones de Darwin?",
             "ops": [
-              "La despenalización de todas las drogas",
-              "Otorgar derechos constitucionales a la naturaleza, convirtiendo a la Pachamama en sujeto de derechos",
-              "La abolición del ejército",
-              "La oficialización del quechua como único idioma"
+              "Tectónica de placas",
+              "Sustentación empírica de la selección natural",
+              "Origen de corrientes marinas",
+              "Edad geológica de las islas"
             ],
             "ok": 1,
-            "exp": "Ecuador fue el primer país en otorgar derechos constitucionales a la naturaleza, donde la Pachamama deviene sujeto de derechos."
+            "exp": "Los pinzones proporcionaron evidencia empírica de la selección natural."
           },
           {
-            "q": "¿Por qué fracasó la iniciativa Yasuní-ITT?",
+            "q": "¿Por qué se conoce a los Tsáchila como Colorados?",
             "ops": [
-              "Porque Ecuador decidió no participar",
-              "Porque los países industrializados no contribuyeron significativamente a la compensación propuesta",
-              "Porque no había petróleo en el Yasuní",
-              "Porque las ONG ambientalistas se opusieron"
+              "Vestimentas coloridas",
+              "Se tiñen el cabello con achiote",
+              "Pinturas faciales ceremoniales",
+              "Color de la tierra"
             ],
             "ok": 1,
-            "exp": "Fracasó ante la negativa de los países industrializados a contribuir, evidenciando los límites de la corresponsabilidad global."
+            "exp": "Los Tsáchila se tiñen el cabello con achiote."
           },
           {
-            "q": "¿Qué cuestión de soberanía plantea la dolarización según el texto?",
+            "q": "¿Qué característica constructiva destaca en Ingapirca?",
             "ops": [
-              "Que Ecuador se beneficia enormemente de no tener moneda propia",
-              "Que un país no puede ser genuinamente soberano sin controlar su moneda ni poder devaluarla ante choques externos",
-              "Que la dolarización fue impuesta por Estados Unidos militarmente",
-              "Que todos los países deberían dolarizarse"
+              "Cemento volcánico",
+              "Arquitectura de madera",
+              "Ensamblaje de piedra sin mortero",
+              "Muros de adobe"
             ],
-            "ok": 1,
-            "exp": "Plantea si un país puede ser soberano cuando no controla su moneda ni puede devaluarla para ajustarse a choques externos."
+            "ok": 2,
+            "exp": "La piedra se ensamblaba sin mortero con precisión extraordinaria."
           },
           {
-            "q": "¿Qué revelan los levantamientos indígenas sobre la democracia ecuatoriana?",
+            "q": "¿En qué condición trabajan los tejedores de Montecristi?",
             "ops": [
-              "Que la democracia solo funciona en las urnas",
-              "Que la democracia se juega también en calles y carreteras donde los movimientos sociales ejercen poder de veto",
-              "Que los pueblos indígenas rechazan toda forma de democracia",
-              "Que los levantamientos siempre fracasan"
+              "Talleres con temperatura controlada",
+              "De madrugada aprovechando la humedad",
+              "Bajo el sol para secar la fibra",
+              "Cámaras de vapor artificial"
             ],
             "ok": 1,
-            "exp": "La democracia ecuatoriana se juega no solo en las urnas sino en las calles donde los movimientos sociales ejercen su poder de veto."
+            "exp": "Trabajan de madrugada cuando la humedad da flexibilidad a la fibra."
           },
           {
-            "q": "¿Qué consecuencia invisibilizada señala el texto sobre la migración ecuatoriana?",
+            "q": "¿Cuántas especies de orquídeas tiene Mindo?",
             "ops": [
-              "El aumento del PIB por remesas",
-              "Las consecuencias psicosociales: familias desintegradas y niños criados por abuelos",
-              "La mejora inmediata de la educación",
-              "La urbanización acelerada de las ciudades"
+              "Más de 100",
+              "Más de 200",
+              "Más de 500",
+              "Más de 1.000"
             ],
-            "ok": 1,
-            "exp": "La diáspora desintegró familias y generó niños criados por abuelos, consecuencias psicosociales invisibilizadas tras las cifras de remesas."
+            "ok": 2,
+            "exp": "Mindo concentra más de 500 especies de orquídeas."
           }
         ],
         "vocabLocal": []
@@ -3270,98 +3214,90 @@ var AUDITIVA_DATA = {
     "episodes": [
       {
         "id": "sv_c1",
-        "title": "El Salvador: memoria, migración y la reinvención de una nación herida",
+        "title": "El Salvador: lengua, arte y naturaleza viva",
         "level": "C1",
-        "duration": "7 min",
+        "duration": "4 min",
         "sections": [
           {
             "speaker": "narrator",
-            "text": "El Salvador, el país más pequeño y densamente poblado de Centroamérica, carga con una historia de violencia sistémica que se extiende desde la masacre de 1932, cuando el régimen del general Maximiliano Hernández Martínez exterminó a miles de campesinos e indígenas pipiles, hasta la guerra civil que entre 1980 y 1992 dejó más de setenta y cinco mil muertos. Comprender El Salvador contemporáneo exige reconocer que estas heridas no han cicatrizado sino que se han transmutado en nuevas formas de violencia estructural."
+            "text": "El náhuatl impregna el español salvadoreño con vitalidad que muchos hablantes no perciben. Palabras como cipote, guacal y papalota provienen directamente de esta lengua mesoamericana. Topónimos como Cuscatlán e Izalco revelan la geografía cultural pipil bajo la capa colonial."
           },
           {
             "speaker": "narrator",
-            "text": "Los Acuerdos de Paz de Chapultepec, firmados en 1992, pusieron fin al conflicto armado pero no a las condiciones socioeconómicas que lo habían originado. La desmovilización de los combatientes coincidió con la implementación de políticas neoliberales que precarizaron aún más el empleo, mientras las deportaciones masivas de pandilleros desde Estados Unidos en los años noventa sembraron la semilla de una crisis de seguridad que convertiría a El Salvador en uno de los países más violentos del mundo fuera de una zona de guerra."
+            "text": "Las esculturas de Cotzumalguapa, talladas en basalto volcánico entre los años 400 y 900 d.C., representan uno de los conjuntos iconográficos más enigmáticos de Mesoamérica. Su estilo mezcla influencias mayas y teotihuacanas, sugiriendo que El Salvador fue corredor cultural más complejo de lo que se creía."
           },
           {
             "speaker": "narrator",
-            "text": "El fenómeno de las maras, particularmente la MS-13 y el Barrio 18, trasciende la categoría de simple delincuencia organizada para constituir un fenómeno sociológico complejo donde jóvenes excluidos de toda oportunidad encuentran en la pandilla la identidad, el sentido de pertenencia y la estructura que la sociedad les ha negado. Es fundamental que se analice cómo la marginalización económica, la desintegración familiar provocada por la migración y el fracaso de las políticas de mano dura se retroalimentan en un círculo vicioso difícil de romper."
+            "text": "La revolución del café de especialidad en El Salvador transformó la percepción de sus granos. Productores de micro-lotes desarrollaron perfiles con notas florales y frutales de complejidad antes desconocida. Las variedades Pacamara y Bourbon rojo compiten en campeonatos internacionales de barismo."
           },
           {
             "speaker": "narrator",
-            "text": "La adopción de Bitcoin como moneda de curso legal en 2021, decisión sin precedentes a nivel mundial, condensó las contradicciones de un país que oscila entre la audacia innovadora y la improvisación temeraria. Que un Estado con instituciones frágiles y altos niveles de pobreza apostara por una criptomoneda caracterizada por su volatilidad planteó interrogantes legítimos sobre si la inclusión financiera prometida no era sino un espejismo tecnológico al servicio de una agenda política personalista."
+            "text": "La tejeduría de hamacas en Concepción Quezaltepeque sintetiza geometría y paciencia. Las artesanas emplean telares de cintura transmitidos por generaciones para crear estructuras de algodón con patrones cromáticos propios de cada familia."
           },
           {
             "speaker": "narrator",
-            "text": "La diáspora salvadoreña, que se estima en más de dos millones de personas concentradas predominantemente en Estados Unidos, constituye un fenómeno demográfico de dimensiones extraordinarias para un país de apenas seis millones de habitantes. Las remesas representan más del veinte por ciento del producto interno bruto, lo cual configura una dependencia estructural que convierte las políticas migratorias estadounidenses en un factor determinante de la estabilidad económica salvadoreña."
+            "text": "Fernando Llort codificó un lenguaje visual de formas geométricas y figuras estilizadas que representa la vida campesina con luminosidad simbólica reconocida internacionalmente. Su obra decoró la fachada de la catedral metropolitana y se reproduce en artesanías de madera lacada."
           },
           {
             "speaker": "narrator",
-            "text": "Monseñor Óscar Arnulfo Romero, asesinado en 1980 mientras celebraba misa, encarna la tensión entre fe y compromiso político que definió a la teología de la liberación en Centroamérica. Su canonización en 2018 representó el reconocimiento tardío de una Iglesia católica que durante décadas mantuvo una posición ambigua respecto a su legado profético. Romero sigue siendo una figura que interpela a la conciencia salvadoreña sobre el precio de denunciar la injusticia."
-          },
-          {
-            "speaker": "narrator",
-            "text": "La literatura de Roque Dalton y Claribel Alegría ha documentado con lucidez poética las heridas de una nación donde la belleza del paisaje volcánico contrasta brutalmente con la violencia social. La poesía salvadoreña, forjada en la clandestinidad y el exilio, constituye un testimonio imprescindible para comprender cómo una sociedad metaboliza el trauma colectivo a través del lenguaje artístico."
-          },
-          {
-            "speaker": "narrator",
-            "text": "El modelo de seguridad implementado en años recientes, basado en un estado de excepción prolongado y en encarcelamientos masivos, ha reducido drásticamente las cifras de homicidios pero ha suscitado graves preocupaciones en materia de derechos humanos y debido proceso. El dilema entre seguridad y libertades civiles, lejos de ser abstracto, se vive cotidianamente en comunidades donde el miedo a las pandillas coexiste con el temor a la arbitrariedad estatal."
+            "text": "La Bahía de Jiquilisco, Reserva de la Biosfera de la UNESCO, funciona como fábrica ecológica. Sus raíces sumergidas son criadero de camarones y peces, mientras sus canales protegen la costa de la erosión. Las comunidades pesqueras artesanales inspiraron modelos de conservación participativa."
           }
         ],
         "quiz": [
           {
-            "q": "¿Qué conexión establece el texto entre la masacre de 1932 y la violencia contemporánea?",
+            "q": "¿De qué lengua indígena provienen palabras como cipote o guacal?",
             "ops": [
-              "No establece ninguna conexión",
-              "Las heridas históricas no han cicatrizado sino que se han transmutado en nuevas formas de violencia estructural",
-              "La masacre fue olvidada completamente",
-              "Solo afectó a la política electoral"
+              "Maya",
+              "Lenca",
+              "Náhuatl",
+              "Quiché"
             ],
-            "ok": 1,
-            "exp": "Las heridas históricas no han cicatrizado sino que se han transmutado en nuevas formas de violencia estructural."
+            "ok": 2,
+            "exp": "Cipote, guacal y papalota provienen del náhuatl."
           },
           {
-            "q": "¿Qué factores convergieron para crear la crisis de pandillas según el análisis?",
+            "q": "¿En qué material fueron talladas las esculturas de Cotzumalguapa?",
             "ops": [
-              "Solo la pobreza económica",
-              "La desmovilización sin oportunidades, políticas neoliberales precarizadoras y deportaciones masivas desde EE.UU.",
-              "Exclusivamente la influencia de películas violentas",
-              "La guerra civil directamente"
+              "Piedra caliza",
+              "Basalto volcánico",
+              "Granito",
+              "Mármol"
             ],
             "ok": 1,
-            "exp": "Convergieron la desmovilización sin cambio socioeconómico, las políticas neoliberales y las deportaciones masivas de pandilleros desde EE.UU."
+            "exp": "Fueron talladas en basalto volcánico."
           },
           {
-            "q": "¿Qué crítica plantea el texto sobre la adopción de Bitcoin?",
+            "q": "¿Qué variedades de café salvadoreño compiten internacionalmente?",
             "ops": [
-              "Que fue una decisión consensuada y exitosa",
-              "Que un Estado con instituciones frágiles y pobreza apostó por una criptomoneda volátil, posiblemente al servicio de una agenda personalista",
-              "Que Bitcoin mejoró inmediatamente la economía",
-              "Que todos los países deberían imitarla"
+              "Typica y Geisha",
+              "Caturra y Catuaí",
+              "Pacamara y Bourbon rojo",
+              "Maragogipe y Java"
             ],
-            "ok": 1,
-            "exp": "Se cuestiona si la inclusión financiera era un espejismo tecnológico al servicio de una agenda política personalista."
+            "ok": 2,
+            "exp": "Las variedades Pacamara y Bourbon rojo compiten internacionalmente."
           },
           {
-            "q": "¿Qué dimensión de vulnerabilidad genera la dependencia de remesas?",
+            "q": "¿Qué artista salvadoreño decoró la catedral metropolitana?",
             "ops": [
-              "Ninguna, las remesas solo traen beneficios",
-              "Las políticas migratorias de EE.UU. se convierten en factor determinante de la estabilidad económica salvadoreña",
-              "Las remesas son insignificantes para la economía",
-              "Solo afectan al sector bancario"
+              "Carlos Cañas",
+              "Noé Canjura",
+              "Fernando Llort",
+              "Rosa Mena Valenzuela"
             ],
-            "ok": 1,
-            "exp": "Las políticas migratorias estadounidenses se convierten en factor determinante de la estabilidad económica salvadoreña."
+            "ok": 2,
+            "exp": "Fernando Llort decoró la fachada de la catedral metropolitana."
           },
           {
-            "q": "¿Qué dilema plantea el modelo de seguridad basado en estados de excepción?",
+            "q": "¿Qué reconocimiento tiene la Bahía de Jiquilisco?",
             "ops": [
-              "No plantea ningún dilema",
-              "La tensión entre reducción de homicidios y graves preocupaciones sobre derechos humanos y debido proceso",
-              "Solo afecta a los pandilleros",
-              "Es un modelo perfectamente equilibrado"
+              "WWF",
+              "UNESCO Reserva de la Biosfera",
+              "PNUMA",
+              "FAO"
             ],
             "ok": 1,
-            "exp": "Ha reducido homicidios pero suscita graves preocupaciones sobre derechos humanos y debido proceso."
+            "exp": "La UNESCO la declaró Reserva de la Biosfera."
           }
         ],
         "vocabLocal": []
@@ -3733,98 +3669,90 @@ var AUDITIVA_DATA = {
     "episodes": [
       {
         "id": "es_c1",
-        "title": "España: memorias en conflicto y la cuestión territorial",
+        "title": "España: lenguas, arte y legado mediterráneo",
         "level": "C1",
-        "duration": "7 min",
+        "duration": "4 min",
         "sections": [
           {
             "speaker": "narrator",
-            "text": "España constituye un caso paradigmático de las dificultades que entraña construir una democracia sin haber procesado adecuadamente un pasado traumático. La Transición española, celebrada internacionalmente como modelo de cambio pacífico, se edificó sobre un pacto de silencio respecto a los crímenes del franquismo cuyas consecuencias reverberan hasta el presente. La Ley de Amnistía de 1977, que garantizó la impunidad de los responsables de la represión dictatorial, plantea la incómoda pregunta de si la paz social puede cimentarse sobre el olvido institucionalizado."
+            "text": "España es el único país de Europa occidental con cuatro lenguas cooficiales de orígenes radicalmente distintos. El euskera es un idioma aislado sin parentesco demostrado con ninguna otra lengua del mundo. El catalán, el gallego y el castellano comparten raíz latina pero evolucionaron con estructuras propias."
           },
           {
             "speaker": "narrator",
-            "text": "La cuestión territorial española, con los movimientos independentistas catalán y vasco como manifestaciones más visibles, revela las tensiones inherentes a un Estado de las Autonomías que no es ni genuinamente federal ni unitario. El procés catalán de 2017, que culminó en una declaración unilateral de independencia y la subsiguiente intervención del gobierno central, evidenció que las identidades nacionales superpuestas dentro del Estado español constituyen un problema estructural irresoluble mediante la mera represión judicial."
+            "text": "Salvador Dalí sistematizó el método paranoico-crítico para generar imágenes a partir de delirios controlados. Su Teatro-Museo de Figueres, diseñado por él mismo, es la obra surrealista más grande del mundo: un edificio que es mausoleo, instalación artística y declaración filosófica sobre arte y muerte."
           },
           {
             "speaker": "narrator",
-            "text": "La memoria histórica de la Guerra Civil, con sus más de ciento cincuenta mil desaparecidos cuyos restos permanecen en fosas comunes sin identificar, constituye la herida abierta más dolorosa de la sociedad española. Es imprescindible que se comprenda cómo la imposibilidad de las víctimas del franquismo de recuperar a sus muertos ha generado un agravio transgeneracional que la tardía Ley de Memoria Democrática intenta reparar con décadas de retraso."
+            "text": "La Rioja produce vinos con criterios de envejecimiento entre los más rigurosos de Europa. Las categorías Crianza, Reserva y Gran Reserva son compromisos técnicos con tiempos precisos en barrica de roble. La tempranillo expresa matices de fruta roja, tabaco y vainilla que la convirtieron en referencia mundial."
           },
           {
             "speaker": "narrator",
-            "text": "El sistema monárquico español, restaurado por el propio Franco como mecanismo de continuidad institucional, ha atravesado una crisis de legitimidad sin precedentes tras los escándalos financieros que provocaron la abdicación de Juan Carlos I. Que una institución cuya renovación democrática resulta imposible por definición pretenda encarnar los valores de una monarquía parlamentaria moderna constituye una contradicción que alimenta el debate republicano."
+            "text": "La Alhambra de Granada y la Mezquita de Córdoba representan la cumbre de la arquitectura andalusí. Los mocárabes y los azulejos de alicatado geométrico crean ambientes donde la ornamentación no es decoración accesoria sino el argumento central del espacio arquitectónico."
           },
           {
             "speaker": "narrator",
-            "text": "La inmigración, fenómeno relativamente reciente en un país que durante siglos fue emisor neto de emigrantes, ha transformado radicalmente la composición demográfica y cultural de España. La convivencia entre la población autóctona y las comunidades latinoamericanas, magrebíes y subsaharianas genera tanto espacios de mestizaje cultural enriquecedor como episodios de racismo que desmienten la autopercepción española como sociedad inherentemente tolerante."
+            "text": "Cristóbal Balenciaga revolucionó la alta costura del siglo XX con una ingeniería del vestido sin precedentes. Sus construcciones textiles transformaban el cuerpo humano en escultura. Su concepto de silueta influyó en generaciones de diseñadores, desde Givenchy hasta los creadores contemporáneos."
           },
           {
             "speaker": "narrator",
-            "text": "La precariedad laboral juvenil, con tasas de desempleo que duplican la media europea y una generación condenada a la temporalidad perpetua, ha erosionado el pacto intergeneracional sobre el que se sustentaba el Estado de bienestar. Los jóvenes españoles, con niveles de formación superiores a los de sus progenitores, enfrentan la paradoja de ser la generación más cualificada de la historia y simultáneamente la que peores perspectivas laborales tiene desde la posguerra."
-          },
-          {
-            "speaker": "narrator",
-            "text": "El legado cultural del Siglo de Oro, desde Cervantes hasta Velázquez, ha funcionado como recurso simbólico para una narrativa nacional que frecuentemente soslaya el reverso colonial de aquella grandeza imperial. La reivindicación de la Leyenda Negra como mera propaganda anglosajonajona coexiste con un reconocimiento creciente, aunque aún insuficiente, de las atrocidades cometidas durante la conquista y colonización de América."
-          },
-          {
-            "speaker": "narrator",
-            "text": "La España vaciada, expresión que designa la despoblación masiva de las zonas rurales del interior peninsular, constituye un desafío demográfico y territorial cuya resolución resulta fundamental para la cohesión del país. Provincias enteras registran densidades poblacionales inferiores a las de Laponia, mientras las grandes urbes concentran recursos y oportunidades de manera cada vez más desproporcionada, configurando un desequilibrio que amenaza con convertir amplias extensiones del territorio en desiertos demográficos irreversibles."
+            "text": "La dieta mediterránea, Patrimonio Cultural Inmaterial de la UNESCO desde 2013, trasciende lo nutricional. El ritual compartido de las comidas largas, el aceite de oliva, la abundancia de legumbres y la sobremesa como práctica conversacional configuran un estilo de vida cuya cohesión social es tan valiosa como sus beneficios para la salud."
           }
         ],
         "quiz": [
           {
-            "q": "¿Qué contradicción fundamental señala el texto sobre la Transición española?",
+            "q": "¿Qué hace al euskera único en Europa occidental?",
             "ops": [
-              "Que fue demasiado lenta",
-              "Que se edificó sobre un pacto de silencio e impunidad respecto a los crímenes del franquismo",
-              "Que fue impuesta por la Unión Europea",
-              "Que no cambió nada del sistema político"
+              "Es la lengua más antigua de la Península",
+              "No tiene parentesco con ninguna otra lengua del mundo",
+              "Deriva del latín vulgar",
+              "Comparte raíces con el árabe"
             ],
             "ok": 1,
-            "exp": "La Transición se edificó sobre un pacto de silencio cuyas consecuencias reverberan hasta hoy."
+            "exp": "El euskera es un idioma aislado sin parentesco demostrado."
           },
           {
-            "q": "¿Por qué el procés catalán evidencia un problema estructural según el análisis?",
+            "q": "¿Qué método surrealista sistematizó Dalí?",
             "ops": [
-              "Porque Cataluña nunca perteneció a España",
-              "Porque las identidades nacionales superpuestas son un problema irresoluble mediante represión judicial",
-              "Porque fue un conflicto exclusivamente económico",
-              "Porque toda España apoyó la independencia catalana"
+              "Automatismo psíquico",
+              "Escritura automática",
+              "Método paranoico-crítico",
+              "Libre asociación visual"
             ],
-            "ok": 1,
-            "exp": "Las identidades nacionales superpuestas dentro del Estado español son un problema irresoluble mediante la mera represión judicial."
+            "ok": 2,
+            "exp": "Dalí sistematizó el método paranoico-crítico."
           },
           {
-            "q": "¿Qué paradoja generacional describe el texto sobre los jóvenes españoles?",
+            "q": "¿Cuál es la uva insignia de La Rioja?",
             "ops": [
-              "Que no quieren trabajar",
-              "Que son la generación más cualificada pero con las peores perspectivas laborales desde la posguerra",
-              "Que emigran porque les gusta viajar",
-              "Que prefieren el empleo público"
+              "Garnacha",
+              "Albariño",
+              "Verdejo",
+              "Tempranillo"
             ],
-            "ok": 1,
-            "exp": "Son la generación más cualificada de la historia pero con las peores perspectivas laborales desde la posguerra."
+            "ok": 3,
+            "exp": "La tempranillo es la uva insignia de La Rioja."
           },
           {
-            "q": "¿Qué cuestiona el texto respecto al legado del Siglo de Oro?",
+            "q": "¿Cómo se llaman las estructuras de yeso en la arquitectura andalusí?",
             "ops": [
-              "Su calidad artística",
-              "Que frecuentemente se soslaya el reverso colonial de aquella grandeza imperial",
-              "Que no tiene relevancia actual",
-              "Que fue inventado por historiadores modernos"
+              "Alicatados",
+              "Atauriques",
+              "Mocárabes",
+              "Artesonados"
             ],
-            "ok": 1,
-            "exp": "La narrativa del Siglo de Oro frecuentemente soslaya el reverso colonial de la grandeza imperial."
+            "ok": 2,
+            "exp": "Los mocárabes son estructuras de yeso en forma de estalactitas."
           },
           {
-            "q": "¿Qué amenaza representa la \"España vaciada\"?",
+            "q": "¿En qué año reconoció la UNESCO la dieta mediterránea?",
             "ops": [
-              "La sobrepoblación rural",
-              "Un desequilibrio territorial que puede crear desiertos demográficos irreversibles",
-              "La falta de turismo rural",
-              "Conflictos entre regiones costeras"
+              "2008",
+              "2010",
+              "2013",
+              "2016"
             ],
-            "ok": 1,
-            "exp": "La despoblación rural y la concentración urbana amenazan con crear desiertos demográficos irreversibles."
+            "ok": 2,
+            "exp": "La UNESCO la reconoció en 2013."
           }
         ],
         "vocabLocal": []
@@ -4201,98 +4129,90 @@ var AUDITIVA_DATA = {
     "episodes": [
       {
         "id": "gt_c1",
-        "title": "Guatemala: herencia maya, genocidio y las fisuras de la democracia",
+        "title": "Guatemala: calendarios, garífunas y selva del Petén",
         "level": "C1",
-        "duration": "7 min",
+        "duration": "4 min",
         "sections": [
           {
             "speaker": "narrator",
-            "text": "Guatemala, autodenominada \"Corazón del Mundo Maya\", arrastra la paradoja de celebrar retóricamente su herencia indígena mientras perpetúa estructuras de exclusión que mantienen a la población maya en condiciones de subordinación sistemática. La distancia entre el discurso oficial que instrumentaliza la grandeza de Tikal para el turismo y la realidad cotidiana de discriminación que enfrentan los pueblos quiché, kaqchikel, mam y qeqchí constituye una de las hipocresías fundacionales del Estado guatemalteco."
+            "text": "El sistema calendárico maya combina dos ciclos: el Haab de 365 días y el Tzolkin de 260. Su intersección produce la Rueda Calendárica de 52 años. Los mayas desarrollaron el concepto de cero de forma independiente, siglos antes que en Europa, permitiendo registrar fechas que se extienden millones de años."
           },
           {
             "speaker": "narrator",
-            "text": "El golpe de Estado de 1954, orquestado por la CIA para derrocar al gobierno democrático de Jacobo Árbenz, cuya reforma agraria amenazaba los intereses de la United Fruit Company, inauguró décadas de dictaduras militares que culminaron en un conflicto armado interno de treinta y seis años. La Comisión para el Esclarecimiento Histórico documentó más de doscientos mil muertos y calificó las masacres contra comunidades mayas como actos de genocidio, un término cuya carga jurídica la élite guatemalteca ha rechazado sistemáticamente."
+            "text": "Livingston, en el litoral caribeño, es el epicentro de la cultura garífuna en Guatemala. La lengua garífuna mezcla arahuaco, caribe insular, francés e inglés. Su música punta rock y sus ceremonias de comunicación con ancestros fueron declaradas por la UNESCO Patrimonio Oral e Inmaterial."
           },
           {
             "speaker": "narrator",
-            "text": "El juicio por genocidio contra el general Efraín Ríos Montt en 2013, aunque finalmente anulado por la Corte de Constitucionalidad, representó un hito en la lucha contra la impunidad en América Latina. Que un exjefe de Estado fuera juzgado por crímenes de lesa humanidad ante tribunales nacionales estableció un precedente cuya significación trasciende las fronteras guatemaltecas, aun cuando la justicia plena permanezca pendiente."
+            "text": "Maximón es una figura sincrética que encarna la fusión entre el universo maya y tradiciones coloniales. Representado por una efigie con sombrero y traje, recibe ofrendas de tabaco y alcohol a cambio de favores mundanos. Su culto, intenso en Santiago Atitlán, pertenece exclusivamente al sincretismo guatemalteco."
           },
           {
             "speaker": "narrator",
-            "text": "La estructura agraria guatemalteca, donde el dos por ciento de la población controla más del sesenta por ciento de la tierra cultivable, reproduce un patrón colonial que ni la independencia ni los intentos reformistas lograron alterar sustancialmente. Es imperativo que se comprenda cómo esta concentración latifundista no es un vestigio anacrónico sino un mecanismo activamente mantenido por una oligarquía que ha capturado las instituciones del Estado para perpetuar sus privilegios."
+            "text": "El arte contemporáneo guatemalteco experimentó renovación radical con artistas que procesan la herencia maya desde lenguajes visuales globales. Figuras como Benvenuto Chavajay trabajan con instalaciones y video arte para interrogar la identidad indígena y la relación entre tradición y modernidad."
           },
           {
             "speaker": "narrator",
-            "text": "Rigoberta Menchú, cuyo testimonio autobiográfico visibilizó internacionalmente el sufrimiento de los pueblos mayas durante el conflicto armado, se convirtió en figura controvertida cuando la veracidad de algunos detalles de su relato fue cuestionada. No obstante, esta polémica revela menos sobre la autora que sobre las estrategias de deslegitimación empleadas contra quienes denuncian crímenes de Estado, donde la impugnación del testimonio individual busca invalidar verdades colectivas ampliamente documentadas."
+            "text": "La milpa asocia maíz, frijol y calabaza en la triada conocida como las tres hermanas. El maíz provee estructura, el frijol fija nitrógeno que fertiliza el suelo, y la calabaza impide la evaporación. Esta ingeniería ecológica precolombina anticipa principios de la agroecología contemporánea."
           },
           {
             "speaker": "narrator",
-            "text": "La migración guatemalteca hacia Estados Unidos, que incluye una proporción significativa de menores no acompañados, constituye un síntoma inequívoco del fracaso del Estado en garantizar condiciones mínimas de vida digna para sus ciudadanos. Las caravanas migrantes, lejos de ser fenómenos espontáneos, son la manifestación visible de desplazamientos estructurales provocados por la violencia, la pobreza y los efectos cada vez más devastadores del cambio climático sobre la agricultura de subsistencia."
-          },
-          {
-            "speaker": "narrator",
-            "text": "La corrupción sistémica, que permea todos los niveles de la administración pública guatemalteca, alcanzó visibilidad internacional con las investigaciones de la Comisión Internacional contra la Impunidad. La posterior expulsión de este organismo reveló que las élites políticas y económicas, cuando sus intereses se ven amenazados por mecanismos de transparencia, no dudan en desmantelar las instituciones que los fiscalizan."
-          },
-          {
-            "speaker": "narrator",
-            "text": "Los idiomas mayas, veintiún lenguas vivas que constituyen un patrimonio lingüístico invaluable, enfrentan una erosión acelerada ante la presión del español como idioma de movilidad social. La paradoja de que los hablantes de lenguas originarias deban abandonar su idioma materno para acceder a oportunidades educativas y laborales evidencia que la colonialidad lingüística, lejos de haberse superado, se reproduce cotidianamente bajo el disfraz de la modernización."
+            "text": "El departamento de Petén alberga el 40% de la selva tropical que queda en Mesoamérica. La Reserva de la Biosfera Maya, con más de dos millones de hectáreas, protege jaguares, tapires y guacamayas escarlata. Los modelos de conservación comunitaria están redefiniendo la conservación a escala global."
           }
         ],
         "quiz": [
           {
-            "q": "¿Qué paradoja fundamental señala el texto sobre la relación de Guatemala con su herencia maya?",
+            "q": "¿Cuántos años dura la Rueda Calendárica maya?",
             "ops": [
-              "Que los mayas ya no existen",
-              "Que celebra retóricamente la herencia indígena mientras perpetúa estructuras de exclusión contra la población maya",
-              "Que los guatemaltecos rechazan su herencia maya",
-              "Que la herencia maya solo existe en los museos"
+              "20 años",
+              "40 años",
+              "52 años",
+              "100 años"
             ],
-            "ok": 1,
-            "exp": "Guatemala celebra retóricamente su herencia maya mientras perpetúa estructuras de exclusión contra los pueblos indígenas."
+            "ok": 2,
+            "exp": "La Rueda Calendárica dura 52 años."
           },
           {
-            "q": "¿Qué significación tiene el juicio contra Ríos Montt según el análisis?",
+            "q": "¿De qué pueblos desciende la cultura garífuna?",
             "ops": [
-              "Fue un proceso sin importancia",
-              "Estableció un precedente de que un exjefe de Estado podía ser juzgado por crímenes de lesa humanidad ante tribunales nacionales",
-              "Demostró que la justicia siempre funciona",
-              "Solo tuvo relevancia local"
+              "Mayas y españoles",
+              "Arahuacos y africanos",
+              "Caribes y franceses",
+              "Aztecas y portugueses"
             ],
             "ok": 1,
-            "exp": "Estableció el precedente de juzgar a un exjefe de Estado por crímenes de lesa humanidad ante tribunales nacionales."
+            "exp": "Los garífunas descienden de arahuacos y africanos."
           },
           {
-            "q": "¿Qué revelan las estrategias contra el testimonio de Rigoberta Menchú?",
+            "q": "¿En qué pueblo es intenso el culto a Maximón?",
             "ops": [
-              "Que su testimonio era completamente falso",
-              "Que la impugnación del testimonio individual busca invalidar verdades colectivas documentadas",
-              "Que nadie la apoya internacionalmente",
-              "Que la literatura testimonial carece de valor"
+              "Antigua",
+              "Quetzaltenango",
+              "Santiago Atitlán",
+              "Chichicastenango"
             ],
-            "ok": 1,
-            "exp": "La impugnación del testimonio individual busca invalidar verdades colectivas ampliamente documentadas sobre crímenes de Estado."
+            "ok": 2,
+            "exp": "El culto a Maximón es particularmente intenso en Santiago Atitlán."
           },
           {
-            "q": "¿Qué causa estructural de las caravanas migrantes identifica el texto?",
+            "q": "¿Qué función cumple el frijol en la milpa?",
             "ops": [
-              "El deseo de hacer turismo",
-              "Desplazamientos provocados por violencia, pobreza y cambio climático sobre la agricultura de subsistencia",
-              "La influencia de redes sociales",
-              "Programas gubernamentales de emigración"
+              "Repeler insectos",
+              "Fijar nitrógeno en el suelo",
+              "Retener humedad",
+              "Dar sombra al maíz"
             ],
             "ok": 1,
-            "exp": "Las caravanas son manifestación de desplazamientos estructurales por violencia, pobreza y cambio climático."
+            "exp": "El frijol fija nitrógeno atmosférico en el suelo."
           },
           {
-            "q": "¿Qué forma de colonialidad persiste en el ámbito lingüístico según el texto?",
+            "q": "¿Qué porcentaje de selva mesoamericana tiene el Petén?",
             "ops": [
-              "La imposición del inglés",
-              "Que los hablantes de lenguas mayas deben abandonarlas para acceder a oportunidades, reproduciendo colonialidad bajo disfraz de modernización",
-              "La prohibición legal de las lenguas mayas",
-              "La desaparición natural de los idiomas"
+              "20%",
+              "30%",
+              "40%",
+              "60%"
             ],
-            "ok": 1,
-            "exp": "La colonialidad lingüística se reproduce cuando hablantes deben abandonar su idioma materno para acceder a oportunidades."
+            "ok": 2,
+            "exp": "El Petén alberga el 40% de la selva tropical mesoamericana."
           }
         ],
         "vocabLocal": []
@@ -4664,98 +4584,90 @@ var AUDITIVA_DATA = {
     "episodes": [
       {
         "id": "hn_c1",
-        "title": "Honduras: fragilidad institucional y resistencia comunitaria",
+        "title": "Honduras: astronomía maya, gastronomía garífuna y selvas vírgenes",
         "level": "C1",
-        "duration": "7 min",
+        "duration": "4 min",
         "sections": [
           {
             "speaker": "narrator",
-            "text": "Honduras ejemplifica con particular crudeza las consecuencias devastadoras de la intervención geopolítica extranjera en Centroamérica. El país, que funcionó durante la Guerra Fría como plataforma para las operaciones encubiertas de la CIA contra el sandinismo nicaragüense, heredó de aquella época una militarización institucional y una subordinación a los intereses de Washington que condicionaron profundamente su desarrollo político. Es imprescindible que se comprenda cómo la denominada \"república bananera\" no fue una condición natural sino una construcción impuesta por corporaciones fruteras y potencias hegemónicas."
+            "text": "Las estelas de Copán no son únicamente monumentos funerarios: constituyen sofisticados registros astronómicos mayas. Cada inscripción catalogaba ciclos venusinos, eclipses solares y equinoccios, revelando que los sacerdotes-astrónomos dominaban cálculos calendáricos de extraordinaria exactitud."
           },
           {
             "speaker": "narrator",
-            "text": "El golpe de Estado de 2009 contra el presidente Manuel Zelaya, condenado por la comunidad internacional pero tolerado en la práctica, inauguró una etapa de deterioro democrático acelerado. La crisis de legitimidad institucional que siguió al golpe generó un vacío que fue parcialmente ocupado por el narcotráfico, configurando lo que algunos analistas han denominado un \"narcoestado\" donde las fronteras entre poder político, crimen organizado y fuerzas de seguridad se difuminan hasta resultar indistinguibles."
+            "text": "La gastronomía garífuna trasciende la baleada. El hudut combina caldo de pescado con plátano macho majado hasta lograr textura densa y aromática, mientras la machuca acompaña guisos de coco que reflejan la diáspora cultural que dio origen a este pueblo del Caribe hondureño."
           },
           {
             "speaker": "narrator",
-            "text": "Berta Cáceres, líder indígena lenca asesinada en 2016 por su oposición a proyectos hidroeléctricos en territorios ancestrales, se ha convertido en símbolo internacional de la lucha por los derechos ambientales y los derechos de los pueblos originarios. Su asesinato, en el que resultaron implicados ejecutivos empresariales y miembros de las fuerzas armadas, evidenció la peligrosidad mortal que entraña la defensa del territorio en un país donde los ambientalistas son sistemáticamente criminalizados y eliminados."
+            "text": "La resistencia cultural lenca pervive como herencia viva. Sus rituales comunitarios —el guancasco, ceremonia de fraternidad entre pueblos— reafirman pactos territoriales que anteceden a la colonia. La cerámica pintada transmite cosmogonías donde agua, tierra y maíz forman una trinidad sagrada."
           },
           {
             "speaker": "narrator",
-            "text": "La vulnerabilidad climática de Honduras, devastada recurrentemente por huracanes como Mitch en 1998 y Eta e Iota en 2020, expone con particular brutalidad la intersección entre pobreza, cambio climático y migración forzada. Las comunidades rurales, desprovistas de infraestructura resiliente y abandonadas por un Estado capturado por élites extractivistas, carecen de la capacidad de recuperación necesaria para sobreponerse a desastres naturales cuya frecuencia e intensidad se incrementan año tras año."
+            "text": "Honduras alberga más de 750 especies de aves documentadas, entre ellas el quetzal resplandeciente en los bosques de Celaque y el guacamayo escarlata en la Mosquitia. Esta riqueza ornitológica convierte al país en destino privilegiado del aviturismo científico."
           },
           {
             "speaker": "narrator",
-            "text": "Las maquilas textiles, que constituyen uno de los principales sectores exportadores del país, reproducen un modelo de inserción en la economía global basado en la explotación de mano de obra barata con mínimos derechos laborales. Las trabajadoras hondureñas, mayoritariamente mujeres jóvenes, enfrentan jornadas extenuantes, acoso sistemático y salarios de subsistencia que perpetúan el ciclo de pobreza que supuestamente la inversión extranjera vendría a romper."
+            "text": "La Biosfera del Río Plátano representa uno de los últimos reductos de selva tropical húmeda primaria en América Central. Su ecosistema integra humedales, manglares y bosques donde conviven jaguares, manatíes y tapires, configurando un laboratorio vivo de biodiversidad de valor científico incalculable."
           },
           {
             "speaker": "narrator",
-            "text": "Copán, sitio arqueológico maya declarado Patrimonio de la Humanidad, contrasta dolorosamente con la marginación actual de las comunidades indígenas lenca, chortí, misquita y garífuna que habitan el territorio hondureño. La monumentalización del pasado indígena como atracción turística coexiste con la invisibilización de los pueblos originarios vivos, cuyas luchas por el territorio, el agua y la autodeterminación son sistemáticamente ignoradas por las instituciones del Estado."
-          },
-          {
-            "speaker": "narrator",
-            "text": "La cultura garífuna, reconocida por la UNESCO como Patrimonio Inmaterial de la Humanidad, constituye una expresión única de la diáspora africana en Centroamérica. Los garífunas, descendientes de africanos e indígenas caribes, han preservado una lengua, una gastronomía y una espiritualidad propias que desafían las narrativas mestizas homogeneizadoras predominantes en la construcción identitaria hondureña."
-          },
-          {
-            "speaker": "narrator",
-            "text": "La emigración hondureña, que se ha intensificado dramáticamente en las últimas décadas, plantea el interrogante de qué queda de una nación cuando una proporción significativa de su población en edad productiva ha decidido que construir su futuro fuera del país resulta más viable que intentarlo dentro. Las remesas, que representan un porcentaje sustancial del PIB, funcionan paradójicamente como subsidio externo que alivia la presión social sobre un Estado que ha fracasado en sus funciones básicas."
+            "text": "La construcción de cayucos —embarcaciones excavadas en un solo tronco— es un oficio en peligro de extinción. Los maestros artesanos misquitos seleccionan el cedro o caoba con criterios transmitidos oralmente, empleando herramientas manuales para moldear cascos de extraordinaria estabilidad hidrodinámica."
           }
         ],
         "quiz": [
           {
-            "q": "¿Qué consecuencia de la Guerra Fría identifica el texto como determinante para Honduras?",
+            "q": "¿Qué función tenían las estelas de Copán además de monumentos?",
             "ops": [
-              "La industrialización acelerada del país",
-              "La militarización institucional y subordinación a Washington por servir como plataforma contra el sandinismo",
-              "El desarrollo de su sistema educativo",
-              "La independencia total de influencias externas"
+              "Registros comerciales",
+              "Registros astronómicos de ciclos celestes",
+              "Mapas de peregrinación",
+              "Documentos de sucesión"
             ],
             "ok": 1,
-            "exp": "Honduras heredó militarización institucional y subordinación a Washington por funcionar como plataforma contra el sandinismo."
+            "exp": "Las estelas eran sofisticados registros astronómicos mayas."
           },
           {
-            "q": "¿Qué fenómeno se configuró tras el golpe de Estado de 2009 según el análisis?",
+            "q": "¿Qué ingrediente es central en el hudut y la machuca garífuna?",
             "ops": [
-              "Una democracia fortalecida",
-              "Un \"narcoestado\" donde las fronteras entre poder político, crimen organizado y fuerzas de seguridad se difuminan",
-              "Un período de estabilidad económica",
-              "Una revolución popular exitosa"
+              "Yuca fermentada",
+              "Maíz nixtamalizado",
+              "Plátano macho",
+              "Frijoles colorados"
             ],
-            "ok": 1,
-            "exp": "Se configuró lo que analistas denominan \"narcoestado\" donde las fronteras entre poder político, crimen y fuerzas de seguridad se difuminan."
+            "ok": 2,
+            "exp": "El plátano macho es central en ambas preparaciones garífunas."
           },
           {
-            "q": "¿Qué evidenció el asesinato de Berta Cáceres?",
+            "q": "¿Qué es el guancasco en la cultura lenca?",
             "ops": [
-              "Que la delincuencia común es el principal problema",
-              "La peligrosidad mortal de defender el territorio en un país donde ambientalistas son criminalizados y eliminados",
-              "Que los conflictos ambientales se resuelven pacíficamente",
-              "Que las fuerzas armadas protegen a los activistas"
+              "Cerámica ritual",
+              "Ceremonia de fraternidad entre comunidades",
+              "Nombre del dios del maíz",
+              "Danza de cosecha"
             ],
             "ok": 1,
-            "exp": "Evidenció la peligrosidad mortal de la defensa del territorio donde ambientalistas son criminalizados y eliminados."
+            "exp": "El guancasco es una ceremonia de fraternidad entre pueblos lencas."
           },
           {
-            "q": "¿Qué función paradójica cumplen las remesas según el texto?",
+            "q": "¿Cuántas especies de aves se documentaron en Honduras?",
             "ops": [
-              "Financian exclusivamente la educación",
-              "Funcionan como subsidio externo que alivia presión sobre un Estado que ha fracasado en funciones básicas",
-              "No tienen impacto económico",
-              "Solo benefician a las empresas de transferencias"
+              "Más de 350",
+              "Más de 500",
+              "Más de 750",
+              "Más de 1.000"
             ],
-            "ok": 1,
-            "exp": "Las remesas funcionan como subsidio externo que alivia la presión social sobre un Estado que ha fracasado en funciones básicas."
+            "ok": 2,
+            "exp": "Honduras tiene más de 750 especies de aves documentadas."
           },
           {
-            "q": "¿Qué contradicción señala el texto respecto a Copán y los pueblos indígenas actuales?",
+            "q": "¿Qué madera usan los misquitos para cayucos?",
             "ops": [
-              "Que no existe relación entre ambos",
-              "Que se monumentaliza el pasado indígena como atracción turística mientras se invisibilizan los pueblos originarios vivos",
-              "Que los pueblos indígenas rechazan Copán",
-              "Que el turismo beneficia a las comunidades indígenas"
+              "Pino y roble",
+              "Cedro o caoba",
+              "Balsa y bambú",
+              "Guanacaste y laurel"
             ],
             "ok": 1,
-            "exp": "La monumentalización del pasado indígena como turismo coexiste con la invisibilización de los pueblos originarios vivos."
+            "exp": "Los artesanos misquitos usan cedro o caoba."
           }
         ],
         "vocabLocal": []
@@ -5127,98 +5039,90 @@ var AUDITIVA_DATA = {
     "episodes": [
       {
         "id": "mx_c1",
-        "title": "México: entre el mito fundacional y las fracturas contemporáneas",
+        "title": "México: tejidos, palabras y sabidurías profundas",
         "level": "C1",
-        "duration": "7 min",
+        "duration": "4 min",
         "sections": [
           {
             "speaker": "narrator",
-            "text": "México ha construido uno de los relatos nacionales más elaborados y poderosos de América Latina, un mito fundacional que entrelaza el pasado prehispánico, la conquista, el mestizaje y la revolución en una narrativa de síntesis que Octavio Paz denominó \"el laberinto de la soledad\". Sin embargo, este discurso integrador ha funcionado históricamente como mecanismo de homogeneización que invisibiliza la persistente exclusión de los sesenta y ocho pueblos indígenas que habitan el territorio nacional y que representan aproximadamente el quince por ciento de la población."
+            "text": "Los textiles zapotecos de Teotitlán del Valle representan uno de los sistemas de comunicación visual más elaborados de Mesoamérica. Cada diseño geométrico condensa mitos cosmogónicos y jerarquías sociales. Los tejedores fusionan telares de pedal coloniales con iconografías que preceden por siglos a la conquista."
           },
           {
             "speaker": "narrator",
-            "text": "La Revolución Mexicana de 1910, primera revolución social del siglo XX, engendró un régimen de partido único que gobernó durante setenta y un años ininterrumpidos bajo diferentes denominaciones. El PRI perfeccionó un sistema de cooptación, clientelismo y fraude electoral tan sofisticado que el escritor Mario Vargas Llosa lo calificó como \"la dictadura perfecta\", un oxímoron que captura la singularidad de un autoritarismo revestido de formalidades democráticas que logró legitimarse tanto interna como internacionalmente."
+            "text": "México tiene 68 agrupaciones de lenguas indígenas reconocidas, con más de 364 variantes dialectales. El náhuatl, el maya yucateco y el mixteco son las más habladas, pero lenguas como el ayapaneco o el kiliwa cuentan con apenas decenas de hablantes, enfrentando extinción de urgencia crítica."
           },
           {
             "speaker": "narrator",
-            "text": "El levantamiento zapatista de 1994, coincidiendo deliberadamente con la entrada en vigor del Tratado de Libre Comercio de América del Norte, representó una impugnación radical del modelo neoliberal desde los márgenes más empobrecidos del país. El Subcomandante Marcos, con su pasamontañas y su prosa literaria, articuló un discurso que resonó globalmente y prefiguró los movimientos altermundistas del siglo XXI, demostrando que la resistencia indígena podía interpelar al mundo sin abandonar su arraigo territorial."
+            "text": "La milpa no es solo sistema agrícola: es filosofía alimentaria. La siembra conjunta de maíz, frijol y calabaza crea un ecosistema donde cada planta beneficia a las demás. El maíz provee soporte, el frijol fija nitrógeno y la calabaza cubre el suelo, anticipando en milenios los principios de la agroecología."
           },
           {
             "speaker": "narrator",
-            "text": "La guerra contra el narcotráfico, intensificada a partir de 2006, ha dejado un saldo de más de trescientos mil homicidios y más de cien mil desaparecidos, cifras que configuran una crisis humanitaria cuya magnitud resulta difícil de asimilar. Es fundamental que se examine cómo la fragmentación de los grandes carteles, lejos de resolver el problema, multiplicó los frentes de violencia al generar decenas de organizaciones criminales más pequeñas y más brutales que compiten por el control territorial."
+            "text": "Los alebrijes nacieron en la Ciudad de México en los años treinta de las visiones febriles de Pedro Linares. Oaxaca adoptó la tradición tallando madera de copal para crear criaturas fantásticas hibridadas, convirtiendo el arte popular en vehículo de expresión surrealista colectiva."
           },
           {
             "speaker": "narrator",
-            "text": "La gastronomía mexicana, declarada Patrimonio Inmaterial de la Humanidad, constituye un sistema cultural complejo cuya sofisticación rivaliza con cualquier tradición culinaria del planeta. El maíz, eje civilizatorio de Mesoamérica, enfrenta hoy la amenaza de los cultivos transgénicos y la importación masiva de granos subsidiados desde Estados Unidos, lo cual pone en riesgo no solo la soberanía alimentaria sino la biodiversidad genética de las más de sesenta razas nativas de maíz."
+            "text": "Juan Rulfo condensó en Pedro Páramo un universo donde los muertos hablan y el tiempo colapsa. Octavio Paz analizó la identidad mexicana en El laberinto de la soledad. Carlos Fuentes desplegó en La muerte de Artemio Cruz una arquitectura narrativa de perspectivas múltiples que renovó la novela continental."
           },
           {
             "speaker": "narrator",
-            "text": "La relación con Estados Unidos, definida por la célebre frase atribuida a Porfirio Díaz sobre la lejanía de Dios y la cercanía del vecino del norte, condiciona todos los aspectos de la vida mexicana. La frontera más transitada del mundo funciona simultáneamente como herida abierta y zona de hibridación cultural donde se gesta una identidad transfronteriza que desafía las categorías nacionales convencionales. Los más de treinta y cinco millones de mexicoamericanos constituyen una comunidad cuya influencia cultural y política es cada vez más determinante en ambos países."
-          },
-          {
-            "speaker": "narrator",
-            "text": "Frida Kahlo, cuya imagen se ha convertido en uno de los íconos más reproducidos y mercantilizados del planeta, ilustra las tensiones entre arte, identidad y capitalismo global. La apropiación comercial de su figura por parte de corporaciones multinacionales ha vaciado de contenido político a una artista cuya obra abordaba el sufrimiento corporal, la mexicanidad y el compromiso revolucionario con una honestidad que resulta inconciliable con su actual condición de marca registrada."
-          },
-          {
-            "speaker": "narrator",
-            "text": "El futuro de México como potencia regional depende en gran medida de su capacidad para resolver la fractura entre un norte industrializado e integrado a las cadenas de valor norteamericanas y un sur predominantemente indígena y campesino cuyo desarrollo ha sido históricamente postergado. Que un mismo país albergue simultáneamente polos tecnológicos comparables a los de cualquier nación desarrollada y comunidades sin acceso a servicios básicos constituye el desafío más urgente que enfrenta el proyecto nacional mexicano."
+            "text": "Los mercados de herbolaria mexicana funcionan como universidades de medicina popular. Curanderos manejan cientos de plantas con nombres en náhuatl: toloache, zarzaparrilla, copalchi. Este conocimiento etnobotánico es hoy objeto de investigación farmacológica por laboratorios internacionales."
           }
         ],
         "quiz": [
           {
-            "q": "¿Por qué Vargas Llosa calificó al régimen del PRI como \"dictadura perfecta\"?",
+            "q": "¿Qué distingue al textil zapoteco de Teotitlán?",
             "ops": [
-              "Porque era una democracia ejemplar",
-              "Porque era un autoritarismo revestido de formalidades democráticas que logró legitimarse interna e internacionalmente",
-              "Porque utilizaba exclusivamente la represión militar",
-              "Porque gobernó solo unos pocos años"
+              "Tintes químicos modernos",
+              "Diseños puramente decorativos",
+              "Fusión de iconografía precolombina con técnicas coloniales",
+              "Solo algodón silvestre"
             ],
-            "ok": 1,
-            "exp": "El PRI perfeccionó un autoritarismo con formalidades democráticas tan sofisticado que se legitimó tanto interna como internacionalmente."
+            "ok": 2,
+            "exp": "Fusiona iconografía precolombina con técnicas de telar de pedal colonial."
           },
           {
-            "q": "¿Qué significación global tuvo el levantamiento zapatista según el texto?",
+            "q": "¿Cuántas agrupaciones de lenguas indígenas reconoce México?",
             "ops": [
-              "Solo tuvo relevancia local en Chiapas",
-              "Prefiguró los movimientos altermundistas demostrando que la resistencia indígena podía interpelar al mundo",
-              "Fue un conflicto armado convencional",
-              "No tuvo ningún impacto fuera de México"
+              "12",
+              "35",
+              "68",
+              "120"
             ],
-            "ok": 1,
-            "exp": "El zapatismo prefiguró movimientos altermundistas y demostró que la resistencia indígena podía interpelar al mundo."
+            "ok": 2,
+            "exp": "México reconoce 68 agrupaciones de lenguas indígenas."
           },
           {
-            "q": "¿Por qué la fragmentación de los carteles empeoró la violencia?",
+            "q": "¿Qué aporta el frijol a la milpa?",
             "ops": [
-              "Porque creó un solo cartel más poderoso",
-              "Porque multiplicó los frentes al generar decenas de organizaciones más pequeñas y brutales compitiendo por territorio",
-              "Porque eliminó completamente el narcotráfico",
-              "Porque los carteles se volvieron menos violentos"
+              "Atrae polinizadores",
+              "Fija nitrógeno en el suelo",
+              "Protege de plagas",
+              "Regula humedad"
             ],
             "ok": 1,
-            "exp": "La fragmentación generó decenas de organizaciones más pequeñas y más brutales compitiendo por control territorial."
+            "exp": "El frijol fija nitrógeno atmosférico en el suelo."
           },
           {
-            "q": "¿Qué crítica plantea el texto sobre la mercantilización de Frida Kahlo?",
+            "q": "¿Quién creó originalmente los alebrijes?",
             "ops": [
-              "Que su arte no tiene calidad suficiente",
-              "Que la apropiación comercial ha vaciado de contenido político a una artista comprometida",
-              "Que Kahlo aprobó la comercialización de su imagen",
-              "Que solo los mexicanos deberían usar su imagen"
+              "Colectivo de artistas oaxaqueños",
+              "Frida Kahlo",
+              "Pedro Linares, inspirado en sueños febriles",
+              "Los talladores de Arrazola"
             ],
-            "ok": 1,
-            "exp": "La apropiación comercial ha vaciado de contenido político a una artista cuya obra abordaba sufrimiento, mexicanidad y compromiso revolucionario."
+            "ok": 2,
+            "exp": "Pedro Linares los creó inspirado en visiones febriles en los años 30."
           },
           {
-            "q": "¿Cuál es la fractura territorial fundamental que enfrenta México?",
+            "q": "¿Qué obra de Juan Rulfo pertenece al boom literario?",
             "ops": [
-              "Entre ciudades costeras y del interior",
-              "Entre un norte industrializado integrado a cadenas norteamericanas y un sur indígena-campesino históricamente postergado",
-              "Entre zonas turísticas y no turísticas",
-              "Entre la capital y las provincias exclusivamente"
+              "El laberinto de la soledad",
+              "La muerte de Artemio Cruz",
+              "Pedro Páramo",
+              "Cien años de soledad"
             ],
-            "ok": 1,
-            "exp": "La fractura entre un norte industrializado e integrado y un sur indígena-campesino históricamente postergado."
+            "ok": 2,
+            "exp": "Pedro Páramo de Juan Rulfo es obra fundamental del boom."
           }
         ],
         "vocabLocal": []
@@ -5595,98 +5499,90 @@ var AUDITIVA_DATA = {
     "episodes": [
       {
         "id": "ni_c1",
-        "title": "Nicaragua: revolución traicionada y autocracia en el siglo XXI",
+        "title": "Nicaragua: arte primitivista, cacao y petroglifos ancestrales",
         "level": "C1",
-        "duration": "7 min",
+        "duration": "4 min",
         "sections": [
           {
             "speaker": "narrator",
-            "text": "Nicaragua ofrece una de las lecciones más dolorosas de la historia política latinoamericana: cómo un movimiento revolucionario que derrocó una tiranía dinástica puede terminar reproduciendo las mismas prácticas autoritarias que combatió. La Revolución Sandinista de 1979, que despertó entusiasmo solidario en todo el mundo al derrocar la dictadura somocista, ha devenido, en su segunda encarnación bajo Daniel Ortega, en un régimen que concentra todos los poderes del Estado y suprime sistemáticamente la disidencia."
+            "text": "La escuela de pintura primitivista de Solentiname surgió en los años sesenta cuando Ernesto Cardenal dotó a los campesinos del archipiélago de pinceles y lienzos. Sin formación académica, los isleños plasmaron la exuberancia tropical con perspectiva ingenuista que cautivó a críticos internacionales."
           },
           {
             "speaker": "narrator",
-            "text": "La Contra, fuerza irregular financiada por la administración Reagan para desestabilizar al gobierno sandinista en los años ochenta, representó una de las intervenciones más devastadoras de Estados Unidos en Centroamérica. El escándalo Irán-Contra reveló la dimensión del financiamiento ilegal que sostenía esta guerra encubierta, cuyas consecuencias demográficas, económicas y psicológicas marcaron a una generación entera de nicaragüenses y condicionaron el devenir político del país."
+            "text": "El ron Flor de Caña madura sin aditivos en barricas de roble americano usadas para bourbon. El clima tropical de Chichigalpa crea condiciones de evaporación únicas que concentran los ésteres y aldehídos responsables del perfil aromático que lo distingue en la industria mundial de destilados."
           },
           {
             "speaker": "narrator",
-            "text": "Las protestas de abril de 2018, inicialmente motivadas por reformas al sistema de seguridad social, se transformaron en un levantamiento generalizado contra el gobierno de Ortega y Murillo cuya represión dejó centenares de muertos y miles de detenidos. Es imperativo que se analice cómo un régimen que se proclama heredero de una revolución popular respondió con violencia estatal masiva a manifestaciones pacíficas protagonizadas mayoritariamente por jóvenes universitarios."
+            "text": "La Reserva Natural Volcán Mombacho alberga uno de los últimos bosques enanos nubosos de América Central. Bromelias, orquídeas y helechos arborescentes cubren cada superficie en un ecosistema donde la niebla reemplaza a la lluvia como fuente principal de humedad."
           },
           {
             "speaker": "narrator",
-            "text": "La figura de Rubén Darío, padre del modernismo literario hispanoamericano, constituye paradójicamente el principal activo cultural de un país donde la libertad de expresión ha sido progresivamente cercenada. Que la nación que dio al mundo al poeta de la renovación del idioma español viva bajo un régimen que encarcela a escritores, periodistas e intelectuales configura una ironía cuya amargura resulta difícil de exagerar."
+            "text": "Ometepe concentra más de mil petroglifos tallados entre el año 300 y 1200 d.C. Las figuras zoomorfas y abstractas grabadas en roca basáltica representan sistemas cosmogónicos cuya decodificación continúa siendo objeto de debate arqueológico. Su ubicación cerca de fuentes de agua sugiere función ritual."
           },
           {
             "speaker": "narrator",
-            "text": "La concentración del poder en el binomio Ortega-Murillo, que ha colocado a familiares y allegados en posiciones estratégicas del Estado, reproduce el patrón dinástico somocista que la revolución juró erradicar. Esta circularidad histórica, donde los libertadores se convierten en opresores, plantea interrogantes filosóficos profundos sobre la naturaleza del poder político y la capacidad de las revoluciones para generar cambios estructurales duraderos."
+            "text": "San Juan de Oriente produce cerámica precolombina con técnicas casi idénticas a las de hace mil años. Los alfareros trabajan arcilla sin torno, modelando a mano vasijas que graban con punzones de madera o hueso. Cada pieza es un documento arqueológico viviente de la tradición chorotenga."
           },
           {
             "speaker": "narrator",
-            "text": "El lago de Nicaragua, el mayor cuerpo de agua dulce de Centroamérica, ha sido objeto de proyectos de canal interoceánico cuya viabilidad ambiental y económica resulta cuestionable. La concesión otorgada a una empresa china para construir una vía acuática alternativa al Canal de Panamá generó controversia no solo por sus potenciales impactos ecológicos devastadores sino por la opacidad del proceso y el desplazamiento de comunidades campesinas e indígenas de sus tierras ancestrales."
-          },
-          {
-            "speaker": "narrator",
-            "text": "La migración nicaragüense hacia Costa Rica, históricamente motivada por razones económicas, ha adquirido una dimensión política inédita tras la represión de 2018. Los exiliados nicaragüenses, que incluyen a intelectuales, empresarios, periodistas y activistas de derechos humanos, han configurado una diáspora política cuya capacidad de incidencia depende de mantener viva una memoria que el régimen intenta borrar mediante la propaganda y la reescritura de la historia."
-          },
-          {
-            "speaker": "narrator",
-            "text": "La Isla de Ometepe, con sus dos volcanes emergiendo del lago Nicaragua, funciona como metáfora involuntaria de un país dividido entre fuerzas antagónicas que comparten un mismo territorio. La belleza natural excepcional de Nicaragua, que incluye selvas tropicales, volcanes activos y costas caribeñas de biodiversidad asombrosa, contrasta brutalmente con la degradación institucional que ha convertido al país en un Estado donde las garantías constitucionales existen solo en el papel."
+            "text": "Nicaragua experimenta un renacimiento cacaotero. El cacao nicaragüense —varietales criollo y trinitario— gana reconocimiento por perfiles con notas de frutas rojas, especias y tierra húmeda. Cooperativas como CACAONICA transforman el cultivo ancestral en producto de exportación de alta gama."
           }
         ],
         "quiz": [
           {
-            "q": "¿Qué lección histórica ofrece Nicaragua según el texto?",
+            "q": "¿Quién impulsó la pintura primitivista de Solentiname?",
             "ops": [
-              "Que las revoluciones siempre triunfan",
-              "Cómo un movimiento revolucionario puede terminar reproduciendo las prácticas autoritarias que combatió",
-              "Que las dictaduras son inevitables",
-              "Que la democracia nunca funcionó en Centroamérica"
+              "Rubén Darío",
+              "El gobierno como proyecto",
+              "Ernesto Cardenal",
+              "Pintores académicos de Managua"
             ],
-            "ok": 1,
-            "exp": "Nicaragua muestra cómo un movimiento que derrocó una tiranía puede reproducir las mismas prácticas autoritarias."
+            "ok": 2,
+            "exp": "Ernesto Cardenal impulsó la escuela de Solentiname."
           },
           {
-            "q": "¿Qué paradoja cultural señala el texto respecto a Rubén Darío?",
+            "q": "¿Qué hace especial al envejecimiento del Flor de Caña?",
             "ops": [
-              "Que Darío no era nicaragüense",
-              "Que la nación del padre del modernismo literario vive bajo un régimen que encarcela a escritores y periodistas",
-              "Que nadie lee a Darío en Nicaragua",
-              "Que Darío apoyaba el autoritarismo"
+              "Barricas de caoba virgen",
+              "Sin aditivos, en barricas de roble americano de bourbon",
+              "Triple destilación en cobre",
+              "Añejado bajo tierra"
             ],
             "ok": 1,
-            "exp": "La nación que dio al mundo al renovador del idioma español vive bajo un régimen que encarcela a escritores y periodistas."
+            "exp": "Madura sin aditivos en barricas de roble americano usadas para bourbon."
           },
           {
-            "q": "¿Qué circularidad histórica identifica el análisis?",
+            "q": "¿Qué fuente de humedad predomina en el Mombacho?",
             "ops": [
-              "Que los volcanes entran en erupción cíclicamente",
-              "Que la concentración dinástica Ortega-Murillo reproduce el patrón somocista que la revolución juró erradicar",
-              "Que las elecciones se repiten cada cuatro años",
-              "Que la economía siempre crece"
+              "Ríos subterráneos",
+              "Lluvias torrenciales",
+              "La niebla reemplaza a la lluvia",
+              "Riego artificial"
             ],
-            "ok": 1,
-            "exp": "La concentración dinástica Ortega-Murillo reproduce el patrón somocista que la revolución juró erradicar."
+            "ok": 2,
+            "exp": "La niebla es la fuente principal de humedad en el Mombacho."
           },
           {
-            "q": "¿Cómo respondió el régimen a las protestas de 2018 según el texto?",
+            "q": "¿En qué material están los petroglifos de Ometepe?",
             "ops": [
-              "Con diálogo y concesiones inmediatas",
-              "Con violencia estatal masiva contra manifestaciones pacíficas de jóvenes universitarios",
-              "Ignorando completamente las protestas",
-              "Renunciando al poder"
+              "Roca caliza",
+              "Madera petrificada",
+              "Obsidiana",
+              "Roca basáltica"
             ],
-            "ok": 1,
-            "exp": "Un régimen autoproclamado heredero de una revolución popular respondió con violencia estatal masiva a manifestaciones pacíficas."
+            "ok": 3,
+            "exp": "Los petroglifos están grabados en roca basáltica."
           },
           {
-            "q": "¿Qué nueva dimensión adquirió la migración nicaragüense tras 2018?",
+            "q": "¿Qué técnica usa la cerámica de San Juan de Oriente?",
             "ops": [
-              "Se detuvo completamente",
-              "Adquirió dimensión política inédita con una diáspora de intelectuales, periodistas y activistas",
-              "Se limitó a razones exclusivamente económicas",
-              "Se dirigió únicamente hacia Estados Unidos"
+              "Torno eléctrico",
+              "Modelado a mano sin torno con grabado de punzones",
+              "Moldes de yeso",
+              "Colada con arcilla líquida"
             ],
             "ok": 1,
-            "exp": "La migración adquirió dimensión política con una diáspora que incluye intelectuales, periodistas y activistas."
+            "exp": "Se modela a mano sin torno, con grabado de punzones de madera o hueso."
           }
         ],
         "vocabLocal": []
@@ -6058,98 +5954,90 @@ var AUDITIVA_DATA = {
     "episodes": [
       {
         "id": "pa_c1",
-        "title": "Panamá: transitismo, paraíso fiscal y soberanía recuperada",
+        "title": "Panamá: selva, jazz y matices del español",
         "level": "C1",
-        "duration": "7 min",
+        "duration": "4 min",
         "sections": [
           {
             "speaker": "narrator",
-            "text": "Panamá ha sido definida históricamente por su condición de istmo, un estrecho corredor de tierra cuya posición geográfica estratégica ha determinado su destino político y económico de maneras que ningún otro factor podría explicar. Desde la ruta colonial que conectaba el oro peruano con los galeones españoles hasta el canal interoceánico del siglo XX, el transitismo ha configurado una economía de servicios orientada al comercio internacional que distingue radicalmente a Panamá del resto de Centroamérica."
+            "text": "La pintura corporal emberá no es adorno: es sistema médico-espiritual. El jugo de jagua se aplica con finos palillos en patrones geométricos según edad, género y propósito ritual. Los chamanes emberá conocen centenares de plantas medicinales del Darién investigadas actualmente por etnobotánicos internacionales."
           },
           {
             "speaker": "narrator",
-            "text": "La construcción del Canal de Panamá, que costó la vida a más de veinticinco mil trabajadores predominantemente antillanos y asiáticos, constituye una de las mayores hazañas de ingeniería del siglo XX y simultáneamente uno de los episodios más brutales de explotación laboral colonial. La separación de Panamá de Colombia en 1903, facilitada por Estados Unidos para asegurar los derechos sobre la zona canalera, plantea interrogantes fundamentales sobre la soberanía de un Estado cuyo nacimiento fue instrumentalizado por una potencia hegemónica."
+            "text": "El Corredor Biológico del Darién conecta ecosistemas de América del Norte y del Sur. Especies neárticas y neotropicales comparten territorio, generando una densidad de biodiversidad que los científicos del Instituto Smithsoniano consideran irreproducible en cualquier otro lugar del planeta."
           },
           {
             "speaker": "narrator",
-            "text": "La recuperación del Canal en 1999, tras décadas de movilización popular catalizada por los mártires del 9 de enero de 1964, representó la culminación de un proceso de descolonización que restauró la soberanía panameña sobre su principal recurso estratégico. No obstante, es legítimo preguntarse si la soberanía formal sobre el Canal se ha traducido en una distribución equitativa de los beneficios generados o si estos continúan concentrándose en una élite económica vinculada al sector financiero y logístico."
+            "text": "Danilo Pérez es el exponente más influyente del jazz panameño. Su fusión de ritmos afrocaribeños con armonía bebop crea una gramática musical propia. Fundador del Festival Internacional de Jazz de Panamá en 2003, convirtió la Ciudad de Panamá en epicentro del diálogo entre el Caribe y el jazz clásico."
           },
           {
             "speaker": "narrator",
-            "text": "Los Papeles de Panamá, la filtración de documentos del bufete Mossack Fonseca en 2016, pusieron al descubierto la infraestructura global de evasión fiscal que Panamá ha facilitado durante décadas. La revelación de que políticos, empresarios y celebridades de todo el mundo utilizaban sociedades panameñas para ocultar activos y evadir impuestos generó una crisis reputacional que obligó al país a confrontar las contradicciones de un modelo económico cuya prosperidad depende en parte significativa de la opacidad financiera."
+            "text": "Las piraguas son embarcaciones artesanales para regatas de fuerte arraigo cultural en la Azuero. La fabricación requiere seleccionar un tronco de espavé o cedro de al menos ochenta años, garantizando la densidad para soportar los embates del oleaje."
           },
           {
             "speaker": "narrator",
-            "text": "La comunidad afropanameña, descendiente mayoritariamente de los trabajadores antillanos que construyeron el ferrocarril y el Canal, ha enfrentado una invisibilización sistemática en la narrativa nacional pese a su contribución fundamental al desarrollo del país. El racismo estructural, que se manifiesta en brechas educativas, laborales y de acceso a servicios públicos, coexiste con una retórica oficial de crisol de razas que enmascara desigualdades profundamente arraigadas."
+            "text": "La Isla de Coiba, Patrimonio Natural de la Humanidad desde 2005, preserva arrecifes coralinos entre los mejor conservados del Pacífico oriental. Su aislamiento permitió la evolución de subespecies endémicas como el tucán y el venado de Coiba. El Parque protege 430.825 hectáreas marinas."
           },
           {
             "speaker": "narrator",
-            "text": "La comarca Guna Yala, gobernada autónomamente por el pueblo guna desde la Revolución Tule de 1925, representa uno de los modelos más exitosos de autogobierno indígena en América Latina. Las molas, textiles elaborados con la técnica de aplicación inversa, constituyen no solo una expresión artística de extraordinaria sofisticación sino un símbolo de la resistencia cultural guna frente a las presiones homogeneizadoras de la modernización."
-          },
-          {
-            "speaker": "narrator",
-            "text": "El centro financiero panameño, con su selva de rascacielos que contrasta dramáticamente con las comunidades marginales adyacentes, materializa visualmente la desigualdad que atraviesa al país. Panamá ostenta uno de los coeficientes de Gini más altos de la región, lo cual significa que pese a tener uno de los PIB per cápita más elevados de Latinoamérica, la riqueza se distribuye de manera profundamente inequitativa."
-          },
-          {
-            "speaker": "narrator",
-            "text": "El impacto del cambio climático sobre Panamá resulta particularmente preocupante dado que el funcionamiento del Canal depende de un suministro de agua dulce proveniente de lagos artificiales cuyo nivel se ve afectado por la variabilidad de las precipitaciones. Las restricciones de calado impuestas en años recientes por la sequía constituyen un anticipo de cómo la crisis climática puede amenazar la infraestructura que sustenta la economía panameña y, por extensión, el comercio marítimo global."
+            "text": "El español panameño exhibe rasgos sociolingüísticos de estudio privilegiado. El voseo coexiste con el ustedeo creando un sistema pronominal de tres niveles de cortesía. La influencia del inglés caribeño y el contacto con más de cien lenguas por el Canal generan un léxico llamado español canalero."
           }
         ],
         "quiz": [
           {
-            "q": "¿Qué determina la singularidad histórica de Panamá según el análisis?",
+            "q": "¿Qué planta produce el jugo de la pintura corporal emberá?",
             "ops": [
-              "Su tamaño territorial",
-              "Su condición de istmo y posición geográfica estratégica que ha configurado una economía de transitismo",
-              "Su idioma oficial",
-              "Su sistema político"
+              "La jagua",
+              "El achiote",
+              "El índigo silvestre",
+              "La resina de copal"
             ],
-            "ok": 1,
-            "exp": "La condición de istmo y su posición geográfica estratégica han configurado una economía de servicios orientada al comercio internacional."
+            "ok": 0,
+            "exp": "El jugo de jagua se usa para la pintura corporal emberá."
           },
           {
-            "q": "¿Qué interrogante plantea la independencia de Panamá en 1903?",
+            "q": "¿Por qué el Darién es corredor biológico único?",
             "ops": [
-              "Si Panamá debería volver a ser parte de Colombia",
-              "Si la soberanía de un Estado cuyo nacimiento fue instrumentalizado por una potencia hegemónica es genuina",
-              "Si el Canal existía antes de la independencia",
-              "Si Colombia aceptó voluntariamente la separación"
+              "Es el único bosque sin deforestación",
+              "Conecta ecosistemas neárticos y neotropicales",
+              "Sus ríos subterráneos alimentan biodiversidad",
+              "Fue la primera reserva de la biosfera"
             ],
             "ok": 1,
-            "exp": "Plantea interrogantes sobre la soberanía de un Estado cuyo nacimiento fue instrumentalizado por Estados Unidos."
+            "exp": "Conecta ecosistemas de América del Norte y del Sur."
           },
           {
-            "q": "¿Qué revelan los Papeles de Panamá sobre el modelo económico del país?",
+            "q": "¿Qué fusión musical caracteriza a Danilo Pérez?",
             "ops": [
-              "Que la economía es exclusivamente agrícola",
-              "Que la prosperidad depende en parte significativa de la opacidad financiera que facilita evasión fiscal global",
-              "Que Panamá tiene la economía más transparente del mundo",
-              "Que solo empresas locales usan el sistema financiero"
+              "Flamenco con jazz modal",
+              "Ritmos afrocaribeños con armonía bebop",
+              "Samba con jazz fusión",
+              "Marimba con jazz de vanguardia"
             ],
             "ok": 1,
-            "exp": "Revelaron que la prosperidad panameña depende en parte de la opacidad financiera que facilita evasión fiscal global."
+            "exp": "Danilo Pérez fusiona ritmos afrocaribeños con armonía bebop."
           },
           {
-            "q": "¿Qué amenaza climática específica enfrenta el Canal de Panamá?",
+            "q": "¿Dónde se celebran las regatas de piraguas más importantes?",
             "ops": [
-              "El aumento del nivel del mar",
-              "La reducción del suministro de agua dulce por variabilidad de precipitaciones que afecta el funcionamiento del Canal",
-              "Los terremotos frecuentes",
-              "La erosión de las esclusas por el viento"
+              "San Blas",
+              "Bocas del Toro",
+              "La Azuero",
+              "Colón"
             ],
-            "ok": 1,
-            "exp": "El Canal depende de agua dulce de lagos artificiales cuyo nivel se ve afectado por la variabilidad de precipitaciones."
+            "ok": 2,
+            "exp": "Las regatas más importantes se celebran en la Azuero."
           },
           {
-            "q": "¿Qué significación tiene la comarca Guna Yala según el texto?",
+            "q": "¿Qué describe el español canalero?",
             "ops": [
-              "Es solo una zona turística",
-              "Representa uno de los modelos más exitosos de autogobierno indígena en América Latina",
-              "Fue creada por el gobierno panameño reciente",
-              "No tiene relevancia política"
+              "Voseo exclusivo en contextos formales",
+              "Dialecto criollo de trabajadores jamaicanos",
+              "Code-switching por influencia del inglés y lenguas de contacto",
+              "Español del siglo XVII preservado"
             ],
-            "ok": 1,
-            "exp": "Guna Yala representa uno de los modelos más exitosos de autogobierno indígena en América Latina."
+            "ok": 2,
+            "exp": "El español canalero es code-switching por influencia del inglés y lenguas de contacto."
           }
         ],
         "vocabLocal": []
@@ -6521,98 +6409,90 @@ var AUDITIVA_DATA = {
     "episodes": [
       {
         "id": "py_c1",
-        "title": "Paraguay: bilingüismo guaraní, aislamiento y poder oligárquico",
+        "title": "Paraguay: guaraní como lingua franca, Pantanal y arpa virtuosa",
         "level": "C1",
-        "duration": "7 min",
+        "duration": "4 min",
         "sections": [
           {
             "speaker": "narrator",
-            "text": "Paraguay constituye una anomalía lingüística en América Latina al ser el único país del continente donde una lengua indígena, el guaraní, es hablada mayoritariamente por la población mestiza y no exclusivamente por comunidades originarias. Esta particularidad, que convierte al guaraní en idioma vehicular de la sociedad paraguaya en su conjunto, plantea interrogantes fascinantes sobre los procesos de criollización lingüística y desafía la ecuación habitual que identifica las lenguas indígenas con la marginalidad social."
+            "text": "El guaraní paraguayo es la única lengua indígena del continente que funciona como lingua franca mayoritaria de toda una nación, incluyendo la población mestiza urbana. Co-oficial desde 1992, el 90% de los paraguayos lo habla y lo combina con español en el jopará cotidiano."
           },
           {
             "speaker": "narrator",
-            "text": "La Guerra de la Triple Alianza, librada entre 1864 y 1870 contra la coalición de Brasil, Argentina y Uruguay, constituye la catástrofe demográfica más devastadora de la historia latinoamericana. Paraguay perdió aproximadamente el noventa por ciento de su población masculina adulta, un exterminio que condicionó irreversiblemente la estructura social del país y generó un trauma colectivo cuyas reverberaciones se perciben hasta el presente en la configuración de las relaciones de género y en la centralidad de la figura materna."
+            "text": "La Guerra de la Triple Alianza dejó una huella demográfica entre las más devastadoras de la historia latinoamericana. Se estima que Paraguay perdió entre el 60 y 70% de su población total. Esta catástrofe reconfiguró las estructuras sociales, con las mujeres asumiendo roles económicos y culturales fundamentales."
           },
           {
             "speaker": "narrator",
-            "text": "La dictadura de Alfredo Stroessner, que se extendió durante treinta y cinco años hasta 1989, perfeccionó un sistema de control social basado en la cooptación del Partido Colorado, la represión selectiva de la disidencia y la corrupción institucionalizada como mecanismo de distribución de lealtades. Es imprescindible que se examine cómo el stronismo no fue una aberración histórica sino la expresión más acabada de una cultura política autoritaria cuyas raíces se remontan al siglo XIX."
+            "text": "Las comunidades menonitas del Chaco transformaron uno de los ecosistemas más hostiles del continente en zona lechera y agroindustrial productiva. Llegados desde Rusia, Canadá y México entre 1927 y 1947, desarrollaron tecnologías propias de extracción de agua subterránea y adaptación de cultivos al calor extremo."
           },
           {
             "speaker": "narrator",
-            "text": "La economía paraguaya, fuertemente dependiente de la agroexportación de soja transgénica, reproduce un modelo que concentra la tierra en pocas manos mientras expulsa a las comunidades campesinas e indígenas de sus territorios ancestrales. Los llamados \"sojeros brasileños\", agricultores de origen brasileño que han adquirido vastas extensiones en la región oriental del país, configuran un fenómeno de colonización agraria que genera tensiones identitarias y territoriales de difícil resolución."
+            "text": "La Fundición de Ybycuí, construida entre 1850 y 1854, fue la primera industria metalúrgica del Paraguay premoderno. Fabricaba cañones y herramientas aprovechando yacimientos de hierro locales y energía hidráulica. Hoy sus ruinas son Parque Nacional y testimonio del afán modernizador de la época."
           },
           {
             "speaker": "narrator",
-            "text": "La represa de Itaipú, compartida con Brasil, genera una cantidad de energía hidroeléctrica que excede con creces la demanda paraguaya, pero los términos del tratado binacional han sido históricamente desfavorables para Paraguay, que se ha visto obligado a vender su excedente energético a Brasil a precios muy inferiores a los del mercado internacional. Esta situación configura una forma de dependencia energética invertida donde el poseedor del recurso no se beneficia proporcionalmente de su explotación."
+            "text": "El arpa paraguaya se toca sin pedales y con las uñas, produciendo timbre cristalino y percusivo inconfundible. Los virtuosos como Luis Bordón desarrollaron una escuela técnica donde la ornamentación y las modulaciones crean una polifonía que engaña al oído haciéndolo creer en dos instrumentos simultáneos."
           },
           {
             "speaker": "narrator",
-            "text": "El contrabando y la economía informal, que algunos economistas estiman representan hasta la mitad del producto interno bruto real, constituyen un fenómeno estructural que no puede reducirse a la mera criminalidad. Ciudad del Este, en la frontera con Brasil y Argentina, funciona como uno de los centros comerciales informales más grandes del mundo, un espacio donde las fronteras entre lo legal y lo ilegal se difuminan en una economía de supervivencia que el Estado no ha sabido ni formalizar ni reprimir efectivamente."
-          },
-          {
-            "speaker": "narrator",
-            "text": "La literatura paraguaya, desde las novelas de Augusto Roa Bastos hasta la poesía bilingüe contemporánea, ha explorado con particular lucidez la condición de un país que se percibe a sí mismo como periférico incluso dentro de la periferia latinoamericana. \"Yo el Supremo\", obra maestra de Roa Bastos, deconstruye la figura del dictador latinoamericano con una complejidad narrativa que trasciende el mero alegato político para interrogar los fundamentos mismos del poder y la escritura."
-          },
-          {
-            "speaker": "narrator",
-            "text": "El tereré, más que una simple bebida refrescante, funciona como ritual social que estructura la cotidianidad paraguaya y materializa valores de reciprocidad y comunidad que resisten la atomización individualista de la modernidad. La ronda de tereré, donde el mismo recipiente circula de mano en mano, constituye un acto de confianza y pertenencia cuya significación antropológica excede con mucho su dimensión gastronómica."
+            "text": "El Pantanal paraguayo alberga concentraciones faunísticas de excepcional densidad: yaguaretés, caimanes yacarés, carpinchos y anacondas comparten un ecosistema cuya productividad biológica supera a la de la selva amazónica en biomasa animal por hectárea."
           }
         ],
         "quiz": [
           {
-            "q": "¿Por qué el guaraní paraguayo constituye una anomalía lingüística en América Latina?",
+            "q": "¿Qué hace del guaraní un fenómeno sociolingüístico único?",
             "ops": [
-              "Porque es un idioma inventado recientemente",
-              "Porque es hablado mayoritariamente por la población mestiza y no solo por comunidades originarias",
-              "Porque nadie lo habla realmente",
-              "Porque es idéntico al español"
+              "Es la única lengua indígena con alfabeto propio",
+              "Es lingua franca hablada por el 90% incluida la población mestiza urbana",
+              "Fue impuesta por decreto colonial",
+              "Solo se habla en el Chaco rural"
             ],
             "ok": 1,
-            "exp": "Es el único caso donde una lengua indígena es vehicular para la sociedad en su conjunto, no solo para comunidades originarias."
+            "exp": "El guaraní es lingua franca mayoritaria de toda la nación."
           },
           {
-            "q": "¿Qué consecuencia tuvo la Guerra de la Triple Alianza según el análisis?",
+            "q": "¿Qué porcentaje de hombres adultos perdió Paraguay en la guerra?",
             "ops": [
-              "Un crecimiento demográfico acelerado",
-              "La pérdida del noventa por ciento de la población masculina adulta, condicionando irreversiblemente la estructura social",
-              "La industrialización del país",
-              "La unificación con Argentina"
+              "Hasta el 30%",
+              "Hasta el 50%",
+              "Hasta el 90%",
+              "Hasta el 15%"
             ],
-            "ok": 1,
-            "exp": "Paraguay perdió aproximadamente el noventa por ciento de su población masculina adulta, condicionando la estructura social."
+            "ok": 2,
+            "exp": "Se estima que se perdió hasta el 90% de los hombres adultos."
           },
           {
-            "q": "¿Qué forma de dependencia paradójica describe el texto respecto a Itaipú?",
+            "q": "¿De dónde llegaron las comunidades menonitas al Chaco?",
             "ops": [
-              "Que Paraguay importa toda su energía",
-              "Que el poseedor del recurso energético no se beneficia proporcionalmente por términos desfavorables del tratado con Brasil",
-              "Que Itaipú no genera suficiente energía",
-              "Que Brasil no usa la energía de Itaipú"
+              "Alemania y Suiza",
+              "Rusia, Canadá y México entre 1927 y 1947",
+              "Holanda y Bélgica",
+              "Estados Unidos y Brasil"
             ],
             "ok": 1,
-            "exp": "Paraguay debe vender su excedente a Brasil a precios inferiores al mercado, sin beneficiarse proporcionalmente de su propio recurso."
+            "exp": "Llegaron desde Rusia, Canadá y México entre 1927 y 1947."
           },
           {
-            "q": "¿Cómo interpreta el texto el contrabando y la economía informal paraguaya?",
+            "q": "¿Qué fuente de energía usaba la Fundición de Ybycuí?",
             "ops": [
-              "Como simple criminalidad que debe reprimirse",
-              "Como fenómeno estructural irreductible a mera criminalidad, vinculado a una economía de supervivencia",
-              "Como actividad exclusiva de extranjeros",
-              "Como algo insignificante para la economía"
+              "Carbón mineral",
+              "Energía eólica",
+              "Energía hidráulica",
+              "Vapor de quebracho"
             ],
-            "ok": 1,
-            "exp": "Es un fenómeno estructural que no puede reducirse a criminalidad, representando una economía de supervivencia."
+            "ok": 2,
+            "exp": "La Fundición usaba energía hidráulica del arroyo Corrientes."
           },
           {
-            "q": "¿Qué función social cumple el tereré más allá de lo gastronómico?",
+            "q": "¿Qué distingue al arpa paraguaya?",
             "ops": [
-              "Solo es una bebida para el calor",
-              "Funciona como ritual social que materializa reciprocidad y comunidad, resistiendo la atomización individualista",
-              "Es exclusivamente una tradición turística",
-              "Solo lo consumen las clases altas"
+              "Cuerdas metálicas y plectro",
+              "Más cuerdas y resonador de cerámica",
+              "Se toca sin pedales y con las uñas, timbre cristalino",
+              "Palancas laterales para cambiar tonalidad"
             ],
-            "ok": 1,
-            "exp": "El tereré materializa valores de reciprocidad y comunidad que resisten la atomización individualista de la modernidad."
+            "ok": 2,
+            "exp": "Se toca sin pedales y con las uñas produciendo timbre cristalino."
           }
         ],
         "vocabLocal": []
@@ -6984,98 +6864,90 @@ var AUDITIVA_DATA = {
     "episodes": [
       {
         "id": "pe_c1",
-        "title": "Perú: incaísmo, fracturas coloniales y el boom gastronómico como identidad",
+        "title": "Perú: lengua, arte y caminos del imperio",
         "level": "C1",
-        "duration": "7 min",
+        "duration": "4 min",
         "sections": [
           {
             "speaker": "narrator",
-            "text": "Perú ha construido un relato nacional que pivota sobre la grandeza del Imperio incaico, una narrativa que, si bien reivindica el pasado prehispánico como fuente de orgullo colectivo, paradójicamente coexiste con un racismo estructural que relega a las poblaciones indígenas y afroperuanas a los estratos más bajos de la jerarquía social. Esta disonancia entre el incaísmo retórico y la discriminación cotidiana constituye una de las contradicciones más reveladoras de la sociedad peruana contemporánea."
+            "text": "La revitalización del quechua va más allá de preservar la lengua: es reafirmación identitaria. Universidades ofrecen programas completos en quechua mientras comunidades andinas exigen reconocimiento administrativo, desafiando siglos de marginalización y reclamando presencia institucional."
           },
           {
             "speaker": "narrator",
-            "text": "La conquista del Tahuantinsuyo por Francisco Pizarro inauguró un orden colonial cuyas estructuras de dominación racial y económica, lejos de haberse disuelto con la independencia, se reprodujeron y adaptaron bajo nuevas formas. El gamonalismo serrano, sistema de explotación del campesinado indígena por parte de terratenientes locales que perduraba hasta bien entrado el siglo XX, ejemplifica cómo la colonialidad puede sobrevivir al colonialismo formal y perpetuarse como relación social internalizada."
+            "text": "La Amazonía peruana alberga un repositorio etnobotánico extraordinario. Los shipibo-conibo poseen conocimientos medicinales transmitidos por milenios: plantas como la uña de gato son investigadas farmacológicamente, generando debates sobre biopiratería y derechos de propiedad intelectual indígena."
           },
           {
             "speaker": "narrator",
-            "text": "El conflicto armado interno que enfrentó al Estado peruano con Sendero Luminoso y el Movimiento Revolucionario Túpac Amaru entre 1980 y 2000 dejó aproximadamente setenta mil víctimas, la inmensa mayoría campesinos quechuahablantes atrapados entre dos fuegos. La Comisión de la Verdad y Reconciliación documentó cómo el perfil étnico y socioeconómico de las víctimas evidenciaba que ciertas vidas eran consideradas prescindibles por un Estado que tardó años en reaccionar ante una violencia que se concentraba en las regiones más pobres e indígenas del país."
+            "text": "La cerámica moche es una cima del arte precolombino. Sus huacos retrato capturan con asombrosa fidelidad la vida cotidiana y los rituales con extraordinaria expresividad psicológica. Los nazcas desarrollaron policromías sofisticadas con formas zoomorfas articuladas con ciclos astronómicos."
           },
           {
             "speaker": "narrator",
-            "text": "José Carlos Mariátegui, cuya obra \"Siete ensayos de interpretación de la realidad peruana\" constituye uno de los textos fundacionales del pensamiento social latinoamericano, identificó con clarividencia la cuestión indígena como el problema central del Perú. Su lectura marxista heterodoxa, que vinculaba la emancipación indígena con la transformación estructural de la sociedad, continúa ofreciendo herramientas analíticas vigentes para comprender las desigualdades que persisten un siglo después."
+            "text": "Chicama ostenta la ola izquierda más larga del mundo: dos kilómetros continuos. El surf peruano fusiona el caballito de totora, embarcación milenaria de pescadores, con el deporte moderno, forjando una identidad oceánica mestiza genuinamente singular."
           },
           {
             "speaker": "narrator",
-            "text": "El boom gastronómico peruano, que ha posicionado a Lima como capital culinaria de América Latina, constituye un fenómeno cultural fascinante que merece ser analizado críticamente. La celebración de la cocina fusión, que integra tradiciones indígenas, africanas, chinas y japonesas, ha generado una narrativa de mestizaje exitoso y armonioso que contrasta con las persistentes jerarquías raciales de la sociedad. Es legítimo preguntarse si la gastronomía ha logrado efectivamente lo que la política no pudo: articular una identidad nacional inclusiva."
+            "text": "Virgilio Martínez organiza los menús de Central por ecosistemas y altitudes, desde el fondo marino hasta los Andes glaciales, con ingredientes hiperlocales documentados científicamente. Cada plato funciona como ensayo sobre biodiversidad peruana, reposicionando la cocina novoandina como conocimiento geográfico."
           },
           {
             "speaker": "narrator",
-            "text": "Machu Picchu, cuyo descubrimiento académico por Hiram Bingham en 1911 generó una disputa sobre la propiedad de los artefactos extraídos que se prolongó durante un siglo, funciona como símbolo de las tensiones entre patrimonio nacional y expolio cultural. La masificación turística que amenaza la preservación del sitio plantea además el dilema de cómo conciliar el derecho de las comunidades locales a beneficiarse económicamente del turismo con la obligación de proteger un patrimonio que pertenece a toda la humanidad."
-          },
-          {
-            "speaker": "narrator",
-            "text": "La minería, que ha sido históricamente el pilar de la economía peruana desde la plata colonial hasta el cobre y el oro contemporáneos, genera conflictos socioambientales recurrentes que enfrentan a comunidades campesinas con corporaciones transnacionales. Proyectos como Conga y Tía María han revelado que la consulta previa a las comunidades afectadas, consagrada constitucionalmente, se convierte frecuentemente en una formalidad vacía cuando los intereses económicos en juego son suficientemente cuantiosos."
-          },
-          {
-            "speaker": "narrator",
-            "text": "La costa, la sierra y la selva, las tres regiones naturales del Perú, no son meras categorías geográficas sino marcadores de identidad que vehiculan jerarquías sociales profundamente arraigadas. El centralismo limeño, que concentra desproporcionadamente los recursos, las decisiones y las oportunidades en la capital, ha generado un resentimiento regional que se manifiesta políticamente en la divergencia electoral entre una Lima liberal-cosmopolita y un interior rural-conservador cuyas prioridades resultan frecuentemente incompatibles."
+            "text": "El Qhapaq Ñan, Patrimonio UNESCO desde 2014, suma treinta mil kilómetros. Sus chasquis corredores de relevos, tambos de aprovisionamiento y quipus contables revelan una ingeniería logística cuya sofisticación administrativa es comparable a la del Imperio Romano."
           }
         ],
         "quiz": [
           {
-            "q": "¿Qué contradicción fundamental identifica el texto en la sociedad peruana?",
+            "q": "¿Cuál es la característica de la ola de Chicama?",
             "ops": [
-              "Que Perú rechaza su pasado incaico",
-              "Que coexisten un incaísmo retórico que reivindica el pasado prehispánico con un racismo estructural contra poblaciones indígenas y afroperuanas",
-              "Que no existe discriminación en Perú",
-              "Que solo los turistas valoran la cultura inca"
+              "La más alta del mundo",
+              "La ola izquierda más larga del mundo, con dos kilómetros",
+              "Reserva natural marina",
+              "Descubierta por surfistas australianos"
             ],
             "ok": 1,
-            "exp": "La disonancia entre el incaísmo retórico y la discriminación cotidiana constituye una contradicción reveladora."
+            "exp": "Chicama tiene la ola izquierda más larga del mundo con dos kilómetros."
           },
           {
-            "q": "¿Qué reveló el perfil de las víctimas del conflicto armado según la Comisión de la Verdad?",
+            "q": "¿Qué metodología usa Central de Virgilio Martínez?",
             "ops": [
-              "Que afectó a todos los sectores por igual",
-              "Que ciertas vidas eran consideradas prescindibles por un Estado que tardó en reaccionar ante violencia en regiones pobres e indígenas",
-              "Que solo afectó a las ciudades",
-              "Que las víctimas eran exclusivamente combatientes"
+              "Fusión europea con ingredientes locales",
+              "Especialización en ceviche de autor",
+              "Menú organizado por ecosistemas y altitudes del territorio",
+              "Recuperación de recetas coloniales"
             ],
-            "ok": 1,
-            "exp": "El perfil étnico y socioeconómico evidenciaba que ciertas vidas eran prescindibles para un Estado que tardó años en reaccionar."
+            "ok": 2,
+            "exp": "Central organiza el menú por ecosistemas y altitudes del Perú."
           },
           {
-            "q": "¿Qué pregunta crítica plantea el texto sobre el boom gastronómico?",
+            "q": "¿Qué sistema usaba el Qhapaq Ñan para registrar información?",
             "ops": [
-              "Si la comida peruana es realmente buena",
-              "Si la gastronomía ha logrado articular una identidad inclusiva donde la política fracasó, o si solo enmascara jerarquías raciales",
-              "Si otros países tienen mejor cocina",
-              "Si la gastronomía genera suficientes ingresos"
+              "Escritura jeroglífica en piedras",
+              "Códices de corteza vegetal",
+              "Quipus, cuerdas con nudos codificando datos",
+              "Tablillas de cerámica"
             ],
-            "ok": 1,
-            "exp": "Se cuestiona si la gastronomía ha logrado articular una identidad inclusiva o si solo enmascara jerarquías raciales persistentes."
+            "ok": 2,
+            "exp": "Usaban quipus, cuerdas con nudos que codificaban datos."
           },
           {
-            "q": "¿Qué problema identifica el texto con la consulta previa a comunidades afectadas por minería?",
+            "q": "¿Qué debate genera el conocimiento etnobotánico amazónico?",
             "ops": [
-              "Que no existe legalmente",
-              "Que se convierte frecuentemente en formalidad vacía cuando los intereses económicos son suficientemente cuantiosos",
-              "Que las comunidades siempre la rechazan",
-              "Que favorece siempre a las comunidades"
+              "Desforestación ilegal",
+              "Biopiratería y derechos de propiedad intelectual indígena",
+              "Turismo no regulado",
+              "Exportación ilegal de semillas"
             ],
             "ok": 1,
-            "exp": "La consulta previa se convierte frecuentemente en formalidad vacía cuando los intereses económicos en juego son cuantiosos."
+            "exp": "Genera debates sobre biopiratería y derechos de propiedad intelectual."
           },
           {
-            "q": "¿Qué función cumplen las tres regiones naturales más allá de lo geográfico?",
+            "q": "¿Qué distingue a los huacos retrato moche?",
             "ops": [
-              "Son solo categorías científicas neutrales",
-              "Son marcadores de identidad que vehiculan jerarquías sociales y generan divergencias políticas profundas",
-              "No tienen ninguna relevancia cultural",
-              "Solo importan para el turismo"
+              "Tamaño monumental",
+              "Uso de metales preciosos",
+              "Representación de divinidades solares",
+              "Extraordinaria expresividad psicológica"
             ],
-            "ok": 1,
-            "exp": "Las tres regiones son marcadores de identidad que vehiculan jerarquías sociales y generan divergencias políticas."
+            "ok": 3,
+            "exp": "Los huacos retrato moche tienen extraordinaria expresividad psicológica."
           }
         ],
         "vocabLocal": []
@@ -7452,98 +7324,90 @@ var AUDITIVA_DATA = {
     "episodes": [
       {
         "id": "pr_c1",
-        "title": "Puerto Rico: colonialismo contemporáneo y la cuestión del estatus",
+        "title": "Puerto Rico: raíces taínas, palabra viva y máscaras",
         "level": "C1",
-        "duration": "7 min",
+        "duration": "4 min",
         "sections": [
           {
             "speaker": "narrator",
-            "text": "Puerto Rico constituye la anomalía colonial más flagrante del hemisferio occidental: un territorio de más de tres millones de habitantes cuyos ciudadanos poseen pasaporte estadounidense pero carecen del derecho a votar por el presidente que los gobierna y cuya representación en el Congreso se limita a un comisionado residente sin voto. Esta condición de Estado Libre Asociado, eufemismo jurídico que enmascara una relación de subordinación colonial, ha generado un debate sobre el estatus político que permea todos los aspectos de la vida puertorriqueña."
+            "text": "El legado taíno pervive en capas arqueológicas, lingüísticas y genéticas. El Centro Ceremonial de Tibes conserva bateys que revelan una sociedad jerarquizada con astronomía sofisticada. Estudios de ADN confirman ascendencia taína en una porción significativa de la población."
           },
           {
             "speaker": "narrator",
-            "text": "La deuda pública de Puerto Rico, que superó los setenta mil millones de dólares antes de la imposición de una junta de control fiscal por parte del Congreso estadounidense en 2016, no puede comprenderse como mero resultado de la mala administración local. Es imperativo que se analice cómo las restricciones comerciales impuestas por la Ley Jones de cabotaje, que obliga a la isla a utilizar la marina mercante estadounidense para sus importaciones, y la eliminación de los incentivos fiscales federales que habían sostenido el sector manufacturero, crearon las condiciones estructurales para una crisis económica de la que Puerto Rico no ha logrado recuperarse."
+            "text": "El español puertorriqueño fascina a sociolingüistas por rasgos únicos: aspiración de la s implosiva, vibrante uvular y entonación propia. El code-switching con el inglés no es degradación sino competencia bilingüe sofisticada que refleja una identidad que navega creativamente entre dos universos."
           },
           {
             "speaker": "narrator",
-            "text": "El huracán María de 2017, que dejó a la isla sin electricidad durante meses y causó un número de muertes que estudios posteriores estimaron en cerca de cinco mil, expuso con brutalidad la vulnerabilidad que entraña la condición colonial. La respuesta federal, comparada desfavorablemente con la asistencia proporcionada a estados continentales afectados por desastres similares, cristalizó la percepción de que los puertorriqueños son tratados como ciudadanos de segunda clase por el gobierno del cual dependen jurídicamente."
+            "text": "Las máscaras vejigante de Loíza y Ponce usan materiales distintos. Las loiceñas, de hojas de cocotero, evocan herencias africanas; las ponceñas, de papel maché con múltiples cuernos, sintetizan influencias europeas medievales. Ambas articulan la compleja identidad afroantillana de la isla."
           },
           {
             "speaker": "narrator",
-            "text": "La literatura puertorriqueña, desde la generación del treinta hasta los nuyoricans como Pedro Pietri y Tato Laviera, ha producido un corpus que interroga obsesivamente la identidad de un pueblo cuya existencia transcurre en el intersticio entre dos culturas, dos idiomas y dos sistemas jurídicos. La tensión entre hispanidad y americanización no se resuelve en síntesis sino que se mantiene como herida abierta que alimenta una creatividad artística cuya intensidad resulta desproporcionada para el tamaño del territorio."
+            "text": "La plena surgió en Ponce como periódico cantado: los pleneritos narraban noticias y sátiras al ritmo del panderetazo. Manuel El Canario García la llevó a Nueva York, donde evolucionó en diálogo fecundo con el jazz y el son cubano."
           },
           {
             "speaker": "narrator",
-            "text": "La diáspora puertorriqueña, que supera en número a la población residente en la isla, ha generado el fenómeno de la \"guagua aérea\", término acuñado por el escritor Luis Rafael Sánchez para describir el constante ir y venir entre la isla y el continente que define la experiencia contemporánea boricua. Esta circularidad migratoria, facilitada por la ciudadanía estadounidense, difumina las fronteras entre migración y desplazamiento, entre elección y necesidad."
+            "text": "El Yunque, único bosque lluvioso tropical del sistema de Parques Nacionales estadounidense, es laboratorio de ecología. Su biodiversidad supera a la de toda Europa continental y alberga especies endémicas, incluyendo el loro puertorriqueño recuperado mediante décadas de cría en cautividad."
           },
           {
             "speaker": "narrator",
-            "text": "La música puertorriqueña, desde la bomba y la plena hasta el reggaetón y el trap latino, ha ejercido una influencia desproporcionada sobre la cultura popular global. Que una isla caribeña de dimensiones modestas haya sido cuna de géneros musicales que dominan las listas de reproducción mundiales constituye un fenómeno cultural cuya explicación requiere atender a la condición transnacional de una comunidad que habita simultáneamente múltiples espacios geográficos y culturales."
-          },
-          {
-            "speaker": "narrator",
-            "text": "La cuestión lingüística en Puerto Rico, donde el español y el inglés coexisten en una relación de tensión permanente, refleja las dinámicas de poder inherentes a la situación colonial. Los intentos periódicos de imponer el inglés como lengua vehicular del sistema educativo han encontrado resistencia como forma de preservación identitaria, convirtiendo al idioma en campo de batalla donde se dirimen cuestiones que trascienden lo meramente comunicativo para tocar las fibras más sensibles de la identidad colectiva."
-          },
-          {
-            "speaker": "narrator",
-            "text": "El futuro político de Puerto Rico permanece irresuelto tras más de un siglo de dominio estadounidense. La estadidad, la independencia y el mantenimiento del estatus actual dividen a la sociedad puertorriqueña en proporciones que varían según el momento histórico pero que nunca alcanzan un consenso definitivo. Que un pueblo lleve más de cien años deliberando sobre su forma de organización política sin llegar a una resolución evidencia la complejidad de una condición colonial que ha generado dependencias materiales y psicológicas difíciles de desarticular."
+            "text": "La destilación artesanal de ron tiene raíces en el siglo XVII. Destilerías como Serrallés envejecen el ron en barricas de roble con controles que definen perfiles de sabor inconfundibles. El ron puertorriqueño, el más exportado del mundo, posee rigurosos estándares regulatorios."
           }
         ],
         "quiz": [
           {
-            "q": "¿Por qué el texto califica al Estado Libre Asociado como \"eufemismo jurídico\"?",
+            "q": "¿Qué revela el Centro Ceremonial de Tibes sobre los taínos?",
             "ops": [
-              "Porque Puerto Rico es completamente independiente",
-              "Porque enmascara una relación de subordinación colonial donde los ciudadanos no pueden votar por su presidente",
-              "Porque es un estado igual a los demás de EE.UU.",
-              "Porque Puerto Rico rechaza la ciudadanía estadounidense"
+              "Eran nómadas sin organización",
+              "Sociedad jerarquizada con astronomía sofisticada",
+              "Economía solo de pesca costera",
+              "Desaparecieron antes de los españoles"
             ],
             "ok": 1,
-            "exp": "Enmascara una subordinación colonial donde los ciudadanos poseen pasaporte pero no votan por el presidente ni tienen representación congresual plena."
+            "exp": "Tibes revela una sociedad taína jerarquizada con astronomía sofisticada."
           },
           {
-            "q": "¿Qué factores estructurales causaron la crisis de deuda según el análisis?",
+            "q": "¿Cómo interpretan los sociolingüistas el code-switching boricua?",
             "ops": [
-              "Solo la corrupción local",
-              "Las restricciones de la Ley Jones de cabotaje y la eliminación de incentivos fiscales federales que sostenían la manufactura",
-              "La falta de impuestos en la isla",
-              "La competencia con otros estados"
+              "Deterioro del español",
+              "Fenómeno solo de jóvenes",
+              "Resultado de políticas educativas deficientes",
+              "Competencia bilingüe sofisticada que refleja identidad creativa"
             ],
-            "ok": 1,
-            "exp": "La Ley Jones y la eliminación de incentivos fiscales crearon condiciones estructurales para una crisis de la que no se ha recuperado."
+            "ok": 3,
+            "exp": "Es competencia bilingüe sofisticada que navega entre dos universos."
           },
           {
-            "q": "¿Qué expuso el huracán María respecto a la condición colonial?",
+            "q": "¿Cuál es la diferencia entre máscaras de Loíza y de Ponce?",
             "ops": [
-              "Que Puerto Rico está bien preparado para desastres",
-              "La vulnerabilidad colonial y el trato como ciudadanos de segunda clase en la respuesta federal",
-              "Que el gobierno local respondió perfectamente",
-              "Que el clima caribeño es benigno"
+              "Las de Loíza son de papel maché",
+              "Difieren en materiales y herencias: africana en Loíza, europea en Ponce",
+              "Las ponceñas son de origen taíno",
+              "Solo las de Ponce tienen reconocimiento oficial"
             ],
             "ok": 1,
-            "exp": "Expuso la vulnerabilidad colonial y cristalizó la percepción de trato como ciudadanos de segunda clase."
+            "exp": "Loíza usa hojas de cocotero (herencia africana) y Ponce papel maché (europea)."
           },
           {
-            "q": "¿Qué concepto describe la experiencia migratoria puertorriqueña?",
+            "q": "¿Qué función social cumplía la plena originalmente?",
             "ops": [
-              "El éxodo definitivo",
-              "La \"guagua aérea\": el constante ir y venir que difumina fronteras entre migración y desplazamiento",
-              "La inmigración unidireccional",
-              "El turismo estacional"
+              "Acompañar funerales",
+              "Celebrar cosechas de caña",
+              "Narrar noticias y sátiras como periódico cantado",
+              "Marcar ritmo de trabajo en puertos"
             ],
-            "ok": 1,
-            "exp": "La \"guagua aérea\" describe el constante ir y venir que difumina fronteras entre migración, desplazamiento, elección y necesidad."
+            "ok": 2,
+            "exp": "La plena era periódico cantado que narraba noticias y sátiras."
           },
           {
-            "q": "¿Por qué la cuestión del estatus permanece irresuelta según el texto?",
+            "q": "¿Qué distingue a El Yunque?",
             "ops": [
-              "Porque nadie se interesa en el tema",
-              "Porque la condición colonial ha generado dependencias materiales y psicológicas difíciles de desarticular",
-              "Porque Estados Unidos ya decidió",
-              "Porque todos los puertorriqueños quieren la estadidad"
+              "Parque más visitado del Caribe",
+              "Único bosque lluvioso tropical del sistema de Parques Nacionales USA",
+              "Mayor colonia de murciélagos",
+              "Patrimonio UNESCO de 1990"
             ],
             "ok": 1,
-            "exp": "La condición colonial ha generado dependencias materiales y psicológicas difíciles de desarticular tras más de un siglo."
+            "exp": "El Yunque es el único bosque lluvioso tropical del sistema de Parques Nacionales."
           }
         ],
         "vocabLocal": []
@@ -7915,98 +7779,90 @@ var AUDITIVA_DATA = {
     "episodes": [
       {
         "id": "do_c1",
-        "title": "República Dominicana: antihaitianismo, merengue y modernidad contradictoria",
+        "title": "República Dominicana: herencia taína, tabaco y letras contemporáneas",
         "level": "C1",
-        "duration": "7 min",
+        "duration": "4 min",
         "sections": [
           {
             "speaker": "narrator",
-            "text": "República Dominicana comparte con Haití la isla de La Española en una convivencia marcada por asimetrías históricas y tensiones identitarias que constituyen el eje vertebrador de la construcción nacional dominicana. El antihaitianismo, elevado a doctrina de Estado durante la dictadura de Rafael Leónidas Trujillo y perpetuado en el imaginario colectivo hasta el presente, ha funcionado como mecanismo de diferenciación identitaria mediante el cual la dominicanidad se define no por lo que es sino por lo que no es: haitiana, negra, francófona."
+            "text": "La presencia taína es más profunda de lo que suele reconocerse. Palabras como hamaca, huracán y canoa son herencias léxicas directas. El arte cemí es reinterpretado por artistas dominicanos como lenguaje de resistencia identitaria frente a la homogeneización de la globalización."
           },
           {
             "speaker": "narrator",
-            "text": "La masacre del Perejil de 1937, en la que el régimen de Trujillo ordenó el exterminio de miles de haitianos y dominicanos de ascendencia haitiana en la zona fronteriza, constituye uno de los episodios más atroces de la historia caribeña. La perversidad del método empleado para identificar a las víctimas, obligadas a pronunciar la palabra \"perejil\" cuya fonética delata al hablante de creole, revela hasta qué punto el lenguaje puede ser instrumentalizado como herramienta de muerte."
+            "text": "Las dunas de Baní son un ecosistema árido excepcional en el Caribe: campos de arena desplazados por vientos alisios. Este microhábitat alberga flora xerófita y sirve de corredor migratorio atlántico. Su escasa difusión turística lo mantiene casi virgen, con singular valor geomorfológico."
           },
           {
             "speaker": "narrator",
-            "text": "La sentencia del Tribunal Constitucional dominicano de 2013, que retiró retroactivamente la nacionalidad a descendientes de inmigrantes haitianos nacidos en el país, generó una crisis de apatridia sin precedentes en la región. Es fundamental que se comprenda cómo esta decisión, que afectó a más de doscientas mil personas, evidenció la persistencia de un racismo institucionalizado que utiliza categorías jurídicas para perpetuar exclusiones cuyas raíces son fundamentalmente étnicas y raciales."
+            "text": "La Aurora, fundada en Santiago en 1903, es la fábrica de puros más antigua del Caribe en operación continua. Sus torcedores combinan selección de hojas del Cibao, fermentado en pilones y torcido manual que define tiraje y combustión. Sus vitolas compiten con habanos cubanos en catas de máxima exigencia."
           },
           {
             "speaker": "narrator",
-            "text": "El merengue, declarado Patrimonio Inmaterial de la Humanidad, trasciende su función como género musical para constituir un elemento articulador de la identidad dominicana que, paradójicamente, tiene profundas raíces africanas que el discurso oficial ha tendido a minimizar. La evolución del merengue desde expresión rural estigmatizada hasta símbolo nacional promovido por el propio Trujillo ilustra cómo los regímenes autoritarios manipulan la cultura popular para construir narrativas de cohesión social que enmascaran las desigualdades que los sustentan."
+            "text": "El son dominicano, antecesor del merengue, se ejecutaba con guitarras, güira y marimbula en el Cibao decimonónico. Sus décimas improvisadas lo conectan con tradiciones ibéricas medievales. El acordeón alemán y la aceleración del tempo marcaron la transformación al merengue urbano."
           },
           {
             "speaker": "narrator",
-            "text": "La industria turística, que constituye el pilar de la economía dominicana, reproduce un modelo de enclave donde la riqueza generada en los resorts de Punta Cana y la Costa Norte circula en circuitos cerrados con escasa derrama hacia las comunidades locales. Los turistas, aislados en sus hoteles todo incluido, consumen una versión sanitizada de la cultura dominicana que excluye deliberadamente la pobreza, el racismo y las desigualdades que caracterizan la realidad cotidiana más allá de los muros del resort."
+            "text": "Oscar de la Renta fue el primer diseñador latinoamericano en dirigir una casa europea de alta costura: Balmain en París. Su estética fusionaba el colorismo tropical con el rigor del couture parisino. Vistió primeras damas y aristócratas durante seis décadas."
           },
           {
             "speaker": "narrator",
-            "text": "La diáspora dominicana en Nueva York, concentrada históricamente en el barrio de Washington Heights, ha configurado un espacio transnacional donde se negocian cotidianamente las tensiones entre la identidad caribeña y la experiencia de racialización en Estados Unidos. Los dominicanos, que en su país frecuentemente se identifican como \"indios\" evitando la categoría de negros, confrontan en Estados Unidos un sistema de clasificación racial binario que los interpela como latinos y como personas racializadas."
-          },
-          {
-            "speaker": "narrator",
-            "text": "Junot Díaz, cuya obra literaria explora con honestidad despiadada la experiencia dominicana tanto en la isla como en la diáspora, ha articulado las contradicciones de una identidad forjada en la intersección del colonialismo, el racismo y la migración. Su prosa, que transita fluidamente entre el español, el inglés y el spanglish, refleja lingüísticamente la condición transfronteriza de una comunidad que habita simultáneamente múltiples mundos culturales."
-          },
-          {
-            "speaker": "narrator",
-            "text": "La relación de República Dominicana con su propia negritud constituye quizás el nudo gordiano de su identidad nacional. Un país cuya población es mayoritariamente afrodescendiente pero cuyo discurso oficial privilegia la herencia hispánica e indígena taína vive en una suerte de esquizofrenia identitaria donde el espejo devuelve una imagen que la sociedad se resiste a reconocer. Desatar este nudo requiere una descolonización del imaginario que apenas comienza a vislumbrarse."
+            "text": "Junot Díaz, ganador del Pulitzer, entreteje spanglish y realismo mágico para cartografiar la diáspora. Julia Álvarez rescata la memoria femenina con prosa poética que ha ingresado al canon literario latinoamericano contemporáneo de manera reconocida."
           }
         ],
         "quiz": [
           {
-            "q": "¿Cómo funciona el antihaitianismo en la construcción de la identidad dominicana?",
+            "q": "¿Cómo reinterpretan el arte cemí los artistas dominicanos?",
             "ops": [
-              "Como simple rivalidad deportiva",
-              "Como mecanismo donde la dominicanidad se define por lo que no es: haitiana, negra, francófona",
-              "Como política de buena vecindad",
-              "Como resultado de conflictos económicos recientes"
+              "Decoración turística",
+              "Lenguaje de resistencia identitaria frente a la globalización",
+              "Réplicas para museos",
+              "Símbolo oficial del turismo"
             ],
             "ok": 1,
-            "exp": "El antihaitianismo funciona como diferenciación identitaria donde la dominicanidad se define por lo que no es."
+            "exp": "El arte cemí se reinterpreta como resistencia identitaria."
           },
           {
-            "q": "¿Qué evidenció la sentencia del Tribunal Constitucional de 2013?",
+            "q": "¿Qué hace excepcional al ecosistema de las dunas de Baní?",
             "ops": [
-              "La protección de los derechos humanos",
-              "La persistencia de racismo institucionalizado que usa categorías jurídicas para perpetuar exclusiones étnicas y raciales",
-              "La generosidad del sistema migratorio",
-              "La independencia judicial plena"
+              "Desierto más extenso del Caribe",
+              "Reserva de la Biosfera UNESCO",
+              "Ecosistema árido inusual en el Caribe con valor geomorfológico",
+              "Hábitat de tortugas en peligro"
             ],
-            "ok": 1,
-            "exp": "Evidenció racismo institucionalizado que utiliza categorías jurídicas para perpetuar exclusiones fundamentalmente étnicas y raciales."
+            "ok": 2,
+            "exp": "Es un ecosistema árido excepcional en el Caribe."
           },
           {
-            "q": "¿Qué paradoja identifica el texto sobre el merengue?",
+            "q": "¿Qué instrumento transformó el son en merengue?",
             "ops": [
-              "Que nadie lo baila en República Dominicana",
-              "Que es símbolo nacional con profundas raíces africanas que el discurso oficial ha minimizado",
-              "Que fue inventado en otro país",
-              "Que es exclusivamente música de élite"
+              "Violín francés",
+              "Trompeta cubana",
+              "Piano español",
+              "Acordeón alemán"
             ],
-            "ok": 1,
-            "exp": "El merengue es símbolo nacional con raíces africanas profundas que el discurso oficial ha tendido a minimizar."
+            "ok": 3,
+            "exp": "El acordeón alemán y la aceleración del tempo marcaron la transformación."
           },
           {
-            "q": "¿Qué confrontación identitaria enfrentan los dominicanos en Estados Unidos?",
+            "q": "¿Cuál fue el hito de Oscar de la Renta en la moda?",
             "ops": [
-              "Solo problemas económicos",
-              "Un sistema de clasificación racial binario que los interpela como racializados, cuando en su país evitaban esa categoría",
-              "Solo barreras lingüísticas",
-              "Ninguna diferencia con su experiencia en la isla"
+              "Premio CFDA",
+              "Primer latinoamericano en dirigir una casa europea de alta costura",
+              "Primera escuela de diseño del Caribe",
+              "Vestuario olímpico dominicano"
             ],
             "ok": 1,
-            "exp": "Confrontan un sistema racial binario estadounidense que los interpela como personas racializadas, diferente a su autoidentificación insular."
+            "exp": "Fue el primer latinoamericano en dirigir Balmain en París."
           },
           {
-            "q": "¿Qué \"esquizofrenia identitaria\" describe el texto?",
+            "q": "¿Qué recurso narrativo usa Junot Díaz?",
             "ops": [
-              "Un problema clínico de salud mental",
-              "Un país mayoritariamente afrodescendiente cuyo discurso oficial privilegia la herencia hispánica e indígena",
-              "La confusión sobre el idioma oficial",
-              "El debate sobre la capital del país"
+              "Realismo social puro",
+              "Entrevista periodística",
+              "Spanglish y realismo mágico para retratar la diáspora",
+              "Español clásico como homenaje colonial"
             ],
-            "ok": 1,
-            "exp": "Un país mayoritariamente afrodescendiente cuyo discurso oficial privilegia la herencia hispánica e indígena taína."
+            "ok": 2,
+            "exp": "Junot Díaz mezcla spanglish y realismo mágico."
           }
         ],
         "vocabLocal": []
@@ -8378,98 +8234,90 @@ var AUDITIVA_DATA = {
     "episodes": [
       {
         "id": "uy_c1",
-        "title": "Uruguay: excepcionalismo rioplatense, laicismo y el laboratorio progresista",
+        "title": "Uruguay: arte universal, tannat y cafés literarios",
         "level": "C1",
-        "duration": "7 min",
+        "duration": "4 min",
         "sections": [
           {
             "speaker": "narrator",
-            "text": "Uruguay ha cultivado una imagen de excepcionalidad en el contexto latinoamericano que, sin ser enteramente infundada, merece ser sometida a un escrutinio que distinga los logros genuinos de las mitificaciones autocomplacientes. El batllismo de principios del siglo XX, que implementó un Estado de bienestar avanzado cuando Europa aún no había consolidado el suyo, sentó las bases de una sociedad con indicadores sociales notables pero también de una dependencia estatal y una mentalidad funcionarial que algunos analistas señalan como obstáculo para la innovación económica."
+            "text": "Torres García desarrolló el Universalismo Constructivo: síntesis del arte precolombino con las vanguardias europeas. Su mapa invertido de América del Sur, con el sur arriba, devino manifiesto filosófico sobre los centros culturales del mundo. El Museo Torres García en Montevideo preserva su legado."
           },
           {
             "speaker": "narrator",
-            "text": "La dictadura cívico-militar que gobernó Uruguay entre 1973 y 1985 constituye una herida cuyo procesamiento social ha sido más exitoso que en otros países de la región, aunque no exento de controversias. La Ley de Caducidad de 1986, que otorgó impunidad a los militares responsables de violaciones a los derechos humanos, fue ratificada por la ciudadanía en dos plebiscitos, lo cual plantea la inquietante cuestión de si la voluntad popular puede legitimar la impunidad y qué implicaciones tiene esto para la concepción misma de la democracia."
+            "text": "La tradición del cuero y la lana refleja una economía ganadera con dimensión estética sofisticada. Los talabarteros trabajan cuero curtido al tanino para producir facones y marroquinería de exportación. La lana merino, valorada por su finura en micrones, es materia prima de casas europeas."
           },
           {
             "speaker": "narrator",
-            "text": "La legalización de la marihuana en 2013, primera a nivel nacional en el mundo, la aprobación del matrimonio igualitario y la despenalización del aborto posicionaron a Uruguay como laboratorio de políticas progresistas cuya audacia contrastaba con el conservadismo predominante en la región. No obstante, es legítimo preguntarse si estas reformas, celebradas internacionalmente, reflejan una transformación cultural profunda o si constituyen más bien decisiones de élites ilustradas en una sociedad donde el conservadurismo social persiste en amplios sectores de la población."
+            "text": "El tannat, originario de los Pirineos vascofranceses, halló en Uruguay su expresión más refinada fuera de Europa. El suelo arcillo-calcáreo y el microclima atlántico producen taninos más suaves que en Madiran. Bodegas como Pisano, Bouza y Garzón lo colocaron en las mejores cartas del mundo."
           },
           {
             "speaker": "narrator",
-            "text": "El laicismo uruguayo, más radical que el de la mayoría de los países latinoamericanos, ha configurado una sociedad donde la religión ocupa un espacio público notablemente reducido. La Semana de Turismo, denominación oficial de lo que en otros países se llama Semana Santa, ejemplifica una secularización institucional que no tiene parangón en el continente y que ha contribuido a configurar una cultura política donde los argumentos religiosos carecen de la legitimidad que poseen en el resto de la región."
+            "text": "La Quebrada de los Cuervos fue el primer paisaje protegido del Uruguay: un cañón fluvial basáltico con ecosistemas ribereños y aves rapaces. La iniciativa surgió en los años setenta por presión de naturalistas, estableciendo un modelo participativo que perdura en la gestión ambiental."
           },
           {
             "speaker": "narrator",
-            "text": "La identidad rioplatense uruguaya, que comparte con Argentina el tango, el mate, el lunfardo y la entonación italianizada, genera una relación de proximidad y diferenciación con el vecino del otro lado del Plata que oscila entre la complicidad cultural y la necesidad de afirmar una especificidad propia. La rivalidad con Argentina, que trasciende lo deportivo para constituir un mecanismo de construcción identitaria, adquiere tintes existenciales para un país pequeño cuya visibilidad internacional resulta frecuentemente eclipsada por su vecino."
+            "text": "Montevideo desarrolló cultura de café literario comparable a Buenos Aires. El Tupí Nambá y el Metro fueron espacios de debate intelectual y bohemia. Hernández, Galeano y Benedetti frecuentaron mesas donde el ensayo y la narrativa breve se forjaron en diálogo colectivo."
           },
           {
             "speaker": "narrator",
-            "text": "La ganadería, pilar histórico de la economía uruguaya, enfrenta hoy cuestionamientos medioambientales que desafían un modelo productivo profundamente arraigado en la identidad nacional. Un país donde el número de vacas cuadruplica al de habitantes debe confrontar la tensión entre la tradición ganadera que define su paisaje cultural y las exigencias de una agenda climática global que señala a la ganadería extensiva como una de las fuentes significativas de emisiones de gases de efecto invernadero."
-          },
-          {
-            "speaker": "narrator",
-            "text": "Eduardo Galeano y Mario Benedetti, quizás los escritores uruguayos más conocidos internacionalmente, representan dos vertientes complementarias de la literatura rioplatense: el ensayismo comprometido que denuncia las estructuras de dominación continental y la poesía cotidiana que celebra las pequeñas epifanías de la vida ordinaria. Que un país de apenas tres millones de habitantes haya producido voces literarias de resonancia continental evidencia una tradición intelectual cuya vitalidad resulta inversamente proporcional al tamaño demográfico del país."
-          },
-          {
-            "speaker": "narrator",
-            "text": "La crisis demográfica uruguaya, con una tasa de natalidad entre las más bajas de América Latina y una emigración persistente de jóvenes cualificados, plantea interrogantes sobre la sostenibilidad a largo plazo de un modelo social cuyos logros dependen de una estructura poblacional que se erosiona paulatinamente. Que una sociedad que ha construido uno de los sistemas de protección social más robustos de la región no logre retener a sus jóvenes constituye una paradoja que invita a reflexionar sobre los límites del bienestar material como factor de arraigo."
+            "text": "Uruguay construyó reputación en innovación que contrasta con su tamaño. El Plan Ceibal, primer programa mundial de laptop por niño en educación pública, fue exportado como modelo a decenas de países. En diseño industrial, la escuela montevideana sintetiza funcionalidad escandinava y sensibilidad latinoamericana."
           }
         ],
         "quiz": [
           {
-            "q": "¿Qué matiz introduce el texto sobre el excepcionalismo uruguayo?",
+            "q": "¿Cuál es el concepto central de Torres García?",
             "ops": [
-              "Que es completamente falso",
-              "Que sin ser infundado, puede generar autocomplacencia y una dependencia estatal que obstaculiza la innovación",
-              "Que Uruguay es el país más perfecto del mundo",
-              "Que no tiene ningún logro real"
+              "Supremacía del arte europeo",
+              "Síntesis del arte precolombino con vanguardias europeas",
+              "Recuperación exclusiva de tradiciones indígenas",
+              "Estilo nacional opuesto al internacionalismo"
             ],
             "ok": 1,
-            "exp": "El excepcionalismo tiene logros genuinos pero también genera autocomplacencia y dependencia estatal señalada como obstáculo para la innovación."
+            "exp": "Torres García sintetizó arte precolombino con vanguardias europeas."
           },
           {
-            "q": "¿Qué cuestión filosófica plantean los plebiscitos sobre la Ley de Caducidad?",
+            "q": "¿Qué diferencia al tannat uruguayo del pirenaico?",
             "ops": [
-              "Si los plebiscitos son efectivos",
-              "Si la voluntad popular puede legitimar la impunidad y qué implica para la democracia",
-              "Si Uruguay debería eliminar los plebiscitos",
-              "Si los militares merecían amnistía"
+              "Mayor concentración alcohólica",
+              "Color más pálido",
+              "Taninos más suaves por suelo arcillo-calcáreo y microclima atlántico",
+              "Proceso con técnicas australianas"
             ],
-            "ok": 1,
-            "exp": "Plantean si la voluntad popular puede legitimar la impunidad y qué implicaciones tiene para la concepción de la democracia."
+            "ok": 2,
+            "exp": "El suelo y microclima atlántico producen taninos más suaves."
           },
           {
-            "q": "¿Qué duda plantea el texto sobre las reformas progresistas uruguayas?",
+            "q": "¿Qué significado tiene la Quebrada de los Cuervos?",
             "ops": [
-              "Que fueron ilegales",
-              "Si reflejan transformación cultural profunda o son decisiones de élites ilustradas en una sociedad con conservadurismo persistente",
-              "Que fueron impuestas por otros países",
-              "Que no tuvieron ningún efecto"
+              "Único hábitat del cóndor en Uruguay",
+              "Primer paisaje protegido del Uruguay",
+              "Pinturas rupestres más antiguas del Cono Sur",
+              "Principal observatorio astronómico"
             ],
             "ok": 1,
-            "exp": "Se cuestiona si reflejan transformación cultural profunda o son decisiones de élites en una sociedad donde persiste conservadurismo."
+            "exp": "Fue el primer paisaje protegido del Uruguay."
           },
           {
-            "q": "¿Qué tensión medioambiental enfrenta Uruguay respecto a su identidad?",
+            "q": "¿Cuál fue la relevancia del Plan Ceibal?",
             "ops": [
-              "La falta de ganado",
-              "La tensión entre la tradición ganadera identitaria y las exigencias climáticas que señalan a la ganadería como fuente de emisiones",
-              "La sobreexplotación pesquera",
-              "La deforestación de bosques nativos"
+              "Primer programa mundial de laptop por niño en educación pública",
+              "Premio UNESCO tres veces",
+              "Financiado por Silicon Valley",
+              "IA en aulas primarias"
             ],
-            "ok": 1,
-            "exp": "La tensión entre tradición ganadera identitaria y la agenda climática que señala a la ganadería como fuente de emisiones."
+            "ok": 0,
+            "exp": "Fue el primer programa mundial de laptop por niño en educación pública."
           },
           {
-            "q": "¿Qué paradoja demográfica identifica el texto?",
+            "q": "¿Qué escritores frecuentaban los cafés literarios de Montevideo?",
             "ops": [
-              "Que Uruguay tiene sobrepoblación",
-              "Que una sociedad con uno de los mejores sistemas de protección social no logra retener a sus jóvenes",
-              "Que la inmigración es masiva",
-              "Que la población crece demasiado rápido"
+              "Quiroga, Agustini y Ibarbourou",
+              "Onetti, Reyles y Espínola",
+              "Hernández, Galeano y Benedetti",
+              "Vilariño, Berenguer y Maia"
             ],
-            "ok": 1,
-            "exp": "Una sociedad con sistema de protección social robusto no logra retener a sus jóvenes, cuestionando los límites del bienestar como arraigo."
+            "ok": 2,
+            "exp": "Hernández, Galeano y Benedetti frecuentaron los cafés literarios."
           }
         ],
         "vocabLocal": []
@@ -8841,98 +8689,90 @@ var AUDITIVA_DATA = {
     "episodes": [
       {
         "id": "ve_c1",
-        "title": "Venezuela: petróleo, populismo y el colapso de una promesa",
+        "title": "Venezuela: El Sistema, arquitectura moderna y arte cinético",
         "level": "C1",
-        "duration": "7 min",
+        "duration": "4 min",
         "sections": [
           {
             "speaker": "narrator",
-            "text": "Venezuela ofrece quizás la ilustración más dramática de la maldición de los recursos naturales en América Latina. Un país que posee las mayores reservas probadas de petróleo del planeta ha experimentado un colapso económico y humanitario de proporciones bíblicas que ha expulsado a más de siete millones de personas, configurando la mayor crisis migratoria de la historia del hemisferio occidental. Comprender cómo se llegó a esta situación exige remontarse mucho más allá del chavismo para examinar las estructuras rentistas que han definido la relación del Estado venezolano con la sociedad durante más de un siglo."
+            "text": "El Sistema de Orquestas Juveniles, fundado por Abreu en 1975, revolucionó la pedagogía musical global. Su premisa: la música orquestal como herramienta de transformación social para niños en vulnerabilidad. Gustavo Dudamel, formado íntegramente en El Sistema, encarna su mayor logro. Cincuenta países adoptaron el modelo."
           },
           {
             "speaker": "narrator",
-            "text": "El petróleo, que comenzó a dominar la economía venezolana en la década de 1920, generó lo que los economistas denominan \"enfermedad holandesa\": la sobrevaluación de la moneda provocada por los ingresos petroleros destruyó progresivamente la competitividad de los demás sectores productivos, generando una dependencia casi absoluta de las exportaciones hidrocarburíferas. Es imprescindible que se comprenda cómo esta estructura rentista no solo distorsionó la economía sino que configuró una cultura política donde el Estado era percibido como distribuidor de una riqueza que no se producía sino que se extraía."
+            "text": "La Ciudad Universitaria de Caracas, diseñada por Carlos Raúl Villanueva y Patrimonio UNESCO desde 2000, es la cumbre del modernismo latinoamericano. Integra arquitectura y artes: murales de Léger, esculturas de Calder y la Aula Magna, cuya acústica emplea las nubes flotantes de Calder como deflectores sonoros."
           },
           {
             "speaker": "narrator",
-            "text": "El Caracazo de 1989, explosión de violencia popular en respuesta a un paquete de ajuste neoliberal impuesto por el gobierno de Carlos Andrés Pérez, reveló que el pacto social del punto fijismo, el sistema bipartidista que había gobernado Venezuela durante cuarenta años, se había agotado. La brutal represión militar, con centenares o miles de muertos según las fuentes, prefiguró el descontento que una década después llevaría a Hugo Chávez al poder y demostraría que la democracia formal sin justicia social es una cáscara vacía."
+            "text": "El pueblo yanomami del Alto Orinoco clasifica más de cuatrocientas plantas útiles, maneja el bosque sin deforestación y sostiene una cosmología que integra al humano como parte del ecosistema, no como su dominador. Estas contribuciones influyen en el pensamiento ecológico y la antropología contemporánea."
           },
           {
             "speaker": "narrator",
-            "text": "El proyecto bolivariano de Hugo Chávez, con su retórica antiimperialista, su redistribución de la renta petrolera mediante las misiones sociales y su protagonismo geopolítico, polarizó a la sociedad venezolana y al continente entero. Las misiones, que efectivamente redujeron la pobreza y democratizaron el acceso a la educación y la salud durante el período de altos precios petroleros, no construyeron sin embargo una base productiva alternativa, convirtiendo sus logros en rehenes de la volatilidad del mercado energético internacional."
+            "text": "El Delta del Orinoco, fragmentado en más de cuarenta brazos antes del Atlántico, es uno de los deltas más biodiversos del planeta. Los warao construyen palafitos desde tiempos ancestrales adaptándose al ecosistema anfibio. La alternancia entre inundaciones y sequías forjó una cultura de adaptabilidad excepcional."
           },
           {
             "speaker": "narrator",
-            "text": "La crisis humanitaria desatada tras el derrumbe de los precios del petróleo y agravada por la corrupción generalizada, la mala gestión económica y las sanciones internacionales ha generado niveles de sufrimiento que resultan difíciles de cuantificar. La hiperinflación, el desabastecimiento de alimentos y medicinas, y el colapso de los servicios públicos han convertido la cotidianidad venezolana en una lucha por la supervivencia que ha erosionado el tejido social hasta extremos que requerirán generaciones para repararse."
+            "text": "Soto y Cruz-Diez son maestros del arte cinético venezolano. Soto exploró la vibración óptica con varillas metálicas que el espectador penetra físicamente: los penetrables. Cruz-Diez investigó el color como fenómeno autónomo de la forma, en obras que mutan según el ángulo de visión."
           },
           {
             "speaker": "narrator",
-            "text": "La diáspora venezolana, dispersa por toda América Latina y más allá, ha transformado la demografía de países receptores como Colombia, Perú, Chile y Ecuador, donde la llegada masiva de migrantes ha generado tanto solidaridad como xenofobia. Los venezolanos, muchos de ellos profesionales cualificados, enfrentan en el exterior procesos de descalificación laboral y estigmatización que reproducen dinámicas de discriminación que previamente les habían resultado ajenas en su condición de ciudadanos de un país petrolero relativamente próspero."
-          },
-          {
-            "speaker": "narrator",
-            "text": "Caracas, que fue durante décadas la metrópoli más cosmopolita y moderna de América Latina, encarna en su deterioro físico y social la magnitud del colapso venezolano. Los rascacielos del Parque Central, las autopistas que alguna vez rivalizaron con las estadounidenses y la infraestructura cultural de una ciudad que acogió oleadas de inmigrantes europeos contrastan dolorosamente con la inseguridad, el deterioro y la desesperanza que caracterizan la vida urbana actual."
-          },
-          {
-            "speaker": "narrator",
-            "text": "El futuro de Venezuela permanece envuelto en una incertidumbre que ningún análisis puede resolver con certeza. La concentración del poder, la debilidad institucional, la dependencia petrolera irredenta y la fragmentación de la oposición configuran un escenario donde las posibilidades de una transición democrática ordenada coexisten con el riesgo de una prolongación indefinida del estatus quo. Que un país con recursos naturales extraordinarios y capital humano cualificado haya llegado a esta encrucijada constituye una advertencia sobre las consecuencias devastadoras de la corrupción, el autoritarismo y la incapacidad de diversificar una economía extractivista."
+            "text": "La hallaca es artefacto cultural que trasciende la gastronomía. Solo se prepara en diciembre con días de trabajo colectivo multigeneracional. Su guiso de herencia hispanoárabe, con aceitunas, alcaparras y pasas, envuelto en masa de maíz y hoja de plátano, sintetiza cinco siglos de mestizaje."
           }
         ],
         "quiz": [
           {
-            "q": "¿Qué es la \"enfermedad holandesa\" en el contexto venezolano?",
+            "q": "¿Cuál fue la premisa de El Sistema de Abreu?",
             "ops": [
-              "Una epidemia que afectó al país",
-              "La sobrevaluación monetaria por ingresos petroleros que destruyó la competitividad de otros sectores productivos",
-              "Una enfermedad traída por colonizadores holandeses",
-              "La dependencia de importaciones médicas"
+              "Formar músicos para orquestas de élite",
+              "Música orquestal como herramienta de transformación social",
+              "Preservar joropo en peligro",
+              "Conservatorios con estándares europeos"
             ],
             "ok": 1,
-            "exp": "La sobrevaluación monetaria por ingresos petroleros destruyó progresivamente la competitividad de los demás sectores productivos."
+            "exp": "La premisa fue la música como transformación social para niños vulnerables."
           },
           {
-            "q": "¿Qué prefiguró el Caracazo de 1989 según el análisis?",
+            "q": "¿Qué hace única a la Ciudad Universitaria de Caracas?",
             "ops": [
-              "La estabilidad del sistema bipartidista",
-              "El descontento que llevaría a Chávez al poder y demostró que la democracia formal sin justicia social es cáscara vacía",
-              "La prosperidad económica de los noventa",
-              "La reconciliación nacional"
+              "Campus más grande de América Latina",
+              "Construida solo con materiales venezolanos",
+              "Integra coherentemente arquitectura y artes visuales internacionales",
+              "Único museo de arte abstracto del Caribe"
             ],
-            "ok": 1,
-            "exp": "Prefiguró el ascenso de Chávez y demostró que la democracia formal sin justicia social es una cáscara vacía."
+            "ok": 2,
+            "exp": "Integra arquitectura con artes: murales de Léger, esculturas de Calder."
           },
           {
-            "q": "¿Qué vulnerabilidad estructural tenían las misiones sociales de Chávez?",
+            "q": "¿Qué conocimiento yanomami influye en ecología global?",
             "ops": [
-              "Que nunca funcionaron",
-              "Que redujeron pobreza pero no construyeron base productiva alternativa, quedando como rehenes de los precios petroleros",
-              "Que solo beneficiaban a la élite",
-              "Que fueron diseñadas para ser temporales"
+              "Agricultura intensiva en suelos degradados",
+              "Rituales de predicción climática",
+              "Escritura para registrar ciclos naturales",
+              "Cosmología que integra al humano como parte del ecosistema"
             ],
-            "ok": 1,
-            "exp": "Las misiones redujeron pobreza pero no construyeron base productiva alternativa, convirtiéndose en rehenes del mercado energético."
+            "ok": 3,
+            "exp": "Su cosmología integra al humano como parte del ecosistema, no dominador."
           },
           {
-            "q": "¿Qué proceso paradójico enfrentan los migrantes venezolanos en el exterior?",
+            "q": "¿Qué son los penetrables de Soto?",
             "ops": [
-              "Que todos consiguen empleos inmediatamente",
-              "Descalificación laboral y estigmatización, dinámicas de discriminación ajenas a su experiencia previa como ciudadanos de un país próspero",
-              "Que regresan inmediatamente",
-              "Que solo emigran los más pobres"
+              "Esculturas de bronce macizo",
+              "Instalaciones de luz láser",
+              "Estructuras de varillas que el espectador penetra físicamente",
+              "Pinturas que rotan mecánicamente"
             ],
-            "ok": 1,
-            "exp": "Enfrentan descalificación laboral y estigmatización, dinámicas previamente ajenas en su condición de país relativamente próspero."
+            "ok": 2,
+            "exp": "Los penetrables son estructuras de varillas que el espectador penetra."
           },
           {
-            "q": "¿Qué advertencia general extrae el texto del caso venezolano?",
+            "q": "¿Por qué la hallaca es artefacto cultural más que plato?",
             "ops": [
-              "Que el petróleo siempre trae prosperidad",
-              "Las consecuencias devastadoras de la corrupción, el autoritarismo y la incapacidad de diversificar una economía extractivista",
-              "Que los recursos naturales no importan",
-              "Que Venezuela se recuperará rápidamente"
+              "Registrada como Patrimonio UNESCO",
+              "Su elaboración colectiva multigeneracional sintetiza mestizaje",
+              "Único plato con técnicas prehispánicas puras",
+              "Receta protegida por el estado desde 1940"
             ],
             "ok": 1,
-            "exp": "Venezuela advierte sobre las consecuencias de la corrupción, el autoritarismo y la incapacidad de diversificar una economía extractivista."
+            "exp": "Su elaboración colectiva y tradición multigeneracional sintetizan cinco siglos de mestizaje."
           }
         ],
         "vocabLocal": []
