@@ -955,6 +955,7 @@ window.addEventListener('DOMContentLoaded', async () => {
       if (res.ok) {
         const data = await res.json();
         if (data.valid) {
+          localStorage.setItem('in_last_verified', Date.now().toString());
           showApp(data.email || userEmail);
         } else {
           // Acesso revogado (reembolso/cancelamento)
@@ -975,8 +976,20 @@ window.addEventListener('DOMContentLoaded', async () => {
         localStorage.removeItem('in_token');
       }
     } catch {
-      // Sem conexão — permite acesso offline com token existente
-      showApp(userEmail);
+      // Sem conexão — verificar se última validação foi recente (< 4h)
+      const lastVerified = parseInt(localStorage.getItem('in_last_verified') || '0');
+      const fourHours = 4 * 60 * 60 * 1000;
+      if (Date.now() - lastVerified < fourHours) {
+        showApp(userEmail);
+      } else {
+        // Última verificação muito antiga — forçar re-login
+        token = null;
+        localStorage.removeItem('in_token');
+        localStorage.removeItem('in_email');
+        localStorage.removeItem('in_last_verified');
+        const errDiv = document.getElementById('loginError');
+        if (errDiv) errDiv.textContent = 'Sem conexão. Conecte-se à internet para verificar seu acesso.';
+      }
     }
   }
 });
@@ -1060,6 +1073,8 @@ function showApp(email) {
 function logoutUser() {
   token = null;
   localStorage.removeItem('in_token');
+  localStorage.removeItem('in_email');
+  localStorage.removeItem('in_last_verified');
   location.reload();
 }
 
