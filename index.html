@@ -3565,13 +3565,13 @@ function openEpisode(countryCode, epIndex) {
 var _epSectionIndex = 0;
 var _epPlaying = false;
 var _epFetching = false;
+var _epAudioEl = null; // elemento Audio reutilizable (fix iOS Safari)
 
 function epToggleAudio() {
   var btn = document.getElementById('epPlayBtn');
   if (!auditivaCurrentEp) return;
   if (_epFetching) return;
 
-  // Se já tem áudio tocando, toggle play/pause
   if (auditivaAudio && !auditivaAudio.ended) {
     if (auditivaAudio.paused) {
       auditivaAudio.play();
@@ -3583,7 +3583,11 @@ function epToggleAudio() {
     return;
   }
 
-  // Iniciar reprodução sequencial das seções
+  // Crear elemento Audio UNA sola vez (iOS necesita que sea del click del usuario)
+  if (!_epAudioEl) {
+    _epAudioEl = new Audio();
+  }
+
   _epSectionIndex = 0;
   _epPlaying = true;
   btn.innerHTML = '&#9203;';
@@ -3592,8 +3596,8 @@ function epToggleAudio() {
 
 var _epRetryCount = 0;
 var _EP_MAX_RETRIES = 2;
-var _EP_RETRY_DELAY = 3000; // 3s entre reintentos
-var _EP_SECTION_DELAY = 1500; // 1.5s entre secciones para no saturar ElevenLabs
+var _EP_RETRY_DELAY = 3000;
+var _EP_SECTION_DELAY = 1500;
 
 function epPlayNextSection() {
   if (_epFetching) return;
@@ -3638,32 +3642,35 @@ function epPlayNextSection() {
     return r.ok ? r.blob() : Promise.reject('Audio error ' + r.status);
   })
   .then(function(blob) {
-    _epRetryCount = 0; _epFetching = false; // reset
+    _epRetryCount = 0; _epFetching = false;
     var audioUrl = URL.createObjectURL(blob);
-    auditivaAudio = new Audio(audioUrl);
+
+    // Reusar el mismo elemento Audio (fix iOS Safari autoplay)
+    var audio = _epAudioEl;
+    audio.src = audioUrl;
+    auditivaAudio = audio;
     btn.innerHTML = '&#9646;&#9646;';
 
-    auditivaAudio.ontimeupdate = function() {
-      if (auditivaAudio.duration) {
-        var secPct = pct + (auditivaAudio.currentTime / auditivaAudio.duration) * (100 / totalSections);
+    audio.ontimeupdate = function() {
+      if (audio.duration) {
+        var secPct = pct + (audio.currentTime / audio.duration) * (100 / totalSections);
         progressFill.style.width = secPct + '%';
       }
     };
 
-    auditivaAudio.onended = function() {
+    audio.onended = function() {
       URL.revokeObjectURL(audioUrl);
       _epSectionIndex++;
       _epRetryCount = 0;
-      // Delay entre secciones para no saturar ElevenLabs
       setTimeout(epPlayNextSection, _EP_SECTION_DELAY);
     };
 
-    auditivaAudio.onerror = function() {
+    audio.onerror = function() {
       URL.revokeObjectURL(audioUrl);
       epRetryOrSkip('Audio playback error');
     };
 
-    auditivaAudio.play().catch(function(e) {
+    audio.play().catch(function(e) {
       URL.revokeObjectURL(audioUrl);
       epRetryOrSkip('Play failed: ' + e);
     });
