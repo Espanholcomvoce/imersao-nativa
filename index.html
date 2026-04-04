@@ -978,8 +978,8 @@ window.addEventListener('DOMContentLoaded', async () => {
     } catch {
       // Sem conexão — verificar se última validação foi recente (< 4h)
       const lastVerified = parseInt(localStorage.getItem('in_last_verified') || '0');
-      const fourHours = 4 * 60 * 60 * 1000;
-      if (Date.now() - lastVerified < fourHours) {
+      const thirtyMin = 30 * 60 * 1000;
+      if (Date.now() - lastVerified < thirtyMin) {
         showApp(userEmail);
       } else {
         // Última verificação muito antiga — forçar re-login
