@@ -1915,12 +1915,16 @@ function renderCards() {
     showCard();
   } else {
     document.getElementById('cardFront').textContent = doneToday >= DAILY_GOAL ? '✅ Meta de hoje concluída!' : '🎉 Tudo em dia!';
-    document.getElementById('cardHint').textContent = doneToday >= DAILY_GOAL ? 'Toque em "Continuar" para mais palavras' : 'Sem revisões pendentes';
     document.getElementById('cardThemeTag').textContent = '';
     document.getElementById('cardTypeTag').textContent = '';
     document.getElementById('flipHint').textContent = '';
     document.getElementById('sreActions').style.display = 'none';
     document.getElementById('sreAudioBtns').style.display = 'none';
+    if (doneToday >= DAILY_GOAL && !sreKeepGoing) {
+      document.getElementById('cardHint').innerHTML = '<button onclick="sreKeepGoing=true;renderCards();" style="margin-top:12px;padding:12px 24px;border-radius:12px;background:linear-gradient(135deg,var(--gold),var(--gold2));border:none;color:#fff;font-size:15px;font-weight:700;cursor:pointer">Continuar praticando</button>';
+    } else {
+      document.getElementById('cardHint').textContent = 'Sem revisões pendentes';
+    }
   }
 }
 
