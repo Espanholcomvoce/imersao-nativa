@@ -1015,6 +1015,24 @@ function installPWA() {
 
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/sw.js').catch(() => {});
+
+  // Auto-update silencioso: força o SW a checar nova versão a cada 30 min.
+  // O SW é network-first, então alunos online já recebem versões novas naturalmente.
+  // Esse polling antecipa o download pra próxima abertura ser instantânea.
+  setInterval(function() {
+    navigator.serviceWorker.getRegistration().then(function(reg) {
+      if (reg) reg.update();
+    }).catch(function() {});
+  }, 30 * 60 * 1000);
+
+  // Também checa quando aluno volta a focar a aba (mobile dorme/acorda muito).
+  document.addEventListener('visibilitychange', function() {
+    if (document.visibilityState === 'visible') {
+      navigator.serviceWorker.getRegistration().then(function(reg) {
+        if (reg) reg.update();
+      }).catch(function() {});
+    }
+  });
 }
 
 // ══ LOGIN ══
@@ -1291,7 +1309,15 @@ function cvPaulaResponde(isFirst) {
 
     function lerChunk() {
       return reader.read().then(function(result) {
-        if (result.done) return;
+        if (result.done) {
+          // GUARD: stream encerrou sem evento done/error (rede, saldo OpenAI, timeout). Reseta pra não travar em "Pensando".
+          if (cvPaulaTalando) {
+            cvPaulaTalando = false;
+            cvSetStatus('ouvindo');
+            if (msgEl && !fullText) cvUpdateMsgStream(msgEl, '...');
+          }
+          return;
+        }
         buffer += decoder.decode(result.value, { stream: true });
         var lines = buffer.split(String.fromCharCode(10));
         buffer = lines.pop();
