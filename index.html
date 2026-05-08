@@ -1934,6 +1934,7 @@ function rtTratarEvento(ev) {
       break;
 
     case 'response.audio_transcript.delta':
+    case 'response.output_audio_transcript.delta':
       // Filtrar mensajes de sistema en inglés
       var deltaText = ev.delta || '';
       if (!_rtMsgElPaula && !_rtTranscriptoPaula) {
@@ -1949,6 +1950,7 @@ function rtTratarEvento(ev) {
       break;
 
     case 'response.audio_transcript.done':
+    case 'response.output_audio_transcript.done':
       var paulaText = (ev.transcript || _rtTranscriptoPaula || '').trim();
       if (paulaText) {
         if (_rtMsgElPaula) cvUpdateMsgStream(_rtMsgElPaula, paulaText, true);
@@ -1958,6 +1960,7 @@ function rtTratarEvento(ev) {
       break;
 
     case 'response.audio.delta':
+    case 'response.output_audio.delta':
       if (!_rtPaulaFalando) {
         _rtPaulaFalando = true;
         if (dot) dot.innerHTML = '<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#36c551;animation:rt-pulse 0.8s infinite"></span> Paula habla...';
@@ -1967,6 +1970,7 @@ function rtTratarEvento(ev) {
       break;
 
     case 'response.audio.done':
+    case 'response.output_audio.done':
       break;
 
     case 'response.done':
