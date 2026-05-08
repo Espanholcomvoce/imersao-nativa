@@ -822,6 +822,38 @@ body{font-family:'Inter',sans-serif;height:100vh;height:100dvh;background:var(--
 // ══ CONFIG ══
 const API = 'https://api.espanholcomvoce.com';
 
+// ══ AUTH GUARD GLOBAL ══
+// Intercepta TODAS as chamadas fetch. Se backend retornar 403 com code ACCESS_REVOKED
+// (aluno reembolsado/cancelado), desloga e força re-login. Detecta em ≤5 min nas
+// chamadas caras (chat, whisper, tts, realtime/token) graças ao middleware authWithRevalidation.
+(function() {
+  var _origFetch = window.fetch;
+  var _accessRevokedTriggered = false;
+  window.fetch = function() {
+    var args = arguments;
+    var url = (typeof args[0] === 'string') ? args[0] : (args[0] && args[0].url) || '';
+    return _origFetch.apply(this, args).then(function(res) {
+      if (_accessRevokedTriggered || res.status !== 403 || !url.indexOf || url.indexOf('api.espanholcomvoce.com') === -1) {
+        return res;
+      }
+      return res.clone().json().then(function(data) {
+        if (data && data.code === 'ACCESS_REVOKED' && !_accessRevokedTriggered) {
+          _accessRevokedTriggered = true;
+          console.warn('[AUTH] Acesso revogado detectado em', url);
+          try {
+            localStorage.removeItem('in_token');
+            localStorage.removeItem('in_email');
+            localStorage.removeItem('in_last_verified');
+          } catch (e) {}
+          alert('Seu acesso foi encerrado. Verifique o status da sua compra na Hotmart.');
+          location.reload();
+        }
+        return res;
+      }).catch(function() { return res; });
+    });
+  };
+})();
+
 // ══ STATE ══
 let token = localStorage.getItem('in_token');
 let userEmail = localStorage.getItem('in_email') || '';
