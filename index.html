@@ -1662,6 +1662,7 @@ function endRealtimeSession() {
   if (rtAtivo) {
     rtAtivo = false;
     if (rtTimerInterval) { clearInterval(rtTimerInterval); rtTimerInterval = null; }
+    if (typeof rtPararHeartbeat === 'function') rtPararHeartbeat();
     if (rtDC) { try { rtDC.close(); } catch(e) {} rtDC = null; }
     if (rtPC) { try { rtPC.close(); } catch(e) {} rtPC = null; }
     if (rtStream) { rtStream.getTracks().forEach(function(t) { t.stop(); }); rtStream = null; }
@@ -1764,7 +1765,48 @@ async function iniciarRealtimeSession() {
   // 9. Iniciar timer silencioso (sin UI)
   rtIniciarTimer();
 
+  // 10. Heartbeat: manda pulso pro backend a cada 15s pra contabilizar tempo certinho.
+  //     Backend persiste em Postgres (resolve furo de sessão sem /end, refresh, etc).
+  //     Se backend retornar stop:true (limite atingido), encerra sessão.
+  rtIniciarHeartbeat();
+
   console.log('[REALTIME] WebRTC conectado! Chat con burbujas ativo.');
+}
+
+var rtHeartbeatInterval = null;
+function rtIniciarHeartbeat() {
+  if (rtHeartbeatInterval) clearInterval(rtHeartbeatInterval);
+  rtHeartbeatInterval = setInterval(function() {
+    if (!rtAtivo) { rtPararHeartbeat(); return; }
+    fetch(API + '/api/realtime/heartbeat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token }
+    })
+    .then(function(r) { return r.ok ? r.json() : null; })
+    .then(function(data) {
+      if (data && data.stop) {
+        // Limite diário atingido — Paula se despede e encerra
+        var despedidas = [
+          '¡Oye, me tengo que ir! Pero me encantó hablar contigo, ¿seguimos mañana?',
+          '¡Ay, ya me tengo que ir corriendo! Estuvo genial la charla, ¡nos vemos pronto!',
+          '¡Bueno, me voy volando! Hablamos re bien hoy, mañana te cuento algo que me pasó...',
+          '¡Me encantó platicar contigo! Ya me voy pero mañana vuelvo con más ganas.',
+          '¡Qué rápido se pasó! Me tengo que ir, pero mañana te tengo que contar algo...'
+        ];
+        cvAddMsg('paula', despedidas[Math.floor(Math.random() * despedidas.length)]);
+        rtPararHeartbeat();
+        setTimeout(function() { endRealtimeSession(); }, 4000);
+      }
+    })
+    .catch(function() { /* silently ignore — vai tentar de novo */ });
+  }, 15000); // 15s, idêntico ao HEARTBEAT_INCREMENT_SECONDS no backend
+}
+
+function rtPararHeartbeat() {
+  if (rtHeartbeatInterval) {
+    clearInterval(rtHeartbeatInterval);
+    rtHeartbeatInterval = null;
+  }
 }
 
 // ── Timer de tempo restante ──
