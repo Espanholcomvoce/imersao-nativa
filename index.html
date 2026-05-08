@@ -1706,7 +1706,7 @@ async function iniciarRealtimeSession() {
   await rtPC.setLocalDescription(offer);
 
   // 7. Enviar offer para OpenAI e receber answer
-  var sdpRes = await fetch('https://api.openai.com/v1/realtime?model=gpt-realtime', {
+  var sdpRes = await fetch('https://api.openai.com/v1/realtime?model=gpt-4o-realtime-preview', {
     method: 'POST',
     headers: {
       'Authorization': 'Bearer ' + ephemeralKey,
