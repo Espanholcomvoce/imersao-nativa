@@ -1204,6 +1204,9 @@ function iniciarModoRealtime() {
   }).catch(function(err) {
     if (btn) btn.style.opacity = '1';
     if (hint) hint.textContent = 'No disponible — escribe o graba';
+    // GUARD: reset status pra não travar em "Pensando" se Realtime falhar (saldo, microfone, rede, OpenAI).
+    cvSetStatus('ouvindo');
+    cvAddMsg('paula', 'No pude conectar al modo en vivo ahora. Puedes escribirme o grabar audio acá abajo.');
     console.warn('[REALTIME]', err.message);
   });
 }
