@@ -1,4 +1,4 @@
-const CACHE = 'imersao-nativa-v2';
+const CACHE = 'imersao-nativa-v3';
 const OFFLINE_URLS = ['/'];
 
 self.addEventListener('install', e => {
@@ -25,7 +25,7 @@ self.addEventListener('fetch', e => {
   if (e.request.url.includes('/api/')) return;
 
   e.respondWith(
-    fetch(e.request)
+    fetch(e.request, { cache: 'no-cache' })
       .then(res => {
         const clone = res.clone();
         caches.open(CACHE).then(cache => cache.put(e.request, clone));

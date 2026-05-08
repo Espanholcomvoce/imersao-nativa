@@ -1,0 +1,17 @@
+# Service Worker NUNCA pode ser cacheado pela CDN —
+# senão atualizações não chegam aos PWAs instalados.
+/sw.js
+  Cache-Control: no-cache, no-store, must-revalidate
+  Pragma: no-cache
+  Expires: 0
+
+# index.html sempre revalidado pra garantir versão fresca.
+/
+  Cache-Control: no-cache, must-revalidate
+
+/index.html
+  Cache-Control: no-cache, must-revalidate
+
+# manifest.json também, pra mudanças de PWA chegarem rápido.
+/manifest.json
+  Cache-Control: no-cache, must-revalidate
