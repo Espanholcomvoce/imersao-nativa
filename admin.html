@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Painel Admin · Imersão Nativa</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+  :root {
+    --bg: #0f1115;
+    --panel: #171a21;
+    --panel-2: #1f242d;
+    --border: #2a313c;
+    --text: #e8eaed;
+    --text2: #9aa3b2;
+    --accent: #0090be;
+    --green: #36c551;
+    --yellow: #ffcb15;
+    --red: #ef4444;
+    --purple: #a78bfa;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg); color: var(--text); line-height: 1.5;
+  }
+  .header {
+    background: var(--panel); border-bottom: 1px solid var(--border);
+    padding: 18px 24px; display: flex; align-items: center; justify-content: space-between;
+    position: sticky; top: 0; z-index: 100;
+  }
+  .header h1 { margin: 0; font-size: 18px; font-weight: 600; }
+  .header .sub { color: var(--text2); font-size: 12px; margin-top: 2px; }
+  .header .actions { display: flex; gap: 8px; align-items: center; }
+  .btn {
+    background: var(--accent); color: white; border: 0; padding: 8px 14px;
+    border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer;
+    transition: opacity .15s;
+  }
+  .btn:hover { opacity: .85; }
+  .btn.ghost { background: transparent; border: 1px solid var(--border); color: var(--text); }
+  .container { max-width: 1400px; margin: 0 auto; padding: 24px; }
+  .login-screen {
+    max-width: 440px; margin: 80px auto; background: var(--panel);
+    border: 1px solid var(--border); border-radius: 12px; padding: 28px;
+  }
+  .login-screen h2 { margin: 0 0 8px; font-size: 22px; }
+  .login-screen p { color: var(--text2); font-size: 13px; margin: 0 0 18px; }
+  .login-screen label { display: block; font-size: 12px; color: var(--text2); margin-bottom: 6px; }
+  .input {
+    width: 100%; padding: 10px 12px; background: var(--bg); border: 1px solid var(--border);
+    border-radius: 8px; color: var(--text); font-family: inherit; font-size: 14px;
+  }
+  .input:focus { outline: 0; border-color: var(--accent); }
+  .filters {
+    background: var(--panel); border: 1px solid var(--border); border-radius: 12px;
+    padding: 16px; display: flex; gap: 12px; align-items: end; flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  .filters .field { display: flex; flex-direction: column; gap: 6px; min-width: 140px; }
+  .filters label { font-size: 11px; color: var(--text2); text-transform: uppercase; letter-spacing: .5px; }
+  .preset-btns { display: flex; gap: 4px; flex-wrap: wrap; }
+  .preset {
+    padding: 6px 10px; background: transparent; border: 1px solid var(--border);
+    color: var(--text2); border-radius: 6px; cursor: pointer; font-size: 12px;
+  }
+  .preset:hover { background: var(--panel-2); color: var(--text); }
+  .preset.active { background: var(--accent); border-color: var(--accent); color: white; }
+  .summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 20px; }
+  .stat {
+    background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 16px;
+  }
+  .stat .label { color: var(--text2); font-size: 11px; text-transform: uppercase; letter-spacing: .5px; }
+  .stat .value { font-size: 28px; font-weight: 700; margin-top: 4px; }
+  .stat .sublabel { font-size: 11px; color: var(--text2); margin-top: 2px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+  .card {
+    background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 16px;
+  }
+  .card h3 { margin: 0 0 12px; font-size: 14px; font-weight: 600; }
+  .card .canvas-wrap { position: relative; height: 280px; }
+  .card.full { grid-column: 1 / -1; }
+  .table-wrap { max-height: 480px; overflow: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  thead th {
+    text-align: left; padding: 10px 12px; background: var(--panel-2); position: sticky; top: 0;
+    color: var(--text2); font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: .5px;
+    border-bottom: 1px solid var(--border);
+  }
+  tbody td { padding: 10px 12px; border-bottom: 1px solid var(--border); }
+  tbody tr:hover { background: var(--panel-2); }
+  .badge {
+    display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 11px;
+    background: var(--panel-2); border: 1px solid var(--border); color: var(--text2);
+  }
+  .badge.green { color: var(--green); border-color: rgba(54,197,81,.4); }
+  .badge.yellow { color: var(--yellow); border-color: rgba(255,203,21,.4); }
+  .badge.red { color: var(--red); border-color: rgba(239,68,68,.4); }
+  .empty { text-align: center; padding: 40px 20px; color: var(--text2); font-size: 13px; }
+  .loading { text-align: center; padding: 40px 20px; color: var(--text2); font-size: 13px; }
+  .error { color: var(--red); font-size: 13px; padding: 10px 14px; background: rgba(239,68,68,.08); border-radius: 8px; border: 1px solid rgba(239,68,68,.3); margin-bottom: 16px; }
+  .module-color { display: inline-block; width: 10px; height: 10px; border-radius: 2px; vertical-align: middle; margin-right: 6px; }
+</style>
+</head>
+<body>
+
+<div id="loginScreen" class="login-screen">
+  <h2>🔒 Painel Admin</h2>
+  <p>Cole o ADMIN_TOKEN configurado no Railway pra acessar o relatório.</p>
+  <label for="tokenInput">ADMIN_TOKEN</label>
+  <input id="tokenInput" type="password" class="input" placeholder="...">
+  <div style="margin-top: 14px; display: flex; gap: 8px;">
+    <button class="btn" onclick="login()">Entrar</button>
+  </div>
+  <div id="loginError" class="error" style="display:none; margin-top: 14px;"></div>
+</div>
+
+<div id="appScreen" style="display:none">
+  <div class="header">
+    <div>
+      <h1>📊 Painel Admin · Imersão Nativa</h1>
+      <div class="sub">Uso por aluno, atividade e período</div>
+    </div>
+    <div class="actions">
+      <button class="btn ghost" onclick="logout()">Sair</button>
+      <button class="btn" onclick="loadData()">↻ Atualizar</button>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="filters">
+      <div class="field">
+        <label>De</label>
+        <input type="date" id="dateFrom" class="input">
+      </div>
+      <div class="field">
+        <label>Até</label>
+        <input type="date" id="dateTo" class="input">
+      </div>
+      <div class="field" style="flex: 1; min-width: 240px;">
+        <label>Aluno (opcional, filtro por email)</label>
+        <input type="text" id="emailFilter" class="input" placeholder="email@exemplo.com">
+      </div>
+      <div class="field">
+        <label>Atalhos</label>
+        <div class="preset-btns">
+          <button class="preset" onclick="setPreset('today')">Hoje</button>
+          <button class="preset" onclick="setPreset('7d')">7 dias</button>
+          <button class="preset" onclick="setPreset('30d')">30 dias</button>
+          <button class="preset" onclick="setPreset('month')">Este mês</button>
+          <button class="preset" onclick="setPreset('all')">90 dias</button>
+        </div>
+      </div>
+      <div class="field">
+        <label>&nbsp;</label>
+        <button class="btn" onclick="loadData()">Aplicar</button>
+      </div>
+    </div>
+
+    <div id="errorBox" class="error" style="display:none"></div>
+    <div id="loadingBox" class="loading" style="display:none">Carregando…</div>
+
+    <div id="content" style="display:none">
+      <div class="summary">
+        <div class="stat">
+          <div class="label">Alunos no período</div>
+          <div class="value" id="statUsers">0</div>
+          <div class="sublabel" id="statUsersSub"></div>
+        </div>
+        <div class="stat">
+          <div class="label">Minutos totais</div>
+          <div class="value" id="statMinutes">0</div>
+          <div class="sublabel" id="statMinutesSub"></div>
+        </div>
+        <div class="stat">
+          <div class="label">Atividade mais usada</div>
+          <div class="value" id="statTopModule" style="font-size:18px">—</div>
+          <div class="sublabel" id="statTopModuleSub"></div>
+        </div>
+        <div class="stat">
+          <div class="label">Dias com uso</div>
+          <div class="value" id="statDays">0</div>
+          <div class="sublabel" id="statDaysSub"></div>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <h3>⏱️ Minutos por dia</h3>
+          <div class="canvas-wrap"><canvas id="chartByDay"></canvas></div>
+        </div>
+        <div class="card">
+          <h3>🎯 Tempo por atividade</h3>
+          <div class="canvas-wrap"><canvas id="chartByModule"></canvas></div>
+        </div>
+        <div class="card full">
+          <h3>🏆 Top alunos por minutos</h3>
+          <div class="canvas-wrap" style="height: 340px;"><canvas id="chartByUser"></canvas></div>
+        </div>
+        <div class="card full">
+          <h3>📋 Detalhe — aluno × atividade × dia</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Dia</th>
+                  <th>Aluno</th>
+                  <th>Atividade</th>
+                  <th style="text-align:right">Minutos</th>
+                </tr>
+              </thead>
+              <tbody id="detailRows"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const API = 'https://api.espanholcomvoce.com';
+
+  // Cores fixas por módulo (consistência entre gráficos)
+  const MODULE_COLORS = {
+    conversacao: '#36c551',
+    sre: '#0090be',
+    leitura: '#a78bfa',
+    imersao_cultural: '#ffcb15',
+    tira_duvidas: '#ef4444',
+    producao_escrita: '#f97316'
+  };
+  const MODULE_LABELS = {
+    conversacao: 'Conversação',
+    sre: 'Sombreado + SRE',
+    leitura: 'Leitura',
+    imersao_cultural: 'Imersão Cultural',
+    tira_duvidas: 'Tira Dúvidas',
+    producao_escrita: 'Produção Escrita'
+  };
+  function colorOf(mod) { return MODULE_COLORS[mod] || '#9aa3b2'; }
+  function labelOf(mod) { return MODULE_LABELS[mod] || mod; }
+
+  // ── AUTH ─────────────────────────────────────
+  let adminToken = localStorage.getItem('in_admin_token');
+  let charts = { byDay: null, byModule: null, byUser: null };
+
+  function login() {
+    const t = document.getElementById('tokenInput').value.trim();
+    if (!t) { showLoginError('Cola o token.'); return; }
+    adminToken = t;
+    localStorage.setItem('in_admin_token', t);
+    document.getElementById('loginError').style.display = 'none';
+    showApp();
+  }
+  function logout() {
+    adminToken = null;
+    localStorage.removeItem('in_admin_token');
+    document.getElementById('appScreen').style.display = 'none';
+    document.getElementById('loginScreen').style.display = 'block';
+    document.getElementById('tokenInput').value = '';
+  }
+  function showLoginError(msg) {
+    const el = document.getElementById('loginError');
+    el.textContent = msg;
+    el.style.display = 'block';
+  }
+
+  function showApp() {
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('appScreen').style.display = 'block';
+    setPreset('30d');
+    loadData();
+  }
+
+  // ── DATE PRESETS ─────────────────────────────
+  function fmt(d) {
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, '0');
+    const dd = String(d.getDate()).padStart(2, '0');
+    return `${y}-${m}-${dd}`;
+  }
+  function setPreset(kind) {
+    document.querySelectorAll('.preset').forEach(b => b.classList.remove('active'));
+    event && event.target && event.target.classList.add('active');
+    const today = new Date();
+    let from = new Date(today);
+    if (kind === 'today') { /* from = today */ }
+    else if (kind === '7d') from.setDate(today.getDate() - 6);
+    else if (kind === '30d') from.setDate(today.getDate() - 29);
+    else if (kind === 'month') from = new Date(today.getFullYear(), today.getMonth(), 1);
+    else if (kind === 'all') from.setDate(today.getDate() - 89);
+    document.getElementById('dateFrom').value = fmt(from);
+    document.getElementById('dateTo').value = fmt(today);
+  }
+
+  // ── FETCH ────────────────────────────────────
+  async function loadData() {
+    const from = document.getElementById('dateFrom').value;
+    const to = document.getElementById('dateTo').value;
+    const email = document.getElementById('emailFilter').value.trim();
+    if (!from || !to) return;
+
+    document.getElementById('loadingBox').style.display = 'block';
+    document.getElementById('content').style.display = 'none';
+    document.getElementById('errorBox').style.display = 'none';
+
+    let url = `${API}/api/admin/module-report?from=${from}&to=${to}`;
+    if (email) url += `&email=${encodeURIComponent(email)}`;
+
+    try {
+      const r = await fetch(url, { headers: { 'X-Admin-Token': adminToken } });
+      if (r.status === 401) {
+        showLoginError('Token inválido. Verifique no Railway.');
+        logout(); return;
+      }
+      if (!r.ok) {
+        const errBody = await r.text();
+        throw new Error(`HTTP ${r.status}: ${errBody.slice(0, 200)}`);
+      }
+      const data = await r.json();
+      render(data);
+    } catch (err) {
+      document.getElementById('errorBox').textContent = 'Erro: ' + err.message;
+      document.getElementById('errorBox').style.display = 'block';
+    } finally {
+      document.getElementById('loadingBox').style.display = 'none';
+    }
+  }
+
+  // ── RENDER ───────────────────────────────────
+  function render(data) {
+    document.getElementById('content').style.display = 'block';
+
+    // Stats
+    document.getElementById('statUsers').textContent = data.summary.total_users;
+    document.getElementById('statUsersSub').textContent = data.email_filter ? 'filtro: ' + data.email_filter : '';
+    document.getElementById('statMinutes').textContent = data.summary.total_minutes.toLocaleString('pt-BR');
+    document.getElementById('statMinutesSub').textContent = Math.round(data.summary.total_minutes / 60) + ' h totais';
+    const top = data.by_module[0];
+    document.getElementById('statTopModule').textContent = top ? labelOf(top.module) : '—';
+    document.getElementById('statTopModuleSub').textContent = top ? (top.total_minutes + ' min · ' + top.unique_users + ' alunos') : '';
+    document.getElementById('statDays').textContent = data.summary.days_in_period;
+    document.getElementById('statDaysSub').textContent = '(no período)';
+
+    renderByDay(data.by_day);
+    renderByModule(data.by_module);
+    renderByUser(data.by_user);
+    renderDetail(data.detail);
+  }
+
+  const chartCommon = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { labels: { color: '#9aa3b2', font: { size: 12 } } },
+      tooltip: { backgroundColor: '#171a21', borderColor: '#2a313c', borderWidth: 1 }
+    },
+    scales: {
+      x: { ticks: { color: '#9aa3b2' }, grid: { color: '#2a313c' } },
+      y: { ticks: { color: '#9aa3b2' }, grid: { color: '#2a313c' }, beginAtZero: true }
+    }
+  };
+
+  function renderByDay(rows) {
+    const ctx = document.getElementById('chartByDay');
+    if (charts.byDay) charts.byDay.destroy();
+    if (!rows.length) { ctx.getContext('2d').clearRect(0,0,ctx.width,ctx.height); return; }
+    charts.byDay = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: rows.map(r => r.date.slice(5)),
+        datasets: [{
+          label: 'Minutos',
+          data: rows.map(r => r.total_minutes),
+          borderColor: '#0090be',
+          backgroundColor: 'rgba(0,144,190,0.15)',
+          fill: true,
+          tension: 0.3,
+          pointRadius: 4,
+          pointHoverRadius: 6
+        }, {
+          label: 'Alunos ativos',
+          data: rows.map(r => r.active_users),
+          borderColor: '#36c551',
+          backgroundColor: 'transparent',
+          tension: 0.3,
+          yAxisID: 'y2',
+          pointRadius: 3
+        }]
+      },
+      options: {
+        ...chartCommon,
+        scales: {
+          ...chartCommon.scales,
+          y2: {
+            position: 'right',
+            ticks: { color: '#36c551' },
+            grid: { display: false },
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  }
+
+  function renderByModule(rows) {
+    const ctx = document.getElementById('chartByModule');
+    if (charts.byModule) charts.byModule.destroy();
+    if (!rows.length) { ctx.getContext('2d').clearRect(0,0,ctx.width,ctx.height); return; }
+    charts.byModule = new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels: rows.map(r => labelOf(r.module)),
+        datasets: [{
+          data: rows.map(r => r.total_minutes),
+          backgroundColor: rows.map(r => colorOf(r.module)),
+          borderColor: '#171a21',
+          borderWidth: 2
+        }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: {
+          legend: { position: 'right', labels: { color: '#9aa3b2', font: { size: 12 }, padding: 10 } },
+          tooltip: {
+            backgroundColor: '#171a21', borderColor: '#2a313c', borderWidth: 1,
+            callbacks: {
+              label: function(ctx) {
+                const total = ctx.dataset.data.reduce((a,b) => a+b, 0);
+                const pct = total ? Math.round(ctx.raw / total * 100) : 0;
+                return ctx.label + ': ' + ctx.raw + ' min (' + pct + '%)';
+              }
+            }
+          }
+        }
+      }
+    });
+  }
+
+  function renderByUser(rows) {
+    const ctx = document.getElementById('chartByUser');
+    if (charts.byUser) charts.byUser.destroy();
+    if (!rows.length) { ctx.getContext('2d').clearRect(0,0,ctx.width,ctx.height); return; }
+    const top = rows.slice(0, 15); // top 15
+    charts.byUser = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: top.map(r => r.email),
+        datasets: [{
+          label: 'Minutos',
+          data: top.map(r => r.total_minutes),
+          backgroundColor: '#0090be',
+          borderRadius: 4
+        }]
+      },
+      options: {
+        ...chartCommon,
+        indexAxis: 'y',
+        plugins: { legend: { display: false }, tooltip: chartCommon.plugins.tooltip },
+        scales: {
+          x: { ticks: { color: '#9aa3b2' }, grid: { color: '#2a313c' }, beginAtZero: true },
+          y: { ticks: { color: '#9aa3b2', font: { size: 11 } }, grid: { display: false } }
+        }
+      }
+    });
+  }
+
+  function renderDetail(rows) {
+    const tbody = document.getElementById('detailRows');
+    if (!rows.length) {
+      tbody.innerHTML = '<tr><td colspan="4" class="empty">Sem dados no período.</td></tr>';
+      return;
+    }
+    tbody.innerHTML = rows.map(r => `
+      <tr>
+        <td>${r.date}</td>
+        <td>${r.email}</td>
+        <td><span class="module-color" style="background:${colorOf(r.module)}"></span>${labelOf(r.module)}</td>
+        <td style="text-align:right; font-variant-numeric: tabular-nums;">${r.minutes}</td>
+      </tr>
+    `).join('');
+  }
+
+  // ── INIT ─────────────────────────────────────
+  if (adminToken) showApp(); else document.getElementById('loginScreen').style.display = 'block';
+  document.getElementById('tokenInput').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') login();
+  });
+</script>
+</body>
+</html>

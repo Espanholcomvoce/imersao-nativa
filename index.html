@@ -1214,6 +1214,32 @@ function _flushModuleUse() {
     var secs = Math.floor((Date.now() - _moduleEnterAt) / 1000);
     if (secs >= 3) { // ignora visitas <3s (passagem rápida pela tela)
       track('module_used', { module: _currentModule, duration_seconds: secs });
+      // Persiste no nosso Postgres pra dashboard admin não depender de PostHog
+      try {
+        if (token) {
+          var body = JSON.stringify({ module: _currentModule, duration_seconds: secs });
+          // sendBeacon funciona mesmo quando a aba está fechando (visibilitychange hidden)
+          if (navigator.sendBeacon) {
+            var blob = new Blob([body], { type: 'application/json' });
+            // sendBeacon não suporta headers customizados, então JWT vai como query (rota tolera)
+            // Como alternativa, fetch com keepalive pra incluir Authorization
+            try {
+              fetch(API + '/api/track/module', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+                body: body,
+                keepalive: true
+              }).catch(function() {});
+            } catch (e) {}
+          } else {
+            fetch(API + '/api/track/module', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+              body: body
+            }).catch(function() {});
+          }
+        }
+      } catch (e) {}
     }
   }
   _currentModule = null;
