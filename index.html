@@ -3285,9 +3285,12 @@ let lecRespondidas = 0;
 
 function getLecQueue(nivel) {
   const key = 'lec_queue_' + nivel;
-  let queue = JSON.parse(localStorage.getItem(key) || '[]');
+  let queue = JSON.parse(localStorage.getItem(key) || 'null');
   const total = (LECTURA_DATA[nivel] || []).length;
-  if (queue.length === 0) {
+  // PRIMEIRA VEZ (queue nunca criada): cria embaralhada e zera done.
+  // Se queue foi salva como [] (nível concluído), NÃO reembaralha automaticamente —
+  // deixa renderLectura mostrar a tela de conclusão.
+  if (queue === null) {
     queue = Array.from({length: total}, (_, i) => i).sort(() => Math.random() - 0.5);
     localStorage.setItem(key, JSON.stringify(queue));
     localStorage.setItem('lec_done_' + nivel, '0');
@@ -3301,17 +3304,35 @@ function getLecDone(nivel) {
 
 function avanceLecQueue(nivel) {
   const key = 'lec_queue_' + nivel;
-  const total = (LECTURA_DATA[nivel] || []).length;
   let queue = JSON.parse(localStorage.getItem(key) || '[]');
   queue.shift();
-  let done = getLecDone(nivel) + 1;
-  if (queue.length === 0) {
-    // Ciclo completo — recomeça embaralhado
-    queue = Array.from({length: total}, (_, i) => i).sort(() => Math.random() - 0.5);
-    done = 0;
-  }
+  const done = getLecDone(nivel) + 1;
+  // NÃO recomeça automaticamente. Quando queue zera, deixa vazio + done=total
+  // pra renderLectura mostrar tela de conclusão. Aluno decide se reinicia.
   localStorage.setItem(key, JSON.stringify(queue));
   localStorage.setItem('lec_done_' + nivel, String(done));
+}
+
+function reiniciarLecNivel(nivel) {
+  const total = (LECTURA_DATA[nivel] || []).length;
+  const queue = Array.from({length: total}, (_, i) => i).sort(() => Math.random() - 0.5);
+  localStorage.setItem('lec_queue_' + nivel, JSON.stringify(queue));
+  localStorage.setItem('lec_done_' + nivel, '0');
+  renderLectura();
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function pasarSiguienteNivel(nivelActual) {
+  const ordem = ['A1', 'A2', 'B1', 'B2', 'C1'];
+  const i = ordem.indexOf(nivelActual);
+  const proximo = i >= 0 && i < ordem.length - 1 ? ordem[i + 1] : null;
+  if (!proximo) { reiniciarLecNivel(nivelActual); return; }
+  lecNivelActual = proximo;
+  document.querySelectorAll('.lev-tab').forEach(b => {
+    b.classList.toggle('active', b.textContent.trim() === proximo);
+  });
+  renderLectura();
+  window.scrollTo({top: 0, behavior: 'smooth'});
 }
 
 function selectLecNivel(nivel, btn) {
@@ -3327,14 +3348,37 @@ function renderLectura() {
   const total = textos.length;
   const done = getLecDone(nivel);
   const queue = getLecQueue(nivel);
-  const idx = queue[0];
-  const texto = textos[idx];
 
   // Atualiza progress
   document.getElementById('lecNivelLabel').textContent = nivel;
   const pct = Math.round((done / total) * 100);
   document.getElementById('lecProgFill').style.width = pct + '%';
   document.getElementById('lecProgCount').textContent = done + '/' + total;
+
+  // CONCLUSÃO DE NÍVEL: aluno completou todos os textos. Mostra celebração
+  // em vez de recomeçar silenciosamente (era o bug que confundia).
+  if (queue.length === 0 || done >= total) {
+    const ordem = ['A1', 'A2', 'B1', 'B2', 'C1'];
+    const proximoNivel = ordem[ordem.indexOf(nivel) + 1];
+    const proximoBtn = proximoNivel
+      ? `<button class="btn-proximo" onclick="pasarSiguienteNivel('${nivel}')">Avançar pro ${proximoNivel} →</button>`
+      : '';
+    document.getElementById('lecturaContent').innerHTML = `
+      <div class="texto-card" style="text-align:center;padding:40px 24px">
+        <div style="font-size:64px;line-height:1;margin-bottom:16px">🏆</div>
+        <div style="font-size:22px;font-weight:700;margin-bottom:8px;color:var(--text)">¡Completaste el nivel ${nivel}!</div>
+        <div style="font-size:14px;color:var(--text2);margin-bottom:28px;line-height:1.5">Leíste y respondiste los ${total} textos. Puedes empezar de nuevo (en orden aleatorio) o pasar al siguiente nivel.</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          ${proximoBtn}
+          <button class="btn-proximo" onclick="reiniciarLecNivel('${nivel}')" style="background:var(--glass);border:1px solid var(--border);box-shadow:none;color:var(--text)">🔄 Empezar ${nivel} de nuevo</button>
+        </div>
+      </div>
+    `;
+    return;
+  }
+
+  const idx = queue[0];
+  const texto = textos[idx];
 
   lecRespuestas = {};
   lecRespondidas = 0;
