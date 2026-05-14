@@ -3476,14 +3476,46 @@ function responderLec(qi, oi) {
       document.getElementById('resultDetalhe').textContent = msg;
     }
 
+    // Detecta se ESTE foi o último texto do nível
+    const queueDepois = JSON.parse(localStorage.getItem('lec_queue_' + nivel) || '[]');
+    const ehUltimoDoNivel = queueDepois.length === 0;
+    const ordem = ['A1', 'A2', 'B1', 'B2', 'C1'];
+    const proximoNivel = ordem[ordem.indexOf(nivel) + 1];
+
     const botoesDiv = document.getElementById('botoesResultado');
     if (botoesDiv) {
       botoesDiv.style.display = 'flex';
-      // Mostra os dois botões
       const btnR = document.getElementById('btnReintentar');
       const btnP = document.getElementById('btnProximo');
       if (btnR) btnR.classList.add('visible');
-      if (btnP) btnP.classList.add('visible');
+      if (btnP) {
+        btnP.classList.add('visible');
+        // ÚLTIMO TEXTO DO NÍVEL: botão amarelo vai DIRETO pro próximo nível
+        // (ou recomeça se já estava no C1). 1 clique só, sem tela intermediária.
+        if (ehUltimoDoNivel && proximoNivel) {
+          btnP.textContent = '🎉 Avançar pro ' + proximoNivel + ' →';
+          btnP.onclick = function() { pasarSiguienteNivel(nivel); };
+        } else if (ehUltimoDoNivel && !proximoNivel) {
+          btnP.textContent = '🏆 Concluiu C1! Recomeçar?';
+          btnP.onclick = function() { reiniciarLecNivel(nivel); };
+        } else {
+          btnP.textContent = 'Próximo texto →';
+          btnP.onclick = function() { proximoTexto(); };
+        }
+      }
+    }
+
+    // Se foi o último, refoçar a mensagem de conclusão no card de resultado
+    if (ehUltimoDoNivel) {
+      const detalhe = document.getElementById('resultDetalhe');
+      if (detalhe) {
+        const msgConclusao = proximoNivel
+          ? `¡Completaste el nivel ${nivel}! ${pct >= 60 ? '¡Buen trabajo!' : 'Sigue así.'} Ya puedes pasar al ${proximoNivel}.`
+          : `¡Completaste C1, el último nivel! 🏆 ${msg}`;
+        detalhe.textContent = msgConclusao;
+      }
+      const emojiEl = document.getElementById('resultEmoji');
+      if (emojiEl && pct >= 60) emojiEl.textContent = '🎉';
     }
 
     // Atualiza progress
