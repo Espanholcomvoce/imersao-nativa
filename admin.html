@@ -234,9 +234,22 @@
         <label>Até</label>
         <input type="date" id="dateTo" class="input">
       </div>
-      <div class="field" style="flex: 1; min-width: 240px;">
+      <div class="field" style="flex: 1; min-width: 220px;">
         <label>Aluno (opcional)</label>
         <input type="text" id="emailFilter" class="input" placeholder="email@exemplo.com">
+      </div>
+      <div class="field" style="min-width: 180px;">
+        <label>Atividade</label>
+        <select id="moduleFilter" class="input">
+          <option value="">Todas</option>
+          <option value="conversacao">Conversação</option>
+          <option value="realtime">Fala (Realtime)</option>
+          <option value="sre">Sombreado + SRE</option>
+          <option value="leitura">Leitura</option>
+          <option value="imersao_cultural">Imersão Cultural</option>
+          <option value="tira_duvidas">Tira Dúvidas</option>
+          <option value="producao_escrita">Produção Escrita</option>
+        </select>
       </div>
       <div class="field">
         <label>Atalhos</label>
@@ -430,6 +443,7 @@
     const from = document.getElementById('dateFrom').value;
     const to = document.getElementById('dateTo').value;
     const email = document.getElementById('emailFilter').value.trim();
+    const moduleSel = document.getElementById('moduleFilter').value;
     if (!from || !to) return;
 
     document.getElementById('loadingBox').style.display = 'block';
@@ -438,6 +452,7 @@
 
     let url = `${API}/api/admin/module-report?from=${from}&to=${to}`;
     if (email) url += `&email=${encodeURIComponent(email)}`;
+    if (moduleSel) url += `&module=${encodeURIComponent(moduleSel)}`;
 
     try {
       const r = await fetch(url, { headers: { 'X-Admin-Token': adminToken } });
@@ -662,6 +677,12 @@
   else document.getElementById('loginScreen').style.display = 'block';
   document.getElementById('tokenInput').addEventListener('keydown', function(e) {
     if (e.key === 'Enter') login();
+  });
+  // Filtro de módulo recarrega na hora
+  document.getElementById('moduleFilter').addEventListener('change', loadData);
+  // Filtro de email reage no Enter
+  document.getElementById('emailFilter').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') loadData();
   });
 </script>
 </body>
