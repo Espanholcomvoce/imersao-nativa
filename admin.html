@@ -8,110 +8,205 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <style>
   :root {
-    --bg: #0f1115;
-    --panel: #171a21;
-    --panel-2: #1f242d;
-    --border: #2a313c;
-    --text: #e8eaed;
+    --bg: #0b0d12;
+    --bg-2: #11141b;
+    --panel: #161a23;
+    --panel-2: #1d2230;
+    --border: #262c3a;
+    --border-soft: #1e2330;
+    --text: #f1f3f6;
     --text2: #9aa3b2;
+    --text3: #6b7280;
     --accent: #0090be;
     --green: #36c551;
     --yellow: #ffcb15;
     --red: #ef4444;
     --purple: #a78bfa;
+    --pink: #ec4899;
+    --orange: #f97316;
+    --shadow: 0 4px 24px rgba(0,0,0,.25);
   }
   * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
   body {
-    margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     background: var(--bg); color: var(--text); line-height: 1.5;
+    font-feature-settings: 'cv11', 'ss01', 'ss03';
+    -webkit-font-smoothing: antialiased;
   }
   .header {
-    background: var(--panel); border-bottom: 1px solid var(--border);
-    padding: 18px 24px; display: flex; align-items: center; justify-content: space-between;
-    position: sticky; top: 0; z-index: 100;
+    background: linear-gradient(180deg, var(--bg-2), var(--bg));
+    border-bottom: 1px solid var(--border);
+    padding: 20px 28px; display: flex; align-items: center; justify-content: space-between;
+    position: sticky; top: 0; z-index: 100; backdrop-filter: blur(8px);
   }
-  .header h1 { margin: 0; font-size: 18px; font-weight: 600; }
-  .header .sub { color: var(--text2); font-size: 12px; margin-top: 2px; }
-  .header .actions { display: flex; gap: 8px; align-items: center; }
+  .header h1 { margin: 0; font-size: 18px; font-weight: 700; letter-spacing: -0.01em; }
+  .header .sub { color: var(--text2); font-size: 12px; margin-top: 3px; }
+  .header .actions { display: flex; gap: 10px; align-items: center; }
   .btn {
-    background: var(--accent); color: white; border: 0; padding: 8px 14px;
+    background: var(--accent); color: white; border: 0; padding: 9px 16px;
     border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer;
-    transition: opacity .15s;
+    transition: all .15s; font-family: inherit;
   }
-  .btn:hover { opacity: .85; }
+  .btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,144,190,.3); }
   .btn.ghost { background: transparent; border: 1px solid var(--border); color: var(--text); }
-  .container { max-width: 1400px; margin: 0 auto; padding: 24px; }
+  .btn.ghost:hover { background: var(--panel-2); border-color: var(--text3); box-shadow: none; }
+  .container { max-width: 1480px; margin: 0 auto; padding: 28px; }
+
+  /* Login */
   .login-screen {
     max-width: 440px; margin: 80px auto; background: var(--panel);
-    border: 1px solid var(--border); border-radius: 12px; padding: 28px;
+    border: 1px solid var(--border); border-radius: 16px; padding: 32px;
+    box-shadow: var(--shadow);
   }
-  .login-screen h2 { margin: 0 0 8px; font-size: 22px; }
-  .login-screen p { color: var(--text2); font-size: 13px; margin: 0 0 18px; }
-  .login-screen label { display: block; font-size: 12px; color: var(--text2); margin-bottom: 6px; }
+  .login-screen h2 { margin: 0 0 8px; font-size: 24px; letter-spacing: -0.02em; }
+  .login-screen p { color: var(--text2); font-size: 13px; margin: 0 0 22px; }
+  .login-screen label { display: block; font-size: 12px; color: var(--text2); margin-bottom: 6px; font-weight: 500; }
   .input {
-    width: 100%; padding: 10px 12px; background: var(--bg); border: 1px solid var(--border);
+    width: 100%; padding: 11px 14px; background: var(--bg); border: 1px solid var(--border);
     border-radius: 8px; color: var(--text); font-family: inherit; font-size: 14px;
+    transition: border-color .15s, box-shadow .15s;
   }
-  .input:focus { outline: 0; border-color: var(--accent); }
+  .input:focus { outline: 0; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(0,144,190,.15); }
+
+  /* Filters */
   .filters {
-    background: var(--panel); border: 1px solid var(--border); border-radius: 12px;
-    padding: 16px; display: flex; gap: 12px; align-items: end; flex-wrap: wrap;
-    margin-bottom: 20px;
+    background: var(--panel); border: 1px solid var(--border); border-radius: 14px;
+    padding: 18px; display: flex; gap: 14px; align-items: end; flex-wrap: wrap;
+    margin-bottom: 22px;
   }
   .filters .field { display: flex; flex-direction: column; gap: 6px; min-width: 140px; }
-  .filters label { font-size: 11px; color: var(--text2); text-transform: uppercase; letter-spacing: .5px; }
+  .filters label { font-size: 11px; color: var(--text2); text-transform: uppercase; letter-spacing: .8px; font-weight: 600; }
   .preset-btns { display: flex; gap: 4px; flex-wrap: wrap; }
   .preset {
-    padding: 6px 10px; background: transparent; border: 1px solid var(--border);
-    color: var(--text2); border-radius: 6px; cursor: pointer; font-size: 12px;
+    padding: 7px 12px; background: transparent; border: 1px solid var(--border);
+    color: var(--text2); border-radius: 7px; cursor: pointer; font-size: 12px; font-weight: 500;
+    font-family: inherit; transition: all .15s;
   }
   .preset:hover { background: var(--panel-2); color: var(--text); }
   .preset.active { background: var(--accent); border-color: var(--accent); color: white; }
-  .summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 20px; }
+
+  /* Stats */
+  .summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-bottom: 22px; }
   .stat {
-    background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 16px;
+    background: var(--panel); border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px;
+    transition: transform .15s, border-color .15s;
   }
-  .stat .label { color: var(--text2); font-size: 11px; text-transform: uppercase; letter-spacing: .5px; }
-  .stat .value { font-size: 28px; font-weight: 700; margin-top: 4px; }
-  .stat .sublabel { font-size: 11px; color: var(--text2); margin-top: 2px; }
-  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+  .stat:hover { transform: translateY(-2px); border-color: var(--text3); }
+  .stat .label { color: var(--text2); font-size: 11px; text-transform: uppercase; letter-spacing: .8px; font-weight: 600; }
+  .stat .value { font-size: 32px; font-weight: 800; margin-top: 6px; letter-spacing: -0.03em; line-height: 1; }
+  .stat .sublabel { font-size: 11px; color: var(--text3); margin-top: 6px; }
+  .stat .icon { font-size: 18px; opacity: .6; float: right; }
+
+  /* Cards */
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 18px; }
+  @media (max-width: 980px) { .grid { grid-template-columns: 1fr; } }
   .card {
-    background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 16px;
+    background: var(--panel); border: 1px solid var(--border); border-radius: 14px; padding: 20px;
   }
-  .card h3 { margin: 0 0 12px; font-size: 14px; font-weight: 600; }
-  .card .canvas-wrap { position: relative; height: 280px; }
+  .card h3 {
+    margin: 0 0 16px; font-size: 14px; font-weight: 700; letter-spacing: -0.01em;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .card h3 .badge-count {
+    background: var(--panel-2); color: var(--text2); font-size: 10px; padding: 2px 8px;
+    border-radius: 10px; font-weight: 600; border: 1px solid var(--border);
+  }
+  .card .canvas-wrap { position: relative; height: 290px; }
   .card.full { grid-column: 1 / -1; }
-  .table-wrap { max-height: 480px; overflow: auto; }
-  table { width: 100%; border-collapse: collapse; font-size: 13px; }
-  thead th {
-    text-align: left; padding: 10px 12px; background: var(--panel-2); position: sticky; top: 0;
-    color: var(--text2); font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: .5px;
-    border-bottom: 1px solid var(--border);
+
+  /* Matrix table */
+  .matrix-wrap { overflow-x: auto; }
+  table.matrix { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 13px; min-width: 800px; }
+  table.matrix thead th {
+    text-align: center; padding: 10px 8px; background: var(--panel-2); position: sticky; top: 0;
+    color: var(--text2); font-weight: 600; font-size: 10px; text-transform: uppercase; letter-spacing: .8px;
+    border-bottom: 2px solid var(--border); white-space: nowrap;
   }
-  tbody td { padding: 10px 12px; border-bottom: 1px solid var(--border); }
-  tbody tr:hover { background: var(--panel-2); }
-  .badge {
-    display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 11px;
-    background: var(--panel-2); border: 1px solid var(--border); color: var(--text2);
+  table.matrix thead th:first-child { text-align: left; padding-left: 12px; }
+  table.matrix thead th .dot { display: inline-block; width: 8px; height: 8px; border-radius: 2px; vertical-align: middle; margin-right: 5px; }
+  table.matrix tbody td {
+    padding: 12px 10px; border-bottom: 1px solid var(--border-soft);
+    text-align: center; font-variant-numeric: tabular-nums; font-weight: 500;
   }
-  .badge.green { color: var(--green); border-color: rgba(54,197,81,.4); }
-  .badge.yellow { color: var(--yellow); border-color: rgba(255,203,21,.4); }
-  .badge.red { color: var(--red); border-color: rgba(239,68,68,.4); }
-  .empty { text-align: center; padding: 40px 20px; color: var(--text2); font-size: 13px; }
+  table.matrix tbody td.email-cell { text-align: left; padding-left: 12px; color: var(--text); font-weight: 500; }
+  table.matrix tbody td.email-cell .rank {
+    display: inline-block; width: 22px; height: 22px; line-height: 22px; text-align: center;
+    background: var(--panel-2); border-radius: 11px; font-size: 11px; color: var(--text2); margin-right: 8px;
+    font-weight: 700;
+  }
+  table.matrix tbody td.email-cell .rank.top { background: var(--accent); color: white; }
+  table.matrix tbody tr:hover td { background: rgba(255,255,255,.02); }
+  table.matrix tbody td.total-cell { font-weight: 700; color: var(--text); }
+  .pill {
+    display: inline-block; min-width: 44px; padding: 5px 10px; border-radius: 999px;
+    font-weight: 600; font-size: 12px; line-height: 1.2;
+  }
+  .pill.zero { background: transparent; color: var(--text3); font-weight: 400; }
+
+  /* Day-grouped list */
+  .day-group { margin-bottom: 18px; }
+  .day-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 14px; background: var(--panel-2); border-radius: 8px;
+    margin-bottom: 8px; font-size: 13px;
+  }
+  .day-header .day-title { font-weight: 700; letter-spacing: -0.01em; }
+  .day-header .day-title .day-weekday { color: var(--text2); font-weight: 500; margin-right: 6px; text-transform: capitalize; }
+  .day-header .day-stats { color: var(--text2); font-size: 12px; }
+  .day-header .day-stats strong { color: var(--text); }
+  .day-rows { display: flex; flex-direction: column; gap: 2px; }
+  .day-row {
+    display: grid; grid-template-columns: 4px 1fr 200px 80px;
+    align-items: center; gap: 12px; padding: 10px 12px;
+    background: var(--bg-2); border-radius: 6px; font-size: 13px;
+    transition: background .15s;
+  }
+  .day-row:hover { background: var(--panel-2); }
+  .day-row .module-bar { width: 4px; height: 28px; border-radius: 2px; }
+  .day-row .email { color: var(--text); font-weight: 500; }
+  .day-row .module-name { color: var(--text2); font-size: 12px; }
+  .day-row .minutes { text-align: right; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .day-row .minutes .unit { color: var(--text3); font-weight: 400; font-size: 11px; margin-left: 2px; }
+  @media (max-width: 720px) {
+    .day-row { grid-template-columns: 4px 1fr 70px; }
+    .day-row .module-name { display: none; }
+  }
+
+  /* Module breakdown card */
+  .module-list { display: flex; flex-direction: column; gap: 12px; }
+  .module-item {
+    display: grid; grid-template-columns: 12px 1fr auto; gap: 12px; align-items: center;
+    padding: 10px 12px; background: var(--bg-2); border-radius: 8px;
+  }
+  .module-item .swatch { width: 12px; height: 12px; border-radius: 3px; }
+  .module-item .name { font-weight: 600; font-size: 13px; }
+  .module-item .sub { color: var(--text2); font-size: 11px; margin-top: 2px; }
+  .module-item .figures { text-align: right; }
+  .module-item .figures .min { font-weight: 700; font-size: 15px; font-variant-numeric: tabular-nums; }
+  .module-item .figures .pct { color: var(--text2); font-size: 11px; }
+  .module-bar-track { height: 4px; background: var(--panel-2); border-radius: 2px; margin-top: 6px; overflow: hidden; }
+  .module-bar-fill { height: 100%; border-radius: 2px; transition: width .4s; }
+
+  .empty { text-align: center; padding: 50px 20px; color: var(--text3); font-size: 13px; }
+  .empty .big { font-size: 32px; margin-bottom: 10px; opacity: .4; }
   .loading { text-align: center; padding: 40px 20px; color: var(--text2); font-size: 13px; }
-  .error { color: var(--red); font-size: 13px; padding: 10px 14px; background: rgba(239,68,68,.08); border-radius: 8px; border: 1px solid rgba(239,68,68,.3); margin-bottom: 16px; }
-  .module-color { display: inline-block; width: 10px; height: 10px; border-radius: 2px; vertical-align: middle; margin-right: 6px; }
+  .error { color: var(--red); font-size: 13px; padding: 12px 16px; background: rgba(239,68,68,.08); border-radius: 8px; border: 1px solid rgba(239,68,68,.3); margin-bottom: 16px; }
+
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--text3); }
 </style>
 </head>
 <body>
 
-<div id="loginScreen" class="login-screen">
+<div id="loginScreen" class="login-screen" style="display:none">
   <h2>🔒 Painel Admin</h2>
   <p>Cole o ADMIN_TOKEN configurado no Railway pra acessar o relatório.</p>
   <label for="tokenInput">ADMIN_TOKEN</label>
-  <input id="tokenInput" type="password" class="input" placeholder="...">
-  <div style="margin-top: 14px; display: flex; gap: 8px;">
+  <input id="tokenInput" type="password" class="input" placeholder="…">
+  <div style="margin-top: 16px; display: flex; gap: 8px;">
     <button class="btn" onclick="login()">Entrar</button>
   </div>
   <div id="loginError" class="error" style="display:none; margin-top: 14px;"></div>
@@ -140,17 +235,17 @@
         <input type="date" id="dateTo" class="input">
       </div>
       <div class="field" style="flex: 1; min-width: 240px;">
-        <label>Aluno (opcional, filtro por email)</label>
+        <label>Aluno (opcional)</label>
         <input type="text" id="emailFilter" class="input" placeholder="email@exemplo.com">
       </div>
       <div class="field">
         <label>Atalhos</label>
         <div class="preset-btns">
-          <button class="preset" onclick="setPreset('today')">Hoje</button>
-          <button class="preset" onclick="setPreset('7d')">7 dias</button>
-          <button class="preset" onclick="setPreset('30d')">30 dias</button>
-          <button class="preset" onclick="setPreset('month')">Este mês</button>
-          <button class="preset" onclick="setPreset('all')">90 dias</button>
+          <button class="preset" data-preset="today" onclick="setPreset('today', this)">Hoje</button>
+          <button class="preset" data-preset="7d" onclick="setPreset('7d', this)">7 dias</button>
+          <button class="preset" data-preset="30d" onclick="setPreset('30d', this)">30 dias</button>
+          <button class="preset" data-preset="month" onclick="setPreset('month', this)">Este mês</button>
+          <button class="preset" data-preset="all" onclick="setPreset('all', this)">90 dias</button>
         </div>
       </div>
       <div class="field">
@@ -165,21 +260,25 @@
     <div id="content" style="display:none">
       <div class="summary">
         <div class="stat">
+          <span class="icon">👥</span>
           <div class="label">Alunos no período</div>
           <div class="value" id="statUsers">0</div>
           <div class="sublabel" id="statUsersSub"></div>
         </div>
         <div class="stat">
-          <div class="label">Minutos totais</div>
+          <span class="icon">⏱️</span>
+          <div class="label">Tempo total</div>
           <div class="value" id="statMinutes">0</div>
           <div class="sublabel" id="statMinutesSub"></div>
         </div>
         <div class="stat">
+          <span class="icon">🎯</span>
           <div class="label">Atividade mais usada</div>
-          <div class="value" id="statTopModule" style="font-size:18px">—</div>
+          <div class="value" id="statTopModule" style="font-size:20px">—</div>
           <div class="sublabel" id="statTopModuleSub"></div>
         </div>
         <div class="stat">
+          <span class="icon">📅</span>
           <div class="label">Dias com uso</div>
           <div class="value" id="statDays">0</div>
           <div class="sublabel" id="statDaysSub"></div>
@@ -193,28 +292,23 @@
         </div>
         <div class="card">
           <h3>🎯 Tempo por atividade</h3>
-          <div class="canvas-wrap"><canvas id="chartByModule"></canvas></div>
+          <div id="moduleList" class="module-list"></div>
         </div>
-        <div class="card full">
-          <h3>🏆 Top alunos por minutos</h3>
-          <div class="canvas-wrap" style="height: 340px;"><canvas id="chartByUser"></canvas></div>
+      </div>
+
+      <div class="card full" style="margin-bottom: 18px;">
+        <h3>📊 Matriz · alunos × atividades <span class="badge-count" id="matrixCount">0</span></h3>
+        <div class="matrix-wrap">
+          <table class="matrix" id="matrixTable">
+            <thead id="matrixHead"></thead>
+            <tbody id="matrixBody"></tbody>
+          </table>
         </div>
-        <div class="card full">
-          <h3>📋 Detalhe — aluno × atividade × dia</h3>
-          <div class="table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>Dia</th>
-                  <th>Aluno</th>
-                  <th>Atividade</th>
-                  <th style="text-align:right">Minutos</th>
-                </tr>
-              </thead>
-              <tbody id="detailRows"></tbody>
-            </table>
-          </div>
-        </div>
+      </div>
+
+      <div class="card full">
+        <h3>📅 Detalhe por dia <span class="badge-count" id="detailCount">0</span></h3>
+        <div id="detailDays"></div>
       </div>
     </div>
   </div>
@@ -242,12 +336,46 @@
     producao_escrita: 'Produção Escrita',
     realtime: 'Fala (Realtime)'
   };
+  // Ordem fixa pra colunas da matriz
+  const MODULE_ORDER = ['conversacao', 'realtime', 'sre', 'leitura', 'imersao_cultural', 'producao_escrita', 'tira_duvidas'];
+
   function colorOf(mod) { return MODULE_COLORS[mod] || '#9aa3b2'; }
   function labelOf(mod) { return MODULE_LABELS[mod] || mod; }
 
+  // ── DATE HELPERS ─────────────────────────────
+  const WEEKDAYS = ['dom', 'seg', 'ter', 'qua', 'qui', 'sex', 'sáb'];
+  const MONTHS = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'];
+
+  function parseISODate(iso) {
+    // "2026-05-14T00:00:00.000Z" ou "2026-05-14"
+    const d = new Date(iso);
+    // Pega componentes UTC pra evitar shift de fuso (a data é "puramente um dia")
+    return { y: d.getUTCFullYear(), m: d.getUTCMonth(), d: d.getUTCDate(), wd: d.getUTCDay() };
+  }
+  function fmtDateShort(iso) {
+    const { d, m } = parseISODate(iso);
+    return String(d).padStart(2,'0') + '/' + MONTHS[m];
+  }
+  function fmtDateLong(iso) {
+    const { d, m, wd } = parseISODate(iso);
+    return `<span class="day-weekday">${WEEKDAYS[wd]},</span>${String(d).padStart(2,'0')}/${MONTHS[m]}`;
+  }
+  function fmtMinutes(min) {
+    if (min == null) return '—';
+    if (min < 1) return Math.round(min * 60) + 's';
+    if (min < 60) return Math.round(min * 10) / 10 + 'min';
+    const h = Math.floor(min / 60), m = Math.round(min % 60);
+    return m === 0 ? h + 'h' : h + 'h' + String(m).padStart(2,'0');
+  }
+  function fmtMinutesShort(min) {
+    if (min == null || min === 0) return '0';
+    if (min < 1) return Math.round(min * 60) + 's';
+    return Math.round(min * 10) / 10;
+  }
+
   // ── AUTH ─────────────────────────────────────
   let adminToken = localStorage.getItem('in_admin_token');
-  let charts = { byDay: null, byModule: null, byUser: null };
+  let charts = { byDay: null };
 
   function login() {
     const t = document.getElementById('tokenInput').value.trim();
@@ -269,11 +397,10 @@
     el.textContent = msg;
     el.style.display = 'block';
   }
-
   function showApp() {
     document.getElementById('loginScreen').style.display = 'none';
     document.getElementById('appScreen').style.display = 'block';
-    setPreset('30d');
+    setPreset('30d', document.querySelector('[data-preset="30d"]'));
     loadData();
   }
 
@@ -284,9 +411,9 @@
     const dd = String(d.getDate()).padStart(2, '0');
     return `${y}-${m}-${dd}`;
   }
-  function setPreset(kind) {
+  function setPreset(kind, btn) {
     document.querySelectorAll('.preset').forEach(b => b.classList.remove('active'));
-    event && event.target && event.target.classList.add('active');
+    if (btn) btn.classList.add('active');
     const today = new Date();
     let from = new Date(today);
     if (kind === 'today') { /* from = today */ }
@@ -338,156 +465,201 @@
 
     // Stats
     document.getElementById('statUsers').textContent = data.summary.total_users;
-    document.getElementById('statUsersSub').textContent = data.email_filter ? 'filtro: ' + data.email_filter : '';
-    document.getElementById('statMinutes').textContent = data.summary.total_minutes.toLocaleString('pt-BR');
-    document.getElementById('statMinutesSub').textContent = Math.round(data.summary.total_minutes / 60) + ' h totais';
+    document.getElementById('statUsersSub').textContent = data.email_filter ? 'filtro: ' + data.email_filter : (data.summary.total_users === 1 ? '1 aluno ativo' : data.summary.total_users + ' alunos ativos');
+    document.getElementById('statMinutes').textContent = fmtMinutes(data.summary.total_minutes);
+    document.getElementById('statMinutesSub').textContent = data.summary.total_minutes + ' min · ' + Math.round(data.summary.total_seconds) + 's brutos';
     const top = data.by_module[0];
     document.getElementById('statTopModule').textContent = top ? labelOf(top.module) : '—';
-    document.getElementById('statTopModuleSub').textContent = top ? (top.total_minutes + ' min · ' + top.unique_users + ' alunos') : '';
+    document.getElementById('statTopModuleSub').textContent = top ? (fmtMinutes(top.total_minutes) + ' · ' + top.unique_users + ' aluno' + (top.unique_users === 1 ? '' : 's')) : '';
     document.getElementById('statDays').textContent = data.summary.days_in_period;
-    document.getElementById('statDaysSub').textContent = '(no período)';
+    document.getElementById('statDaysSub').textContent = data.summary.days_in_period === 1 ? '1 dia' : data.summary.days_in_period + ' dias';
 
     renderByDay(data.by_day);
-    renderByModule(data.by_module);
-    renderByUser(data.by_user);
-    renderDetail(data.detail);
+    renderModuleList(data.by_module);
+    renderMatrix(data.by_user, data.detail);
+    renderDetailByDay(data.detail, data.by_day);
   }
-
-  const chartCommon = {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: { labels: { color: '#9aa3b2', font: { size: 12 } } },
-      tooltip: { backgroundColor: '#171a21', borderColor: '#2a313c', borderWidth: 1 }
-    },
-    scales: {
-      x: { ticks: { color: '#9aa3b2' }, grid: { color: '#2a313c' } },
-      y: { ticks: { color: '#9aa3b2' }, grid: { color: '#2a313c' }, beginAtZero: true }
-    }
-  };
 
   function renderByDay(rows) {
     const ctx = document.getElementById('chartByDay');
     if (charts.byDay) charts.byDay.destroy();
-    if (!rows.length) { ctx.getContext('2d').clearRect(0,0,ctx.width,ctx.height); return; }
+    if (!rows.length) {
+      ctx.getContext('2d').clearRect(0,0,ctx.width,ctx.height);
+      return;
+    }
     charts.byDay = new Chart(ctx, {
       type: 'line',
       data: {
-        labels: rows.map(r => r.date.slice(5)),
+        labels: rows.map(r => fmtDateShort(r.date)),
         datasets: [{
           label: 'Minutos',
           data: rows.map(r => r.total_minutes),
           borderColor: '#0090be',
-          backgroundColor: 'rgba(0,144,190,0.15)',
+          backgroundColor: 'rgba(0,144,190,0.18)',
           fill: true,
-          tension: 0.3,
+          tension: 0.35,
           pointRadius: 4,
-          pointHoverRadius: 6
+          pointHoverRadius: 7,
+          pointBackgroundColor: '#0090be',
+          pointBorderColor: '#0b0d12',
+          pointBorderWidth: 2
         }, {
           label: 'Alunos ativos',
           data: rows.map(r => r.active_users),
           borderColor: '#36c551',
           backgroundColor: 'transparent',
-          tension: 0.3,
+          tension: 0.35,
           yAxisID: 'y2',
-          pointRadius: 3
-        }]
-      },
-      options: {
-        ...chartCommon,
-        scales: {
-          ...chartCommon.scales,
-          y2: {
-            position: 'right',
-            ticks: { color: '#36c551' },
-            grid: { display: false },
-            beginAtZero: true
-          }
-        }
-      }
-    });
-  }
-
-  function renderByModule(rows) {
-    const ctx = document.getElementById('chartByModule');
-    if (charts.byModule) charts.byModule.destroy();
-    if (!rows.length) { ctx.getContext('2d').clearRect(0,0,ctx.width,ctx.height); return; }
-    charts.byModule = new Chart(ctx, {
-      type: 'doughnut',
-      data: {
-        labels: rows.map(r => labelOf(r.module)),
-        datasets: [{
-          data: rows.map(r => r.total_minutes),
-          backgroundColor: rows.map(r => colorOf(r.module)),
-          borderColor: '#171a21',
-          borderWidth: 2
+          pointRadius: 3,
+          pointBackgroundColor: '#36c551',
+          pointBorderColor: '#0b0d12',
+          pointBorderWidth: 2,
+          borderDash: [4, 4]
         }]
       },
       options: {
         responsive: true, maintainAspectRatio: false,
         plugins: {
-          legend: { position: 'right', labels: { color: '#9aa3b2', font: { size: 12 }, padding: 10 } },
-          tooltip: {
-            backgroundColor: '#171a21', borderColor: '#2a313c', borderWidth: 1,
-            callbacks: {
-              label: function(ctx) {
-                const total = ctx.dataset.data.reduce((a,b) => a+b, 0);
-                const pct = total ? Math.round(ctx.raw / total * 100) : 0;
-                return ctx.label + ': ' + ctx.raw + ' min (' + pct + '%)';
-              }
-            }
-          }
-        }
-      }
-    });
-  }
-
-  function renderByUser(rows) {
-    const ctx = document.getElementById('chartByUser');
-    if (charts.byUser) charts.byUser.destroy();
-    if (!rows.length) { ctx.getContext('2d').clearRect(0,0,ctx.width,ctx.height); return; }
-    const top = rows.slice(0, 15); // top 15
-    charts.byUser = new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: top.map(r => r.email),
-        datasets: [{
-          label: 'Minutos',
-          data: top.map(r => r.total_minutes),
-          backgroundColor: '#0090be',
-          borderRadius: 4
-        }]
-      },
-      options: {
-        ...chartCommon,
-        indexAxis: 'y',
-        plugins: { legend: { display: false }, tooltip: chartCommon.plugins.tooltip },
+          legend: { labels: { color: '#9aa3b2', font: { size: 12 }, usePointStyle: true, padding: 14 } },
+          tooltip: { backgroundColor: '#161a23', borderColor: '#262c3a', borderWidth: 1, padding: 10 }
+        },
         scales: {
-          x: { ticks: { color: '#9aa3b2' }, grid: { color: '#2a313c' }, beginAtZero: true },
-          y: { ticks: { color: '#9aa3b2', font: { size: 11 } }, grid: { display: false } }
+          x: { ticks: { color: '#9aa3b2', font: { size: 11 } }, grid: { color: '#1e2330' } },
+          y: { ticks: { color: '#9aa3b2', font: { size: 11 } }, grid: { color: '#1e2330' }, beginAtZero: true, title: { display: true, text: 'min', color: '#6b7280', font: { size: 10 } } },
+          y2: { position: 'right', ticks: { color: '#36c551', font: { size: 11 } }, grid: { display: false }, beginAtZero: true, title: { display: true, text: 'alunos', color: '#36c551', font: { size: 10 } } }
         }
       }
     });
   }
 
-  function renderDetail(rows) {
-    const tbody = document.getElementById('detailRows');
+  function renderModuleList(rows) {
+    const container = document.getElementById('moduleList');
     if (!rows.length) {
-      tbody.innerHTML = '<tr><td colspan="4" class="empty">Sem dados no período.</td></tr>';
+      container.innerHTML = '<div class="empty"><div class="big">📭</div>Sem atividade no período.</div>';
       return;
     }
-    tbody.innerHTML = rows.map(r => `
+    const total = rows.reduce((s, r) => s + r.total_seconds, 0);
+    container.innerHTML = rows.map(r => {
+      const pct = total ? Math.round(r.total_seconds / total * 100) : 0;
+      const color = colorOf(r.module);
+      return `
+        <div class="module-item">
+          <div class="swatch" style="background:${color}"></div>
+          <div>
+            <div class="name">${labelOf(r.module)}</div>
+            <div class="sub">${r.unique_users} aluno${r.unique_users === 1 ? '' : 's'}</div>
+            <div class="module-bar-track"><div class="module-bar-fill" style="width:${pct}%;background:${color}"></div></div>
+          </div>
+          <div class="figures">
+            <div class="min">${fmtMinutes(r.total_minutes)}</div>
+            <div class="pct">${pct}%</div>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  function renderMatrix(byUser, detail) {
+    // Constrói {email: {module: minutes}}
+    const cube = {};
+    detail.forEach(row => {
+      if (!cube[row.email]) cube[row.email] = {};
+      cube[row.email][row.module] = (cube[row.email][row.module] || 0) + row.minutes;
+    });
+
+    // Quais módulos têm dados? (mantém ordem fixa)
+    const presentModules = MODULE_ORDER.filter(m => detail.some(r => r.module === m));
+    // Módulos não na ordem mas presentes (defensivo)
+    detail.forEach(r => { if (!presentModules.includes(r.module)) presentModules.push(r.module); });
+
+    document.getElementById('matrixCount').textContent = byUser.length + ' alunos';
+
+    if (!byUser.length) {
+      document.getElementById('matrixHead').innerHTML = '';
+      document.getElementById('matrixBody').innerHTML = '<tr><td colspan="2" class="empty"><div class="big">📭</div>Sem dados.</td></tr>';
+      return;
+    }
+
+    // Header
+    document.getElementById('matrixHead').innerHTML = `
       <tr>
-        <td>${r.date}</td>
-        <td>${r.email}</td>
-        <td><span class="module-color" style="background:${colorOf(r.module)}"></span>${labelOf(r.module)}</td>
-        <td style="text-align:right; font-variant-numeric: tabular-nums;">${r.minutes}</td>
+        <th>Aluno</th>
+        ${presentModules.map(m => `<th><span class="dot" style="background:${colorOf(m)}"></span>${labelOf(m)}</th>`).join('')}
+        <th>Total</th>
+        <th>Dias</th>
       </tr>
-    `).join('');
+    `;
+
+    // Body
+    document.getElementById('matrixBody').innerHTML = byUser.map((u, idx) => {
+      const cells = presentModules.map(m => {
+        const v = cube[u.email]?.[m] || 0;
+        if (v === 0) return '<td><span class="pill zero">—</span></td>';
+        return `<td><span class="pill" style="background:${colorOf(m)}22;color:${colorOf(m)};border:1px solid ${colorOf(m)}44">${fmtMinutesShort(v)}</span></td>`;
+      }).join('');
+      return `
+        <tr>
+          <td class="email-cell">
+            <span class="rank ${idx < 3 ? 'top' : ''}">${idx + 1}</span>${u.email}
+          </td>
+          ${cells}
+          <td class="total-cell">${fmtMinutes(u.total_minutes)}</td>
+          <td>${u.active_days}</td>
+        </tr>
+      `;
+    }).join('');
+  }
+
+  function renderDetailByDay(detail, byDay) {
+    document.getElementById('detailCount').textContent = detail.length + ' eventos';
+    const container = document.getElementById('detailDays');
+
+    if (!detail.length) {
+      container.innerHTML = '<div class="empty"><div class="big">📭</div>Sem dados no período.</div>';
+      return;
+    }
+
+    // Agrupa por data
+    const byDate = {};
+    detail.forEach(r => {
+      if (!byDate[r.date]) byDate[r.date] = [];
+      byDate[r.date].push(r);
+    });
+    // Pega summary por dia do payload
+    const dayMeta = {};
+    byDay.forEach(d => { dayMeta[d.date] = d; });
+
+    const dates = Object.keys(byDate).sort((a, b) => b.localeCompare(a));
+
+    container.innerHTML = dates.map(date => {
+      const rows = byDate[date].sort((a, b) => b.minutes - a.minutes);
+      const meta = dayMeta[date] || { total_minutes: rows.reduce((s,r) => s+r.minutes, 0), active_users: new Set(rows.map(r => r.email)).size };
+      return `
+        <div class="day-group">
+          <div class="day-header">
+            <div class="day-title">${fmtDateLong(date)}</div>
+            <div class="day-stats">
+              <strong>${fmtMinutes(meta.total_minutes)}</strong> · <strong>${meta.active_users}</strong> aluno${meta.active_users === 1 ? '' : 's'} · <strong>${rows.length}</strong> evento${rows.length === 1 ? '' : 's'}
+            </div>
+          </div>
+          <div class="day-rows">
+            ${rows.map(r => `
+              <div class="day-row">
+                <div class="module-bar" style="background:${colorOf(r.module)}"></div>
+                <div class="email">${r.email}</div>
+                <div class="module-name"><span style="display:inline-block;width:8px;height:8px;border-radius:2px;background:${colorOf(r.module)};margin-right:6px;vertical-align:middle"></span>${labelOf(r.module)}</div>
+                <div class="minutes">${fmtMinutesShort(r.minutes)}<span class="unit">min</span></div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }).join('');
   }
 
   // ── INIT ─────────────────────────────────────
-  if (adminToken) showApp(); else document.getElementById('loginScreen').style.display = 'block';
+  if (adminToken) showApp();
+  else document.getElementById('loginScreen').style.display = 'block';
   document.getElementById('tokenInput').addEventListener('keydown', function(e) {
     if (e.key === 'Enter') login();
   });
