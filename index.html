@@ -1193,10 +1193,49 @@ function logoutUser() {
 }
 
 // ══ NAV ══
+// Map de tela → módulo (grupos lógicos pra relatório por atividade).
+// Telas não-mapeadas contam como 'navegação' e não rastreamos tempo.
+var MODULE_OF_SCREEN = {
+  'conversa': 'conversacao',
+  'setup-conversa': 'conversacao',
+  'sre': 'sre',
+  'sre-vocab': 'sre',
+  'lectura': 'leitura',
+  'auditiva': 'imersao_cultural',
+  'auditiva-ep': 'imersao_cultural',
+  'tiraduvidas': 'tira_duvidas',
+  'producao': 'producao_escrita'
+};
+
+var _currentModule = null;
+var _moduleEnterAt = null;
+function _flushModuleUse() {
+  if (_currentModule && _moduleEnterAt) {
+    var secs = Math.floor((Date.now() - _moduleEnterAt) / 1000);
+    if (secs >= 3) { // ignora visitas <3s (passagem rápida pela tela)
+      track('module_used', { module: _currentModule, duration_seconds: secs });
+    }
+  }
+  _currentModule = null;
+  _moduleEnterAt = null;
+}
+// Quando aba fica oculta (mobile dormindo, app em background), grava o tempo até agora
+document.addEventListener('visibilitychange', function() {
+  if (document.visibilityState === 'hidden') _flushModuleUse();
+});
+
 function goTo(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   track('screen_viewed', { screen: id });
+  // Fecha sessão de módulo anterior (manda module_used com duração)
+  _flushModuleUse();
+  // Abre sessão de novo módulo se a tela atual mapeia pra um
+  var newModule = MODULE_OF_SCREEN[id];
+  if (newModule) {
+    _currentModule = newModule;
+    _moduleEnterAt = Date.now();
+  }
   if (id === 'sre') renderCards();
   if (id === 'home') updateHomeSreStats();
   if (id === 'lectura') renderLectura();
