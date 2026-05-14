@@ -1085,6 +1085,23 @@ if ('serviceWorker' in navigator) {
       }).catch(function() {});
     }
   });
+
+  // AUTO-RELOAD silencioso: quando o SW novo assume controle (controllerchange),
+  // recarrega a página SE o aluno NÃO estiver no meio de algo crítico.
+  // Garante que a próxima abertura do PWA sempre serve o código mais novo,
+  // sem aluno precisar limpar dados ou F5.
+  var _swReloading = false;
+  navigator.serviceWorker.addEventListener('controllerchange', function() {
+    if (_swReloading) return;
+    // Nunca interromper conversação ativa
+    if (typeof rtAtivo !== 'undefined' && rtAtivo) return;
+    if (typeof cvPaulaTalando !== 'undefined' && cvPaulaTalando) return;
+    if (typeof cvGravando !== 'undefined' && cvGravando) return;
+    if (typeof cvMaosLivres !== 'undefined' && cvMaosLivres) return;
+    _swReloading = true;
+    // Pequeno delay pra dar tempo de qualquer animação/transição terminar
+    setTimeout(function() { window.location.reload(); }, 500);
+  });
 }
 
 // ══ LOGIN ══
